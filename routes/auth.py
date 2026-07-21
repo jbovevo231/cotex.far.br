@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, request
 
 
 auth_bp = Blueprint(
@@ -7,7 +7,16 @@ auth_bp = Blueprint(
 )
 
 
-@auth_bp.route("/")
-def inicio():
+@auth_bp.route("/login", methods=["GET", "POST"])
+def login():
 
-    return "CotaFarma v2 online"
+    if request.method == "POST":
+
+        cnpj = request.form.get("cnpj")
+        senha = request.form.get("senha")
+
+        print("Login:", cnpj)
+
+        # depois vamos ligar ao Turso
+
+    return render_template("login.html")
