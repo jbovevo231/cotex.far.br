@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 
 dashboard_bp = Blueprint(
@@ -10,4 +10,6 @@ dashboard_bp = Blueprint(
 @dashboard_bp.route("/dashboard")
 def dashboard():
 
-    return "Dashboard CotaFarma v2 funcionando"
+    return render_template(
+        "dashboard.html"
+    )
