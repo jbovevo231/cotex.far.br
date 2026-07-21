@@ -1,0 +1,16 @@
+# Ambiente
+venv/
+.env
+
+# Banco local
+*.db
+*.db-info
+*.db-shm
+*.db-wal
+
+# Python
+__pycache__/
+*.pyc
+
+# Mac
+.DS_Store
