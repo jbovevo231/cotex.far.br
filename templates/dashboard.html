@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="mac-app">
+
+
+<!-- MENU LATERAL -->
+
+<aside class="sidebar">
+
+<div class="brand">
+<span>COTAX</span> FARMA
+</div>
+
+
+<nav>
+
+<a class="active">🏠 Início</a>
+
+<a>📋 Cotações</a>
+
+<a>💊 Produtos</a>
+
+<a>🏭 Distribuidoras</a>
+
+<a>📊 Inteligência</a>
+
+<a>⚙ Configurações</a>
+
+</nav>
+
+
+<div class="profile">
+
+{{session.get('usuario_email','Usuário')}}
+
+</div>
+
+
+</aside>
+
+
+
+
+<!-- ÁREA PRINCIPAL -->
+
+<main class="content">
+
+
+
+<header>
+
+<div>
+
+<h1>
+Olá, bem-vindo 👋
+</h1>
+
+<p>
+Gestão inteligente de compras farmacêuticas
+</p>
+
+</div>
+
+
+<button class="new-btn">
++ Nova Cotação
+</button>
+
+
+</header>
+
+
+
+
+<!-- INDICADORES -->
+
+
+<section class="stats">
+
+
+<div>
+<h4>Cotações</h4>
+<strong>
+{{ indicadores.get('cotacoes',0) }}
+</strong>
+</div>
+
+
+<div>
+<h4>Economia</h4>
+<strong>
+{{ indicadores.get('economia','R$0') }}
+</strong>
+</div>
+
+
+<div>
+<h4>Produtos</h4>
+<strong>
+{{ indicadores.get('produtos',0) }}
+</strong>
+</div>
+
+
+<div>
+<h4>Fornecedores</h4>
+<strong>
+{{ indicadores.get('distribuidoras',0) }}
+</strong>
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- NOVA COTAÇÃO -->
+
+
+<section class="window">
+
+
+<div class="window-title">
+
+<h2>
+Nova Cotação
+</h2>
+
+
+<span>
+● ● ●
+</span>
+
+</div>
+
+
+
+
+<input 
+class="apple-input"
+placeholder="Nome da cotação">
+
+
+<div class="table-head">
+
+<div>
+Medicamento
+</div>
+
+<div>
+Laboratório
+</div>
+
+<div>
+Quantidade
+</div>
+
+<div>
+</div>
+
+
+</div>
+
+
+
+<div class="product-row">
+
+
+<input class="apple-input"
+placeholder="Nome do medicamento">
+
+
+<input class="apple-input"
+placeholder="Laboratório">
+
+
+<input class="apple-input"
+placeholder="Qtd">
+
+
+<button class="delete">
+×
+</button>
+
+
+</div>
+
+
+
+
+<button class="add-product">
+
++ Adicionar medicamento
+
+</button>
+
+
+
+<button class="save">
+
+Criar Cotação
+
+</button>
+
+
+</section>
+
+
+
+</main>
+
+
+</div>
+
+
+{% endblock %}

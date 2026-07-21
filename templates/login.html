@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="login-page">
+
+<div class="brand">
+<h1><span>COTAX</span> FARMA</h1>
+<p>Gestão inteligente de cotações farmacêuticas</p>
+</div>
+
+<div class="login-box">
+
+<form method="POST" action="/login">
+
+<input type="text" name="cnpj" placeholder="CNPJ" required>
+
+<input type="password" name="senha" placeholder="Senha" required>
+
+<button class="btn-primary" type="submit">Entrar</button>
+
+</form>
+
+
+<div class="actions">
+
+<button class="btn-outline" type="button" onclick="abrirCadastro()">
+Criar conta
+</button>
+
+<button class="btn-link" type="button">
+Não possuo conta
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="modal" id="cadastroModal">
+
+<div class="modal-box">
+
+<button class="close" onclick="fecharCadastro()">×</button>
+
+<h2>Criar cadastro</h2>
+<p>Cadastre sua empresa no CotaX Farma</p>
+
+<form method="POST" action="/cadastro">
+
+<input name="nome" placeholder="Nome completo" required>
+
+<input name="cpf" placeholder="CPF" required>
+
+<input name="cnpj" placeholder="CNPJ" required>
+
+<input type="email" name="email" placeholder="E-mail" required>
+
+<input type="password" name="senha" placeholder="Senha" required>
+
+<input type="password" name="confirmar" placeholder="Confirmar senha" required>
+
+<button class="btn-primary" type="submit">
+Criar cadastro
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<script>
+
+function abrirCadastro(){
+document.getElementById("cadastroModal").style.display="flex";
+}
+
+function fecharCadastro(){
+document.getElementById("cadastroModal").style.display="none";
+}
+
+</script>
+
+{% endblock %}

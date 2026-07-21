@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from config import Config
 
@@ -7,29 +7,27 @@ from routes.dashboard import dashboard_bp
 from routes.cotacao import cotacao_bp
 
 
-app = Flask(
-    __name__,
-    template_folder="templates",
-    static_folder="static"
-)
-
+app = Flask(__name__)
 
 app.config.from_object(Config)
 
 
+# registra rotas
 app.register_blueprint(auth_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(cotacao_bp)
 
 
 @app.route("/")
-def index():
-    return "CotaFarma v2 funcionando"
+def inicio():
+
+    return render_template("login.html")
 
 
 if __name__ == "__main__":
+
     app.run(
+        debug=True,
         host="0.0.0.0",
-        port=10000,
-        debug=True
+        port=10000
     )
