@@ -20,9 +20,11 @@ app.register_blueprint(dashboard_bp)
 app.register_blueprint(cotacao_bp)
 app.register_blueprint(produtos_bp)
 
+
 @app.route("/")
 def inicio():
     return render_template("login.html")
+
 
 if __name__ == "__main__":
     app.run(
@@ -30,7 +32,3 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=10000
     )
-
-
-
-app.register_blueprint(produtos_bp)

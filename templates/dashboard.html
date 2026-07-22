@@ -145,6 +145,8 @@ Dashboard - CotaFarma
 
         <div class="card quote-card">
 
+            <form method="POST" action="{{ url_for('cotacao.criar_cotacao') }}">
+
             <div class="card-header">
 
                 <div>
@@ -168,12 +170,18 @@ Dashboard - CotaFarma
                 <label>Nome da cotação</label>
 
                 <input
-                    type="text"
-                    placeholder="Ex.: Compra Hospital Municipal">
+    type="text"
+    name="nome_cotacao"
+    placeholder="Ex.: Compra Hospital Municipal"
+    required>
 
             </div>
 
             <div class="medicine-table">
+
+                <div id="listaMedicamentos"></div>
+
+
 
                 <div class="table-header">
 
@@ -189,11 +197,11 @@ Dashboard - CotaFarma
 
                 <div class="table-row">
 
-                    <input placeholder="Dipirona 500mg">
+                    <input id="medicamento" placeholder="Dipirona 500mg">
 
-                    <input placeholder="Neo Química">
+                    <input id="laboratorio" placeholder="Neo Química">
 
-                    <input placeholder="120">
+                    <input type="number" id="quantidade" placeholder="120">
 
                     <button>
 
@@ -207,7 +215,10 @@ Dashboard - CotaFarma
 
             <div class="quote-buttons">
 
-                <button class="secondary-btn">
+                <button
+    type="button"
+    id="btnAdicionar"
+    class="secondary-btn">
 
                     <i class="bi bi-plus-circle"></i>
 
@@ -215,7 +226,9 @@ Dashboard - CotaFarma
 
                 </button>
 
-                <button class="primary-btn">
+                <button
+    class="primary-btn"
+    type="submit">
 
                     Criar Cotação
 
@@ -224,6 +237,8 @@ Dashboard - CotaFarma
             </div>
 
         </div>
+
+        </form>
 
         <!-- GRÁFICO -->
 
