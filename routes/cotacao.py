@@ -1,13 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
+cotacao_bp = Blueprint("cotacao", __name__)
 
-cotacao_bp = Blueprint(
-    "cotacao",
-    __name__
-)
-
-
-@cotacao_bp.route("/nova-cotacao")
-def nova_cotacao():
-
-    return "Nova cotação CotaFarma v2"
+@cotacao_bp.route("/cotacoes")
+def cotacoes():
+    return render_template("cotacoes.html")

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+Cotações - CotaFarma
+{% endblock %}
+
+{% block css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<header class="topbar">
+
+    <div>
+        <h1>Cotações</h1>
+        <p>Gerencie todas as suas cotações.</p>
+    </div>
+
+    <button class="new-btn">
+        <i class="bi bi-plus-circle"></i>
+        Nova Cotação
+    </button>
+
+</header>
+
+<div class="card">
+
+    <div class="card-header">
+        <h2>Lista de Cotações</h2>
+    </div>
+
+    <table class="medicine-table">
+
+        <tr>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>Hospital Municipal</td>
+            <td>21/07/2026</td>
+            <td>Em andamento</td>
+        </tr>
+
+        <tr>
+            <td>UBS Centro</td>
+            <td>20/07/2026</td>
+            <td>Finalizada</td>
+        </tr>
+
+    </table>
+
+</div>
+
+{% endblock %}

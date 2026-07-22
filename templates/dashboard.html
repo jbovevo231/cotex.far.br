@@ -1,220 +1,326 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}
+Dashboard - CotaFarma
+{% endblock %}
 
-<div class="mac-app">
+{% block css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- MENU LATERAL -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<aside class="sidebar">
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
 
-<div class="brand">
-<span>COTAX</span> FARMA
-</div>
-
-
-<nav>
-
-<a class="active">🏠 Início</a>
-
-<a>📋 Cotações</a>
-
-<a>💊 Produtos</a>
-
-<a>🏭 Distribuidoras</a>
-
-<a>📊 Inteligência</a>
-
-<a>⚙ Configurações</a>
-
-</nav>
-
-
-<div class="profile">
-
-{{session.get('usuario_email','Usuário')}}
-
-</div>
-
-
-</aside>
+{% block page_content %}
 
 
 
+<!-- TOPO -->
 
-<!-- ÁREA PRINCIPAL -->
+<header class="topbar">
 
-<main class="content">
+    <div>
 
+        <h1>Dashboard</h1>
 
+        <p>Bem-vindo ao painel do CotaFarma.</p>
 
-<header>
+    </div>
 
-<div>
+    <div class="top-actions">
 
-<h1>
-Olá, bem-vindo 👋
-</h1>
+        <div class="search-box">
 
-<p>
-Gestão inteligente de compras farmacêuticas
-</p>
+            <i class="bi bi-search"></i>
 
-</div>
+            <input
+                type="text"
+                placeholder="Pesquisar medicamentos, cotações...">
 
+        </div>
 
-<button class="new-btn">
-+ Nova Cotação
-</button>
+        <button class="icon-btn">
 
+            <i class="bi bi-bell"></i>
+
+        </button>
+
+        <button class="new-btn">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Nova Cotação
+
+        </button>
+
+    </div>
 
 </header>
 
+<!-- CARDS -->
 
+<section class="cards">
 
+    <div class="card stat-card blue">
 
-<!-- INDICADORES -->
+        <div>
 
+            <span>Cotações</span>
 
-<section class="stats">
+            <h2>{{ indicadores.get('cotacoes',0) }}</h2>
 
+            <small>+12% este mês</small>
 
-<div>
-<h4>Cotações</h4>
-<strong>
-{{ indicadores.get('cotacoes',0) }}
-</strong>
-</div>
+        </div>
 
+        <i class="bi bi-clipboard-data"></i>
 
-<div>
-<h4>Economia</h4>
-<strong>
-{{ indicadores.get('economia','R$0') }}
-</strong>
-</div>
+    </div>
 
+    <div class="card stat-card green">
 
-<div>
-<h4>Produtos</h4>
-<strong>
-{{ indicadores.get('produtos',0) }}
-</strong>
-</div>
+        <div>
 
+            <span>Economia</span>
 
-<div>
-<h4>Fornecedores</h4>
-<strong>
-{{ indicadores.get('distribuidoras',0) }}
-</strong>
-</div>
+            <h2>{{ indicadores.get('economia','R$ 0') }}</h2>
 
+            <small>Economia acumulada</small>
+
+        </div>
+
+        <i class="bi bi-currency-dollar"></i>
+
+    </div>
+
+    <div class="card stat-card purple">
+
+        <div>
+
+            <span>Produtos</span>
+
+            <h2>{{ indicadores.get('produtos',0) }}</h2>
+
+            <small>Cadastrados</small>
+
+        </div>
+
+        <i class="bi bi-capsule"></i>
+
+    </div>
+
+    <div class="card stat-card orange">
+
+        <div>
+
+            <span>Distribuidoras</span>
+
+            <h2>{{ indicadores.get('distribuidoras',0) }}</h2>
+
+            <small>Parceiras</small>
+
+        </div>
+
+        <i class="bi bi-truck"></i>
+
+    </div>
 
 </section>
 
+<!-- GRID -->
 
+<section class="dashboard-grid">
 
+    <!-- ESQUERDA -->
 
+    <div class="left-column">
 
-<!-- NOVA COTAÇÃO -->
+        <!-- NOVA COTAÇÃO -->
 
+        <div class="card quote-card">
 
-<section class="window">
+            <div class="card-header">
 
+                <div>
 
-<div class="window-title">
+                    <h2>Nova Cotação</h2>
 
-<h2>
-Nova Cotação
-</h2>
+                    <p>Monte sua lista de medicamentos.</p>
 
+                </div>
 
-<span>
-● ● ●
-</span>
+                <button class="mini-btn">
 
-</div>
+                    <i class="bi bi-three-dots"></i>
 
+                </button>
 
+            </div>
 
+            <div class="form-group">
 
-<input 
-class="apple-input"
-placeholder="Nome da cotação">
+                <label>Nome da cotação</label>
 
+                <input
+                    type="text"
+                    placeholder="Ex.: Compra Hospital Municipal">
 
-<div class="table-head">
+            </div>
 
-<div>
-Medicamento
-</div>
+            <div class="medicine-table">
 
-<div>
-Laboratório
-</div>
+                <div class="table-header">
 
-<div>
-Quantidade
-</div>
+                    <div>Medicamento</div>
 
-<div>
-</div>
+                    <div>Laboratório</div>
 
+                    <div>Qtd</div>
 
-</div>
+                    <div></div>
 
+                </div>
 
+                <div class="table-row">
 
-<div class="product-row">
+                    <input placeholder="Dipirona 500mg">
 
+                    <input placeholder="Neo Química">
 
-<input class="apple-input"
-placeholder="Nome do medicamento">
+                    <input placeholder="120">
 
+                    <button>
 
-<input class="apple-input"
-placeholder="Laboratório">
+                        <i class="bi bi-trash"></i>
 
+                    </button>
 
-<input class="apple-input"
-placeholder="Qtd">
+                </div>
 
+            </div>
 
-<button class="delete">
-×
-</button>
+            <div class="quote-buttons">
 
+                <button class="secondary-btn">
 
-</div>
+                    <i class="bi bi-plus-circle"></i>
 
+                    Adicionar medicamento
 
+                </button>
 
+                <button class="primary-btn">
 
-<button class="add-product">
+                    Criar Cotação
 
-+ Adicionar medicamento
+                </button>
 
-</button>
+            </div>
 
+        </div>
 
+        <!-- GRÁFICO -->
 
-<button class="save">
+        <div class="card">
 
-Criar Cotação
+            <div class="card-header">
 
-</button>
+                <div>
 
+                    <h2>Economia Mensal</h2>
+
+                    <p>Últimos 12 meses</p>
+
+                </div>
+
+            </div>
+
+            <canvas id="economiaChart"></canvas>
+
+        </div>
+
+    </div>
+
+        <!-- DIREITA -->
+
+    <aside class="right-column">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>Últimas Cotações</h2>
+
+            </div>
+
+            <div class="activity">
+                <strong>Compra Julho</strong>
+                <span>Hoje</span>
+            </div>
+
+            <div class="activity">
+                <strong>Hospital Regional</strong>
+                <span>Ontem</span>
+            </div>
+
+            <div class="activity">
+                <strong>UBS Centro</strong>
+                <span>2 dias</span>
+            </div>
+
+            <div class="activity">
+                <strong>Farmácia Popular</strong>
+                <span>4 dias</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>IA CotaFarma</h2>
+
+            </div>
+
+            <div class="ai-box">
+
+                <i class="bi bi-stars"></i>
+
+                <h3>Melhor economia</h3>
+
+                <p>
+                    A IA encontrou uma economia estimada de
+                    <strong>R$ 4.380,00</strong>
+                    nesta cotação.
+                </p>
+
+                <button class="primary-btn">
+
+                    Ver sugestão
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
 
 </section>
 
+{% endblock %}
 
+{% block scripts %}
 
-</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-</div>
-
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
 {% endblock %}

@@ -3,11 +3,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 def limpar_cnpj(cnpj):
+    if not cnpj:
+        return ""
+
     return (
-        cnpj
+        str(cnpj)
         .replace(".", "")
         .replace("/", "")
         .replace("-", "")
+        .replace(" ", "")
         .strip()
     )
 
@@ -18,6 +22,13 @@ def criar_usuario(nome, cpf, cnpj, email, senha):
 
     cnpj = limpar_cnpj(cnpj)
 
+    senha_hash = generate_password_hash(senha)
+
+    print("SENHA ORIGINAL:", senha)
+    print("HASH GERADO:", senha_hash)
+    print("CNPJ salvo:", cnpj)
+
+
     existe = db.execute(
         "SELECT id FROM usuarios WHERE cnpj=?",
         (cnpj,)
@@ -25,9 +36,6 @@ def criar_usuario(nome, cpf, cnpj, email, senha):
 
     if existe.fetchone():
         raise Exception("CNPJ já cadastrado")
-
-
-    senha_hash = generate_password_hash(senha)
 
 
     db.execute(
@@ -51,35 +59,46 @@ def criar_usuario(nome, cpf, cnpj, email, senha):
 
 def validar_login(cnpj, senha):
 
-    import hashlib
-
     db = get_db()
 
     cnpj = limpar_cnpj(cnpj)
 
-
-    resultado = db.execute(
+    usuario = db.execute(
         """
-        SELECT *
+        SELECT id, cnpj, email, senha
         FROM usuarios
         WHERE cnpj=?
         """,
         (cnpj,)
-    )
-
-
-    usuario = resultado.fetchone()
+    ).fetchone()
 
 
     if not usuario:
+        print("CNPJ NÃO ENCONTRADO")
         return None
 
 
+    print("USUARIO:", usuario)
+
     senha_banco = usuario[3]
 
+    print("SENHA DIGITADA:", senha)
+    print("SENHA BANCO:", senha_banco)
 
-    # tenta senha normal
-    if senha_banco == senha:
+
+    resultado = check_password_hash(
+        senha_banco,
+        senha
+    )
+
+
+    print("RESULTADO SENHA:", resultado)
+
+
+    if resultado:
+
+        print("LOGIN APROVADO")
+
         return {
             "id": usuario[0],
             "cnpj": usuario[1],
@@ -87,25 +106,6 @@ def validar_login(cnpj, senha):
         }
 
 
-    # tenta senha com SHA256 (sistema antigo)
-    senha_hash = hashlib.sha256(
-        senha.encode()
-    ).hexdigest()
-
-
-    if senha_hash == senha_banco:
-
-        return {
-            "id": usuario[0],
-            "cnpj": usuario[1],
-            "email": usuario[2]
-        }
-
-
-    print("Senha inválida")
-    print("Digitada:", senha)
-    print("SHA256:", senha_hash)
-    print("Banco:", senha_banco)
-
+    print("LOGIN NEGADO")
 
     return None

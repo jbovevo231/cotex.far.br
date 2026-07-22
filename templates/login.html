@@ -1,74 +1,321 @@
-{% extends "base.html" %}
+{% extends "base_public.html" %}
+
 {% block content %}
 
-<div class="login-page">
+<div class="landing">
 
-<div class="brand">
-<h1><span>COTAX</span> FARMA</h1>
-<p>Gestão inteligente de cotações farmacêuticas</p>
-</div>
+    <!-- ================= HEADER ================= -->
 
-<div class="login-box">
+    <header class="topbar">
 
-<form method="POST" action="/login">
+        <div class="logo">
+            <div class="logo-icon">+</div>
 
-<input type="text" name="cnpj" placeholder="CNPJ" required>
+            <div class="logo-text">
+                <h2>CotaX</h2>
+                <span>FARMA</span>
+            </div>
+        </div>
 
-<input type="password" name="senha" placeholder="Senha" required>
+        <nav>
 
-<button class="btn-primary" type="submit">Entrar</button>
+            <a href="#">Recursos</a>
+            <a href="#">Como funciona</a>
+            <a href="#">Planos</a>
+            <a href="#">Depoimentos</a>
+            <a href="#">Contato</a>
 
-</form>
+        </nav>
 
+        <div class="top-actions">
 
-<div class="actions">
-
-<button class="btn-outline" type="button" onclick="abrirCadastro()">
-Criar conta
+            <button class="btn-outline" onclick="irLogin()">
+    Entrar
 </button>
 
-<button class="btn-link" type="button">
-Não possuo conta
-</button>
+            <button class="btn-primary"
+                    onclick="abrirCadastro()">
+                Criar minha conta
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <!-- LEFT -->
+
+        <div class="hero-left">
+
+            <div class="badge">
+                ⭐ Plataforma inteligente para farmácias
+            </div>
+
+            <h1>
+
+                Cote.
+                <br>
+
+                Compare.
+                <br>
+
+                <span>Economize.</span>
+
+            </h1>
+
+            <p>
+
+                Encontre os melhores fornecedores,
+                compare preços em segundos e aumente
+                a lucratividade da sua farmácia com
+                uma plataforma moderna.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="btn-primary btn-lg"
+                        onclick="abrirCadastro()">
+
+                    Começar agora
+
+                </button>
+
+                <button class="btn-outline btn-lg">
+
+                    Ver como funciona
+
+                </button>
+
+            </div>
+
+            <div class="hero-info">
+
+                <div>
+
+                    ✔ 100% Online
+
+                </div>
+
+                <div>
+
+                    ✔ Cotações em segundos
+
+                </div>
+
+                <div>
+
+                    ✔ Dados protegidos
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="hero-right" id="login">
+
+    <div class="login-card">
+
+                <h2>Entrar</h2>
+
+                <p>
+                    Acesse sua conta
+                </p>
+
+                <form method="POST"
+                      action="/login">
+
+                    <input
+                        type="text"
+                        name="cnpj"
+                        placeholder="CNPJ"
+                        required>
+
+                    <input
+                        type="password"
+                        name="senha"
+                        placeholder="Senha"
+                        required>
+
+                    <button
+                        class="btn-primary full"
+                        type="submit">
+
+                        Entrar
+
+                    </button>
+
+                </form>
+
+                <button
+                    class="btn-link"
+                    onclick="abrirCadastro()">
+
+                    Não possui conta?
+                    Criar agora
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BENEFÍCIOS ================= -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="icon">🛡</div>
+
+            <h3>Cotações Inteligentes</h3>
+
+            <p>
+
+                Solicite preços de vários
+                fornecedores ao mesmo tempo.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="icon">⚖</div>
+
+            <h3>Compare Preços</h3>
+
+            <p>
+
+                Escolha sempre a melhor
+                proposta disponível.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="icon">📦</div>
+
+            <h3>Gestão Completa</h3>
+
+            <p>
+
+                Controle pedidos,
+                produtos e fornecedores.
+
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <div class="icon">📊</div>
+
+            <h3>Relatórios</h3>
+
+            <p>
+
+                Descubra quanto sua
+                empresa economizou.
+
+            </p>
+
+        </div>
+
+    </section>
 
 </div>
 
-</div>
 
-</div>
-
+<!-- ================= MODAL ================= -->
 
 
-<div class="modal" id="cadastroModal">
+<div class="modal"
+     id="cadastroModal">
 
-<div class="modal-box">
+    <div class="modal-box">
 
-<button class="close" onclick="fecharCadastro()">×</button>
+        <button
+            class="close"
+            onclick="fecharCadastro()">
 
-<h2>Criar cadastro</h2>
-<p>Cadastre sua empresa no CotaX Farma</p>
+            ×
 
-<form method="POST" action="/cadastro">
+        </button>
 
-<input name="nome" placeholder="Nome completo" required>
+        <h2>
 
-<input name="cpf" placeholder="CPF" required>
+            Criar conta
 
-<input name="cnpj" placeholder="CNPJ" required>
+        </h2>
 
-<input type="email" name="email" placeholder="E-mail" required>
+        <p>
 
-<input type="password" name="senha" placeholder="Senha" required>
+            Cadastre sua empresa
 
-<input type="password" name="confirmar" placeholder="Confirmar senha" required>
+        </p>
 
-<button class="btn-primary" type="submit">
-Criar cadastro
-</button>
+        <form
+            method="POST"
+            action="/cadastro">
 
-</form>
+            <input
+                name="nome"
+                placeholder="Nome completo"
+                required>
 
-</div>
+            <input
+                name="cpf"
+                placeholder="CPF"
+                required>
+
+            <input
+                name="cnpj"
+                placeholder="CNPJ"
+                required>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                required>
+
+            <input
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                required>
+
+            <input
+                type="password"
+                name="confirmar"
+                placeholder="Confirmar senha"
+                required>
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Criar Cadastro
+
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 
@@ -76,11 +323,71 @@ Criar cadastro
 <script>
 
 function abrirCadastro(){
-document.getElementById("cadastroModal").style.display="flex";
+
+    document.getElementById("cadastroModal").style.display="flex";
+
 }
 
 function fecharCadastro(){
-document.getElementById("cadastroModal").style.display="none";
+
+    document.getElementById("cadastroModal").style.display="none";
+
+}
+
+window.onclick=function(e){
+
+    let modal=document.getElementById("cadastroModal");
+
+    if(e.target==modal){
+
+        fecharCadastro();
+
+    }
+
+}
+
+</script>
+
+<script>
+
+function irLogin(){
+
+    const login=document.getElementById("login");
+
+    login.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+    });
+
+    login.querySelector("input").focus();
+
+}
+
+function abrirCadastro(){
+
+    document.getElementById("cadastroModal").style.display="flex";
+
+}
+
+function fecharCadastro(){
+
+    document.getElementById("cadastroModal").style.display="none";
+
+}
+
+window.onclick=function(e){
+
+    let modal=document.getElementById("cadastroModal");
+
+    if(e.target===modal){
+
+        fecharCadastro();
+
+    }
+
 }
 
 </script>

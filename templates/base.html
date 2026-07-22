@@ -11,23 +11,110 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-</head>
+    {% block css %}{% endblock %}
 
+</head>
 
 <body>
 
+<div class="dashboard">
 
-    <main>
+    <!-- SIDEBAR -->
 
-        {% block content %}
+    <aside class="sidebar">
 
+        <div>
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    <i class="bi bi-capsule"></i>
+                </div>
+
+                <div>
+
+                    <h2>CotaFarma</h2>
+
+                    <small>Gestão Inteligente</small>
+
+                </div>
+
+            </div>
+
+            <nav class="menu">
+
+                <a href="{{ url_for('dashboard.dashboard') }}">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="{{ url_for('cotacao.cotacoes') }}">
+                    <i class="bi bi-clipboard2-pulse"></i>
+                    <span>Cotações</span>
+                </a>
+
+                <a href="{{ url_for('produtos.produtos') }}">
+    <i class="bi bi-capsule-pill"></i>
+    <span>Produtos</span>
+</a>
+
+                <a href="#">
+                    <i class="bi bi-building"></i>
+                    <span>Distribuidoras</span>
+                </a>
+
+                <a href="#">
+                    <i class="bi bi-robot"></i>
+                    <span>Inteligência</span>
+                </a>
+
+                <a href="#">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Relatórios</span>
+                </a>
+
+                <a href="#">
+                    <i class="bi bi-gear"></i>
+                    <span>Configurações</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+        <div class="user">
+
+            <div class="avatar">
+                {{ session.get('usuario_email','U')[0].upper() }}
+            </div>
+
+            <div>
+
+                <strong>{{ session.get('usuario_email','Usuário') }}</strong>
+
+                <small>Administrador</small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+
+    <main class="content">
+
+        {% block page_content %}
         {% endblock %}
 
     </main>
 
+</div>
 
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
+{% block scripts %}
+{% endblock %}
 
 </body>
 
