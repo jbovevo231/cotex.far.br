@@ -1357,39 +1357,125 @@ RESPONSIVO 700
 
 @media (max-width:700px){
 
+.dashboard{
+    flex-direction:column;
+}
+
 .sidebar{
 
     position:relative;
-
     width:100%;
-
     height:auto;
 
-}
+    padding:20px;
 
-.dashboard{
-
+    display:flex;
     flex-direction:column;
+    align-items:center;
 
 }
 
 .content{
 
     margin-left:0;
-
     padding:20px;
 
 }
 
+/* LOGO */
+
 .logo{
 
-    margin-bottom:20px;
+    justify-content:center;
+    margin-bottom:25px;
 
 }
 
+/* MENU */
+
 .menu{
 
-    margin-bottom:20px;
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:14px;
+
+    justify-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.menu a{
+
+    width:70px;
+    height:70px;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    position:relative;
+
+}
+
+.menu a i{
+
+    font-size:26px;
+
+}
+
+/* Esconde o texto */
+
+.menu a span{
+
+    display:none;
+
+}
+
+/* Mostra quando tocar ou passar */
+
+.menu a:active span,
+.menu a:hover span{
+
+    display:block;
+
+    position:absolute;
+
+    top:75px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#10b981;
+
+    color:#fff;
+
+    padding:5px 10px;
+
+    border-radius:8px;
+
+    font-size:12px;
+
+    white-space:nowrap;
+
+}
+
+/* USUÁRIO */
+
+.user{
+
+    width:100%;
+    justify-content:center;
 
 }
 

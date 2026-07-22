@@ -121,3 +121,63 @@ def gerar_link_cotacao(cotacao_id):
     db.commit()
 
     return token
+
+def salvar_resposta_cotacao(
+    cotacao_id,
+    representante,
+    distribuidora,
+    whatsapp,
+    medicamentos,
+    status,
+    precos,
+    precos_oferta,
+    quantidades_oferta
+):
+
+    db = get_db()
+
+    for i in range(len(medicamentos)):
+
+        preco = None
+        preco_oferta = None
+        quantidade_oferta = None
+
+        if i < len(precos) and precos[i]:
+            preco = precos[i].replace(",", ".")
+
+        if i < len(precos_oferta) and precos_oferta[i]:
+            preco_oferta = precos_oferta[i].replace(",", ".")
+
+        if i < len(quantidades_oferta) and quantidades_oferta[i]:
+            quantidade_oferta = quantidades_oferta[i]
+
+        db.execute(
+            """
+            INSERT INTO respostas_cotacao (
+                cotacao_id,
+                medicamento,
+                representante,
+                distribuidora,
+                whatsapp,
+                status,
+                preco,
+                preco_oferta,
+                quantidade_oferta
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                cotacao_id,
+                medicamentos[i],
+                representante,
+                distribuidora,
+                whatsapp,
+                status[i] if i < len(status) else "",
+                preco,
+                preco_oferta,
+                quantidade_oferta
+            )
+        )
+
+    db.commit()
+    db.close()

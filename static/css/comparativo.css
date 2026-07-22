@@ -1,0 +1,84 @@
+.comparativo-box{
+    margin-top:15px;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.comparativo-header{
+    background:#198754;
+    color:#fff;
+    padding:15px 20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.medicamento{
+    margin:20px;
+}
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.card-representante{
+    width:220px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:15px;
+    background:#fff;
+}
+
+.card-menor{
+    background:#eefaf1;
+    border:2px solid #0c9b33;
+}
+
+.card-menor .nome-representante,
+.card-menor .preco{
+    color:#0c9b33;
+    font-weight:bold;
+}
+
+.card-menor .rodape{
+    margin:15px -15px -15px -15px;
+    background:#0c9b33;
+    color:#fff;
+    padding:8px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.card-oferta{
+    background:#fff6ec;
+    border:2px solid #ff7300;
+}
+
+.card-oferta .nome-representante,
+.card-oferta .preco,
+.card-oferta .oferta{
+    color:#ff7300;
+    font-weight:bold;
+}
+
+.card-oferta .rodape{
+    margin:15px -15px -15px -15px;
+    background:#ff7300;
+    color:#fff;
+    padding:8px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.preco{
+    font-size:22px;
+    color:#000;
+}
+
+.preco-menor{
+    color:#198754;
+    font-weight:bold;
+}

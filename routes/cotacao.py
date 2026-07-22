@@ -5,7 +5,8 @@ from models.cotacao import (
     salvar_cotacao,
     listar_cotacoes,
     buscar_itens,
-    gerar_link_cotacao
+    gerar_link_cotacao,
+    salvar_resposta_cotacao
 )
 
 cotacao_bp = Blueprint("cotacao", __name__)
@@ -24,13 +25,64 @@ def cotacoes():
     )
 
 
-@cotacao_bp.route("/responder/<token>")
+@cotacao_bp.route("/responder/<token>", methods=["GET", "POST"])
 def responder_cotacao(token):
+
+    if request.method == "POST":
+
+        conn = get_db()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT cotacao_id
+            FROM links_cotacao
+            WHERE token = ?
+        """, (token,))
+
+        link = cursor.fetchone()
+
+        if not link:
+            conn.close()
+            return "Link inválido.", 404
+
+        cotacao_id = link[0]
+
+        conn.close()
+
+        medicamentos = request.form.getlist("medicamento[]")
+
+        status = []
+        for i in range(len(medicamentos)):
+            status.append(request.form.get(f"status{i+1}"))
+
+        precos = request.form.getlist("preco[]")
+        precos_oferta = request.form.getlist("preco_oferta[]")
+        quantidades_oferta = request.form.getlist("quantidade_oferta[]")
+
+        print("Medicamentos:", medicamentos)
+        print("Status:", status)
+        print("Preços:", precos)
+        print("Preços Oferta:", precos_oferta)
+        print("Quantidades:", quantidades_oferta)
+        print(request.form)
+
+        salvar_resposta_cotacao(
+            cotacao_id=cotacao_id,
+            representante=request.form.get("representante"),
+            distribuidora=request.form.get("distribuidora"),
+            whatsapp=request.form.get("whatsapp"),
+            medicamentos=medicamentos,
+            status=status,
+            precos=precos,
+            precos_oferta=precos_oferta,
+            quantidades_oferta=quantidades_oferta
+        )
+
+        return render_template("cotacao_enviada.html")
 
     conn = get_db()
     cursor = conn.cursor()
 
-    # Procura o link da cotação
     cursor.execute("""
         SELECT cotacao_id
         FROM links_cotacao
@@ -45,7 +97,6 @@ def responder_cotacao(token):
 
     cotacao_id = link[0]
 
-    # Busca o nome da cotação
     cursor.execute("""
         SELECT nome
         FROM cotacoes
@@ -60,7 +111,6 @@ def responder_cotacao(token):
 
     nome_cotacao = resultado[0]
 
-    # Busca os medicamentos
     cursor.execute("""
         SELECT medicamento,
                laboratorio,
@@ -79,18 +129,6 @@ def responder_cotacao(token):
         token=token,
         itens=itens
     )
-
-@cotacao_bp.route("/cotacoes/<int:id>")
-def visualizar_cotacao(id):
-
-    itens = buscar_itens(id)
-
-    return render_template(
-        "visualizar_cotacao.html",
-        itens=itens,
-        id=id
-    )
-
 @cotacao_bp.route("/cotacoes/<int:id>/itens")
 def itens_cotacao(id):
 
