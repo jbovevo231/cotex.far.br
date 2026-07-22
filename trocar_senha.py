@@ -1,30 +1,18 @@
 from database.connection import get_db
 from werkzeug.security import generate_password_hash
 
-
 db = get_db()
 
-senha_nova = "0000"
+cnpj = "48781467000142"
+nova_senha = "0000"
 
-novo_hash = generate_password_hash(senha_nova)
-
-print("NOVO HASH:")
-print(novo_hash)
-
+hash_senha = generate_password_hash(nova_senha)
 
 db.execute(
-    """
-    UPDATE usuarios
-    SET senha = ?
-    WHERE cnpj = ?
-    """,
-    (
-        novo_hash,
-        "48781467000142"
-    )
+    "UPDATE usuarios SET senha = ? WHERE cnpj = ?",
+    (hash_senha, cnpj)
 )
 
 db.commit()
 
-print("ATUALIZADO")
-
+print("Senha atualizada com sucesso!")

@@ -1571,3 +1571,199 @@ canvas{
     height:30px;
 
 }
+
+/*==================================================
+LISTA DE COTAÇÕES
+==================================================*/
+
+.card .cotacoes-lista{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.card .cotacao-card{
+
+    background:#f8fafc;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    border:1px solid #dbe3ee;
+
+    box-shadow:
+    0 12px 30px rgba(15,23,42,.08),
+    0 2px 8px rgba(15,23,42,.03);
+
+    transition:.30s;
+
+}
+
+.card .cotacao-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+.card .cotacao-header{
+
+    background:#f0fdf4;
+
+    border-top:6px solid #10b981;
+
+    padding:22px 24px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.card .cotacao-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    color:#1e293b;
+
+    font-weight:700;
+
+}
+
+.card .cotacao-header span{
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+.card .lado-direito{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.card .status{
+
+    padding:6px 16px;
+
+    border-radius:40px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    letter-spacing:.5px;
+
+}
+
+.card .status.aberta{
+
+    background:#16a34a;
+
+    color:#fff;
+
+}
+
+.card .status.encerrada{
+
+    background:#dc2626;
+
+    color:#fff;
+
+}
+
+.card .cotacao-id{
+
+    background:#ecfdf5;
+
+color:#059669;
+
+    padding:7px 15px;
+
+    border-radius:30px;
+
+    font-weight:700;
+
+}
+
+.card .cotacao-acoes{
+
+    background:#eef7f2;
+
+    border-top:1px solid #d9ebe0;
+
+    padding:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:16px;
+
+}
+
+.card .acao-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    border:1px solid #dbe3ee;
+
+    background:#fff;
+
+    color:#10b981;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.25s;
+
+    box-shadow:
+
+        0 3px 8px rgba(0,0,0,.08),
+
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+}
+
+.card .acao-btn:hover{
+
+    background:#10b981;
+
+    color:#fff;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(16,185,129,.35);
+
+}
+
+.card .acao-btn.excluir{
+
+    color:#dc2626;
+
+}
+
+.card .acao-btn.excluir:hover{
+
+    background:#dc2626;
+
+    color:#fff;
+
+}

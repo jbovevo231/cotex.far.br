@@ -1,60 +1,71 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
 
-from database.connection import get_db
+from models.cotacao import (
+    salvar_cotacao,
+    listar_cotacoes,
+    buscar_itens
+)
 
 cotacao_bp = Blueprint("cotacao", __name__)
 
 
 @cotacao_bp.route("/cotacoes")
 def cotacoes():
-    return render_template("cotacoes.html")
 
+    cnpj = session.get("usuario_cnpj")
+
+    cotacoes = listar_cotacoes(cnpj)
+
+    return render_template(
+        "cotacoes.html",
+        cotacoes=cotacoes
+    )
+
+@cotacao_bp.route("/cotacoes/<int:id>")
+def visualizar_cotacao(id):
+
+    itens = buscar_itens(id)
+
+    return render_template(
+        "visualizar_cotacao.html",
+        itens=itens,
+        id=id
+    )
+
+@cotacao_bp.route("/cotacoes/<int:id>/itens")
+def itens_cotacao(id):
+
+    itens = buscar_itens(id)
+
+    lista = []
+
+    for item in itens:
+
+        lista.append({
+            "medicamento": item[0],
+            "laboratorio": item[1],
+            "quantidade": item[2]
+        })
+
+    return jsonify(lista)
 
 @cotacao_bp.route("/cotacoes/criar", methods=["POST"])
 def criar_cotacao():
 
-    db = get_db()
-
-    # Use a mesma chave que foi salva no login
     cnpj = session.get("usuario_cnpj")
 
     nome = request.form.get("nome_cotacao")
-    medicamento = request.form.get("medicamento")
-    laboratorio = request.form.get("laboratorio")
-    quantidade = request.form.get("quantidade")
 
-    cursor = db.execute(
-        """
-        INSERT INTO cotacoes (
-            cnpj_usuario,
-            nome,
-            status
-        )
-        VALUES (?, ?, 'RASCUNHO')
-        """,
-        (cnpj, nome)
+    medicamentos = request.form.getlist("medicamento[]")
+    laboratorios = request.form.getlist("laboratorio[]")
+    quantidades = request.form.getlist("quantidade[]")
+
+    salvar_cotacao(
+        cnpj,
+        nome,
+        medicamentos,
+        laboratorios,
+        quantidades
     )
-
-    cotacao_id = cursor.lastrowid
-
-    db.execute(
-        """
-        INSERT INTO cotacao_itens (
-            cotacao_id,
-            medicamento,
-            laboratorio,
-            quantidade
-        )
-        VALUES (?, ?, ?, ?)
-        """,
-        (
-            cotacao_id,
-            medicamento,
-            laboratorio,
-            quantidade
-        )
-    )
-
-    db.commit()
 
     return redirect(url_for("dashboard.dashboard"))

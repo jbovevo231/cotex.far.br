@@ -41,20 +41,25 @@ function atualizarLista() {
     medicamentos.forEach((item, index) => {
 
         lista.innerHTML += `
-            <div class="table-row">
-                <div>${item.medicamento}</div>
-                <div>${item.laboratorio}</div>
-                <div>${item.quantidade}</div>
+        <div class="table-row">
 
-                <button
-                    type="button"
-                    onclick="removerMedicamento(${index})">
+            <div>${item.medicamento}</div>
+            <div>${item.laboratorio}</div>
+            <div>${item.quantidade}</div>
 
-                    <i class="bi bi-trash"></i>
+            <button
+                type="button"
+                onclick="removerMedicamento(${index})">
 
-                </button>
+                <i class="bi bi-trash"></i>
 
-            </div>
+            </button>
+
+            <input type="hidden" name="medicamento[]" value="${item.medicamento}">
+            <input type="hidden" name="laboratorio[]" value="${item.laboratorio}">
+            <input type="hidden" name="quantidade[]" value="${item.quantidade}">
+
+        </div>
         `;
 
     });

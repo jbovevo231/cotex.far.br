@@ -21,22 +21,15 @@ def criar_usuario(nome, cpf, cnpj, email, senha):
     db = get_db()
 
     cnpj = limpar_cnpj(cnpj)
-
     senha_hash = generate_password_hash(senha)
 
-    print("SENHA ORIGINAL:", senha)
-    print("HASH GERADO:", senha_hash)
-    print("CNPJ salvo:", cnpj)
-
-
     existe = db.execute(
-        "SELECT id FROM usuarios WHERE cnpj=?",
+        "SELECT id FROM usuarios WHERE cnpj = ?",
         (cnpj,)
-    )
+    ).fetchone()
 
-    if existe.fetchone():
+    if existe:
         raise Exception("CNPJ já cadastrado")
-
 
     db.execute(
         """
@@ -56,7 +49,6 @@ def criar_usuario(nome, cpf, cnpj, email, senha):
     db.commit()
 
 
-
 def validar_login(cnpj, senha):
 
     db = get_db()
@@ -67,45 +59,25 @@ def validar_login(cnpj, senha):
         """
         SELECT id, cnpj, email, senha
         FROM usuarios
-        WHERE cnpj=?
+        WHERE cnpj = ?
         """,
         (cnpj,)
     ).fetchone()
 
-
-    if not usuario:
+    if usuario is None:
         print("CNPJ NÃO ENCONTRADO")
         return None
 
-
-    print("USUARIO:", usuario)
-
     senha_banco = usuario[3]
 
-    print("SENHA DIGITADA:", senha)
-    print("SENHA BANCO:", senha_banco)
+    if not check_password_hash(senha_banco, senha):
+        print("SENHA INCORRETA")
+        return None
 
+    print("LOGIN APROVADO")
 
-    resultado = check_password_hash(
-        senha_banco,
-        senha
-    )
-
-
-    print("RESULTADO SENHA:", resultado)
-
-
-    if resultado:
-
-        print("LOGIN APROVADO")
-
-        return {
-            "id": usuario[0],
-            "cnpj": usuario[1],
-            "email": usuario[2]
-        }
-
-
-    print("LOGIN NEGADO")
-
-    return None
+    return {
+        "id": usuario[0],
+        "cnpj": usuario[1],
+        "email": usuario[2]
+    }

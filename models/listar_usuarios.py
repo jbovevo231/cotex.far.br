@@ -7,7 +7,7 @@ SELECT id, nome, cnpj, email
 FROM usuarios
 """).fetchall()
 
-print("TOTAL:", len(usuarios))
+print(f"Total de usuários: {len(usuarios)}")
 
-for u in usuarios:
-    print(u)
+for usuario in usuarios:
+    print(dict(usuario))
