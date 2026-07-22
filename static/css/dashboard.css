@@ -1428,13 +1428,21 @@ RESPONSIVO 700
 }
 
 .menu a i{
-
     font-size:26px;
-
 }
 
-/.menu a span{
+.menu a span{
     display:none;
+}
+
+/* USUÁRIO */
+
+.user{
+    width:100%;
+    justify-content:center;
+}
+
+}
 
 
 /* USUÁRIO */
