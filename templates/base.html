@@ -84,21 +84,21 @@
 
         <div class="user">
 
-    <div class="avatar">
-        {{ session.get('usuario_email','U')[0].upper() }}
-    </div>
+            <div class="avatar">
+                {{ session.get('usuario_email','U')[0].upper() }}
+            </div>
 
-    <div class="user-info">
+            <div>
 
-        <span class="welcome">👋 Bem-vindo!</span>
+                <strong>{{ session.get('usuario_email','Usuário') }}</strong>
 
-        <strong>{{ session.get('usuario_email','Usuário') }}</strong>
+                <small>Administrador</small>
 
-        <small>Administrador</small>
+            </div>
 
-    </div>
+        </div>
 
-</div>
+    </aside>
 
     <!-- CONTEÚDO -->
 
