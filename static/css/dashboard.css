@@ -1386,38 +1386,8 @@ RESPONSIVO 700
 
 .logo{
 
-    display:flex;
-    align-items:center;
     justify-content:center;
-    gap:12px;
-
     margin-bottom:25px;
-
-}
-
-.logo-icon{
-
-    width:48px;
-    height:48px;
-
-    margin:0;
-
-}
-
-.logo h2{
-
-    display:block;
-    color:#fff;
-    font-size:22px;
-    margin:0;
-
-}
-
-.logo small{
-
-    display:block;
-    color:#94a3b8;
-    font-size:13px;
 
 }
 
@@ -1458,19 +1428,25 @@ RESPONSIVO 700
 }
 
 .menu a i{
+
     font-size:26px;
+
 }
 
-.menu a span{
+/.menu a span{
     display:none;
-}
+
 
 /* USUÁRIO */
 
 .user{
+
     width:100%;
     justify-content:center;
+
 }
+
+
 
 /*=========================
 RESPONSIVO 480
