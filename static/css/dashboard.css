@@ -1734,6 +1734,8 @@ color:#059669;
 
     transition:.25s;
 
+    position:relative;
+
     box-shadow:
 
         0 3px 8px rgba(0,0,0,.08),
@@ -1766,4 +1768,123 @@ color:#059669;
 
     color:#fff;
 
+}
+
+/*=========================
+TOOLTIPS
+=========================*/
+
+.card .acao-btn::after{
+
+    content:attr(data-tooltip);
+
+    position:absolute;
+
+    bottom:60px;
+
+    left:50%;
+
+    transform:translateX(-50%) scale(.9);
+
+    background:#111827;
+
+    color:#fff;
+
+    padding:8px 14px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.25s;
+
+    pointer-events:none;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+}
+
+.card .acao-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:54px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border:6px solid transparent;
+
+    border-top-color:#111827;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.25s;
+
+}
+
+.card .acao-btn:hover::after,
+.card .acao-btn:hover::before{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.card .acao-btn:hover::after{
+
+    transform:translateX(-50%) scale(1);
+
+}
+
+.modal-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal{
+    width: 650px;
+    max-width: 95%;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    margin:0;
+    font-size:22px;
+}
+
+.modal-header button{
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
 }

@@ -1,4 +1,5 @@
 from database.connection import get_db
+import uuid
 
 
 def salvar_cotacao(cnpj, nome, medicamentos, laboratorios, quantidades):
@@ -64,7 +65,7 @@ def listar_cotacoes(cnpj):
         (cnpj,)
     ).fetchall()
 
-
+    
 def buscar_itens(cotacao_id):
     db = get_db()
 
@@ -80,3 +81,43 @@ def buscar_itens(cotacao_id):
         """,
         (cotacao_id,)
     ).fetchall()
+
+
+def gerar_link_cotacao(cotacao_id):
+
+    db = get_db()
+
+    # Verifica se a cotação já possui um link
+    link = db.execute(
+        """
+        SELECT token
+        FROM links_cotacao
+        WHERE cotacao_id = ?
+        LIMIT 1
+        """,
+        (cotacao_id,)
+    ).fetchone()
+
+    if link:
+        return link[0]
+
+    # Gera um token único
+    token = uuid.uuid4().hex
+
+    db.execute(
+        """
+        INSERT INTO links_cotacao (
+            cotacao_id,
+            token
+        )
+        VALUES (?, ?)
+        """,
+        (
+            cotacao_id,
+            token
+        )
+    )
+
+    db.commit()
+
+    return token

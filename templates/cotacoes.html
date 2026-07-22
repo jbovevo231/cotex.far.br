@@ -19,6 +19,7 @@ Cotações - CotaFarma
 
 {% block page_content %}
 
+
 <header class="topbar">
 
     <div>
@@ -48,7 +49,6 @@ Cotações - CotaFarma
     <div class="cotacao-header">
 
         <div>
-
             <h3>{{ cotacao[1] }}</h3>
 
             <span>
@@ -74,34 +74,45 @@ Cotações - CotaFarma
     <div class="cotacao-acoes">
 
         <button
+            class="acao-btn"
+            data-tooltip="Visualizar"
+            onclick="abrirCotacao({{ cotacao[0] }})">
+
+            <i class="bi bi-eye-fill"></i>
+
+        </button>
+
+        <button
     class="acao-btn"
-    data-tooltip="Visualizar"
-    onclick="abrirCotacao({{ cotacao[0] }})">
+    data-tooltip="Enviar"
+    onclick="enviarCotacao({{ cotacao[0] }})">
 
-    <i class="bi bi-eye-fill"></i>
-
-</button>
-
-<button class="acao-btn" data-tooltip="Enviar">
     <i class="bi bi-send-fill"></i>
+
 </button>
 
-<button class="acao-btn" data-tooltip="Comparativo">
-    <i class="bi bi-bar-chart-fill"></i>
-</button>
+        <button class="acao-btn" data-tooltip="Comparativo">
+            <i class="bi bi-bar-chart-fill"></i>
+        </button>
 
-<button class="acao-btn" data-tooltip="Resultado">
-    <i class="bi bi-trophy-fill"></i>
-</button>
+        <button class="acao-btn" data-tooltip="Resultado">
+            <i class="bi bi-trophy-fill"></i>
+        </button>
 
-<button class="acao-btn" data-tooltip="Gerar Pedido">
-    <i class="bi bi-file-earmark-text-fill"></i>
-</button>
+        <button class="acao-btn" data-tooltip="Gerar Pedido">
+            <i class="bi bi-file-earmark-text-fill"></i>
+        </button>
 
-<button class="acao-btn excluir" data-tooltip="Excluir">
-    <i class="bi bi-trash-fill"></i>
-</button>
+        <button class="acao-btn excluir" data-tooltip="Excluir">
+            <i class="bi bi-trash-fill"></i>
+        </button>
 
+    </div>
+
+    <div
+        id="itens-{{ cotacao[0] }}"
+        class="itens-cotacao"
+        style="display:none;margin-top:15px;">
     </div>
 
 </div>
@@ -116,60 +127,176 @@ Cotações - CotaFarma
 
 </div>
 
-<div id="modalCotacao" class="modal-overlay" style="display:none;">
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2>Medicamentos da Cotação</h2>
-
-            <button type="button" onclick="fecharCotacao()">
-                <i class="bi bi-x-lg"></i>
-            </button>
-
-        </div>
-
-        <div id="conteudoCotacao"></div>
-
-    </div>
-
-</div>
-
 <script>
+
+async function enviarCotacao(id){
+
+    try{
+
+        const response = await fetch(`/cotacoes/${id}/gerar-link`,{
+            method:"POST"
+        });
+
+        const dados = await response.json();
+
+        if(!dados.sucesso){
+            alert("Erro ao gerar o link.");
+            return;
+        }
+
+        const link = `${window.location.origin}/responder/${dados.token}`;
+
+        const mensagem =
+`Olá!
+
+Segue o link da cotação para preenchimento:
+
+${link}
+
+Obrigado!`;
+
+        window.open(
+            `https://wa.me/?text=${encodeURIComponent(mensagem)}`,
+            "_blank"
+        );
+
+    }catch(erro){
+
+        console.error(erro);
+        alert("Erro ao gerar o link.");
+
+    }
+
+}
 
 function abrirCotacao(id){
 
-    fetch("/cotacoes/" + id + "/itens")
-    .then(response => response.json())
-    .then(itens => {
+    const div = document.getElementById("itens-" + id);
 
-        let html = "";
+    // Fecha se já estiver aberta
+    if(div.style.display === "block"){
 
-        itens.forEach(item => {
+        div.style.display = "none";
+        div.innerHTML = "";
+        return;
 
-            html += `
-                <div style="padding:10px;border-bottom:1px solid #ddd">
-                    <strong>${item.medicamento}</strong><br>
-                    Laboratório: ${item.laboratorio}<br>
-                    Quantidade: ${item.quantidade}
-                </div>
-            `;
+    }
 
-        });
+    // Fecha qualquer outra aberta
+    document.querySelectorAll(".itens-cotacao").forEach(item => {
 
-        document.getElementById("conteudoCotacao").innerHTML = html;
-        document.getElementById("modalCotacao").style.display = "flex";
+        item.style.display = "none";
+        item.innerHTML = "";
 
     });
 
+    fetch("/cotacoes/" + id + "/itens")
+        .then(response => response.json())
+        .then(itens => {
+
+            let html = `
+                <div style="
+                    margin-top:15px;
+                    background:#f8f9fa;
+                    border:1px solid #dcdcdc;
+                    border-radius:10px;
+                    overflow:hidden;
+                ">
+
+                    <div style="
+                        padding:12px 18px;
+                        background:#198754;
+                        color:white;
+                        font-weight:600;
+                    ">
+                        ▼ Medicamentos da Cotação #${id}
+                    </div>
+
+                    <table style="
+                        width:100%;
+                        border-collapse:collapse;
+                    ">
+
+                        <thead>
+
+                            <tr style="background:#efefef">
+
+                                <th style="padding:10px;text-align:left;">
+                                    Medicamento
+                                </th>
+
+                                <th style="padding:10px;text-align:left;">
+                                    Laboratório
+                                </th>
+
+                                <th style="padding:10px;text-align:center;">
+                                    Quantidade
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+            `;
+
+            itens.forEach(item => {
+
+                html += `
+                    <tr>
+
+                        <td style="padding:10px;border-top:1px solid #eee;">
+                            ${item.medicamento}
+                        </td>
+
+                        <td style="padding:10px;border-top:1px solid #eee;">
+                            ${item.laboratorio}
+                        </td>
+
+                        <td style="padding:10px;border-top:1px solid #eee;text-align:center;">
+                            ${item.quantidade}
+                        </td>
+
+                    </tr>
+                `;
+
+            });
+
+            html += `
+                        </tbody>
+
+                    </table>
+
+                </div>
+            `;
+
+            div.innerHTML = html;
+            div.style.display = "block";
+
+        })
+        .catch(error => {
+
+            console.error(error);
+
+            div.innerHTML = `
+                <div style="
+                    margin-top:15px;
+                    padding:15px;
+                    background:#ffe5e5;
+                    color:#b00020;
+                    border-radius:8px;
+                ">
+                    Erro ao carregar os medicamentos.
+                </div>
+            `;
+
+            div.style.display = "block";
+
+        });
+
 }
 
-function fecharCotacao(){
 
-    document.getElementById("modalCotacao").style.display = "none";
-
-}
 
 </script>
 
