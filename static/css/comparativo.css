@@ -11,15 +11,29 @@
 }
 
 .comparativo-header{
-    height:60px;
-    padding:0 22px;
+
     display:flex;
+
     align-items:center;
-    gap:10px;
-    background:#22c55e;
+
+    gap:14px;
+
+    padding:18px 26px;
+
+    background:linear-gradient(
+        135deg,
+        #0f766e,
+        #16a34a,
+        #22c55e
+    );
+
     color:#fff;
-    font-size:20px;
-    font-weight:700;
+
+    border-radius:0 0 20px 20px;
+
+    box-shadow:
+        0 10px 25px rgba(22,163,74,.25);
+
 }
 
 .comparativo-body{
@@ -31,10 +45,35 @@
 }
 
 .titulo-medicamento{
-    font-size:19px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 22px;
+
+    margin-bottom:20px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #5b755b,
+        #229fc5,
+        #657b6d
+    );
+
+    color:#fff;
+
+    font-size:18px;
+
     font-weight:700;
-    color:#1f2937;
-    margin-bottom:16px;
+
+    box-shadow:
+        0 8px 18px rgba(34,197,94,.30);
+
 }
 
 .dock{
