@@ -275,7 +275,11 @@ CONTEÚDO
 
     margin-left:280px;
 
-    padding:35px;
+    width:calc(100% - 280px);
+
+    padding:24px;
+
+    overflow-x:hidden;
 
 }
 
@@ -329,7 +333,9 @@ PESQUISA
 
 .search-box{
 
-    width:360px;
+    width:100%;
+
+    max-width:360px;
 
     height:56px;
 
@@ -451,9 +457,9 @@ CARDS
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:24px;
+    gap:16px;
 
-    margin-bottom:30px;
+    margin:20px 0;
 
 }
 
@@ -473,15 +479,19 @@ CARD ESTATÍSTICAS
 
 .stat-card{
 
+    padding:18px 20px;
+
+    border-radius:18px;
+
+    min-height:110px;
+
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
 
-    padding:28px;
-
-    transition:.30s;
+    box-shadow:0 8px 20px rgba(15,23,42,.05);
 
 }
 
@@ -493,27 +503,25 @@ CARD ESTATÍSTICAS
 
 .stat-card span{
 
-    color:var(--text2);
-
     font-size:14px;
+
+    font-weight:600;
 
 }
 
 .stat-card h2{
 
-    margin:10px 0;
+    font-size:30px;
 
-    font-size:32px;
-
-    font-weight:700;
-
-    color:var(--text);
+    margin:6px 0;
 
 }
 
 .stat-card small{
 
-    color:#9ca3af;
+    font-size:12px;
+
+    color:#64748b;
 
 }
 
@@ -566,15 +574,15 @@ PARTE 2
 GRID PRINCIPAL
 =========================*/
 
-.dashboard-grid{
+.cards{
 
     display:grid;
 
-    grid-template-columns:2fr 380px;
+    grid-template-columns:repeat(4,minmax(0,1fr));
 
-    gap:28px;
+    gap:16px;
 
-    align-items:start;
+    width:100%;
 
 }
 
@@ -1967,4 +1975,17 @@ TOOLTIPS
     background:none;
     font-size:22px;
     cursor:pointer;
+}
+
+html,
+body{
+
+    overflow-x:hidden;
+
+}
+
+*{
+
+    max-width:100%;
+
 }
