@@ -1384,8 +1384,29 @@ RESPONSIVO 700
 
 .logo{
 
+    display:flex;
+    align-items:center;
     justify-content:center;
-    margin-bottom:25px;
+
+    gap:8px;
+
+    width:auto;
+
+    margin:0 auto 25px;
+
+}
+
+.logo-icon{
+
+    margin:0;
+
+}
+
+.logo > div{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 
 }
 
