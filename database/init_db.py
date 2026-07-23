@@ -1,102 +1,108 @@
 from database.connection import get_db
 
-conn = get_db()
-cursor = conn.cursor()
 
-cursor.execute("PRAGMA foreign_keys = OFF")
+def carregar_indicadores(cnpj):
 
-# ===========================
-# APAGA AS TABELAS ANTIGAS
-# ===========================
+    db = get_db()
 
-cursor.execute("DROP TABLE IF EXISTS respostas_cotacao")
-cursor.execute("DROP TABLE IF EXISTS links_cotacao")
-cursor.execute("DROP TABLE IF EXISTS cotacao_itens")
-cursor.execute("DROP TABLE IF EXISTS cotacoes")
+    # =========================
+    # TOTAL DE COTAÇÕES
+    # =========================
 
-# ===========================
-# TABELA DE COTAÇÕES
-# ===========================
+    total_cotacoes = db.execute(
+        """
+        SELECT COUNT(*)
+        FROM cotacoes
+        WHERE cnpj_usuario=?
+        """,
+        (cnpj,)
+    ).fetchone()[0]
 
-cursor.execute("""
-CREATE TABLE cotacoes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cnpj_usuario TEXT NOT NULL,
-    nome TEXT,
-    status TEXT DEFAULT 'RASCUNHO',
-    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
-""")
+    # =========================
+    # TOTAL DE PRODUTOS
+    # =========================
 
-# ===========================
-# LINKS DA COTAÇÃO
-# ===========================
+    total_produtos = db.execute(
+        """
+        SELECT COUNT(*)
+        FROM cotacao_itens ci
+        JOIN cotacoes c
+            ON c.id = ci.cotacao_id
+        WHERE c.cnpj_usuario=?
+        """,
+        (cnpj,)
+    ).fetchone()[0]
 
-cursor.execute("""
-CREATE TABLE links_cotacao (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cotacao_id INTEGER NOT NULL,
-    token TEXT NOT NULL UNIQUE,
-    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (cotacao_id) REFERENCES cotacoes(id)
-)
-""")
+    # =========================
+    # DISTRIBUIDORAS
+    # =========================
 
-# ===========================
-# ITENS DA COTAÇÃO
-# ===========================
+    total_distribuidoras = db.execute(
+        """
+        SELECT COUNT(DISTINCT distribuidora)
+        FROM respostas_cotacao rc
+        JOIN cotacoes c
+            ON c.id = rc.cotacao_id
+        WHERE c.cnpj_usuario=?
+        """,
+        (cnpj,)
+    ).fetchone()[0]
 
-cursor.execute("""
-CREATE TABLE cotacao_itens (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cotacao_id INTEGER NOT NULL,
-    medicamento TEXT NOT NULL,
-    laboratorio TEXT,
-    quantidade INTEGER NOT NULL,
-    FOREIGN KEY (cotacao_id) REFERENCES cotacoes(id)
-)
-""")
+    # =========================
+    # ECONOMIA
+    # =========================
 
-# ===========================
-# RESPOSTAS DOS REPRESENTANTES
-# ===========================
+    economia = db.execute(
+        """
+        SELECT
+            SUM(maior - menor)
+        FROM (
 
-cursor.execute("""
-CREATE TABLE respostas_cotacao (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+            SELECT
 
-    cotacao_id INTEGER NOT NULL,
+                medicamento,
 
-    medicamento TEXT NOT NULL,
+                MAX(
+                    CASE
+                        WHEN preco_oferta IS NOT NULL
+                        THEN preco_oferta
+                        ELSE preco
+                    END
+                ) AS maior,
 
-    representante TEXT NOT NULL,
+                MIN(
+                    CASE
+                        WHEN preco_oferta IS NOT NULL
+                        THEN preco_oferta
+                        ELSE preco
+                    END
+                ) AS menor
 
-    distribuidora TEXT,
+            FROM respostas_cotacao rc
 
-    whatsapp TEXT,
+            JOIN cotacoes c
+                ON c.id = rc.cotacao_id
 
-    status TEXT,
+            WHERE c.cnpj_usuario=?
 
-    preco REAL,
+            GROUP BY medicamento
 
-    preco_oferta REAL,
+        )
+        """,
+        (cnpj,)
+    ).fetchone()[0]
 
-    quantidade_oferta INTEGER,
+    if economia is None:
+        economia = 0
 
-    data_resposta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    return {
 
-    FOREIGN KEY (cotacao_id) REFERENCES cotacoes(id)
-)
-""")
+        "cotacoes": total_cotacoes,
 
-# ===========================
-# SALVA AS ALTERAÇÕES
-# ===========================
+        "economia": f"R$ {economia:,.2f}".replace(",", "X").replace(".", ",").replace("X","."),
 
-cursor.execute("PRAGMA foreign_keys = ON")
+        "produtos": total_produtos,
 
-conn.commit()
+        "distribuidoras": total_distribuidoras
 
-conn.close()
-
-print("Tabelas recriadas com sucesso!")
+    }
