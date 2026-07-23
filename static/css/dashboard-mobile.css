@@ -302,6 +302,26 @@ SIDEBAR MOBILE
 
 }
 
+/* ECONOMIA + ÚLTIMAS COTAÇÕES */
+
+.bottom-grid{
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    gap:18px;
+
+}
+
+.bottom-grid > .card{
+
+    width:100% !important;
+
+    max-width:100% !important;
+
+}
+
 /*============================
     CARDS
 ============================*/
