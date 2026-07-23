@@ -256,39 +256,35 @@ Dashboard - CotaFarma
 
         </form>
 
-        <!-- GRÁFICO -->
+        <!-- GRÁFICO + ÚLTIMAS COTAÇÕES -->
 
-        <div class="card">
+        <div class="bottom-grid">
 
-            <div class="card-header">
+            <div class="card">
 
-                <div>
+                <div class="card-header">
 
-                    <h2>Economia Mensal</h2>
+                    <div>
 
-                    <p>Últimos 12 meses</p>
+                        <h2>Economia Mensal</h2>
+
+                        <p>Últimos 12 meses</p>
+
+                    </div>
 
                 </div>
 
-            </div>
-
-            <canvas id="economiaChart"></canvas>
-
-        </div>
-
-    </div>
-
-        <!-- DIREITA -->
-
-    <aside class="right-column">
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>Últimas Cotações</h2>
+                <canvas id="economiaChart"></canvas>
 
             </div>
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>Últimas Cotações</h2>
+
+                </div>
 
             {% if ultimas_cotacoes %}
 
@@ -325,7 +321,13 @@ Dashboard - CotaFarma
 
 {% endif %}
 
+            </div>
+
         </div>
+
+        <!-- DIREITA -->
+
+    <aside class="right-column">
 
         <div class="card">
 

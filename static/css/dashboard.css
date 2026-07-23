@@ -287,9 +287,10 @@ CONTEÚDO
 
 .dashboard-grid{
 
-    display:flex !important;
-    flex-direction:column !important;
-
+    display:grid;
+    grid-template-columns:1fr 340px;
+    gap:24px;
+    align-items:start;
     width:100%;
 
 }
@@ -933,11 +934,10 @@ BOTÕES
 CANVAS
 =========================*/
 
-canvas{
+#economiaChart{
 
-    width:100%!important;
-
-    height:340px!important;
+    width:100% !important;
+    height:280px !important;
 
 }
 
@@ -2064,5 +2064,34 @@ body{
     text-align:right;
     color:#cbd5e1;
     font-size:13px;
+
+}
+
+.bottom-grid{
+
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:24px;
+    align-items:start;
+
+}
+
+.bottom-grid > .card{
+
+    width:100%;
+    min-width:0;
+
+}
+
+.bottom-grid .card{
+
+    height:100%;
+
+}
+.bottom-grid{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
 
 }
