@@ -271,12 +271,15 @@ CONTEÚDO
 
 .content{
 
-    width:100% !important;
-    max-width:100% !important;
+    flex:1;
 
-    margin-left:0 !important;
+    margin-left:280px;
 
-    padding:20px;
+    width:auto;
+
+    min-width:0;
+
+    padding:24px;
 
     overflow-x:hidden;
 
