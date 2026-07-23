@@ -19,39 +19,67 @@ body{
 
 }
 
-/*=============================
-    SIDEBAR
-=============================*/
+/*======================================================
+SIDEBAR MOBILE
+======================================================*/
+
+@media screen and (max-width:768px){
 
 .sidebar{
 
-    position:fixed;
-
-    bottom:0;
-
-    left:0;
+    position:relative;
 
     width:100%;
 
-    height:72px;
-
     background:#111827;
+
+    padding:24px 18px;
 
     display:flex;
 
-    justify-content:space-around;
+    flex-direction:column;
 
     align-items:center;
 
-    z-index:9999;
-
-    padding:0;
+    gap:28px;
 
 }
 
 .logo{
 
-    display:none;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:16px;
+
+    margin:0;
+
+}
+
+.logo-icon{
+
+    width:72px;
+
+    height:72px;
+
+}
+
+.logo h2{
+
+    color:#fff;
+
+    font-size:26px;
+
+}
+
+.logo small{
+
+    color:#94a3b8;
+
+    font-size:15px;
 
 }
 
@@ -65,55 +93,59 @@ body{
 
     width:100%;
 
-    display:flex;
+    display:grid;
 
-    justify-content:space-around;
+    grid-template-columns:repeat(7,1fr);
 
-    align-items:center;
-
-    flex-direction:row;
-
-    gap:0;
+    gap:8px;
 
 }
 
 .menu a{
 
-    flex:1;
-
     display:flex;
-
-    flex-direction:column;
 
     justify-content:center;
 
     align-items:center;
 
-    height:72px;
+    width:100%;
+
+    height:58px;
 
     padding:0;
 
-    transform:none !important;
-
-}
-
-.menu a:hover{
-
-    transform:none !important;
-
-}
-
-.menu a i{
-
-    font-size:20px;
-
-    margin-bottom:4px;
+    border-radius:14px;
 
 }
 
 .menu a span{
 
-    font-size:10px;
+    display:none;
+
+}
+
+.menu a i{
+
+    margin:0;
+
+    font-size:24px;
+
+}
+
+.menu a:hover{
+
+    transform:none;
+
+}
+
+.content{
+
+    margin-left:0;
+
+    padding:18px;
+
+}
 
 }
 
