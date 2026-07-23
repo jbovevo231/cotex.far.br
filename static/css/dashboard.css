@@ -2006,3 +2006,63 @@ body{
     max-width:100%;
 
 }
+
+.activity-table{
+
+    background:#0f172a;
+    border-radius:12px;
+    overflow:hidden;
+    margin-top:12px;
+    border:1px solid #1e293b;
+
+}
+
+.activity-head{
+
+    display:grid;
+    grid-template-columns:1fr 130px;
+    background:#1e3a8a;
+    padding:14px 18px;
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+
+}
+
+.activity-row{
+
+    display:grid;
+    grid-template-columns:1fr 130px;
+    align-items:center;
+    padding:14px 18px;
+    border-top:1px solid rgba(255,255,255,.08);
+    transition:.2s;
+
+}
+
+.activity-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.activity-row:hover{
+
+    background:#1e293b;
+
+}
+
+.activity-name{
+
+    color:#fff;
+    font-weight:600;
+
+}
+
+.activity-date{
+
+    text-align:right;
+    color:#cbd5e1;
+    font-size:13px;
+
+}

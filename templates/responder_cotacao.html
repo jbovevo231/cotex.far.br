@@ -290,26 +290,7 @@
 
                 <div class="footer-actions">
 
-                    <script>
-document.querySelector("form").addEventListener("submit", function () {
-
-    console.log("Preço:", document.querySelectorAll('input[name="preco[]"]'));
-    console.log("Oferta:", document.querySelectorAll('input[name="preco_oferta[]"]'));
-
-    document.querySelectorAll('input[name="preco[]"]').forEach((i,n)=>{
-        console.log("preco", n, i.value, i.disabled);
-    });
-
-    document.querySelectorAll('input[name="preco_oferta[]"]').forEach((i,n)=>{
-        console.log("oferta", n, i.value, i.disabled);
-    });
-
-    document.querySelectorAll('input[name="quantidade_oferta[]"]').forEach((i,n)=>{
-        console.log("quantidade", n, i.value, i.disabled);
-    });
-
-});
-</script>
+                    
 
                     <button
                         type="submit"

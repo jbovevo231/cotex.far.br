@@ -15,6 +15,10 @@ Dashboard - CotaFarma
 
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard-mobile.css') }}"
+      media="screen and (max-width:768px)">
 {% endblock %}
 
 {% block page_content %}
@@ -286,25 +290,40 @@ Dashboard - CotaFarma
 
             </div>
 
-            <div class="activity">
-                <strong>Compra Julho</strong>
-                <span>Hoje</span>
-            </div>
+            {% if ultimas_cotacoes %}
 
-            <div class="activity">
-                <strong>Hospital Regional</strong>
-                <span>Ontem</span>
-            </div>
+    <div class="activity-table">
 
-            <div class="activity">
-                <strong>UBS Centro</strong>
-                <span>2 dias</span>
-            </div>
+    <div class="activity-head">
+        <span>Cotação</span>
+        <span>Data</span>
+    </div>
 
-            <div class="activity">
-                <strong>Farmácia Popular</strong>
-                <span>4 dias</span>
-            </div>
+    {% for cotacao in ultimas_cotacoes %}
+
+    <div class="activity-row">
+
+        <span class="activity-name">{{ cotacao[2] }}</span>
+
+        <span class="activity-date">
+            {{ cotacao[4][:10].split('-')|reverse|join('/') }}
+        </span>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+    <div class="activity">
+
+        <strong>Nenhuma cotação encontrada</strong>
+
+    </div>
+
+{% endif %}
 
         </div>
 

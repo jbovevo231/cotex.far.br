@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, session
 
-from services.dashboard_service import carregar_indicadores
-
+from services.dashboard_service import (
+    carregar_indicadores,
+    carregar_ultimas_cotacoes
+)
 
 dashboard_bp = Blueprint(
     "dashboard",
@@ -12,17 +14,14 @@ dashboard_bp = Blueprint(
 @dashboard_bp.route("/dashboard")
 def dashboard():
 
-    cnpj = session.get(
-        "usuario_cnpj"
-    )
+    cnpj = session.get("usuario_cnpj")
 
+    indicadores = carregar_indicadores(cnpj)
 
-    indicadores = carregar_indicadores(
-        cnpj
-    )
-
+    ultimas_cotacoes = carregar_ultimas_cotacoes(cnpj)
 
     return render_template(
         "dashboard.html",
-        indicadores=indicadores
+        indicadores=indicadores,
+        ultimas_cotacoes=ultimas_cotacoes
     )

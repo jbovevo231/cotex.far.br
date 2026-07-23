@@ -104,9 +104,14 @@ Cotações - CotaFarma
 
 </button>
 
-        <button class="acao-btn" data-tooltip="Resultado">
-            <i class="bi bi-trophy-fill"></i>
-        </button>
+        <button
+    class="acao-btn"
+    data-tooltip="Resultado"
+    onclick="abrirResultado({{ cotacao[0] }})">
+
+    <i class="bi bi-trophy-fill"></i>
+
+</button>
 
         <button class="acao-btn" data-tooltip="Gerar Pedido">
             <i class="bi bi-file-earmark-text-fill"></i>
@@ -127,6 +132,12 @@ Cotações - CotaFarma
     <div
     id="comparativo-{{ cotacao[0] }}"
     class="comparativo-cotacao"
+    style="display:none;margin-top:15px;">
+</div>
+
+    <div
+    id="resultado-{{ cotacao[0] }}"
+    class="resultado-cotacao"
     style="display:none;margin-top:15px;">
 </div>
 
@@ -451,6 +462,45 @@ async function abrirComparativo(id){
 
 }
 
+async function abrirResultado(id){
+
+    const div = document.getElementById("resultado-" + id);
+
+    if(div.style.display === "block"){
+        div.style.display = "none";
+        div.innerHTML = "";
+        return;
+    }
+
+    document.querySelectorAll(".resultado-cotacao").forEach(item=>{
+        item.style.display="none";
+        item.innerHTML="";
+    });
+
+    div.style.display="block";
+    div.innerHTML="<h4>Carregando resultado...</h4>";
+
+    try{
+
+        const response = await fetch("/resultado/" + id);
+        const dados = await response.json();
+
+        div.innerHTML = `
+            <div style="padding:20px;background:white;border-radius:12px;border:1px solid #ddd;">
+                <h3>Resultado da Cotação</h3>
+
+                <pre>${JSON.stringify(dados,null,2)}</pre>
+
+            </div>
+        `;
+
+    }catch(e){
+
+        div.innerHTML="Erro ao carregar resultado.";
+
+    }
+
+}
 
 </script>
 

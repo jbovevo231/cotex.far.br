@@ -48,30 +48,60 @@ def buscar_comparativo(cotacao_id):
             "menor_preco": False
         })
 
-    # Marca apenas UM representante com o menor preço
+        # Marca apenas UM representante com o menor preço
     for med in comparativo.values():
 
         menor_indice = None
         menor_valor = None
 
-        for i, r in enumerate(med["representantes"]):
+    for i, r in enumerate(med["representantes"]):
 
-            if r["preco"] in (None, ""):
-                continue
+        # Usa o preço da oferta quando houver
+        preco = r["preco_oferta"] if r["oferta"] else r["preco"]
 
-            try:
-                valor = float(str(r["preco"]).replace(",", "."))
+        if preco in (None, ""):
+            continue
 
-                if menor_valor is None or valor < menor_valor:
-                    menor_valor = valor
-                    menor_indice = i
+        try:
+            valor = float(str(preco).replace(",", "."))
 
-            except (ValueError, TypeError):
-                continue
+            # Usa apenas "<" para que, em caso de empate,
+            # permaneça o primeiro representante.
+            if menor_valor is None or valor < menor_valor:
+                menor_valor = valor
+                menor_indice = i
 
-        if menor_indice is not None:
-            med["representantes"][menor_indice]["menor_preco"] = True
+        except (ValueError, TypeError):
+            continue
+
+    if menor_indice is not None:
+        med["representantes"][menor_indice]["menor_preco"] = True
 
     print(comparativo)
 
     return list(comparativo.values())
+
+def buscar_resultado(cotacao_id):
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        SELECT
+            medicamento,
+            quantidade_oferta,
+            representante,
+            distribuidora,
+            preco,
+            preco_oferta,
+            status
+        FROM respostas_cotacao
+        WHERE cotacao_id = ?
+        ORDER BY medicamento
+    """, (cotacao_id,))
+
+    dados = cursor.fetchall()
+
+    db.close()
+
+    return dados
