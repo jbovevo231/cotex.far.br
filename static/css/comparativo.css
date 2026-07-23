@@ -1,3 +1,7 @@
+.comparativo-cotacao{
+    font-family:'Manrope',sans-serif;
+}
+
 .comparativo-box{
     margin-top:15px;
     background:#fff;
@@ -24,13 +28,7 @@
     gap:15px;
 }
 
-.card-representante{
-    width:220px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    padding:15px;
-    background:#fff;
-}
+
 
 .card-menor{
     background:#eefaf1;
@@ -81,4 +79,363 @@
 .preco-menor{
     color:#198754;
     font-weight:bold;
+}
+
+.card-representante{
+    width:230px;
+    background:#ffffff;
+    border:1px solid #e8edf3;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    box-shadow:0 8px 25px rgba(15,23,42,.05);
+    transition:all .25s ease;
+    position:relative;
+}
+
+.card-representante:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(15,23,42,.10);
+    border-color:#d6dde7;
+}
+
+.card-menor{
+    border:2px solid #16a34a;
+    background:linear-gradient(180deg,#f8fffb,#eefcf3);
+}
+
+.nome-representante{
+    font-size:18px;
+    font-weight:700;
+    color:#1f2937;
+    line-height:1.3;
+}
+.laboratorio{
+    color:#64748b;
+    font-size:13px;
+    font-weight:500;
+}
+
+.linha-card{
+    height:1px;
+    background:#eceff3;
+    margin:14px 0;
+}
+
+.preco{
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:-1px;
+    color:#111827;
+}
+
+.preco-menor{
+    color:#198754;
+    font-weight:700;
+}
+
+.titulo-medicamento{
+    margin-bottom:20px;
+    padding-bottom:10px;
+    border-bottom:2px solid #e5e7eb;
+    font-size:24px;
+    font-weight:700;
+    color:#1e3a8a;
+    letter-spacing:.3px;
+    text-transform:uppercase;
+}
+
+.comparativo-box{
+    margin-top:20px;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(15,23,42,.06);
+}
+
+.comparativo-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:18px 24px;
+    background:linear-gradient(90deg,#198754,#20a15c);
+    color:#fff;
+    font-size:20px;
+    font-weight:700;
+}
+
+.comparativo-body{
+    padding:24px;
+}
+
+/* ===========================
+   COMPARATIVO COTAFARMA
+=========================== */
+
+.comparativo-box{
+    margin-top:20px;
+    border-radius:24px;
+    overflow:hidden;
+    background:#f7faf9;
+    border:1px solid #e4ece8;
+}
+
+.comparativo-header{
+
+    height:65px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:0 25px;
+
+    background:linear-gradient(135deg,#18a96d,#27c388);
+
+    color:#fff;
+
+    font-size:20px;
+
+    font-weight:700;
+}
+
+.comparativo-body{
+
+    padding:30px;
+
+}
+
+.medicamento{
+
+    margin-bottom:35px;
+
+}
+
+.titulo-medicamento{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+    margin-bottom:18px;
+
+}
+
+.cards{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+}
+
+.price-tile{
+
+    width:220px;
+
+    min-height:210px;
+
+    padding:24px;
+
+    border-radius:34px;
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.55);
+
+    box-shadow:
+
+        0 20px 50px rgba(15,23,42,.08),
+
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    transition:
+
+        transform .35s,
+
+        box-shadow .35s,
+
+        background .35s;
+
+    cursor:pointer;
+
+}
+
+.price-tile:hover{
+
+    transform:
+
+        translateY(-10px)
+
+        scale(1.04);
+
+    box-shadow:
+
+        0 35px 70px rgba(0,0,0,.15),
+
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+}
+
+.rep-nome{
+
+    font-size:19px;
+
+    font-weight:700;
+
+    color:#20303b;
+
+}
+
+.rep-lab{
+
+    margin-top:4px;
+
+    font-size:13px;
+
+    color:#7b8a92;
+
+}
+
+.rep-preco{
+
+    margin-top:22px;
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:#18222d;
+
+}
+
+.offer-badge{
+
+    margin-top:14px;
+
+    padding:5px 12px;
+
+    border-radius:30px;
+
+    background:#fff1df;
+
+    color:#d96a00;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.offer-min{
+
+    margin-top:8px;
+
+    color:#73808b;
+
+    font-size:13px;
+
+}
+
+/* ---------- MENOR PREÇO ---------- */
+
+.winner{
+
+    color:#fff;
+
+    border:none;
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #19b567,
+        #27d17b
+    );
+
+    box-shadow:
+
+        0 18px 40px rgba(31,184,99,.35);
+
+}
+
+.winner .rep-nome{
+
+    color:#fff;
+
+}
+
+.winner .rep-lab{
+
+    color:#dff9eb;
+
+}
+
+.winner .rep-preco{
+
+    color:#fff;
+
+}
+
+.winner .offer-badge{
+
+    background:rgba(255,255,255,.18);
+
+    color:#fff;
+
+}
+
+.winner .offer-min{
+
+    color:#eafcf4;
+
+}
+
+.winner-tag{
+
+    position:absolute;
+
+    top:14px;
+
+    right:14px;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.18);
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    backdrop-filter:blur(10px);
+
 }

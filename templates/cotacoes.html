@@ -8,7 +8,7 @@ Cotações - CotaFarma
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -346,6 +346,8 @@ async function abrirComparativo(id){
 
         const dados = await response.json();
 
+        console.log(dados);
+
         let html = `
             <div style="
                 margin-top:15px;
@@ -374,12 +376,17 @@ async function abrirComparativo(id){
                 <div style="margin-bottom:30px;">
 
                     <h5 style="
-                        margin-bottom:15px;
-                        border-bottom:1px solid #ddd;
-                        padding-bottom:8px;
-                    ">
-                        ${medicamento.nome}
-                    </h5>
+    margin-bottom:18px;
+    padding-bottom:8px;
+    border-bottom:2px solid #dfe6ee;
+    font-size:28px;
+    font-weight:700;
+    color:#0f2d5c;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+">
+    ${medicamento.nome}
+</h5>
 
                     <div style="
                         display:flex;
@@ -390,56 +397,35 @@ async function abrirComparativo(id){
 
             medicamento.representantes.forEach(rep=>{
 
-                let cor = "#ffffff";
-let borda = "#dcdcdc";
-let sombra = "0 2px 8px rgba(0,0,0,.08)";
-
-if(rep.menor_preco){
-    cor = "#eefaf1";
-    borda = "#198754";
-}
-
-if(rep.oferta){
-    cor = "#fff6e5";
-    borda = "#ff9800";
-}
-
                 html += `
                     <div style="
-    width:220px;
-    background:${cor};
-    border:2px solid ${borda};
-    border-radius:12px;
-    padding:18px;
-    box-shadow:${sombra};
-    transition:.2s;
-">
+<div class="card-representante ${rep.menor_preco ? 'card-menor' : ''}">
 
-                        <strong>${rep.representante}</strong>
+                        <div class="nome-representante">
+    ${rep.representante}
+</div>
 
-                        <br>
+<div class="laboratorio">
+    ${rep.laboratorio}
+</div>
 
-                        <small>${rep.laboratorio}</small>
-
-                        <hr>
+<div class="linha-card"></div>
 
                         ${
                             rep.oferta
-                            ?
-                            `
+                            ? `
                                 <b>OFERTA</b><br>
-                                R$ ${rep.preco}<br>
-                                A partir de ${rep.quantidade}
+
+                                <div class="preco ${rep.menor_preco ? 'preco-menor' : ''}">
+                                    R$ ${rep.preco_oferta}
+                                </div>
+
+                                <small>A partir de ${rep.quantidade}</small>
                             `
-                            :
-                            `
-                                <div style="
-    font-size:22px;
-    font-weight:${rep.menor_preco ? 'bold' : 'normal'};
-    color:${rep.menor_preco ? '#198754' : '#000'};
-">
-    R$ ${rep.preco}
-</div>
+                            : `
+                                <div class="preco ${rep.menor_preco ? 'preco-menor' : ''}">
+                                    R$ ${rep.preco}
+                                </div>
                             `
                         }
 

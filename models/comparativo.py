@@ -38,46 +38,40 @@ def buscar_comparativo(cotacao_id):
 
         status = str(item[3]).strip().upper()
 
-        preco = item[4] if status == "TENHO" else item[5]
-
         comparativo[medicamento]["representantes"].append({
             "representante": item[1],
             "laboratorio": item[2],
-            "preco": preco,
+            "preco": item[4],
+            "preco_oferta": item[5],
             "quantidade": item[6],
             "oferta": status == "OFERTA",
             "menor_preco": False
         })
 
-    # Marca o menor preço de cada medicamento
+    # Marca apenas UM representante com o menor preço
     for med in comparativo.values():
 
-        precos = []
+        menor_indice = None
+        menor_valor = None
 
-        for r in med["representantes"]:
+        for i, r in enumerate(med["representantes"]):
 
-            if r["preco"] not in (None, ""):
-                try:
-                    valor = float(str(r["preco"]).replace(",", "."))
-                    precos.append(valor)
-                except:
-                    pass
+            if r["preco"] in (None, ""):
+                continue
 
-        if not precos:
-            continue
+            try:
+                valor = float(str(r["preco"]).replace(",", "."))
 
-        menor = min(precos)
+                if menor_valor is None or valor < menor_valor:
+                    menor_valor = valor
+                    menor_indice = i
 
-        for r in med["representantes"]:
+            except (ValueError, TypeError):
+                continue
 
-            if r["preco"] not in (None, ""):
-                try:
-                    valor = float(str(r["preco"]).replace(",", "."))
+        if menor_indice is not None:
+            med["representantes"][menor_indice]["menor_preco"] = True
 
-                    if valor == menor:
-                        r["menor_preco"] = True
-
-                except:
-                    pass
+    print(comparativo)
 
     return list(comparativo.values())

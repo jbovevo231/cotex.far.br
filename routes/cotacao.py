@@ -49,6 +49,7 @@ def responder_cotacao(token):
 
         conn.close()
 
+
         medicamentos = request.form.getlist("medicamento[]")
 
         status = []
