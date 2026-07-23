@@ -3,439 +3,209 @@
 }
 
 .comparativo-box{
-    margin-top:15px;
-    background:#fff;
-    border:1px solid #ddd;
-    border-radius:10px;
+    margin-top:20px;
+    background:#f6f8fb;
+    border:1px solid #e5e7eb;
+    border-radius:22px;
     overflow:hidden;
 }
 
 .comparativo-header{
-    background:#198754;
+    height:60px;
+    padding:0 22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#22c55e;
     color:#fff;
-    padding:15px 20px;
     font-size:20px;
-    font-weight:bold;
+    font-weight:700;
+}
+
+.comparativo-body{
+    padding:22px;
 }
 
 .medicamento{
-    margin:20px;
-}
-
-.cards{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-
-
-.card-menor{
-    background:#eefaf1;
-    border:2px solid #0c9b33;
-}
-
-.card-menor .nome-representante,
-.card-menor .preco{
-    color:#0c9b33;
-    font-weight:bold;
-}
-
-.card-menor .rodape{
-    margin:15px -15px -15px -15px;
-    background:#0c9b33;
-    color:#fff;
-    padding:8px;
-    text-align:center;
-    font-weight:bold;
-}
-
-.card-oferta{
-    background:#fff6ec;
-    border:2px solid #ff7300;
-}
-
-.card-oferta .nome-representante,
-.card-oferta .preco,
-.card-oferta .oferta{
-    color:#ff7300;
-    font-weight:bold;
-}
-
-.card-oferta .rodape{
-    margin:15px -15px -15px -15px;
-    background:#ff7300;
-    color:#fff;
-    padding:8px;
-    text-align:center;
-    font-weight:bold;
-}
-
-.preco{
-    font-size:22px;
-    color:#000;
-}
-
-.preco-menor{
-    color:#198754;
-    font-weight:bold;
-}
-
-.card-representante{
-    width:230px;
-    background:#ffffff;
-    border:1px solid #e8edf3;
-    border-radius:18px;
-    padding:18px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    box-shadow:0 8px 25px rgba(15,23,42,.05);
-    transition:all .25s ease;
-    position:relative;
-}
-
-.card-representante:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 35px rgba(15,23,42,.10);
-    border-color:#d6dde7;
-}
-
-.card-menor{
-    border:2px solid #16a34a;
-    background:linear-gradient(180deg,#f8fffb,#eefcf3);
-}
-
-.nome-representante{
-    font-size:18px;
-    font-weight:700;
-    color:#1f2937;
-    line-height:1.3;
-}
-.laboratorio{
-    color:#64748b;
-    font-size:13px;
-    font-weight:500;
-}
-
-.linha-card{
-    height:1px;
-    background:#eceff3;
-    margin:14px 0;
-}
-
-.preco{
-    font-size:30px;
-    font-weight:800;
-    letter-spacing:-1px;
-    color:#111827;
-}
-
-.preco-menor{
-    color:#198754;
-    font-weight:700;
+    margin-bottom:28px;
 }
 
 .titulo-medicamento{
-    margin-bottom:20px;
-    padding-bottom:10px;
-    border-bottom:2px solid #e5e7eb;
-    font-size:24px;
+    font-size:19px;
     font-weight:700;
-    color:#1e3a8a;
-    letter-spacing:.3px;
-    text-transform:uppercase;
+    color:#1f2937;
+    margin-bottom:16px;
 }
 
-.comparativo-box{
-    margin-top:20px;
+.dock{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.app-icon{
+    width:125px;
+    min-height:120px;
+    padding:12px;
     background:#fff;
     border:1px solid #e5e7eb;
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 8px 30px rgba(15,23,42,.06);
-}
-
-.comparativo-header{
+    border-radius:18px;
     display:flex;
-    align-items:center;
-    gap:10px;
-    padding:18px 24px;
-    background:linear-gradient(90deg,#198754,#20a15c);
-    color:#fff;
-    font-size:20px;
-    font-weight:700;
-}
-
-.comparativo-body{
-    padding:24px;
-}
-
-/* ===========================
-   COMPARATIVO COTAFARMA
-=========================== */
-
-.comparativo-box{
-    margin-top:20px;
-    border-radius:24px;
-    overflow:hidden;
-    background:#f7faf9;
-    border:1px solid #e4ece8;
-}
-
-.comparativo-header{
-
-    height:65px;
-
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    padding:0 25px;
-
-    background:linear-gradient(135deg,#18a96d,#27c388);
-
-    color:#fff;
-
-    font-size:20px;
-
-    font-weight:700;
-}
-
-.comparativo-body{
-
-    padding:30px;
-
-}
-
-.medicamento{
-
-    margin-bottom:35px;
-
-}
-
-.titulo-medicamento{
-
-    font-size:22px;
-
-    font-weight:700;
-
-    color:#1f2937;
-
-    margin-bottom:18px;
-
-}
-
-.cards{
-
-    display:flex;
-
-    gap:18px;
-
-    flex-wrap:wrap;
-
-}
-
-.price-tile{
-
-    width:220px;
-
-    min-height:210px;
-
-    padding:24px;
-
-    border-radius:34px;
-
-    position:relative;
-
-    display:flex;
-
     flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    gap:6px;
+    position:relative;
+    transition:.25s;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.app-icon:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+}
+
+.app-name{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-size:15px;
+    font-weight:700;
+    color:#111827;
+    line-height:1.2;
+    margin:0;
+}
+
+.app-subtitle{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-size:11px;
+    font-weight:600;
+    color:#6b7280;
+    line-height:1.2;
+    margin:0;
+}
+
+.app-price{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    margin:4px 0;
+    font-size:21px;
+    font-weight:800;
+    color:#111827;
+    line-height:1;
+}
+
+.offer-badge{
+    margin:4px auto 0;
+    padding:4px 8px;
+    border-radius:999px;
+    background:#fff3cd;
+    color:#b45309;
+    font-size:10px;
+    font-weight:700;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.offer-min{
+    width:100%;
+    text-align:center;
+    font-size:10px;
+    color:#6b7280;
+    line-height:1.2;
+    margin:0;
+}
+
+.winner{
+    border:2px solid #22c55e;
+    background:#f0fdf4;
+}
+
+.winner .app-price{
+    color:#059669;
+}
+
+.winner-check{
+
+    position:absolute;
+
+    top:8px;
+
+    right:8px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    display:flex;
 
     justify-content:center;
 
     align-items:center;
 
-    text-align:center;
-
-    overflow:hidden;
-
-    background:rgba(255,255,255,.72);
-
-    backdrop-filter:blur(22px);
-
-    -webkit-backdrop-filter:blur(22px);
-
-    border:1px solid rgba(255,255,255,.55);
-
-    box-shadow:
-
-        0 20px 50px rgba(15,23,42,.08),
-
-        inset 0 1px 0 rgba(255,255,255,.9);
-
-    transition:
-
-        transform .35s,
-
-        box-shadow .35s,
-
-        background .35s;
-
-    cursor:pointer;
-
-}
-
-.price-tile:hover{
-
-    transform:
-
-        translateY(-10px)
-
-        scale(1.04);
-
-    box-shadow:
-
-        0 35px 70px rgba(0,0,0,.15),
-
-        inset 0 1px 0 rgba(255,255,255,.9);
-
-}
-
-.rep-nome{
-
-    font-size:19px;
+    font-size:14px;
 
     font-weight:700;
 
-    color:#20303b;
+    box-shadow:0 2px 8px rgba(34,197,94,.35);
 
 }
 
-.rep-lab{
+@media(max-width:900px){
 
-    margin-top:4px;
-
-    font-size:13px;
-
-    color:#7b8a92;
+    .dock{
+        justify-content:center;
+    }
 
 }
 
-.rep-preco{
+@media(max-width:640px){
 
-    margin-top:22px;
+    .comparativo-body{
+        padding:16px;
+    }
 
-    font-size:32px;
+    .app-icon{
+        width:110px;
+        min-height:110px;
+        padding:10px;
+    }
 
-    font-weight:800;
+    .app-name{
+        font-size:13px;
+    }
 
-    color:#18222d;
+    .app-subtitle{
+        font-size:10px;
+    }
 
-}
+    .app-price{
+        font-size:18px;
+    }
 
-.offer-badge{
+    .offer-badge{
+        font-size:9px;
+    }
 
-    margin-top:14px;
-
-    padding:5px 12px;
-
-    border-radius:30px;
-
-    background:#fff1df;
-
-    color:#d96a00;
-
-    font-size:12px;
-
-    font-weight:700;
-
-}
-
-.offer-min{
-
-    margin-top:8px;
-
-    color:#73808b;
-
-    font-size:13px;
-
-}
-
-/* ---------- MENOR PREÇO ---------- */
-
-.winner{
-
-    color:#fff;
-
-    border:none;
-
-    background:
-
-    linear-gradient(
-        145deg,
-        #19b567,
-        #27d17b
-    );
-
-    box-shadow:
-
-        0 18px 40px rgba(31,184,99,.35);
-
-}
-
-.winner .rep-nome{
-
-    color:#fff;
-
-}
-
-.winner .rep-lab{
-
-    color:#dff9eb;
-
-}
-
-.winner .rep-preco{
-
-    color:#fff;
-
-}
-
-.winner .offer-badge{
-
-    background:rgba(255,255,255,.18);
-
-    color:#fff;
-
-}
-
-.winner .offer-min{
-
-    color:#eafcf4;
-
-}
-
-.winner-tag{
-
-    position:absolute;
-
-    top:14px;
-
-    right:14px;
-
-    padding:6px 10px;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,.18);
-
-    color:#fff;
-
-    font-size:11px;
-
-    font-weight:700;
-
-    backdrop-filter:blur(10px);
+    .offer-min{
+        font-size:9px;
+    }
 
 }

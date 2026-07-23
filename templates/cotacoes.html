@@ -320,149 +320,134 @@ async function abrirComparativo(id){
 
     const div = document.getElementById("comparativo-" + id);
 
-    // Fecha se já estiver aberto
     if(div.style.display === "block"){
-
         div.style.display = "none";
         div.innerHTML = "";
         return;
-
     }
 
-    // Fecha qualquer outro comparativo aberto
     document.querySelectorAll(".comparativo-cotacao").forEach(item=>{
-
-        item.style.display = "none";
-        item.innerHTML = "";
-
+        item.style.display="none";
+        item.innerHTML="";
     });
 
-    div.style.display = "block";
-    div.innerHTML = "<h4>Carregando...</h4>";
+    div.style.display="block";
+    div.innerHTML="<h4>Carregando...</h4>";
 
     try{
 
         const response = await fetch("/comparativo/" + id);
-
         const dados = await response.json();
 
-        console.log(dados);
+        let html=`
 
-        let html = `
-            <div style="
-                margin-top:15px;
-                background:#fff;
-                border:1px solid #ddd;
-                border-radius:10px;
-                overflow:hidden;
-            ">
+        <div class="comparativo-box">
 
-                <div style="
-                    background:#198754;
-                    color:white;
-                    padding:12px 18px;
-                    font-weight:600;
-                    font-size:18px;
-                ">
-                    📊 Comparativo de Preços
-                </div>
+            <div class="comparativo-header">
 
-                <div style="padding:20px;">
+                <i class="bi bi-bar-chart-fill"></i>
+
+                Comparativo de Preços
+
+            </div>
+
+            <div class="comparativo-body">
+
         `;
 
         dados.forEach(medicamento=>{
 
-            html += `
-                <div style="margin-bottom:30px;">
+            html+=`
 
-                    <h5 style="
-    margin-bottom:18px;
-    padding-bottom:8px;
-    border-bottom:2px solid #dfe6ee;
-    font-size:28px;
-    font-weight:700;
-    color:#0f2d5c;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-">
-    ${medicamento.nome}
-</h5>
+                <div class="medicamento">
 
-                    <div style="
-                        display:flex;
-                        flex-wrap:wrap;
-                        gap:15px;
-                    ">
+                    <div class="titulo-medicamento">
+                        ${medicamento.nome}
+                    </div>
+
+                    <div class="dock">
+
             `;
 
             medicamento.representantes.forEach(rep=>{
 
-                html += `
-                    <div style="
-<div class="card-representante ${rep.menor_preco ? 'card-menor' : ''}">
+                html+=`
 
-                        <div class="nome-representante">
+                    <div class="app-icon ${rep.menor_preco ? 'winner' : ''}">
+
+                        ${rep.menor_preco ? `
+    <div class="winner-check">
+        <i class="bi bi-check-lg"></i>
+    </div>
+` : ""}
+
+                        <div class="app-name">
+
     ${rep.representante}
+
 </div>
 
-<div class="laboratorio">
+<div class="app-subtitle">
+
     ${rep.laboratorio}
+
 </div>
 
-<div class="linha-card"></div>
+<div class="app-price">
+
+    ${
+        rep.oferta
+        ? `R$ ${rep.preco_oferta}`
+        : `R$ ${rep.preco}`
+    }
+
+</div>
 
                         ${
                             rep.oferta
-                            ? `
-                                <b>OFERTA</b><br>
-
-                                <div class="preco ${rep.menor_preco ? 'preco-menor' : ''}">
-                                    R$ ${rep.preco_oferta}
+                            ?
+                            `
+                                <div class="offer-badge">
+                                    OFERTA
                                 </div>
 
-                                <small>A partir de ${rep.quantidade}</small>
-                            `
-                            : `
-                                <div class="preco ${rep.menor_preco ? 'preco-menor' : ''}">
-                                    R$ ${rep.preco}
+                                <div class="offer-min">
+                                    A partir de ${rep.quantidade} un.
                                 </div>
                             `
+                            :
+                            ""
                         }
 
                     </div>
+
                 `;
 
             });
 
-            html += `
+            html+=`
+
                     </div>
 
                 </div>
+
             `;
 
         });
 
-        html += `
-                </div>
+        html+=`
 
             </div>
+
+        </div>
+
         `;
 
-        div.innerHTML = html;
+        div.innerHTML=html;
 
     }catch(e){
 
-        div.innerHTML = `
-            <div style="
-                margin-top:15px;
-                padding:20px;
-                background:#ffe5e5;
-                color:#b00020;
-                border-radius:8px;
-            ">
-                Erro ao carregar o comparativo.
-            </div>
-        `;
+        div.innerHTML="Erro ao carregar comparativo.";
 
     }
 
