@@ -1,0 +1,500 @@
+/*======================================================
+                DASHBOARD MOBILE
+                COTAFARMA
+======================================================*/
+
+@media screen and (max-width:768px){
+
+*{
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    overflow-x:hidden;
+
+    background:#f5f7fb;
+
+}
+
+/*=============================
+    SIDEBAR
+=============================*/
+
+.sidebar{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:72px;
+
+    background:#111827;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:9999;
+
+    padding:0;
+
+}
+
+.logo{
+
+    display:none;
+
+}
+
+.user{
+
+    display:none;
+
+}
+
+.menu{
+
+    display:flex;
+
+    width:100%;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+}
+
+.menu a{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#cbd5e1;
+
+    text-decoration:none;
+
+    font-size:11px;
+
+    padding:10px 0;
+
+}
+
+.menu a i{
+
+    font-size:20px;
+
+    margin-bottom:4px;
+
+}
+
+.menu a span{
+
+    font-size:10px;
+
+}
+
+/*=============================
+    CONTEÚDO
+=============================*/
+
+.content{
+
+    margin-left:0;
+
+    width:100%;
+
+    padding:16px;
+
+    padding-bottom:95px;
+
+}
+
+/*=============================
+    TOPO
+=============================*/
+
+.topbar{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    align-items:flex-start;
+
+}
+
+.topbar h1{
+
+    font-size:28px;
+
+}
+
+.topbar p{
+
+    font-size:14px;
+
+}
+
+.top-actions{
+
+    width:100%;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+/*=============================
+    PESQUISA
+=============================*/
+
+.search-box{
+
+    width:100%;
+
+    height:48px;
+
+}
+
+.icon-btn{
+
+    width:48px;
+
+    height:48px;
+
+}
+
+.new-btn{
+
+    flex:1;
+
+    justify-content:center;
+
+    height:48px;
+
+}
+
+/*=============================
+    CARDS
+=============================*/
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:16px;
+
+}
+
+.stat-card{
+
+    width:100%;
+
+}
+
+.stat-card h2{
+
+    font-size:28px;
+
+}
+
+.stat-card i{
+
+    width:52px;
+
+    height:52px;
+
+    font-size:22px;
+
+}
+
+}
+
+/*======================================================
+        FORMULÁRIO / GRID / GRÁFICO
+======================================================*/
+
+@media screen and (max-width:768px){
+
+.dashboard-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.left-column,
+.right-column{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/*============================
+    CARDS
+============================*/
+
+.card{
+
+    width:100%;
+
+    border-radius:18px;
+
+}
+
+/*============================
+    CABEÇALHO DOS CARDS
+============================*/
+
+.card-header{
+
+    padding:18px;
+
+}
+
+.card-header h2{
+
+    font-size:20px;
+
+}
+
+.card-header p{
+
+    font-size:13px;
+
+}
+
+/*============================
+    FORMULÁRIO
+============================*/
+
+.form-group{
+
+    padding:18px;
+
+}
+
+.form-group label{
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+.form-group input{
+
+    width:100%;
+
+    height:48px;
+
+    font-size:15px;
+
+}
+
+/*============================
+    TABELA
+============================*/
+
+.medicine-table{
+
+    padding:18px;
+
+}
+
+/* Esconde o cabeçalho no celular */
+
+.table-header{
+
+    display:none;
+
+}
+
+/* Cada medicamento vira um card */
+
+.table-row{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    padding:16px;
+
+    background:#f8fafc;
+
+    border-radius:16px;
+
+    margin-bottom:16px;
+
+}
+
+.table-row input{
+
+    width:100%;
+
+    height:46px;
+
+}
+
+.table-row button{
+
+    width:100%;
+
+    height:46px;
+
+    border-radius:12px;
+
+}
+
+/*============================
+    BOTÕES
+============================*/
+
+.quote-buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    padding:18px;
+
+}
+
+.secondary-btn,
+.primary-btn{
+
+    width:100%;
+
+    height:50px;
+
+    justify-content:center;
+
+}
+
+/*============================
+    CANVAS
+============================*/
+
+canvas{
+
+    width:100% !important;
+
+    height:260px !important;
+
+    padding:16px;
+
+}
+
+/*============================
+    ÚLTIMAS COTAÇÕES
+============================*/
+
+.activity{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 18px;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.activity strong{
+
+    font-size:15px;
+
+}
+
+.activity span{
+
+    font-size:13px;
+
+    color:#94a3b8;
+
+}
+
+/*============================
+    IA
+============================*/
+
+.ai-box{
+
+    padding:24px 18px;
+
+    text-align:center;
+
+}
+
+.ai-box i{
+
+    font-size:42px;
+
+    margin-bottom:14px;
+
+}
+
+.ai-box h3{
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+}
+
+.ai-box p{
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+.ai-box button{
+
+    width:100%;
+
+    margin-top:18px;
+
+}
+
+}
