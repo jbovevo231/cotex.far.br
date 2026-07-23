@@ -174,10 +174,8 @@ ${link}
 
 Obrigado!`;
 
-        window.open(
-            `https://wa.me/?text=${encodeURIComponent(mensagem)}`,
-            "_blank"
-        );
+        window.location.href =
+    `https://api.whatsapp.com/send?text=${encodeURIComponent(mensagem)}`;
 
     }catch(erro){
 
@@ -379,7 +377,7 @@ async function abrirComparativo(id){
     <div class="winner-check">
         <i class="bi bi-check-lg"></i>
     </div>
-` : ""}
+` : ""}. 
 
                         <div class="app-name">
 
