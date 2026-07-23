@@ -275,9 +275,13 @@ CONTEÚDO
 
     margin-left:280px;
 
-    width:auto;
-
     min-width:0;
+
+    max-width:1600px;
+
+    width:calc(100% - 280px);
+
+    margin-right:auto;
 
     padding:24px;
 
