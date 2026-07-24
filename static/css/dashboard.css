@@ -2247,3 +2247,443 @@ body{
     }
 
 }
+
+/*==================================================
+DASHBOARDS PREMIUM
+==================================================*/
+
+.stat-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    isolation:isolate;
+
+}
+
+/* brilho superior */
+
+.stat-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    top:-150px;
+
+    right:-120px;
+
+    background:rgba(255,255,255,.22);
+
+    z-index:0;
+
+}
+
+/* animação de luz */
+
+.stat-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        110deg,
+        transparent 15%,
+        rgba(255,255,255,.28) 45%,
+        transparent 75%
+    );
+
+    transform:translateX(-180%);
+
+    animation:shine 9s linear infinite;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+@keyframes shine{
+
+    100%{
+
+        transform:translateX(220%);
+
+    }
+
+}
+
+/* conteúdo acima */
+
+.stat-card>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/*==============================
+CORES PREMIUM
+==============================*/
+
+.blue{
+
+    background:linear-gradient(135deg,#eff6ff,#dbeafe);
+
+    border:1px solid #bfdbfe;
+
+}
+
+.green{
+
+    background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+
+    border:1px solid #a7f3d0;
+
+}
+
+.purple{
+
+    background:linear-gradient(135deg,#f5f3ff,#ede9fe);
+
+    border:1px solid #ddd6fe;
+
+}
+
+.orange{
+
+    background:linear-gradient(135deg,#fff7ed,#ffedd5);
+
+    border:1px solid #fed7aa;
+
+}
+
+/*==============================
+ÍCONE PREMIUM
+==============================*/
+
+.stat-card i{
+
+    transition:.35s;
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.12);
+
+}
+
+.stat-card:hover i{
+
+    transform:
+        rotate(-8deg)
+        scale(1.08);
+
+}
+
+/*==============================
+LINHA ANIMADA
+==============================*/
+
+.stat-card small{
+
+    position:relative;
+
+    display:block;
+
+    padding-bottom:16px;
+
+}
+
+.stat-card small::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:72%;
+
+    height:6px;
+
+    border-radius:20px;
+
+    background:#e5e7eb;
+
+}
+
+.blue small::before,
+.green small::before,
+.purple small::before,
+.orange small::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    height:6px;
+
+    border-radius:20px;
+
+    width:0;
+
+    animation:barGrow 1.3s ease forwards;
+
+    z-index:2;
+
+}
+
+.blue small::before{
+
+    width:68%;
+
+    background:linear-gradient(90deg,#2563eb,#60a5fa);
+
+}
+
+.green small::before{
+
+    width:82%;
+
+    background:linear-gradient(90deg,#10b981,#34d399);
+
+}
+
+.purple small::before{
+
+    width:100%;
+
+    background:linear-gradient(90deg,#7c3aed,#a855f7);
+
+}
+
+.orange small::before{
+
+    width:76%;
+
+    background:linear-gradient(90deg,#f59e0b,#fbbf24);
+
+}
+
+@keyframes barGrow{
+
+    from{
+
+        transform:scaleX(0);
+
+        transform-origin:left;
+
+    }
+
+    to{
+
+        transform:scaleX(1);
+
+        transform-origin:left;
+
+    }
+
+}
+
+/*==============================
+HOVER
+==============================*/
+
+.stat-card{
+
+    transition:
+        transform .35s,
+        box-shadow .35s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 30px 60px rgba(15,23,42,.16);
+
+}
+
+/*=========================================
+DASHBOARD PRODUTOS
+=========================================*/
+
+.produtos-dashboard{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:520px;
+
+}
+
+.radial-widget{
+
+    width:340px;
+
+    height:340px;
+
+    position:relative;
+
+    animation:floatWidget 6s ease-in-out infinite;
+
+}
+
+.radial-widget svg{
+
+    width:100%;
+
+    height:100%;
+
+    transform:rotate(-90deg);
+
+}
+
+.track{
+
+    fill:none;
+
+    stroke:#eef2f7;
+
+    stroke-width:10;
+
+}
+
+.ring{
+
+    fill:none;
+
+    stroke-linecap:round;
+
+    stroke-width:10;
+
+    animation:drawRing 2s ease forwards;
+
+}
+
+.ring1{
+
+    stroke:#16d6a0;
+
+    stroke-dasharray:565;
+
+    stroke-dashoffset:90;
+
+}
+
+.ring2{
+
+    stroke:#39e2b1;
+
+    stroke-dasharray:452;
+
+    stroke-dashoffset:120;
+
+}
+
+.ring3{
+
+    stroke:#6ceccd;
+
+    stroke-dasharray:339;
+
+    stroke-dashoffset:80;
+
+}
+
+.ring4{
+
+    stroke:#98f3df;
+
+    stroke-dasharray:226;
+
+    stroke-dashoffset:60;
+
+}
+
+.radial-center{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.radial-center h2{
+
+    font-size:58px;
+
+    color:#10b981;
+
+    margin:0;
+
+    font-weight:800;
+
+}
+
+.radial-center span{
+
+    margin-top:10px;
+
+    font-size:18px;
+
+    color:#64748b;
+
+    font-weight:600;
+
+}
+
+@keyframes drawRing{
+
+    from{
+
+        stroke-dashoffset:565;
+
+    }
+
+}
+
+@keyframes floatWidget{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+}
