@@ -414,6 +414,8 @@
 
     });
 
+    
+
 });
 
 document.querySelector("form").addEventListener("submit", function(e){
@@ -441,6 +443,8 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     }
 
+    
+
     if(!distribuidora){
 
         alert("Informe a distribuidora.");
@@ -456,6 +460,41 @@ document.querySelector("form").addEventListener("submit", function(e){
         return;
 
     }
+
+    document.querySelectorAll(".medicine-card").forEach((card, indice) => {
+
+    const id = indice + 1;
+
+    const status = document.querySelector(
+        `input[name="status${id}"]:checked`
+    ).value;
+
+    if (status === "TENHO") {
+
+        const preco = card.querySelector('input[name="preco[]"]').value.trim();
+
+        if (preco === "") {
+            alert("Preencha o valor do medicamento ou marque 'Não Tenho'.");
+            e.preventDefault();
+            return;
+        }
+
+    }
+
+    if (status === "OFERTA") {
+
+        const precoOferta = card.querySelector('input[name="preco_oferta[]"]').value.trim();
+        const quantidade = card.querySelector('input[name="quantidade_oferta[]"]').value.trim();
+
+        if (precoOferta === "" || quantidade === "") {
+            alert("Preencha o preço e a quantidade da oferta.");
+            e.preventDefault();
+            return;
+        }
+
+    }
+
+});
 
 });
 
