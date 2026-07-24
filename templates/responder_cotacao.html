@@ -416,5 +416,48 @@
 
 });
 
+document.querySelector("form").addEventListener("submit", function(e){
+
+    const representante = document
+        .querySelector('input[name="representante"]')
+        .value
+        .trim();
+
+    const distribuidora = document
+        .querySelector('input[name="distribuidora"]')
+        .value
+        .trim();
+
+    const whatsapp = document
+        .querySelector('input[name="whatsapp"]')
+        .value
+        .trim();
+
+    if(!representante){
+
+        alert("Informe o nome do representante.");
+        e.preventDefault();
+        return;
+
+    }
+
+    if(!distribuidora){
+
+        alert("Informe a distribuidora.");
+        e.preventDefault();
+        return;
+
+    }
+
+    if(!whatsapp){
+
+        alert("Informe o WhatsApp.");
+        e.preventDefault();
+        return;
+
+    }
+
+});
+
     </script>
 
