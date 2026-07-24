@@ -2130,10 +2130,15 @@ TOOLTIPS
 html,
 body{
 
-    overflow-x:auto;
+    overflow-x:hidden;
 
 }
 
+*{
+
+    max-width:100%;
+
+}
 
 .activity-table{
 
@@ -2961,7 +2966,7 @@ HOVER
 
     border-radius:20px;
 
-    overflow:visible;
+    overflow:hidden;
 
     margin:20px;
 
@@ -3076,7 +3081,7 @@ HOVER
 
     margin-top:2px;
 
-    color:#1B2236;
+    color:#16a34a;
 
     font-size:28px;
 
@@ -3105,51 +3110,5 @@ HOVER
     align-items:center;
 
     gap:10px;
-
-}
-
-@media (max-width:768px){
-
-    .content{
-
-        margin-left:72px !important;
-        width:calc(100% - 72px) !important;
-        padding:12px !important;
-        overflow-x:hidden;
-
-    }
-
-    .cotacoes-lista{
-
-        width:100%;
-    }
-
-    .cotacao-card{
-
-        width:100%;
-        margin:0;
-    }
-
-    .resultado-representante{
-
-        margin:12px;
-    }
-
-    .resultado-tabela{
-
-        display:block;
-        overflow-x:auto;
-        white-space:nowrap;
-    }
-
-    .resultado-tabela thead,
-    .resultado-tabela tbody,
-    .resultado-tabela tr{
-
-        display:table;
-        width:100%;
-        table-layout:fixed;
-
-    }
 
 }
