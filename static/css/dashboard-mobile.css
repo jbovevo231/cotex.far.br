@@ -669,3 +669,18 @@ canvas{
 
 }
 
+.btn-gerar-pedido{
+
+    padding:8px 14px;
+    font-size:12px;
+    border-radius:10px;
+    gap:6px;
+
+}
+
+.btn-gerar-pedido i{
+
+    font-size:14px;
+
+}
+
