@@ -25,6 +25,10 @@ SIDEBAR MOBILE
 
 @media screen and (max-width:768px){
 
+/*=============================
+    SIDEBAR
+=============================*/
+
 .sidebar{
 
     position:relative;
@@ -33,7 +37,7 @@ SIDEBAR MOBILE
 
     background:#111827;
 
-    padding:24px 18px;
+    padding:22px;
 
     display:flex;
 
@@ -41,7 +45,7 @@ SIDEBAR MOBILE
 
     align-items:center;
 
-    gap:28px;
+    gap:24px;
 
 }
 
@@ -53,39 +57,17 @@ SIDEBAR MOBILE
 
     justify-content:center;
 
-    gap:16px;
+    gap:14px;
 
     margin:0;
 
 }
 
-.logo-icon{
-
-    width:72px;
-
-    height:72px;
-
-}
-
-.logo h2{
-
-    color:#fff;
-
-    font-size:26px;
-
-}
-
-.logo small{
-
-    color:#94a3b8;
-
-    font-size:15px;
-
-}
-
 .user{
 
-    display:none;
+    width:100%;
+
+    justify-content:center;
 
 }
 
@@ -93,9 +75,13 @@ SIDEBAR MOBILE
 
     width:100%;
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:repeat(7,1fr);
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:nowrap;
 
     gap:8px;
 
@@ -109,13 +95,13 @@ SIDEBAR MOBILE
 
     align-items:center;
 
-    width:100%;
+    width:42px;
 
-    height:58px;
+    height:42px;
 
     padding:0;
 
-    border-radius:14px;
+    border-radius:12px;
 
 }
 
@@ -129,23 +115,7 @@ SIDEBAR MOBILE
 
     margin:0;
 
-    font-size:24px;
-
-}
-
-.menu a:hover{
-
-    transform:none;
-
-}
-
-.content{
-
-    margin-left:0;
-
-    padding:18px;
-
-}
+    font-size:20px;
 
 }
 
@@ -164,6 +134,8 @@ SIDEBAR MOBILE
     padding-bottom:95px;
 
 }
+}
+
 
 /*=============================
     TOPO
@@ -306,11 +278,19 @@ SIDEBAR MOBILE
 
 .bottom-grid{
 
-    display:flex !important;
+    display:grid !important;
 
-    flex-direction:column !important;
+    grid-template-columns:1fr !important;
 
-    gap:18px;
+    gap:18px !important;
+
+}
+
+.bottom-grid > .card{
+
+    width:100% !important;
+
+    display:block !important;
 
 }
 

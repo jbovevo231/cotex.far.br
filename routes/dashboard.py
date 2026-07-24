@@ -18,6 +18,10 @@ def dashboard():
 
     indicadores = carregar_indicadores(cnpj)
 
+    print("===================================")
+    print(indicadores)
+    print("===================================")
+
     ultimas_cotacoes = carregar_ultimas_cotacoes(cnpj)
 
     return render_template(

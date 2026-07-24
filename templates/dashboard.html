@@ -89,35 +89,35 @@ Dashboard - CotaFarma
 
     <div class="card stat-card green">
 
-        <div>
+    <div>
 
-            <span>Economia</span>
+        <span>Economia do Mês</span>
 
-            <h2>{{ indicadores.get('economia','R$ 0') }}</h2>
+        <h2>{{ indicadores.get('economia_mes','R$ 0,00') }}</h2>
 
-            <small>Economia acumulada</small>
-
-        </div>
-
-        <i class="bi bi-currency-dollar"></i>
+        <small>{{ indicadores.get('mes_atual','Julho') }}</small>
 
     </div>
+
+    <i class="bi bi-graph-up-arrow"></i>
+
+</div>
 
     <div class="card stat-card purple">
 
-        <div>
+    <div>
 
-            <span>Produtos</span>
+        <span>Economia Total</span>
 
-            <h2>{{ indicadores.get('produtos',0) }}</h2>
+        <h2>{{ indicadores.get('economia_total','R$ 0,00') }}</h2>
 
-            <small>Cadastrados</small>
-
-        </div>
-
-        <i class="bi bi-capsule"></i>
+        <small>Economia acumulada</small>
 
     </div>
+
+    <i class="bi bi-currency-dollar"></i>
+
+</div>
 
     <div class="card stat-card orange">
 
@@ -140,6 +140,8 @@ Dashboard - CotaFarma
 <!-- GRID -->
 
 <section class="dashboard-grid">
+
+    
 
     <!-- ESQUERDA -->
 
