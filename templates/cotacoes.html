@@ -444,19 +444,37 @@ async function abrirComparativo(id){
 
     <div class="ranking-info">
 
-        <div class="ranking-nome">
+    <div class="ranking-nome">
 
-            ${rep.representante}
-
-        </div>
-
-        <div class="ranking-laboratorio">
-
-            ${rep.laboratorio}
-
-        </div>
+        ${rep.representante}
 
     </div>
+
+    <div class="ranking-laboratorio">
+
+        ${rep.laboratorio}
+
+    </div>
+
+    ${
+    rep.oferta
+    ? `
+        <div class="oferta-linha">
+
+            <span class="offer-badge">OFERTA</span>
+
+            <span class="offer-texto">
+
+                A partir de ${rep.quantidade} un.
+
+            </span>
+
+        </div>
+    `
+    : ""
+}
+
+</div>
 
     <div class="ranking-preco">
 
@@ -470,29 +488,15 @@ async function abrirComparativo(id){
 
     </div>
 
+    <small>
+
     ${
         rep.oferta
-        ? `
-            <div class="offer-badge">
-
-                OFERTA
-
-            </div>
-
-            <small>
-
-                ${rep.quantidade} unidades
-
-            </small>
-        `
-        : `
-            <small>
-
-                Preço Unitário
-
-            </small>
-        `
+        ? `${rep.quantidade} unidades`
+        : "Preço Unitário"
     }
+
+</small>
 
 </div>
 

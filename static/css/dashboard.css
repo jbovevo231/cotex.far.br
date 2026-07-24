@@ -2680,6 +2680,42 @@ HOVER
 
 }
 
+.ranking-info{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:0 24px;
+
+}
+
+.ranking-nome{
+
+    font-size:17px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+    line-height:1.2;
+
+}
+
+.ranking-laboratorio{
+
+    margin-top:3px;
+
+    font-size:15px;
+
+    color:#6b7280;
+
+}
+
 .primeiro{
 
     border:2px solid #22c55e;
@@ -2832,38 +2868,48 @@ HOVER
 
 }
 
-.offer-info{
+.oferta-linha{
 
     display:flex;
 
     align-items:center;
 
-    gap:12px;
+    gap:8px;
 
-    margin-top:10px;
+    margin-top:4px;
 
 }
 
 .offer-badge{
 
-    background:#FFF4D6;
+    display:inline-flex;
 
-    color:#D97706;
+    align-items:center;
 
-    font-size:12px;
+    justify-content:center;
 
-    font-weight:700;
+    padding:4px 10px;
 
-    padding:5px 12px;
+    background:#FFE7A7;
+
+    color:#C47A00;
 
     border-radius:999px;
 
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
 }
 
-.offer-min{
+.offer-texto{
+
+    font-size:11px;
 
     color:#64748b;
 
-    font-size:14px;
+    font-weight:500;
 
 }
