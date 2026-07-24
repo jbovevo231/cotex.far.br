@@ -655,12 +655,17 @@ canvas{
 
 }
 
+@media (max-width:768px){
+
     .campo-quantidade{
 
         width:48px;
         padding:4px;
+        font-size:16px;
 
     }
+
+}
 
 }
 
