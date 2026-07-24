@@ -2852,15 +2852,55 @@ HOVER
 
 .medalha.normal{
 
-    background:#f3f4f6;
+    width:80px;
 
-    width:100%;
+    height:100px;
 
-    height:100%;
+    display:flex;
+
+    align-items:center;
 
     justify-content:center;
 
-    font-size:34px;
+    background:#f3f4f6;
+
+}
+
+.medalha.normal{
+
+    width:80px;
+
+    height:100px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#f3f4f6;
+
+}
+
+.medalha.normal .medalha-circulo{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#f8fafc;
+
+    border:2px solid #e5e7eb;
+
+    font-size:20px;
 
     font-weight:700;
 
@@ -2911,5 +2951,169 @@ HOVER
     color:#64748b;
 
     font-weight:500;
+
+}
+
+/* ===========================
+   RESULTADO
+=========================== */
+
+.resultado-representante{
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:20px;
+
+}
+
+.resultado-topo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:24px;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.resultado-usuario{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.resultado-avatar{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#e9f8ef;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#22c55e;
+
+    font-size:30px;
+
+}
+
+.resultado-tabela{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.resultado-tabela th{
+
+    background:#f8fafc;
+
+    padding:18px;
+
+    text-align:left;
+
+    font-weight:700;
+
+}
+
+.resultado-tabela td{
+
+    padding:18px;
+
+    border-top:1px solid #eef2f7;
+
+}
+
+.campo-quantidade{
+
+    width:90px;
+
+    text-align:center;
+
+    border:1px solid #dbe2ea;
+
+    border-radius:10px;
+
+    padding:8px;
+
+}
+
+.resultado-rodape{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:24px;
+
+    border-top:1px solid #eef2f7;
+
+}
+
+.resultado-total small{
+
+    color:#64748b;
+
+    font-weight:600;
+
+}
+
+.resultado-total h2{
+
+    margin-top:4px;
+
+    color:#16a34a;
+
+    font-size:34px;
+
+}
+
+.btn-gerar-pedido{
+
+    background:#22c55e;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:16px 30px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
 
 }

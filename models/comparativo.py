@@ -65,8 +65,7 @@ def buscar_comparativo(cotacao_id):
         try:
             valor = float(str(preco).replace(",", "."))
 
-            # Usa apenas "<" para que, em caso de empate,
-            # permaneça o primeiro representante.
+            # Em caso de empate, permanece o primeiro
             if menor_valor is None or valor < menor_valor:
                 menor_valor = valor
                 menor_indice = i
@@ -76,32 +75,56 @@ def buscar_comparativo(cotacao_id):
 
     if menor_indice is not None:
         med["representantes"][menor_indice]["menor_preco"] = True
+        print(comparativo)
 
-    print(comparativo)
-
-    return list(comparativo.values())
+        return list(comparativo.values())
 
 def buscar_resultado(cotacao_id):
 
-    db = get_db()
-    cursor = db.cursor()
+    comparativo = buscar_comparativo(cotacao_id)
 
-    cursor.execute("""
-        SELECT
-            medicamento,
-            quantidade_oferta,
-            representante,
-            distribuidora,
-            preco,
-            preco_oferta,
-            status
-        FROM respostas_cotacao
-        WHERE cotacao_id = ?
-        ORDER BY medicamento
-    """, (cotacao_id,))
+    representantes = {}
 
-    dados = cursor.fetchall()
+    for medicamento in comparativo:
 
-    db.close()
+        vencedor = None
 
-    return dados
+        for rep in medicamento["representantes"]:
+
+            if rep["menor_preco"]:
+
+                vencedor = rep
+                break
+
+        if vencedor is None:
+            continue
+
+        nome = vencedor["representante"]
+
+        if nome not in representantes:
+
+            representantes[nome] = {
+
+                "representante": nome,
+
+                "distribuidora": vencedor["laboratorio"],
+
+                "itens": []
+
+            }
+
+        representantes[nome]["itens"].append({
+
+            "medicamento": medicamento["nome"],
+
+            "preco": vencedor["preco"],
+
+            "preco_oferta": vencedor["preco_oferta"],
+
+            "quantidade": vencedor["quantidade"],
+
+            "oferta": vencedor["oferta"]
+
+        })
+
+    return list(representantes.values())

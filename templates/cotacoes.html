@@ -166,6 +166,7 @@ async function enviarCotacao(id){
         });
 
         const dados = await response.json();
+        console.log(dados);
 
         if(!dados.sucesso){
             alert("Erro ao gerar o link.");
@@ -199,23 +200,15 @@ function abrirCotacao(id){
 
     const div = document.getElementById("itens-" + id);
 
-    // Fecha se já estiver aberta
-    if(div.style.display === "block"){
+    const aberto = div.style.display === "block";
 
-        div.style.display = "none";
-        div.innerHTML = "";
+    fecharTodosOsPaineis(id);
+
+    if(aberto){
+
         return;
 
     }
-
-
-    // Fecha qualquer outra aberta
-    document.querySelectorAll(".itens-cotacao").forEach(item => {
-
-        item.style.display = "none";
-        item.innerHTML = "";
-
-    });
 
     fetch("/cotacoes/" + id + "/itens")
         .then(response => response.json())
@@ -327,16 +320,15 @@ async function abrirComparativo(id){
 
     const div = document.getElementById("comparativo-" + id);
 
-    if(div.style.display === "block"){
-        div.style.display = "none";
-        div.innerHTML = "";
-        return;
-    }
+    const aberto = div.style.display === "block";
 
-    document.querySelectorAll(".comparativo-cotacao").forEach(item=>{
-        item.style.display="none";
-        item.innerHTML="";
-    });
+    fecharTodosOsPaineis(id);
+
+    if(aberto){
+
+        return;
+
+    }
 
     div.style.display="block";
     div.innerHTML="<h4>Carregando...</h4>";
@@ -538,16 +530,15 @@ async function abrirResultado(id){
 
     const div = document.getElementById("resultado-" + id);
 
-    if(div.style.display === "block"){
-        div.style.display = "none";
-        div.innerHTML = "";
-        return;
-    }
+    const aberto = div.style.display === "block";
 
-    document.querySelectorAll(".resultado-cotacao").forEach(item=>{
-        item.style.display="none";
-        item.innerHTML="";
-    });
+    fecharTodosOsPaineis(id);
+
+    if(aberto){
+
+        return;
+
+    }
 
     div.style.display="block";
     div.innerHTML="<h4>Carregando resultado...</h4>";
@@ -557,20 +548,221 @@ async function abrirResultado(id){
         const response = await fetch("/resultado/" + id);
         const dados = await response.json();
 
-        div.innerHTML = `
-            <div style="padding:20px;background:white;border-radius:12px;border:1px solid #ddd;">
-                <h3>Resultado da Cotação</h3>
+        console.log(dados);
 
-                <pre>${JSON.stringify(dados,null,2)}</pre>
+        let html = `
+
+<div class="resultado-card">
+
+    <div class="comparativo-header">
+
+        <div>
+
+            <h3>
+
+                <i class="bi bi-trophy-fill"></i>
+
+                Resultado da Cotação
+
+            </h3>
+
+            <small>
+
+                Vencedores da cotação
+
+            </small>
+
+        </div>
+
+    </div>
+
+`;
+
+dados.forEach(rep=>{
+
+html += `
+
+<div class="resultado-representante">
+
+    <div class="resultado-topo">
+
+        <div class="resultado-usuario">
+
+            <div class="resultado-avatar">
+
+                <i class="bi bi-person-fill"></i>
 
             </div>
-        `;
+
+            <div>
+
+                <h2>${rep.representante}</h2>
+
+                <span>${rep.distribuidora}</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <table class="resultado-tabela">
+
+        <thead>
+
+            <tr>
+
+                <th>Medicamento</th>
+
+                <th>Condição</th>
+
+                <th>Preço</th>
+
+                <th>Quantidade</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+`;
+
+rep.itens.forEach(item=>{
+
+    const medicamento = item.medicamento;
+
+    const quantidade = item.quantidade;
+
+    const preco = item.preco;
+
+    const precoOferta = item.preco_oferta;
+
+    const status = item.oferta ? "OFERTA" : "TENHO";
+
+    html+=`
+
+        <tr>
+
+            <td>${medicamento}</td>
+
+            <td>
+
+                ${
+                    status=="OFERTA"
+                    ? `Oferta a partir de ${quantidade} un.`
+                    : "Preço Unitário"
+                }
+
+            </td>
+
+            <td>
+
+                R$ ${status=="OFERTA" ? precoOferta : preco}
+
+            </td>
+
+            <td>
+
+                <input
+                    type="number"
+                    value="${quantidade ?? 1}"
+                    min="1"
+                    class="campo-quantidade"
+                >
+
+            </td>
+
+        </tr>
+
+    `;
+
+});
+
+let totalRepresentante = 0;
+
+rep.itens.forEach(item=>{
+
+    const quantidade = Number(item.quantidade ?? 1);
+
+    const preco = item.oferta
+        ? Number(item.preco_oferta ?? 0)
+        : Number(item.preco ?? 0);
+
+    totalRepresentante += quantidade * preco;
+
+});
+
+html+=`
+
+        </tbody>
+
+    </table>
+
+    <div class="resultado-rodape">
+
+        <div class="resultado-total">
+
+            <small>TOTAL</small>
+
+            <h2>
+
+                R$ ${totalRepresentante.toFixed(2)}
+
+            </h2>
+
+        </div>
+
+        <button class="btn-gerar-pedido">
+
+            <i class="bi bi-cart3"></i>
+
+            GERAR PEDIDO
+
+        </button>
+
+    </div>
+
+</div>
+
+`;
+
+});
+
+    html += `
+
+</div>
+
+`;
+
+div.innerHTML = html;
 
     }catch(e){
 
-        div.innerHTML="Erro ao carregar resultado.";
+    console.error(e);
 
-    }
+    div.innerHTML = `
+        <pre style="color:red;padding:20px">
+${e.stack}
+        </pre>
+    `;
+
+}
+
+}
+
+function fecharTodosOsPaineis(id){
+
+    const cotacao = document.querySelector(`#itens-${id}`).closest(".cotacao-card");
+
+    cotacao.querySelectorAll(
+        ".itens-cotacao, .comparativo-cotacao, .resultado-cotacao"
+    ).forEach(painel=>{
+
+        painel.style.display="none";
+        painel.innerHTML="";
+
+    });
 
 }
 
