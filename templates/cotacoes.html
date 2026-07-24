@@ -98,7 +98,7 @@ Cotações - CotaFarma
     data-tooltip="Comparativo"
     onclick="abrirComparativo({{ cotacao[0] }})">
 
-    <i class="bi bi-bar-chart-fill"></i>
+    <i class="bi bi-trophy-fill"></i>
 
 </button>
 
@@ -107,13 +107,13 @@ Cotações - CotaFarma
     data-tooltip="Resultado"
     onclick="abrirResultado({{ cotacao[0] }})">
 
-    <i class="bi bi-trophy-fill"></i>
+    <i class="bi bi-file-earmark-text-fill"></i>
 
 </button>
 
-        <button class="acao-btn" data-tooltip="Gerar Pedido">
-            <i class="bi bi-file-earmark-text-fill"></i>
-        </button>
+        <button class="acao-btn excluir" data-tooltip="Encerrar Cotação">
+    <i class="bi bi-x-circle-fill"></i>
+</button>
 
         <button class="acao-btn excluir" data-tooltip="Excluir">
             <i class="bi bi-trash-fill"></i>
@@ -560,7 +560,7 @@ async function abrirResultado(id){
 
             <h3>
 
-                <i class="bi bi-trophy-fill"></i>
+                <i class="bi bi-file-earmark-text-fill"></i>
 
                 Resultado da Cotação
 
