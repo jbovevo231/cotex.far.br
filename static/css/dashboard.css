@@ -3063,14 +3063,9 @@ HOVER
 .resultado-rodape{
 
     display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:24px;
-
-    border-top:1px solid #eef2f7;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:12px;
 
 }
 
@@ -3084,17 +3079,17 @@ HOVER
 
 .resultado-total h2{
 
-    margin-top:4px;
+    margin-top:2px;
 
-    color:#16a34a;
+    color:#1B2236;
 
-    font-size:34px;
+    font-size:28px;
 
 }
 
 .btn-gerar-pedido{
 
-    background:#22c55e;
+    background:#1B2236;
 
     color:#fff;
 
