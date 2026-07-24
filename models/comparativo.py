@@ -39,16 +39,6 @@ def buscar_comparativo(cotacao_id):
 
         status = str(item[3]).strip().upper()
 
-        comparativo[medicamento]["representantes"].append({
-            "representante": item[1],
-            "laboratorio": item[2],
-            "preco": item[4],
-            "preco_oferta": item[5],
-            "quantidade": item[6],
-            "oferta": status == "OFERTA",
-            "menor_preco": False
-        })
-
         preco = item[5] if status == "OFERTA" else item[4]
 
         try:
@@ -59,6 +49,19 @@ def buscar_comparativo(cotacao_id):
         except (ValueError, TypeError):
 
             continue
+
+        comparativo[medicamento]["representantes"].append({
+            "representante": item[1],
+            "laboratorio": item[2],
+            "preco": item[4],
+            "preco_oferta": item[5],
+            "quantidade": item[6],
+            "oferta": status == "OFERTA",
+            "menor_preco": False
+        })
+
+        
+
 
         # Ordena os representantes pelo menor preço e marca o vencedor
     for med in comparativo.values():
