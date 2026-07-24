@@ -671,16 +671,18 @@ canvas{
 
 .btn-gerar-pedido{
 
-    padding:8px 14px;
-    font-size:12px;
+    padding:8px 14px !important;
+    font-size:12px !important;
     border-radius:10px;
     gap:6px;
+    width:auto !important;
+    min-width:unset;
 
 }
 
 .btn-gerar-pedido i{
 
-    font-size:14px;
+    font-size:12px;
 
 }
 
