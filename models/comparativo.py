@@ -56,10 +56,19 @@ def buscar_comparativo(cotacao_id):
 
             preco = rep["preco_oferta"] if rep["oferta"] else rep["preco"]
 
-            try:
-                return float(str(preco).replace(",", "."))
-            except (ValueError, TypeError):
-                return float("inf")
+    try:
+
+        valor = float(str(preco).replace(",", "."))
+
+        # Zero ou negativo vai para o final
+        if valor <= 0:
+            return float("inf")
+
+        return valor
+
+    except (ValueError, TypeError):
+
+        return float("inf")
 
         # Ordena do menor para o maior
         med["representantes"].sort(key=valor_preco)

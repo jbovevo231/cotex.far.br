@@ -3193,32 +3193,6 @@ HOVER
 
     }
 
-    .resultado-tabela th:nth-child(4),
-.resultado-tabela td:nth-child(4){
 
-    width:16%;
-
-}
-
-.resultado-tabela th:nth-child(4){
-
-    font-size:0;
-
-}
-
-.resultado-tabela th:nth-child(4)::after{
-
-    content:"Quant.";
-    font-size:13px;
-    font-weight:700;
-
-}
-
-    .campo-quantidade{
-
-        width:48px;
-        padding:4px;
-
-    }
 
 }

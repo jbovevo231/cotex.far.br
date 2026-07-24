@@ -644,36 +644,52 @@ rep.itens.forEach(item=>{
 
         <tr>
 
-            <td>${medicamento}</td>
+            <tr>
 
-            <td>
+    <td class="col-medicamento">
 
-                ${
-                    status=="OFERTA"
-                    ? `Oferta a partir de ${quantidade} un.`
-                    : "Preço Unitário"
-                }
+        <strong>${medicamento}</strong>
 
-            </td>
+        <small class="condicao-mobile">
 
-            <td>
+            ${
+                status=="OFERTA"
+                ? `Oferta a partir de ${quantidade} un.`
+                : "Preço Unitário"
+            }
 
-                R$ ${status=="OFERTA" ? precoOferta : preco}
+        </small>
 
-            </td>
+    </td>
 
-            <td>
+    <td class="col-condicao">
 
-                <input
-                    type="number"
-                    value="${quantidade ?? 1}"
-                    min="1"
-                    class="campo-quantidade"
-                >
+        ${
+            status=="OFERTA"
+            ? `Oferta a partir de ${quantidade} un.`
+            : "Preço Unitário"
+        }
 
-            </td>
+    </td>
 
-        </tr>
+    <td class="col-preco">
+
+        R$ ${status=="OFERTA" ? precoOferta : preco}
+
+    </td>
+
+    <td class="col-qtd">
+
+        <input
+            type="number"
+            value="${quantidade ?? 1}"
+            min="1"
+            class="campo-quantidade"
+        >
+
+    </td>
+
+</tr>
 
     `;
 
