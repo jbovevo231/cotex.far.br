@@ -476,7 +476,7 @@ document.querySelector("form").addEventListener("submit", function(e){
         if (preco === "") {
             alert("Preencha o valor do medicamento ou marque 'Não Tenho'.");
             e.preventDefault();
-            return;
+            throw "erro";
         }
 
     }
@@ -489,7 +489,7 @@ document.querySelector("form").addEventListener("submit", function(e){
         if (precoOferta === "" || quantidade === "") {
             alert("Preencha o preço e a quantidade da oferta.");
             e.preventDefault();
-            return;
+            throw "erro";
         }
 
     }
