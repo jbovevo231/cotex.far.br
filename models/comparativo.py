@@ -26,6 +26,7 @@ def buscar_comparativo(cotacao_id):
 
     comparativo = {}
 
+    # Monta a lista de representantes por medicamento
     for item in dados:
 
         medicamento = item[0]
@@ -48,36 +49,35 @@ def buscar_comparativo(cotacao_id):
             "menor_preco": False
         })
 
-        # Marca apenas UM representante com o menor preço
+    # Marca o vencedor de CADA medicamento
     for med in comparativo.values():
 
         menor_indice = None
         menor_valor = None
 
-    for i, r in enumerate(med["representantes"]):
+        for i, r in enumerate(med["representantes"]):
 
-        # Usa o preço da oferta quando houver
-        preco = r["preco_oferta"] if r["oferta"] else r["preco"]
+            preco = r["preco_oferta"] if r["oferta"] else r["preco"]
 
-        if preco in (None, ""):
-            continue
+            if preco in (None, ""):
+                continue
 
-        try:
-            valor = float(str(preco).replace(",", "."))
+            try:
+                valor = float(str(preco).replace(",", "."))
 
-            # Em caso de empate, permanece o primeiro
-            if menor_valor is None or valor < menor_valor:
-                menor_valor = valor
-                menor_indice = i
+                # Em caso de empate, vence quem respondeu primeiro
+                if menor_valor is None or valor < menor_valor:
+                    menor_valor = valor
+                    menor_indice = i
 
-        except (ValueError, TypeError):
-            continue
+            except (ValueError, TypeError):
+                continue
 
-    if menor_indice is not None:
-        med["representantes"][menor_indice]["menor_preco"] = True
-        print(comparativo)
+        if menor_indice is not None:
+            med["representantes"][menor_indice]["menor_preco"] = True
 
-        return list(comparativo.values())
+    return list(comparativo.values())
+
 
 def buscar_resultado(cotacao_id):
 
@@ -87,14 +87,14 @@ def buscar_resultado(cotacao_id):
 
     for medicamento in comparativo:
 
-        vencedor = None
-
-        for rep in medicamento["representantes"]:
-
-            if rep["menor_preco"]:
-
-                vencedor = rep
-                break
+        vencedor = next(
+            (
+                rep
+                for rep in medicamento["representantes"]
+                if rep["menor_preco"]
+            ),
+            None
+        )
 
         if vencedor is None:
             continue
@@ -102,29 +102,18 @@ def buscar_resultado(cotacao_id):
         nome = vencedor["representante"]
 
         if nome not in representantes:
-
             representantes[nome] = {
-
                 "representante": nome,
-
                 "distribuidora": vencedor["laboratorio"],
-
                 "itens": []
-
             }
 
         representantes[nome]["itens"].append({
-
             "medicamento": medicamento["nome"],
-
             "preco": vencedor["preco"],
-
             "preco_oferta": vencedor["preco_oferta"],
-
             "quantidade": vencedor["quantidade"],
-
             "oferta": vencedor["oferta"]
-
         })
 
     return list(representantes.values())

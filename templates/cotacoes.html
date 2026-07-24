@@ -705,11 +705,11 @@ html+=`
 
             <small>TOTAL</small>
 
-            <h2>
+            <h2 class="total-representante">
 
-                R$ ${totalRepresentante.toFixed(2)}
+    R$ ${totalRepresentante.toFixed(2)}
 
-            </h2>
+</h2>
 
         </div>
 
@@ -736,6 +736,45 @@ html+=`
 `;
 
 div.innerHTML = html;
+
+div.querySelectorAll(".resultado-representante").forEach(card=>{
+
+    function atualizarTotal(){
+
+        let total = 0;
+
+        const linhas = card.querySelectorAll("tbody tr");
+
+        linhas.forEach(linha=>{
+
+            const precoTexto = linha.cells[2].innerText
+                .replace("R$", "")
+                .replace(",", ".")
+                .trim();
+
+            const preco = Number(precoTexto);
+
+            const quantidade = Number(
+                linha.querySelector(".campo-quantidade").value
+            );
+
+            total += preco * quantidade;
+
+        });
+
+        card.querySelector(".total-representante").innerText =
+            "R$ " + total.toFixed(2);
+
+    }
+
+    card.querySelectorAll(".campo-quantidade").forEach(input=>{
+
+        input.addEventListener("input", atualizarTotal);
+        input.addEventListener("change", atualizarTotal);
+
+    });
+
+});
 
     }catch(e){
 
