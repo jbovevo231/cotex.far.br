@@ -50,16 +50,15 @@ Cotações - CotaFarma
 
 <div class="cotacao-card">
 
-    <div class="cotacao-header">
+    <div class="cotacao-topo">
+    </div>
 
-        <div>
-            <h3>{{ cotacao[1] }}</h3>
+    <div class="cotacao-botoes">
+    </div>
 
-            <span>
-                {{ cotacao[3][:10] if cotacao[3] else "-" }}
-            </span>
+    <div class="cotacao-conteudo">
+    </div>
 
-        </div>
 
         <div class="lado-direito">
 
@@ -73,7 +72,6 @@ Cotações - CotaFarma
 
         </div>
 
-    </div>
 
     <div class="cotacao-acoes">
 
@@ -350,33 +348,63 @@ async function abrirComparativo(id){
 
         let html=`
 
-        <div class="comparativo-box">
-
-            <div class="comparativo-header">
-
-                <i class="bi bi-bar-chart-fill"></i>
-
-                Comparativo de Preços
-
-            </div>
-
-            <div class="comparativo-body">
 
         `;
 
         dados.forEach(medicamento=>{
 
-            html+=`
+    html+=`
 
-                <div class="medicamento">
+<div class="comparativo-card">
 
-                    <div class="titulo-medicamento">
-                        ${medicamento.nome}
-                    </div>
+    <!-- COMPARATIVO PRIMEIRO -->
+    <div class="comparativo-header">
 
-                    <div class="dock">
+        <div>
 
-            `;
+            <h3>
+                <i class="bi bi-bar-chart-fill"></i>
+                Comparativo de Preços
+            </h3>
+
+            <small>
+                Ordenado do menor para o maior preço
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- MEDICAMENTO DEPOIS -->
+    <div class="comparativo-topo">
+
+        <div class="medicamento-info">
+
+            <div class="medicamento-icone">
+                <i class="bi bi-capsule"></i>
+            </div>
+
+            <div>
+
+                <h2>${medicamento.nome}</h2>
+
+                <span>Medicamento</span>
+
+            </div>
+
+        </div>
+
+        <div class="resultado-badge">
+
+            ${medicamento.representantes.length} resultados
+
+        </div>
+
+    </div>
+
+    <div class="ranking-lista">
+
+`;
 
             medicamento.representantes.forEach(rep=>{
 
