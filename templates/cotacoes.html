@@ -406,59 +406,99 @@ async function abrirComparativo(id){
 
 `;
 
-            medicamento.representantes.forEach(rep=>{
+            medicamento.representantes.forEach((rep,index)=>{
 
-                html+=`
+        html += `
 
-                    <div class="app-icon ${rep.menor_preco ? 'winner' : ''}">
+<div class="ranking-card ${index === 0 ? 'primeiro' : ''}">
 
-                        ${rep.menor_preco ? `
-    <div class="winner-check">
-        <i class="bi bi-check-lg"></i>
+    <div class="ranking-posicao">
+
+    <div class="medalha ${index==0?'ouro':index==1?'prata':index==2?'bronze':'normal'}">
+
+        <div class="medalha-circulo">
+
+            ${index+1}
+
+        </div>
+
+        ${
+            index < 3
+            ?
+            `
+            <div class="medalha-fitas">
+
+                <span></span>
+
+                <span></span>
+
+            </div>
+            `
+            :
+            ""
+        }
+
     </div>
-` : ""}. 
-
-                        <div class="app-name">
-
-    ${rep.representante}
 
 </div>
 
-<div class="app-subtitle">
+    <div class="ranking-info">
 
-    ${rep.laboratorio}
+        <div class="ranking-nome">
+
+            ${rep.representante}
+
+        </div>
+
+        <div class="ranking-laboratorio">
+
+            ${rep.laboratorio}
+
+        </div>
+
+        ${
+            rep.oferta
+            ? `
+                <div class="offer-badge">
+
+                    OFERTA
+
+                </div>
+
+                <div class="offer-min">
+
+                    A partir de ${rep.quantidade} un.
+
+                </div>
+            `
+            : ""
+        }
+
+    </div>
+
+    <div class="ranking-preco">
+
+        <div class="valor">
+
+            ${
+                rep.oferta
+                ? `R$ ${rep.preco_oferta}`
+                : `R$ ${rep.preco}`
+            }
+
+        </div>
+
+        <small>
+
+            ${rep.quantidade} unidades
+
+        </small>
+
+    </div>
 
 </div>
 
-<div class="app-price">
-
-    ${
-        rep.oferta
-        ? `R$ ${rep.preco_oferta}`
-        : `R$ ${rep.preco}`
-    }
-
-</div>
-
-                        ${
-                            rep.oferta
-                            ?
-                            `
-                                <div class="offer-badge">
-                                    OFERTA
-                                </div>
-
-                                <div class="offer-min">
-                                    A partir de ${rep.quantidade} un.
-                                </div>
-                            `
-                            :
-                            ""
-                        }
-
-                    </div>
-
-                `;
+`;
 
             });
 

@@ -2612,7 +2612,7 @@ HOVER
 
 .comparativo-header{
 
-    padding:26px 34px;
+    padding:14px 14px;
 
     border-bottom:1px solid #edf2f7;
 
@@ -2630,7 +2630,7 @@ HOVER
 
     color:#11824b;
 
-    font-size:30px;
+    font-size:18px;
 
     font-weight:800;
 
@@ -2644,6 +2644,190 @@ HOVER
 
     color:#6b7280;
 
-    font-size:18px;
+    font-size:13px;
+
+}
+
+/* ===========================
+   RANKING
+=========================== */
+
+.ranking-card{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    margin:12px 18px;
+
+    overflow:hidden;
+
+    transition:.25s;
+
+}
+
+.ranking-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.primeiro{
+
+    border:2px solid #22c55e;
+
+}
+/* ===========================
+   MEDALHAS
+=========================== */
+
+.medalha{
+
+    width:80px;
+
+    height:100px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.medalha-circulo{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    border:4px solid rgba(255,255,255,.35);
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.medalha-fitas{
+
+    display:flex;
+
+    gap:6px;
+
+    margin-top:-5px;
+
+}
+
+.medalha-fitas span{
+
+    width:12px;
+
+    height:26px;
+
+    clip-path:polygon(0 0,100% 0,100% 70%,50% 100%,0 70%);
+
+}
+.medalha.ouro{
+
+    background:#20b15a;
+
+}
+
+.medalha.ouro .medalha-circulo{
+
+    background:#FFD84D;
+
+    color:#4a3300;
+
+    border-color:#f7b500;
+
+}
+
+.medalha.ouro .medalha-fitas span{
+
+    background:#16994d;
+
+}
+.medalha.prata{
+
+    background:#7b8fa0;
+
+}
+
+.medalha.prata .medalha-circulo{
+
+    background:#ECEFF3;
+
+    color:#2d3748;
+
+    border-color:#c8d0d8;
+
+}
+
+.medalha.prata .medalha-fitas span{
+
+    background:#4f6778;
+
+}
+.medalha.bronze{
+
+    background:#D98A1E;
+
+}
+
+.medalha.bronze .medalha-circulo{
+
+    background:#FFB347;
+
+    color:#5c2f00;
+
+    border-color:#dd7b00;
+
+}
+
+.medalha.bronze .medalha-fitas span{
+
+    background:#a95500;
+
+}
+
+.medalha.normal{
+
+    background:#f3f4f6;
+
+    width:100%;
+
+    height:100%;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#64748b;
 
 }
