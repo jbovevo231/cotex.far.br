@@ -49,32 +49,24 @@ def buscar_comparativo(cotacao_id):
             "menor_preco": False
         })
 
-    # Marca o vencedor de CADA medicamento
+        # Ordena os representantes pelo menor preço e marca o vencedor
     for med in comparativo.values():
 
-        menor_indice = None
-        menor_valor = None
+        def valor_preco(rep):
 
-        for i, r in enumerate(med["representantes"]):
-
-            preco = r["preco_oferta"] if r["oferta"] else r["preco"]
-
-            if preco in (None, ""):
-                continue
+            preco = rep["preco_oferta"] if rep["oferta"] else rep["preco"]
 
             try:
-                valor = float(str(preco).replace(",", "."))
-
-                # Em caso de empate, vence quem respondeu primeiro
-                if menor_valor is None or valor < menor_valor:
-                    menor_valor = valor
-                    menor_indice = i
-
+                return float(str(preco).replace(",", "."))
             except (ValueError, TypeError):
-                continue
+                return float("inf")
 
-        if menor_indice is not None:
-            med["representantes"][menor_indice]["menor_preco"] = True
+        # Ordena do menor para o maior
+        med["representantes"].sort(key=valor_preco)
+
+        # Marca apenas o primeiro como vencedor
+        if med["representantes"]:
+            med["representantes"][0]["menor_preco"] = True
 
     return list(comparativo.values())
 
