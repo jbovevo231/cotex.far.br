@@ -181,3 +181,43 @@ def salvar_resposta_cotacao(
 
     db.commit()
     db.close()
+
+
+def encerrar_cotacao(cotacao_id):
+
+    db = get_db()
+
+    db.execute(
+        """
+        UPDATE cotacoes
+        SET status='ENCERRADA'
+        WHERE id=?
+        """,
+        (cotacao_id,)
+    )
+
+    db.commit()
+    db.close()
+
+
+def excluir_cotacao(cotacao_id):
+
+    db = get_db()
+
+    db.execute(
+        "DELETE FROM cotacao_itens WHERE cotacao_id=?",
+        (cotacao_id,)
+    )
+
+    db.execute(
+        "DELETE FROM links_cotacao WHERE cotacao_id=?",
+        (cotacao_id,)
+    )
+
+    db.execute(
+        "DELETE FROM cotacoes WHERE id=?",
+        (cotacao_id,)
+    )
+
+    db.commit()
+    db.close()

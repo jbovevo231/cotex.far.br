@@ -6,7 +6,9 @@ from models.cotacao import (
     listar_cotacoes,
     buscar_itens,
     gerar_link_cotacao,
-    salvar_resposta_cotacao
+    salvar_resposta_cotacao,
+    encerrar_cotacao,
+    excluir_cotacao,
 )
 
 cotacao_bp = Blueprint("cotacao", __name__)
@@ -79,7 +81,10 @@ def responder_cotacao(token):
             quantidades_oferta=quantidades_oferta
         )
 
-        return render_template("cotacao_enviada.html")
+        return render_template(
+    "cotacao_enviada.html",
+    encerrada=False
+)
 
     conn = get_db()
     cursor = conn.cursor()
@@ -99,7 +104,7 @@ def responder_cotacao(token):
     cotacao_id = link[0]
 
     cursor.execute("""
-        SELECT nome
+        SELECT nome, status
         FROM cotacoes
         WHERE id = ?
     """, (cotacao_id,))
@@ -111,6 +116,14 @@ def responder_cotacao(token):
         return "Cotação não encontrada.", 404
 
     nome_cotacao = resultado[0]
+    status_cotacao = resultado[1]
+
+    if status_cotacao == "ENCERRADA":
+        conn.close()
+        return render_template(
+    "cotacao_enviada.html",
+    encerrada=True
+), 403
 
     cursor.execute("""
         SELECT medicamento,
@@ -155,6 +168,24 @@ def gerar_link(id):
     return jsonify({
         "sucesso": True,
         "token": token
+    })
+
+@cotacao_bp.route("/cotacoes/<int:id>/encerrar", methods=["POST"])
+def encerrar(id):
+
+    encerrar_cotacao(id)
+
+    return jsonify({
+        "sucesso": True
+    })
+
+@cotacao_bp.route("/cotacoes/<int:id>/excluir", methods=["POST"])
+def excluir(id):
+
+    excluir_cotacao(id)
+
+    return jsonify({
+        "sucesso": True
     })
 
 @cotacao_bp.route("/cotacoes/criar", methods=["POST"])

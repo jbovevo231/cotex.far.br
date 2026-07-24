@@ -46,19 +46,19 @@
 
         .icone{
 
-            font-size:70px;
+                font-size:70px;
 
-            color:#16a34a;
+                color:{% if encerrada %}#dc2626{% else %}#16a34a{% endif %};
 
-            margin-bottom:20px;
+                margin-bottom:20px;
 
-        }
+            }
 
         h2{
 
             font-weight:bold;
 
-            color:#198754;
+            color:{% if encerrada %}#dc2626{% else %}#198754{% endif %};
 
             margin-bottom:15px;
 
@@ -81,21 +81,38 @@
 <div class="card-sucesso">
 
     <div class="icone">
+    {% if encerrada %}
+        🔒
+    {% else %}
         ✅
-    </div>
+    {% endif %}
+</div>
 
-    <h2>Cotação enviada com sucesso!</h2>
+    <h2>
+    {% if encerrada %}
+        Cotação encerrada
+    {% else %}
+        Cotação enviada com sucesso!
+    {% endif %}
+</h2>
 
     <p>
 
-        Obrigado por responder.
+{% if encerrada %}
 
-        Suas informações foram recebidas e já estão disponíveis para análise.
+Esta cotação foi encerrada pelo comprador e não aceita mais respostas.
 
-    </p>
+{% else %}
 
+Obrigado por responder.
+
+Suas informações foram recebidas e já estão disponíveis para análise.
+
+{% endif %}
+
+</p>
     <button
-        class="btn btn-success btn-lg"
+        class="btn {% if encerrada %}btn-danger{% else %}btn-success{% endif %} btn-lg"
         onclick="window.close()">
 
         Fechar

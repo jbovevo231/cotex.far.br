@@ -62,9 +62,19 @@ Cotações - CotaFarma
 
         <div class="lado-direito">
 
-            <span class="status aberta">
-                ABERTA
-            </span>
+            {% if cotacao[2] == "ENCERRADA" %}
+
+<span class="status encerrada">
+    ENCERRADA
+</span>
+
+{% else %}
+
+<span class="status aberta">
+    ABERTA
+</span>
+
+{% endif %}
 
             <span class="cotacao-id">
                 #{{ "%05d"|format(cotacao[0]) }}
@@ -84,7 +94,20 @@ Cotações - CotaFarma
 
         </button>
 
-        <button
+        {% if cotacao[2] == "ENCERRADA" %}
+
+<button
+    class="acao-btn excluir"
+    data-tooltip="Cotação Encerrada"
+    onclick="cotacaoEncerrada()">
+
+    <i class="bi bi-send-fill"></i>
+
+</button>
+
+{% else %}
+
+<button
     class="acao-btn"
     data-tooltip="Enviar"
     onclick="enviarCotacao({{ cotacao[0] }})">
@@ -92,6 +115,8 @@ Cotações - CotaFarma
     <i class="bi bi-send-fill"></i>
 
 </button>
+
+{% endif %}
 
         <button
     class="acao-btn"
@@ -111,13 +136,23 @@ Cotações - CotaFarma
 
 </button>
 
-        <button class="acao-btn excluir" data-tooltip="Encerrar Cotação">
+     <button
+    class="acao-btn excluir"
+    data-tooltip="Encerrar Cotação"
+    onclick="encerrarCotacao({{ cotacao[0] }})">
+
     <i class="bi bi-x-circle-fill"></i>
+
 </button>
 
-        <button class="acao-btn excluir" data-tooltip="Excluir">
-            <i class="bi bi-trash-fill"></i>
-        </button>
+        <button
+    class="acao-btn excluir"
+    data-tooltip="Excluir"
+    onclick="excluirCotacao({{ cotacao[0] }})">
+
+    <i class="bi bi-trash-fill"></i>
+
+</button>
 
     </div>
 
@@ -819,6 +854,87 @@ function fecharTodosOsPaineis(id){
     });
 
 }
+
+async function encerrarCotacao(id){
+
+    if(!confirm("Deseja realmente encerrar esta cotação?")){
+        return;
+    }
+
+    try{
+
+        const response = await fetch(`/cotacoes/${id}/encerrar`,{
+            method:"POST"
+        });
+
+        const dados = await response.json();
+
+        if(dados.sucesso){
+
+            alert("Cotação encerrada com sucesso.");
+
+            location.reload();
+
+        }else{
+
+            alert("Erro ao encerrar a cotação.");
+
+        }
+
+    }catch(e){
+
+    console.error(e);
+
+    alert("Erro ao encerrar a cotação.");
+
+}
+
+}
+
+function cotacaoEncerrada(){
+
+    alert(
+        "Esta cotação foi encerrada e não pode mais ser enviada aos representantes."
+    );
+
+    async function excluirCotacao(id){
+
+    if(!confirm("Deseja realmente excluir esta cotação?")){
+        return;
+    }
+
+    try{
+
+        const response = await fetch(`/cotacoes/${id}/excluir`,{
+            method:"POST"
+        });
+
+        const dados = await response.json();
+
+        if(dados.sucesso){
+
+            alert("Cotação excluída com sucesso.");
+
+            location.reload();
+
+        }else{
+
+            alert("Erro ao excluir a cotação.");
+
+        }
+
+    }catch(e){
+
+        console.error(e);
+
+        alert("Erro ao excluir a cotação.");
+
+    }
+
+
+}
+}
+
 
 </script>
 
