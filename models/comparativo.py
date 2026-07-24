@@ -49,6 +49,17 @@ def buscar_comparativo(cotacao_id):
             "menor_preco": False
         })
 
+        preco = item[5] if status == "OFERTA" else item[4]
+
+        try:
+
+            if preco is None or float(str(preco).replace(",", ".")) <= 0:
+                continue
+
+        except (ValueError, TypeError):
+
+            continue
+
         # Ordena os representantes pelo menor preço e marca o vencedor
     for med in comparativo.values():
 
