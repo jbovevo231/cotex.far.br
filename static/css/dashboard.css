@@ -2831,3 +2831,39 @@ HOVER
     color:#64748b;
 
 }
+
+.offer-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:10px;
+
+}
+
+.offer-badge{
+
+    background:#FFF4D6;
+
+    color:#D97706;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    padding:5px 12px;
+
+    border-radius:999px;
+
+}
+
+.offer-min{
+
+    color:#64748b;
+
+    font-size:14px;
+
+}

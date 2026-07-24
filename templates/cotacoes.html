@@ -456,45 +456,45 @@ async function abrirComparativo(id){
 
         </div>
 
-        ${
-            rep.oferta
-            ? `
-                <div class="offer-badge">
-
-                    OFERTA
-
-                </div>
-
-                <div class="offer-min">
-
-                    A partir de ${rep.quantidade} un.
-
-                </div>
-            `
-            : ""
-        }
-
     </div>
 
     <div class="ranking-preco">
 
-        <div class="valor">
+    <div class="valor">
 
-            ${
-                rep.oferta
-                ? `R$ ${rep.preco_oferta}`
-                : `R$ ${rep.preco}`
-            }
-
-        </div>
-
-        <small>
-
-            ${rep.quantidade} unidades
-
-        </small>
+        ${
+            rep.oferta
+            ? `R$ ${rep.preco_oferta}`
+            : `R$ ${rep.preco}`
+        }
 
     </div>
+
+    ${
+        rep.oferta
+        ? `
+            <div class="offer-badge">
+
+                OFERTA
+
+            </div>
+
+            <small>
+
+                ${rep.quantidade} unidades
+
+            </small>
+        `
+        : `
+            <small>
+
+                Preço Unitário
+
+            </small>
+        `
+    }
+
+</div>
 
 </div>
 
