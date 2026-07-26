@@ -16,6 +16,8 @@ Dashboard - CotaFarma
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/dashboard.css') }}">
 
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard-mobile.css') }}">
 
 {% endblock %}
 
@@ -252,8 +254,9 @@ Dashboard - CotaFarma
 
     <div id="listaMedicamentos"></div>
 
-<div class="quote-footer">
+</div> <!-- fecha medicine-table -->
 
+<div class="quote-footer">
     <button
         type="button"
         class="btn-enviar">
@@ -295,78 +298,93 @@ Dashboard - CotaFarma
 
 </form>
 
-        <!-- GRÁFICO + ÚLTIMAS COTAÇÕES -->
+     <!-- CENTRAL DE COTAÇÕES -->
 
-        <div class="bottom-grid">
+<div class="card central-cotacoes">
 
-            <div class="card">
+    <div class="card-header">
 
-                <div class="card-header">
+        <div>
 
-                    <div>
+            <h2>Painel Operacional</h2>
 
-                        <h2>Economia Mensal</h2>
+            <p>Gerencie rapidamente suas últimas cotações.</p>
 
-                        <p>Últimos 12 meses</p>
+        </div>
 
-                    </div>
+    </div>
 
-                </div>
+    <div class="cotacoes-lista-dashboard">
 
-                <canvas id="economiaChart"></canvas>
+        {% for cotacao in ultimas_cotacoes %}
+
+        <div class="cotacao-dashboard">
+
+            <div class="cotacao-topo">
+
+                {% if cotacao[3] == "ABERTA" %}
+                    <span class="status aberta">ABERTA</span>
+                {% else %}
+                    <span class="status encerrada">ENCERRADA</span>
+                {% endif %}
+
+                <span class="cotacao-id">
+                    #{{ "%05d"|format(cotacao[0]) }}
+                </span>
 
             </div>
 
-            <div class="card">
+            <h3>{{ cotacao[2] }}</h3>
 
-                <div class="card-header">
+            <span class="data">
 
-                    <h2>Últimas Cotações</h2>
+                <i class="bi bi-calendar3"></i>
 
-                </div>
+                {{ cotacao[4][:10].split('-')|reverse|join('/') }}
 
-            {% if ultimas_cotacoes %}
+            </span>
 
-    <div class="activity-table">
+            <div class="acoes">
 
-    <div class="activity-head">
-        <span>Cotação</span>
-        <span>Data</span>
-    </div>
+                <button class="acao-btn"><i class="bi bi-eye-fill"></i></button>
 
-    {% for cotacao in ultimas_cotacoes %}
+                {% if cotacao[3] == "ABERTA" %}
 
-    <div class="activity-row">
+                <button class="acao-btn">
+                    <i class="bi bi-send-fill"></i>
+                </button>
 
-        <span class="activity-name">{{ cotacao[2] }}</span>
+                {% endif %}
 
-        <span class="activity-date">
-            {{ cotacao[4][:10].split('-')|reverse|join('/') }}
-        </span>
+                <button class="acao-btn">
+                    <i class="bi bi-trophy-fill"></i>
+                </button>
 
-    </div>
+                <button class="acao-btn">
+                    <i class="bi bi-file-earmark-text-fill"></i>
+                </button>
 
-    {% endfor %}
+                {% if cotacao[3] == "ABERTA" %}
 
-</div>
+                <button class="acao-btn excluir">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
 
-{% else %}
+                {% endif %}
 
-    <div class="activity">
-
-        <strong>Nenhuma cotação encontrada</strong>
-
-    </div>
-
-{% endif %}
+                <button class="acao-btn excluir">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
 
             </div>
 
         </div>
 
-        <!-- DIREITA -->
+        {% endfor %}
 
-    <aside class="right-column">
+    </div>
+
+</div>   
 
         <div class="card">
 
