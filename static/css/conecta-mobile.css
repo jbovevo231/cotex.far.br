@@ -1,0 +1,102 @@
+/* ===========================================
+   MOBILE
+===========================================*/
+
+@media (max-width:900px){
+
+.conecta-page{
+
+    padding:18px;
+
+}
+
+
+/* HEADER */
+
+.conecta-header{
+
+    flex-direction:row;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.conecta-header h1{
+
+    font-size:58px;
+
+    line-height:1;
+
+}
+
+.conecta-header p{
+
+    font-size:18px;
+
+    margin-top:10px;
+
+    max-width:230px;
+
+}
+
+
+/* BOTÕES */
+
+.header-actions{
+
+    gap:12px;
+
+    margin-top:8px;
+
+}
+
+.header-actions button{
+
+    width:56px;
+
+    height:56px;
+
+}
+
+
+/* GRID */
+
+.conecta-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+
+/* ESCONDE */
+
+.left-column{
+
+    display:none;
+
+}
+
+.right-column{
+
+    display:none;
+
+}
+
+
+/* FEED */
+
+.feed-column{
+
+    width:100%;
+
+}
+
+}
