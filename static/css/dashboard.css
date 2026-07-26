@@ -2000,11 +2000,9 @@ color:#059669;
 
     color:#fff;
 
-    transform:translateY(-4px) scale(1.05);
+    transform:translateY(-3px);
 
-    box-shadow:
-
-        0 14px 28px rgba(16,185,129,.30);
+    box-shadow:0 10px 25px rgba(16,185,129,.35);
 
 }
 
@@ -3723,50 +3721,68 @@ HOVER
 
 .cotacao-dashboard{
 
-    position:relative;
+    display:flex;
 
-    background:#ffffff;
+    align-items:center;
 
-    border:1px solid #edf2f7;
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:16px 20px;
+
+    margin-bottom:16px;
+
+    background:linear-gradient(
+    90deg,
+    #eaeeee 0%,
+    #85d2d7 55%,
+    #a9f2f2 100%
+);
 
     border-radius:22px;
 
-    padding:26px;
+    border:none;
 
-    margin-bottom:18px;
+    box-shadow:none;
 
-    overflow:hidden;
-
-    transition:.30s ease;
-
-    box-shadow:
-        0 6px 18px rgba(15,23,42,.05);
+    transition:.25s;
 
 }
-
-.cotacao-dashboard::before{
+.cotacao-dashboard::after{
 
     content:"";
 
     position:absolute;
 
-    top:0;
+    width:260px;
 
-    left:0;
+    height:260px;
 
-    width:100%;
+    border-radius:50%;
 
-    height:4px;
-
-    background:linear-gradient(
-        90deg,
-        #10b981,
-        #34d399
+    background:radial-gradient(
+        circle,
+        rgba(16,185,129,.10) 0%,
+        rgba(16,185,129,.04) 35%,
+        transparent 75%
     );
 
-    opacity:.85;
+    top:-120px;
+
+    left:-220px;
+
+    animation:cardGlow 9s ease-in-out infinite;
+
+    pointer-events:none;
+
+    z-index:0;
 
 }
+
+
+
+
 
 .cotacao-dashboard:hover{
 
@@ -3791,11 +3807,13 @@ HOVER
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
-    margin-bottom:14px;
+    gap:16px;
+
+    flex:1;
+
+    margin:0;
 
 }
 
@@ -3832,5 +3850,355 @@ HOVER
     margin-top:22px;
 
     flex-wrap:wrap;
+
+}
+
+@keyframes cardGlow{
+
+    0%{
+
+        left:-220px;
+        top:-120px;
+
+    }
+
+    50%{
+
+        left:100%;
+        top:25%;
+
+    }
+
+    100%{
+
+        left:-220px;
+        top:-120px;
+
+    }
+
+}
+
+.cotacao-dashboard > *{
+
+    position:relative;
+    z-index:2;
+
+}
+
+.cotacao-id{
+
+    width:58px;
+
+    height:58px;
+
+    min-width:58px;
+
+    border-radius:16px;
+
+    background:linear-gradient(180deg,#38b2ac,#0f766e);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.cotacao-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.cotacao-info h3{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.data{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    width:fit-content;
+
+    background:#ffffff;
+
+    padding:4px 10px;
+
+    border-radius:8px;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+/* ===========================
+   TABELA DASHBOARD
+=========================== */
+
+.tabela-dashboard{
+
+    margin-top:20px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.06);
+
+}
+
+.tabela-dashboard table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.tabela-dashboard thead{
+
+    background:#0f172a;
+
+}
+
+.tabela-dashboard thead th{
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    padding:18px 20px;
+
+    text-align:left;
+
+}
+
+.tabela-dashboard tbody td{
+
+    padding:18px 20px;
+
+    font-size:15px;
+
+    color:#334155;
+
+    border-bottom:1px solid #eef2f7;
+
+    vertical-align:middle;
+
+}
+
+.tabela-dashboard tbody tr{
+
+    transition:.25s;
+
+}
+
+.tabela-dashboard tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+.tabela-dashboard tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* ===========================
+   BADGES
+=========================== */
+
+.badge-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:7px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+}
+
+.badge-status.aberta{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.badge-status.encerrada{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+}
+
+
+/* ===========================
+   AÇÕES
+=========================== */
+
+.acoes-tabela{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+.acoes-tabela .acao-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#f1f5f9;
+
+    color:#334155;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.acoes-tabela .acao-btn:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    transform:translateY(-2px);
+
+}
+
+.acoes-tabela .excluir:hover{
+
+    background:#dc2626;
+
+}
+
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+
+@media(max-width:900px){
+
+    .tabela-dashboard{
+
+        overflow-x:auto;
+
+    }
+
+    .tabela-dashboard table{
+
+        min-width:760px;
+
+    }
+
+}
+
+/* Nome da cotação */
+
+.lado-direito.centralizado{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    gap:8px;
+
+}
+
+.cotacao-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.cotacao-nome{
+
+    margin:0;
+
+    font-size:26px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    line-height:1.2;
+
+}
+
+.status{
+
+    margin:0;
 
 }

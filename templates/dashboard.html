@@ -314,65 +314,102 @@ Dashboard - CotaFarma
 
     </div>
 
-    <div class="cotacoes-lista-dashboard">
+    <div class="tabela-dashboard">
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Cotação</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ações</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
 
         {% for cotacao in ultimas_cotacoes %}
 
-        <div class="cotacao-dashboard">
+        <tr>
 
-            <div class="cotacao-topo">
+            <td>{{ cotacao[2] }}</td>
 
-    <span class="cotacao-id">
-        #{{ "%05d"|format(cotacao[0]) }}
-    </span>
-
-</div>
-
-            <h3>{{ cotacao[2] }}</h3>
-
-            <span class="data">
-
-                <i class="bi bi-calendar3"></i>
+            <td>
 
                 {{ cotacao[4][:10].split('-')|reverse|join('/') }}
 
-            </span>
+            </td>
 
-            <div class="acoes">
-
-                <button class="acao-btn"><i class="bi bi-eye-fill"></i></button>
-
-                <button class="acao-btn">
-    <i class="bi bi-send-fill"></i>
-</button>
-
-                <button class="acao-btn">
-                    <i class="bi bi-trophy-fill"></i>
-                </button>
-
-                <button class="acao-btn">
-                    <i class="bi bi-file-earmark-text-fill"></i>
-                </button>
+            <td>
 
                 {% if cotacao[3] == "ABERTA" %}
 
-                <button class="acao-btn excluir">
-                    <i class="bi bi-x-circle-fill"></i>
-                </button>
+                    <span class="badge-status aberta">
+
+                        ABERTA
+
+                    </span>
+
+                {% else %}
+
+                    <span class="badge-status encerrada">
+
+                        ENCERRADA
+
+                    </span>
 
                 {% endif %}
 
-                <button class="acao-btn excluir">
-                    <i class="bi bi-trash-fill"></i>
+            </td>
+
+            <td class="acoes-tabela">
+
+                <button class="acao-btn">
+
+                    <i class="bi bi-eye-fill"></i>
+
                 </button>
 
-            </div>
+                <button class="acao-btn">
 
-        </div>
+                    <i class="bi bi-send-fill"></i>
+
+                </button>
+
+                <button class="acao-btn">
+
+                    <i class="bi bi-trophy-fill"></i>
+
+                </button>
+
+                <button class="acao-btn">
+
+                    <i class="bi bi-file-earmark-text-fill"></i>
+
+                </button>
+
+                <button class="acao-btn excluir">
+
+                    <i class="bi bi-trash-fill"></i>
+
+                </button>
+
+            </td>
+
+        </tr>
 
         {% endfor %}
 
-    </div>
+    </tbody>
+
+</table>
+
+</div>
    
 
 </div>

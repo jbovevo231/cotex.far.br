@@ -62,37 +62,42 @@ Cotações - CotaFarma
 
         <div class="lado-direito">
 
-            {% if cotacao[2] == "ENCERRADA" %}
+    <div class="cotacao-info">
 
-<span class="status encerrada">
-    ENCERRADA
-</span>
+        <h3 class="cotacao-nome">
+            {{ cotacao[1] }}
+        </h3>
 
-{% else %}
+        {% if cotacao[2] == "ENCERRADA" %}
 
-<span class="status aberta">
-    ABERTA
-</span>
+        <span class="status encerrada">
+            ENCERRADA
+        </span>
 
-{% endif %}
+        {% else %}
 
-            <span class="cotacao-id">
-                #{{ "%05d"|format(cotacao[0]) }}
-            </span>
+        <span class="status aberta">
+            ABERTA
+        </span>
 
-        </div>
+        {% endif %}
+
+    </div>
 
 
-    <div class="cotacao-acoes">
 
-        <button
-            class="acao-btn"
-            data-tooltip="Visualizar"
-            onclick="abrirCotacao({{ cotacao[0] }})">
+</div>
 
-            <i class="bi bi-eye-fill"></i>
+<div class="cotacao-acoes">
 
-        </button>
+    <button
+        class="acao-btn"
+        data-tooltip="Visualizar"
+        onclick="abrirCotacao({{ cotacao[0] }})">
+
+        <i class="bi bi-eye-fill"></i>
+
+    </button>
 
         {% if cotacao[2] == "ENCERRADA" %}
 
