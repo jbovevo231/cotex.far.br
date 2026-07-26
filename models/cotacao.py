@@ -204,16 +204,25 @@ def excluir_cotacao(cotacao_id):
 
     db = get_db()
 
+    # Primeiro apaga as respostas dos representantes
+    db.execute(
+        "DELETE FROM respostas_cotacao WHERE cotacao_id=?",
+        (cotacao_id,)
+    )
+
+    # Depois apaga os itens da cotação
     db.execute(
         "DELETE FROM cotacao_itens WHERE cotacao_id=?",
         (cotacao_id,)
     )
 
+    # Depois apaga o link
     db.execute(
         "DELETE FROM links_cotacao WHERE cotacao_id=?",
         (cotacao_id,)
     )
 
+    # Por último apaga a cotação
     db.execute(
         "DELETE FROM cotacoes WHERE id=?",
         (cotacao_id,)

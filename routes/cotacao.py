@@ -8,7 +8,7 @@ from models.cotacao import (
     gerar_link_cotacao,
     salvar_resposta_cotacao,
     encerrar_cotacao,
-    excluir_cotacao,
+    excluir_cotacao
 )
 
 cotacao_bp = Blueprint("cotacao", __name__)
@@ -182,11 +182,23 @@ def encerrar(id):
 @cotacao_bp.route("/cotacoes/<int:id>/excluir", methods=["POST"])
 def excluir(id):
 
-    excluir_cotacao(id)
+    try:
 
-    return jsonify({
-        "sucesso": True
-    })
+        excluir_cotacao(id)
+
+        return jsonify({
+            "sucesso": True
+        })
+
+    except Exception as e:
+
+        import traceback
+        traceback.print_exc()
+
+        return jsonify({
+            "sucesso": False,
+            "erro": str(e)
+        }), 500
 
 @cotacao_bp.route("/cotacoes/criar", methods=["POST"])
 def criar_cotacao():

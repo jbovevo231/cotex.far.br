@@ -897,7 +897,9 @@ function cotacaoEncerrada(){
         "Esta cotação foi encerrada e não pode mais ser enviada aos representantes."
     );
 
-    async function excluirCotacao(id){
+}
+
+async function excluirCotacao(id){
 
     if(!confirm("Deseja realmente excluir esta cotação?")){
         return;
@@ -905,37 +907,37 @@ function cotacaoEncerrada(){
 
     try{
 
-        const response = await fetch(`/cotacoes/${id}/excluir`,{
-            method:"POST"
-        });
+const response = await fetch(`/cotacoes/${id}/excluir`,{
+    method:"POST"
+});
 
-        const dados = await response.json();
+const dados = await response.json();
 
-        if(dados.sucesso){
+console.log(dados);
 
-            alert("Cotação excluída com sucesso.");
+if(response.ok && dados.sucesso){
 
-            location.reload();
+    alert("Cotação excluída com sucesso.");
 
-        }else{
+    location.reload();
 
-            alert("Erro ao excluir a cotação.");
+}else{
 
-        }
-
-    }catch(e){
-
-        console.error(e);
-
-        alert("Erro ao excluir a cotação.");
-
-    }
-
+    alert(dados.erro || "Erro ao excluir a cotação.");
 
 }
+
+}catch(e){
+
+    console.error(e);
+
+    alert("Erro ao excluir a cotação.");
+
 }
 
+}
 
+        
 </script>
 
 {% endblock %}

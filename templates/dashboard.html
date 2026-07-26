@@ -183,78 +183,117 @@ Dashboard - CotaFarma
 
             <div class="medicine-table">
 
-                <div id="listaMedicamentos"></div>
+    <!-- Cabeçalho azul -->
 
+    <div class="entrada-header">
 
+        <div>Medicamento</div>
+        <div>Laboratório</div>
+        <div>Quantidade</div>
+        <div>Ações</div>
 
-                <div class="table-header">
+    </div>
 
-                    <div>Medicamento</div>
+    <!-- Linha de cadastro -->
 
-                    <div>Laboratório</div>
+    <div class="entrada-row">
 
-                    <div>Qtd</div>
+        <input
+            type="text"
+            id="medicamento"
+            placeholder="Ex.: Dipirona 500mg">
 
-                    <div></div>
+        <input
+            type="text"
+            id="laboratorio"
+            placeholder="Ex.: Neo Química">
 
-                </div>
+        <input
+            type="number"
+            id="quantidade"
+            placeholder="120">
 
-                <div class="table-row">
+        <button
+            type="button"
+            class="btn-remover">
 
-                    <input
-    type="text"
-    id="medicamento"
-    name="medicamento"
-    placeholder="Dipirona 500mg">
+            <i class="bi bi-trash"></i>
 
-<input
-    type="text"
-    id="laboratorio"
-    name="laboratorio"
-    placeholder="Neo Química">
+        </button>
 
-<input
-    type="number"
-    id="quantidade"
-    name="quantidade"
-    placeholder="120">
+    </div>
 
-                    <button>
+    <!-- Botão azul -->
 
-                        <i class="bi bi-trash"></i>
+    <div class="entrada-acoes">
 
-                    </button>
+        <button
+            type="button"
+            id="btnAdicionar"
+            class="btn-adicionar-produto">
 
-                </div>
+            <i class="bi bi-plus-circle-fill"></i>
 
-            </div>
+            Adicionar Produto
 
-            <div class="quote-buttons">
+        </button>
 
-                <button
-    type="button"
-    id="btnAdicionar"
-    class="secondary-btn">
+    </div>
 
-                    <i class="bi bi-plus-circle"></i>
+    <!-- Cabeçalho verde -->
 
-                    Adicionar medicamento
+    <div class="lista-header">
 
-                </button>
+        Produtos Adicionados à Lista
 
-                <button
-    class="primary-btn"
-    type="submit">
+    </div>
 
-                    Criar Cotação
+    <!-- AQUI continua funcionando seu JavaScript -->
 
-                </button>
+    <div id="listaMedicamentos"></div>
 
-            </div>
+<div class="quote-footer">
 
-        </div>
+    <button
+        type="button"
+        class="btn-enviar">
 
-        </form>
+        <i class="bi bi-send-fill"></i>
+
+        Enviar Cotação
+
+    </button>
+
+    <div class="footer-right">
+
+        <button
+            type="button"
+            id="btnLimparLista"
+            class="btn-limpar">
+
+            <i class="bi bi-trash"></i>
+
+            Limpar Lista
+
+        </button>
+
+        <button
+            type="submit"
+            class="btn-criar">
+
+            <i class="bi bi-plus-lg"></i>
+
+            Criar Cotação
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+</form>
 
         <!-- GRÁFICO + ÚLTIMAS COTAÇÕES -->
 
