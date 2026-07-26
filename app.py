@@ -5,7 +5,7 @@ from config import Config
 from routes.auth import auth_bp
 from routes.dashboard import dashboard_bp
 from routes.cotacao import cotacao_bp
-from routes.produtos import produtos_bp
+from routes.conecta import conecta_bp
 from routes.comparativo import comparativo_bp
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ app.config.from_object(Config)
 app.register_blueprint(auth_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(cotacao_bp)
-app.register_blueprint(produtos_bp)
+app.register_blueprint(conecta_bp)
 app.register_blueprint(comparativo_bp)
 
 

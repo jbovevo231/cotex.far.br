@@ -1,0 +1,451 @@
+/* ===========================
+   CONECTA
+=========================== */
+
+.conecta{
+
+    max-width:900px;
+
+    margin:35px auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+
+
+/* ===========================
+   HEADER
+=========================== */
+
+.conecta-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.conecta-header h1{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+}
+
+.conecta-header p{
+
+    margin-top:6px;
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+.acoes-header{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.acoes-header button{
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    color:#334155;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 22px rgba(15,23,42,.08);
+
+    transition:.25s;
+
+}
+
+.acoes-header button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+
+/* ===========================
+   NOVO POST
+=========================== */
+
+.novo-post{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:26px;
+
+    box-shadow:
+
+    0 15px 40px rgba(15,23,42,.06);
+
+}
+
+.post-topo{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:flex-start;
+
+}
+
+.avatar-post{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#22c55e);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.post-topo textarea{
+
+    flex:1;
+
+    border:none;
+
+    resize:none;
+
+    outline:none;
+
+    min-height:90px;
+
+    font-size:16px;
+
+    font-family:inherit;
+
+    color:#0f172a;
+
+}
+
+.post-topo textarea::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+
+/* ===========================
+   FOOTER POST
+=========================== */
+
+.post-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:20px;
+
+    padding-top:20px;
+
+    border-top:1px solid #edf2f7;
+
+}
+
+.post-footer button{
+
+    border:none;
+
+    background:none;
+
+    color:#475569;
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.2s;
+
+}
+
+.post-footer button:hover{
+
+    color:#2563eb;
+
+}
+
+.btn-publicar{
+
+    padding:12px 28px !important;
+
+    border-radius:14px !important;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8)!important;
+
+    color:#fff!important;
+
+    font-weight:700;
+
+}
+
+
+
+/* ===========================
+   FEED
+=========================== */
+
+.feed{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+
+
+/* ===========================
+   CARD
+=========================== */
+
+.post{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:26px;
+
+    box-shadow:
+
+    0 15px 40px rgba(15,23,42,.06);
+
+}
+
+
+
+/* ===========================
+   HEADER POST
+=========================== */
+
+.post-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.avatar{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:700;
+
+    font-size:20px;
+
+}
+
+.post-header strong{
+
+    display:block;
+
+    color:#0f172a;
+
+}
+
+.post-header small{
+
+    color:#94a3b8;
+
+}
+
+
+
+/* ===========================
+   TEXTO
+=========================== */
+
+.post-texto{
+
+    margin-top:22px;
+
+    color:#334155;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+}
+
+
+
+/* ===========================
+   IMAGEM
+=========================== */
+
+.post-imagem{
+
+    margin-top:22px;
+
+    height:260px;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(135deg,#dbeafe,#eff6ff);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#2563eb;
+
+    font-weight:700;
+
+}
+
+
+
+/* ===========================
+   AÇÕES
+=========================== */
+
+.post-acoes{
+
+    margin-top:24px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    border-top:1px solid #edf2f7;
+
+    padding-top:18px;
+
+}
+
+.post-acoes button{
+
+    background:none;
+
+    border:none;
+
+    color:#64748b;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:15px;
+
+    transition:.2s;
+
+}
+
+.post-acoes button:hover{
+
+    color:#2563eb;
+
+}
+
+
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+
+@media(max-width:900px){
+
+.conecta{
+
+    margin:18px;
+
+}
+
+.post-footer{
+
+    flex-wrap:wrap;
+
+    gap:16px;
+
+}
+
+.btn-publicar{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+}

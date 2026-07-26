@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}
+Conecta - CotaFarma
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/conecta.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<div class="conecta">
+
+    <div class="conecta-header">
+
+        <div>
+
+            <h1>Conecta</h1>
+
+            <p>A comunidade exclusiva do mercado farmacêutico.</p>
+
+        </div>
+
+        <div class="acoes-header">
+
+            <button>
+                <i class="bi bi-search"></i>
+            </button>
+
+            <button>
+                <i class="bi bi-bell"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="novo-post">
+
+        <div class="post-topo">
+
+            <div class="avatar-post">
+                {{ session.get('usuario_email','U')[0].upper() }}
+            </div>
+
+            <textarea
+                placeholder="O que você deseja compartilhar hoje?"></textarea>
+
+        </div>
+
+        <div class="post-footer">
+
+            <button>
+                <i class="bi bi-image"></i>
+                Foto
+            </button>
+
+            <button>
+                <i class="bi bi-file-earmark-text"></i>
+                Documento
+            </button>
+
+            <button>
+                <i class="bi bi-capsule"></i>
+                Produto
+            </button>
+
+            <button class="btn-publicar">
+                Publicar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="feed">
+
+        <div class="post">
+
+            <div class="post-header">
+
+                <div class="avatar">
+                    F
+                </div>
+
+                <div>
+
+                    <strong>Farmácia São Lucas</strong>
+
+                    <small>há 12 minutos</small>
+
+                </div>
+
+            </div>
+
+            <div class="post-texto">
+
+                Recebemos uma excelente condição da EMS para este mês.
+
+            </div>
+
+            <div class="post-imagem">
+
+                Imagem da publicação
+
+            </div>
+
+            <div class="post-acoes">
+
+                <button>
+                    <i class="bi bi-heart"></i>
+                    Curtir
+                </button>
+
+                <button>
+                    <i class="bi bi-chat"></i>
+                    Comentar
+                </button>
+
+                <button>
+                    <i class="bi bi-share"></i>
+                    Compartilhar
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="post">
+
+            <div class="post-header">
+
+                <div class="avatar">
+                    D
+                </div>
+
+                <div>
+
+                    <strong>Drogaria Central</strong>
+
+                    <small>há 1 hora</small>
+
+                </div>
+
+            </div>
+
+            <div class="post-texto">
+
+                Alguém encontrou Ozempic disponível para compra?
+
+            </div>
+
+            <div class="post-acoes">
+
+                <button>
+                    <i class="bi bi-heart"></i>
+                    Curtir
+                </button>
+
+                <button>
+                    <i class="bi bi-chat"></i>
+                    Comentar
+                </button>
+
+                <button>
+                    <i class="bi bi-share"></i>
+                    Compartilhar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
