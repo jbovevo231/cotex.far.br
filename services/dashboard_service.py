@@ -103,9 +103,14 @@ def carregar_ultimas_cotacoes(cnpj):
 
     dados = db.execute(
         """
-        SELECT *
+        SELECT
+            id,
+            cnpj_usuario,
+            nome,
+            status,
+            data_criacao
         FROM cotacoes
-        WHERE cnpj_usuario=?
+        WHERE cnpj_usuario = ?
         ORDER BY id DESC
         LIMIT 5
         """,
