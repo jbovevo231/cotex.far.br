@@ -3528,23 +3528,30 @@ HOVER
 
 .quote-footer{
 
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    margin-top:22px;
+
+    min-height:50px;
+
+}
+
+
+.footer-right{
+
+    width:100%;
+
     display:flex;
 
     justify-content:space-between;
 
     align-items:center;
-
-    margin-top:15px;
-
-    padding:15px 0 5px;
-
-}
-
-.footer-right{
-
-    display:flex;
-
-    gap:10px;
 
 }
 
@@ -3591,35 +3598,23 @@ HOVER
    BOTÃO LIMPAR
 =========================== */
 
-.quote-footer .btn-limpar{
+.btn-limpar{
 
-    display:flex;
+    height:42px;
 
-    align-items:center;
+    padding:0 18px;
 
-    justify-content:center;
-
-    gap:10px;
-
-    width:160px;
-
-    height:50px;
-
-    border:2px solid #ff6d6d;
+    border-radius:20px;
 
     background:#fff;
 
+    border:1px solid #fecaca;
+
     color:#ef4444;
 
-    border-radius:18px;
+    font-size:14px;
 
-    font-size:15px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
+    font-weight:600;
 
 }
 
@@ -3672,7 +3667,7 @@ HOVER
 
 .quote-footer .btn-criar:hover{
 
-    transform:translateY(-3px);
+    transform:translateX(-50%) translateY(-3px);
 
     box-shadow:0 18px 35px rgba(16,161,87,.40);
 
@@ -4259,33 +4254,37 @@ HOVER
 
 .btn-criar{
 
-    background:#16a34a;
+    position:absolute;
 
-    border:none;
+    left:50%;
 
-    color:#fff;
+    transform:translateX(-50%);
 
-    border-radius:12px;
+    height:42px;
 
-    font-weight:700;
+    padding:0 22px;
 
-    box-shadow:0 12px 30px rgba(22,163,74,.25);
-
-}
-
-.btn-enviar{
+    border-radius:22px;
 
     background:#fff;
 
-    color:#123d73;
+    border:2px solid #22c55e;
 
-    border:2px solid #123d73;
+    color:#16a34a;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    box-shadow:none;
+
+    transition:.25s;
 
 }
 
-.btn-enviar:hover{
+.btn-criar:hover{
 
-    background:#123d73;
+    background:#22c55e;
 
     color:#fff;
 
