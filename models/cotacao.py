@@ -12,7 +12,7 @@ def salvar_cotacao(cnpj, nome, medicamentos, laboratorios, quantidades):
             nome,
             status
         )
-        VALUES (?, ?, 'RASCUNHO')
+        VALUES (?, ?, 'ABERTA')
         """,
         (cnpj, nome)
     )

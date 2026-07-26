@@ -322,17 +322,11 @@ Dashboard - CotaFarma
 
             <div class="cotacao-topo">
 
-                {% if cotacao[3] == "ABERTA" %}
-                    <span class="status aberta">ABERTA</span>
-                {% else %}
-                    <span class="status encerrada">ENCERRADA</span>
-                {% endif %}
+    <span class="cotacao-id">
+        #{{ "%05d"|format(cotacao[0]) }}
+    </span>
 
-                <span class="cotacao-id">
-                    #{{ "%05d"|format(cotacao[0]) }}
-                </span>
-
-            </div>
+</div>
 
             <h3>{{ cotacao[2] }}</h3>
 
@@ -348,13 +342,9 @@ Dashboard - CotaFarma
 
                 <button class="acao-btn"><i class="bi bi-eye-fill"></i></button>
 
-                {% if cotacao[3] == "ABERTA" %}
-
                 <button class="acao-btn">
-                    <i class="bi bi-send-fill"></i>
-                </button>
-
-                {% endif %}
+    <i class="bi bi-send-fill"></i>
+</button>
 
                 <button class="acao-btn">
                     <i class="bi bi-trophy-fill"></i>
