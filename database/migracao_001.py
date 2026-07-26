@@ -71,7 +71,28 @@ CREATE TABLE IF NOT EXISTS respostas_itens (
 )
 """)
 
+# ==========================================
+# CONECTA - POSTS
+# ==========================================
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS conecta_posts (
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    cnpj TEXT NOT NULL,
+
+    usuario TEXT NOT NULL,
+
+    texto TEXT,
+
+    imagem TEXT,
+
+    data_postagem TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+)
+""")
+
 conn.commit()
 conn.close()
 
-print("✅ Migração executada com sucesso!")
