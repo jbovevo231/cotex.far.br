@@ -3559,7 +3559,9 @@ HOVER
 
     gap:10px;
 
-    width:190px;
+    flex:1;
+
+    width:auto;
 
     height:50px;
 
@@ -3580,17 +3582,6 @@ HOVER
     transition:.25s;
 
 }
-
-.quote-footer .btn-enviar:hover{
-
-    background:#18a862;
-
-    color:#fff;
-
-    border-color:#18a862;
-
-}
-
 
 /* ===========================
    BOTÃO LIMPAR
