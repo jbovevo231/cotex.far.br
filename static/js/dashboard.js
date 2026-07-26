@@ -80,3 +80,19 @@ function removerMedicamento(indice) {
     atualizarLista();
 
 }
+
+document.getElementById("btnLimparLista").addEventListener("click", function () {
+
+    if (medicamentos.length === 0) {
+        return;
+    }
+
+    if (!confirm("Deseja limpar toda a lista?")) {
+        return;
+    }
+
+    medicamentos.length = 0;
+
+    atualizarLista();
+
+});
