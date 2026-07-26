@@ -2142,9 +2142,12 @@ body{
 
 }
 
-*{
+img,
+canvas{
 
     max-width:100%;
+
+    height:auto;
 
 }
 
@@ -3244,6 +3247,52 @@ HOVER
     padding:18px;
 
     align-items:center;
+
+}
+
+@media (max-width:768px){
+
+    .entrada-header{
+
+        grid-template-columns:2.3fr 1.5fr .8fr 48px;
+
+        gap:8px;
+
+        padding:12px 10px;
+
+        font-size:12px;
+
+    }
+
+    .entrada-row{
+
+        grid-template-columns:2.3fr 1.5fr .8fr 48px;
+
+        gap:8px;
+
+        padding:12px 10px;
+
+    }
+
+    .entrada-row input{
+
+        min-width:0;
+
+        width:100%;
+
+        padding:0 10px;
+
+        font-size:14px;
+
+    }
+
+    .btn-remover{
+
+        width:40px;
+
+        height:40px;
+
+    }
 
 }
 
