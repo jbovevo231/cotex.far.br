@@ -1447,59 +1447,67 @@ RESPONSIVO 900
 
 @media (max-width:900px){
 
-.topbar{
+    .topbar{
 
-    flex-direction:column;
+        flex-direction:column;
 
-    align-items:flex-start;
+        align-items:flex-start;
 
-    gap:20px;
+        gap:20px;
 
-}
+    }
 
-.top-actions{
+    .top-actions{
 
-    width:100%;
+        width:100%;
 
-    flex-wrap:wrap;
+        flex-wrap:wrap;
 
-}
+    }
 
-.search-box{
+    .search-box{
 
-    width:100%;
+        width:100%;
 
-}
+    }
 
-.cards{
+    .cards{
 
-    grid-template-columns:1fr;
+        grid-template-columns:1fr;
 
-}
+    }
 
-.quote-buttons{
+    /* NOVA COTAÇÃO */
 
-    flex-direction:column;
+    .entrada-header{
 
-}
+        display:none;
 
-.table-header{
+    }
 
-    display:none;
+    .entrada-row{
 
-}
+        display:flex;
 
-.table-row{
+        flex-direction:column;
 
-    grid-template-columns:1fr;
+        gap:12px;
 
-}
+    }
 
-.table-row button{
+    .entrada-row input{
 
-    height:52px;
+        width:100%;
 
-}
+    }
+
+    .btn-remover{
+
+        width:100%;
+
+        height:48px;
+
+    }
 
 }
 
