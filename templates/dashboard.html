@@ -298,7 +298,7 @@ Dashboard - CotaFarma
 
 </form>
 
-     <!-- CENTRAL DE COTAÇÕES -->
+  <!-- CENTRAL DE COTAÇÕES -->
 
 <div class="card central-cotacoes">
 
@@ -383,14 +383,19 @@ Dashboard - CotaFarma
         {% endfor %}
 
     </div>
+   
 
-</div>   
+</div>
 
-        <div class="card">
+</div> <!-- fecha left-column -->
 
-            <div class="card-header">
+<div class="right-column">
 
-                <h2>IA CotaFarma</h2>
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>IA CotaFarma</h2>
 
             </div>
 
@@ -414,9 +419,8 @@ Dashboard - CotaFarma
 
             </div>
 
-        </div>
+</div> <!-- fecha right-column -->
 
-    </aside>
 
 </section>
 
@@ -428,4 +432,5 @@ Dashboard - CotaFarma
 
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
+<script src="{{ url_for('static', filename='js/cotacoes.js') }}"></script>
 {% endblock %}

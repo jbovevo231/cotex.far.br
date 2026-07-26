@@ -281,6 +281,8 @@ CONTEÚDO
 
     overflow-x:hidden;
 
+    width:calc(100vw - 280px);
+
 }
 
 .page-wrapper{

@@ -543,21 +543,24 @@ canvas{
    RESPONSIVO GERAL
 =========================================== */
 
-@media (max-width: 768px){
+@media (max-width:768px){
 
     .sidebar{
 
-        width:84px;
-        min-width:84px;
+        width:100%;
+        min-width:100%;
 
     }
 
     .content{
 
-        margin-left:72px !important;
-        width:calc(100% - 72px);
+        margin-left:0 !important;
+        width:100%;
         padding:16px;
-    }
+
+    
+
+}
 
     .page-wrapper{
 
@@ -687,89 +690,3 @@ canvas{
 
 }
 
-/*======================================================
-        NOVA COTAÇÃO - NOVO LAYOUT MOBILE
-======================================================*/
-
-@media screen and (max-width:768px){
-
-    .quote-card{
-
-        overflow:hidden;
-
-    }
-
-    .medicine-table{
-
-        padding:12px;
-
-        overflow-x:auto;
-
-    }
-
-    .entrada-header,
-    .entrada-row{
-
-        min-width:720px;
-
-    }
-
-    .entrada-acoes{
-
-        min-width:720px;
-
-        display:flex;
-
-        justify-content:center;
-
-        padding:14px 0;
-
-    }
-
-    .lista-header{
-
-        min-width:720px;
-
-    }
-
-    #listaMedicamentos{
-
-        min-width:720px;
-
-    }
-
-    .quote-footer{
-
-        display:flex;
-
-        flex-direction:column;
-
-        gap:12px;
-
-        align-items:stretch;
-
-        padding:18px 0 0;
-
-    }
-
-    .footer-right{
-
-        display:flex;
-
-        flex-direction:column;
-
-        gap:12px;
-
-        width:100%;
-
-    }
-
-    .btn-enviar,
-    .btn-limpar,
-    .btn-criar{
-
-        width:100% !important;
-
-    }
-
-}
