@@ -11,7 +11,11 @@ Conecta - CotaFarma
 
 {% block page_content %}
 
-<div class="conecta">
+<div class="conecta-page">
+
+    <!-- ==========================
+         CABEÇALHO
+    =========================== -->
 
     <div class="conecta-header">
 
@@ -19,18 +23,24 @@ Conecta - CotaFarma
 
             <h1>Conecta</h1>
 
-            <p>A comunidade exclusiva do mercado farmacêutico.</p>
+            <p>
+                A comunidade exclusiva do mercado farmacêutico.
+            </p>
 
         </div>
 
-        <div class="acoes-header">
+        <div class="header-actions">
 
             <button>
                 <i class="bi bi-search"></i>
             </button>
 
             <button>
+
                 <i class="bi bi-bell"></i>
+
+                <span class="badge">3</span>
+
             </button>
 
         </div>
@@ -38,144 +48,797 @@ Conecta - CotaFarma
     </div>
 
 
-    <div class="novo-post">
 
-        <div class="post-topo">
+    <!-- ==========================
+         GRID
+    =========================== -->
 
-            <div class="avatar-post">
-                {{ session.get('usuario_email','U')[0].upper() }}
+    <div class="conecta-grid">
+
+
+
+        <!-- ==========================
+             COLUNA ESQUERDA
+        =========================== -->
+
+        <aside class="left-column">
+
+
+
+            <!-- PERFIL -->
+
+            <div class="card profile-card">
+
+                <div class="profile-cover"></div>
+
+                <div class="profile-avatar">
+
+                    <i class="bi bi-shop"></i>
+
+                </div>
+
+                <h3>Farmácia Exemplo</h3>
+
+                <span>Belo Horizonte • MG</span>
+
+                <div class="member">
+
+                    Farmácia desde 2021
+
+                </div>
+
+                <div class="profile-stats">
+
+                    <div>
+
+                        <strong>326</strong>
+
+                        <small>Seguidores</small>
+
+                    </div>
+
+                    <div>
+
+                        <strong>128</strong>
+
+                        <small>Seguindo</small>
+
+                    </div>
+
+                </div>
+
+                <button class="btn-profile">
+
+                    Ver Perfil
+
+                </button>
+
             </div>
 
-            <textarea
-                placeholder="O que você deseja compartilhar hoje?"></textarea>
+
+
+            <!-- ATALHOS -->
+
+            <div class="card">
+
+                <h4>Atalhos</h4>
+
+                <ul class="menu-conecta">
+
+                    <li>
+
+                        <i class="bi bi-pencil-square"></i>
+
+                        Minhas Publicações
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-bookmark"></i>
+
+                        Salvos
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-people"></i>
+
+                        Grupos
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-bell"></i>
+
+                        Notificações
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-envelope"></i>
+
+                        Mensagens
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- PREMIUM -->
+
+            <div class="premium-card">
+
+                <i class="bi bi-stars"></i>
+
+                <h3>Seja Premium</h3>
+
+                <p>
+
+                    Tenha mais destaque, alcance e recursos exclusivos.
+
+                </p>
+
+                <button>
+
+                    Conhecer planos
+
+                </button>
+
+            </div>
+
+
+
+        </aside>
+
+
+
+        <!-- ==========================
+             FEED
+        =========================== -->
+
+        <section class="feed-column">
+
+
+
+            <!-- NOVA PUBLICAÇÃO -->
+
+            <div class="card new-post">
+
+                <div class="new-post-top">
+
+                    <div class="avatar-user">
+
+                        {{ session.get('usuario_email','U')[0].upper() }}
+
+                    </div>
+
+                    <textarea
+                        placeholder="O que você deseja compartilhar hoje?"></textarea>
+
+                </div>
+
+                <div class="new-post-actions">
+
+                    <button>
+
+                        <i class="bi bi-image"></i>
+
+                        Foto
+
+                    </button>
+
+                    <button>
+
+                        <i class="bi bi-file-earmark-text"></i>
+
+                        Documento
+
+                    </button>
+
+                    <button>
+
+                        <i class="bi bi-capsule"></i>
+
+                        Produto
+
+                    </button>
+
+                    <button class="btn-publicar">
+
+                        Publicar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AQUI ENTRARÃO AS PUBLICAÇÕES -->
+
+            <!-- ==========================
+     PUBLICAÇÃO 01
+========================== -->
+
+<div class="card post">
+
+    <div class="post-header">
+
+        <div class="post-avatar">
+
+            FS
 
         </div>
 
-        <div class="post-footer">
+        <div class="post-user">
 
-            <button>
-                <i class="bi bi-image"></i>
-                Foto
-            </button>
+            <strong>Farmácia São Lucas</strong>
 
-            <button>
-                <i class="bi bi-file-earmark-text"></i>
-                Documento
-            </button>
+            <span>
 
-            <button>
-                <i class="bi bi-capsule"></i>
-                Produto
-            </button>
+                Belo Horizonte • MG
 
-            <button class="btn-publicar">
-                Publicar
-            </button>
+                •
+
+                há 12 minutos
+
+            </span>
+
+        </div>
+
+        <button class="post-menu">
+
+            <i class="bi bi-three-dots"></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="post-content">
+
+        <p>
+
+            Recebemos uma excelente condição da EMS para este mês.
+
+            Alguém mais conseguiu um desconto parecido?
+
+        </p>
+
+    </div>
+
+
+    <div class="post-image">
+
+        <img
+            src="https://placehold.co/900x320/e8f0ff/1e40af?text=Imagem+da+Publicação"
+            alt="Publicação">
+
+    </div>
+
+
+    <div class="post-info">
+
+        <div>
+
+            ❤️ 32 curtidas
+
+        </div>
+
+        <div>
+
+            8 comentários
 
         </div>
 
     </div>
 
 
-    <div class="feed">
+    <div class="post-actions">
 
-        <div class="post">
+        <button>
 
-            <div class="post-header">
+            <i class="bi bi-hand-thumbs-up"></i>
 
-                <div class="avatar">
-                    F
-                </div>
+            Curtir
 
-                <div>
+        </button>
 
-                    <strong>Farmácia São Lucas</strong>
+        <button>
 
-                    <small>há 12 minutos</small>
+            <i class="bi bi-chat"></i>
 
-                </div>
+            Comentar
 
-            </div>
+        </button>
 
-            <div class="post-texto">
+        <button>
 
-                Recebemos uma excelente condição da EMS para este mês.
+            <i class="bi bi-share"></i>
 
-            </div>
+            Compartilhar
 
-            <div class="post-imagem">
+        </button>
 
-                Imagem da publicação
+        <button>
 
-            </div>
+            <i class="bi bi-bookmark"></i>
 
-            <div class="post-acoes">
+            Salvar
 
-                <button>
-                    <i class="bi bi-heart"></i>
-                    Curtir
-                </button>
+        </button>
 
-                <button>
-                    <i class="bi bi-chat"></i>
-                    Comentar
-                </button>
+    </div>
 
-                <button>
-                    <i class="bi bi-share"></i>
-                    Compartilhar
-                </button>
+</div>
 
-            </div>
+
+
+<!-- ==========================
+     PUBLICAÇÃO 02
+========================== -->
+
+<div class="card post">
+
+    <div class="post-header">
+
+        <div class="post-avatar green">
+
+            DC
+
+        </div>
+
+        <div class="post-user">
+
+            <strong>Drogaria Central</strong>
+
+            <span>
+
+                São Paulo • SP
+
+                •
+
+                há 1 hora
+
+            </span>
 
         </div>
 
+        <button class="post-menu">
+
+            <i class="bi bi-three-dots"></i>
+
+        </button>
+
+    </div>
 
 
-        <div class="post">
+    <div class="post-content">
 
-            <div class="post-header">
+        <p>
 
-                <div class="avatar">
-                    D
-                </div>
+            Alguém encontrou Ozempic disponível para compra?
 
-                <div>
+            Precisamos para alguns clientes.
 
-                    <strong>Drogaria Central</strong>
+        </p>
 
-                    <small>há 1 hora</small>
+    </div>
 
-                </div>
 
-            </div>
+    <div class="post-info">
 
-            <div class="post-texto">
+        <div>
 
-                Alguém encontrou Ozempic disponível para compra?
-
-            </div>
-
-            <div class="post-acoes">
-
-                <button>
-                    <i class="bi bi-heart"></i>
-                    Curtir
-                </button>
-
-                <button>
-                    <i class="bi bi-chat"></i>
-                    Comentar
-                </button>
-
-                <button>
-                    <i class="bi bi-share"></i>
-                    Compartilhar
-                </button>
-
-            </div>
+            ❤️ 12 curtidas
 
         </div>
+
+        <div>
+
+            15 comentários
+
+        </div>
+
+    </div>
+
+
+    <div class="post-actions">
+
+        <button>
+
+            <i class="bi bi-hand-thumbs-up"></i>
+
+            Curtir
+
+        </button>
+
+        <button>
+
+            <i class="bi bi-chat"></i>
+
+            Comentar
+
+        </button>
+
+        <button>
+
+            <i class="bi bi-share"></i>
+
+            Compartilhar
+
+        </button>
+
+        <button>
+
+            <i class="bi bi-bookmark"></i>
+
+            Salvar
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================
+     PUBLICAÇÃO 03
+========================== -->
+
+<div class="card post">
+
+    <div class="post-header">
+
+        <div class="post-avatar blue">
+
+            BE
+
+        </div>
+
+        <div class="post-user">
+
+            <strong>Farmácia Bem Estar</strong>
+
+            <span>
+
+                Curitiba • PR
+
+                •
+
+                há 2 horas
+
+            </span>
+
+        </div>
+
+        <button class="post-menu">
+
+            <i class="bi bi-three-dots"></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="post-content">
+
+        <p>
+
+            Estamos procurando novos fornecedores de vitaminas.
+
+            Alguma indicação?
+
+        </p>
+
+    </div>
+
+
+    <div class="post-info">
+
+        <div>
+
+            ❤️ 48 curtidas
+
+        </div>
+
+        <div>
+
+            23 comentários
+
+        </div>
+
+    </div>
+
+
+    <div class="post-actions">
+
+        <button>
+
+            <i class="bi bi-hand-thumbs-up"></i>
+
+            Curtir
+
+        </button>
+
+        <button>
+
+            <i class="bi bi-chat"></i>
+
+            Comentar
+
+        </button>
+
+        <button>
+
+            <i class="bi bi-share"></i>
+
+            Compartilhar
+
+        </button>
+
+        <button>
+
+            <i class="bi bi-bookmark"></i>
+
+            Salvar
+
+        </button>
+
+    </div>
+
+</div>
+
+        </section>
+
+
+
+        <!-- ==========================
+             COLUNA DIREITA
+        =========================== -->
+
+        <aside class="right-column">
+
+            <!-- TENDÊNCIAS -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>Tendências</h3>
+
+                    <i class="bi bi-graph-up-arrow"></i>
+
+                </div>
+
+                <ul class="trends">
+
+                    <li>
+
+                        <strong>#PromoçõesEMS</strong>
+
+                        <span>124 publicações</span>
+
+                    </li>
+
+                    <li>
+
+                        <strong>#Ozempic</strong>
+
+                        <span>93 publicações</span>
+
+                    </li>
+
+                    <li>
+
+                        <strong>#VitaminaD</strong>
+
+                        <span>81 publicações</span>
+
+                    </li>
+
+                    <li>
+
+                        <strong>#Distribuidoras</strong>
+
+                        <span>74 publicações</span>
+
+                    </li>
+
+                    <li>
+
+                        <strong>#Genéricos</strong>
+
+                        <span>61 publicações</span>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- SUGESTÕES -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>Talvez você conheça</h3>
+
+                </div>
+
+                <div class="suggestion">
+
+                    <div class="suggest-avatar blue">
+
+                        F
+
+                    </div>
+
+                    <div>
+
+                        <strong>Farmácia Ideal</strong>
+
+                        <small>Petrolina • PE</small>
+
+                    </div>
+
+                    <button>
+
+                        Seguir
+
+                    </button>
+
+                </div>
+
+
+                <div class="suggestion">
+
+                    <div class="suggest-avatar green">
+
+                        D
+
+                    </div>
+
+                    <div>
+
+                        <strong>Drogaria Saúde</strong>
+
+                        <small>Juazeiro • BA</small>
+
+                    </div>
+
+                    <button>
+
+                        Seguir
+
+                    </button>
+
+                </div>
+
+
+                <div class="suggestion">
+
+                    <div class="suggest-avatar orange">
+
+                        M
+
+                    </div>
+
+                    <div>
+
+                        <strong>MedFarma</strong>
+
+                        <small>Recife • PE</small>
+
+                    </div>
+
+                    <button>
+
+                        Seguir
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ANIVERSARIANTES -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>Aniversariantes</h3>
+
+                    <i class="bi bi-gift"></i>
+
+                </div>
+
+                <div class="birthday">
+
+                    🎉 Hoje é aniversário da
+
+                    <strong>Farmácia São José</strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAMPANHAS -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>Radar da Indústria</h3>
+
+                    <i class="bi bi-megaphone"></i>
+
+                </div>
+
+                <div class="industry-news">
+
+                    <div>
+
+                        <strong>EMS</strong>
+
+                        <p>
+
+                            Nova campanha de inverno disponível.
+
+                        </p>
+
+                    </div>
+
+                    <hr>
+
+                    <div>
+
+                        <strong>Neo Química</strong>
+
+                        <p>
+
+                            Novos catálogos publicados.
+
+                        </p>
+
+                    </div>
+
+                    <hr>
+
+                    <div>
+
+                        <strong>Medley</strong>
+
+                        <p>
+
+                            Programa de incentivo atualizado.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
 
     </div>
 

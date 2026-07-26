@@ -1,41 +1,45 @@
-/* ===========================
+/* =====================================================
    CONECTA
-=========================== */
+===================================================== */
 
-.conecta{
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    max-width:900px;
+.conecta-page{
 
-    margin:35px auto;
+    max-width:1600px;
+    margin:auto;
+    padding:30px;
 
-    display:flex;
+}
 
-    flex-direction:column;
+body{
 
-    gap:28px;
+    background:#f4f7fb;
 
 }
 
 
-
-/* ===========================
+/* =====================================================
    HEADER
-=========================== */
+===================================================== */
 
 .conecta-header{
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
+
+    margin-bottom:30px;
 
 }
 
 .conecta-header h1{
 
     font-size:34px;
-
     font-weight:800;
 
     color:#0f172a;
@@ -44,137 +48,512 @@
 
 .conecta-header p{
 
-    margin-top:6px;
-
     color:#64748b;
-
-    font-size:15px;
+    margin-top:6px;
 
 }
 
-.acoes-header{
+.header-actions{
 
     display:flex;
-
     gap:12px;
 
 }
 
-.acoes-header button{
+.header-actions button{
 
-    width:46px;
-
-    height:46px;
+    width:48px;
+    height:48px;
 
     border:none;
 
     border-radius:14px;
 
-    background:#fff;
-
-    color:#334155;
+    background:white;
 
     cursor:pointer;
 
-    box-shadow:0 8px 22px rgba(15,23,42,.08);
+    font-size:20px;
+
+    color:#1e3a8a;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+
+    position:relative;
 
     transition:.25s;
 
 }
 
-.acoes-header button:hover{
+.header-actions button:hover{
 
-    transform:translateY(-2px);
-
-}
-
-
-
-/* ===========================
-   NOVO POST
-=========================== */
-
-.novo-post{
-
-    background:#fff;
-
-    border-radius:22px;
-
-    padding:26px;
-
-    box-shadow:
-
-    0 15px 40px rgba(15,23,42,.06);
+    transform:translateY(-3px);
 
 }
 
-.post-topo{
+.badge{
 
-    display:flex;
+    position:absolute;
 
-    gap:18px;
+    top:6px;
+    right:6px;
 
-    align-items:flex-start;
-
-}
-
-.avatar-post{
-
-    width:58px;
-
-    height:58px;
+    width:18px;
+    height:18px;
 
     border-radius:50%;
 
-    background:linear-gradient(135deg,#2563eb,#22c55e);
+    background:#ef4444;
+
+    color:white;
+
+    font-size:11px;
 
     display:flex;
 
-    justify-content:center;
-
     align-items:center;
 
-    color:#fff;
-
-    font-size:22px;
-
-    font-weight:700;
+    justify-content:center;
 
 }
 
-.post-topo textarea{
 
-    flex:1;
+/* =====================================================
+   GRID
+===================================================== */
 
-    border:none;
+.conecta-grid{
 
-    resize:none;
+    display:grid;
 
-    outline:none;
+    grid-template-columns:
 
-    min-height:90px;
+        300px
 
-    font-size:16px;
+        1fr
 
-    font-family:inherit;
+        320px;
+
+    gap:28px;
+
+    align-items:start;
+
+}
+
+
+/* =====================================================
+   CARD PADRÃO
+===================================================== */
+
+.card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    box-shadow:
+
+    0 10px 30px rgba(15,23,42,.06);
+
+    margin-bottom:22px;
+
+}
+
+
+/* =====================================================
+   PERFIL
+===================================================== */
+
+.profile-card{
+
+    overflow:hidden;
+
+    text-align:center;
+
+}
+
+.profile-cover{
+
+    height:95px;
+
+    margin:-22px -22px 0 -22px;
+
+    background:linear-gradient(135deg,#2563eb,#1e3a8a);
+
+}
+
+.profile-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    margin:-45px auto 18px;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    color:#2563eb;
+
+    border:5px solid white;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+}
+
+.profile-card h3{
+
+    font-size:21px;
 
     color:#0f172a;
 
 }
 
-.post-topo textarea::placeholder{
+.profile-card span{
 
-    color:#94a3b8;
+    color:#64748b;
+
+    display:block;
+
+    margin-top:5px;
+
+}
+
+.member{
+
+    margin-top:16px;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+.profile-stats{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    margin:28px 0;
+
+}
+
+.profile-stats strong{
+
+    display:block;
+
+    font-size:24px;
+
+    color:#0f172a;
+
+}
+
+.profile-stats small{
+
+    color:#64748b;
+
+}
+
+.btn-profile{
+
+    width:100%;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-profile:hover{
+
+    background:#1d4ed8;
 
 }
 
 
+/* =====================================================
+   MENU
+===================================================== */
 
-/* ===========================
-   FOOTER POST
-=========================== */
+.menu-conecta{
 
-.post-footer{
+    list-style:none;
+
+}
+
+.menu-conecta li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px 10px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    color:#334155;
+
+    font-weight:600;
+
+}
+
+.menu-conecta li:hover{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+}
+
+.menu-conecta i{
+
+    font-size:20px;
+
+}
+
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+.premium-card{
+
+    border-radius:22px;
+
+    padding:30px;
+
+    text-align:center;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #1e40af,
+
+        #2563eb
+
+    );
+
+    color:white;
+
+}
+
+.premium-card i{
+
+    font-size:40px;
+
+}
+
+.premium-card h3{
+
+    margin-top:16px;
+
+}
+
+.premium-card p{
+
+    margin:18px 0;
+
+    line-height:1.6;
+
+    opacity:.95;
+
+}
+
+.premium-card button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    background:white;
+
+    color:#1e3a8a;
+
+}
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:1200px){
+
+    .conecta-grid{
+
+        grid-template-columns:
+
+        260px
+
+        1fr;
+
+    }
+
+    .right-column{
+
+        display:none;
+
+    }
+
+}
+
+@media(max-width:850px){
+
+    .conecta-page{
+
+        padding:18px;
+
+    }
+
+    .conecta-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .left-column{
+
+        order:2;
+
+    }
+
+    .feed-column{
+
+        order:1;
+
+    }
+
+}
+
+/* =====================================================
+   FEED
+===================================================== */
+
+.feed-column{
+
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+
+}
+
+
+/* =====================================================
+   NOVA PUBLICAÇÃO
+===================================================== */
+
+.new-post{
+
+    padding:24px;
+
+}
+
+.new-post-top{
+
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+
+}
+
+.avatar-user{
+
+    width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:700;
+    font-size:20px;
+
+    flex-shrink:0;
+
+}
+
+.new-post textarea{
+
+    width:100%;
+    min-height:110px;
+
+    resize:none;
+
+    border:none;
+    outline:none;
+
+    font-size:16px;
+    font-family:inherit;
+
+    color:#334155;
+
+    background:#f8fafc;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    transition:.25s;
+
+}
+
+.new-post textarea:focus{
+
+    background:white;
+
+    box-shadow:0 0 0 2px #2563eb22;
+
+}
+
+.new-post-actions{
+
+    margin-top:20px;
 
     display:flex;
 
@@ -182,97 +561,66 @@
 
     align-items:center;
 
-    margin-top:20px;
+    flex-wrap:wrap;
 
-    padding-top:20px;
-
-    border-top:1px solid #edf2f7;
+    gap:10px;
 
 }
 
-.post-footer button{
+.new-post-actions button{
 
     border:none;
 
-    background:none;
+    background:#eff6ff;
 
-    color:#475569;
+    color:#2563eb;
 
-    display:flex;
+    padding:12px 18px;
 
-    gap:8px;
-
-    align-items:center;
+    border-radius:12px;
 
     cursor:pointer;
 
-    font-size:15px;
+    font-weight:600;
 
-    transition:.2s;
+    transition:.25s;
 
 }
 
-.post-footer button:hover{
+.new-post-actions button:hover{
 
-    color:#2563eb;
+    background:#dbeafe;
 
 }
 
 .btn-publicar{
 
-    padding:12px 28px !important;
+    background:#2563eb !important;
 
-    border-radius:14px !important;
+    color:white !important;
 
-    background:linear-gradient(135deg,#2563eb,#1d4ed8)!important;
+    margin-left:auto;
 
-    color:#fff!important;
+    padding:12px 30px !important;
 
-    font-weight:700;
+}
+
+.btn-publicar:hover{
+
+    background:#1d4ed8 !important;
 
 }
 
 
-
-/* ===========================
-   FEED
-=========================== */
-
-.feed{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:24px;
-
-}
-
-
-
-/* ===========================
-   CARD
-=========================== */
+/* =====================================================
+   POST
+===================================================== */
 
 .post{
 
-    background:#fff;
-
-    border-radius:22px;
-
-    padding:26px;
-
-    box-shadow:
-
-    0 15px 40px rgba(15,23,42,.06);
+    padding:24px;
 
 }
-
-
-
-/* ===========================
-   HEADER POST
-=========================== */
 
 .post-header{
 
@@ -280,21 +628,21 @@
 
     align-items:center;
 
-    gap:16px;
+    gap:15px;
 
 }
 
-.avatar{
+.post-avatar{
 
-    width:52px;
+    width:56px;
 
-    height:52px;
+    height:56px;
 
     border-radius:50%;
 
     background:#2563eb;
 
-    color:#fff;
+    color:white;
 
     display:flex;
 
@@ -304,148 +652,195 @@
 
     font-weight:700;
 
-    font-size:20px;
+    font-size:18px;
+
+    flex-shrink:0;
 
 }
 
-.post-header strong{
+.post-avatar.green{
+
+    background:#16a34a;
+
+}
+
+.post-avatar.blue{
+
+    background:#1d4ed8;
+
+}
+
+.post-user{
+
+    flex:1;
+
+}
+
+.post-user strong{
 
     display:block;
 
     color:#0f172a;
 
-}
-
-.post-header small{
-
-    color:#94a3b8;
+    font-size:17px;
 
 }
 
-
-
-/* ===========================
-   TEXTO
-=========================== */
-
-.post-texto{
-
-    margin-top:22px;
-
-    color:#334155;
-
-    line-height:1.7;
-
-    font-size:15px;
-
-}
-
-
-
-/* ===========================
-   IMAGEM
-=========================== */
-
-.post-imagem{
-
-    margin-top:22px;
-
-    height:260px;
-
-    border-radius:18px;
-
-    background:
-
-    linear-gradient(135deg,#dbeafe,#eff6ff);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:#2563eb;
-
-    font-weight:700;
-
-}
-
-
-
-/* ===========================
-   AÇÕES
-=========================== */
-
-.post-acoes{
-
-    margin-top:24px;
-
-    display:flex;
-
-    justify-content:space-around;
-
-    border-top:1px solid #edf2f7;
-
-    padding-top:18px;
-
-}
-
-.post-acoes button{
-
-    background:none;
-
-    border:none;
+.post-user span{
 
     color:#64748b;
 
+    font-size:14px;
+
+}
+
+.post-menu{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
     cursor:pointer;
 
-    display:flex;
+    transition:.25s;
 
-    align-items:center;
+}
 
-    gap:8px;
+.post-menu:hover{
+
+    background:#e2e8f0;
+
+}
+
+.post-content{
+
+    margin-top:22px;
+
+}
+
+.post-content p{
+
+    color:#334155;
+
+    line-height:1.8;
 
     font-size:15px;
 
-    transition:.2s;
-
-}
-
-.post-acoes button:hover{
-
-    color:#2563eb;
-
 }
 
 
+/* =====================================================
+   IMAGEM
+===================================================== */
 
-/* ===========================
-   RESPONSIVO
-=========================== */
+.post-image{
 
-@media(max-width:900px){
-
-.conecta{
-
-    margin:18px;
+    margin-top:20px;
 
 }
 
-.post-footer{
-
-    flex-wrap:wrap;
-
-    gap:16px;
-
-}
-
-.btn-publicar{
+.post-image img{
 
     width:100%;
 
-    justify-content:center;
+    border-radius:18px;
+
+    display:block;
 
 }
 
+
+/* =====================================================
+   CURTIDAS
+===================================================== */
+
+.post-info{
+
+    margin-top:18px;
+
+    padding:14px 0;
+
+    border-top:1px solid #edf2f7;
+
+    border-bottom:1px solid #edf2f7;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#64748b;
+
+    font-size:14px;
+
 }
+
+
+/* =====================================================
+   AÇÕES
+===================================================== */
+
+.post-actions{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:10px;
+
+    margin-top:18px;
+
+}
+
+.post-actions button{
+
+    border:none;
+
+    background:#f8fafc;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    color:#475569;
+
+    transition:.25s;
+
+}
+
+.post-actions button:hover{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    transform:translateY(-2px);
+
+}
+
+.post-actions i{
+
+    margin-right:8px;
+
+}
+
+
+/* =====================================================
+   ESPAÇAMENTO ENTRE POSTS
+===================================================== */
+
+.feed-column .post{
+
+    margin-bottom:0;
+
+}
+
