@@ -4202,3 +4202,181 @@ HOVER
     margin:0;
 
 }
+
+/* ======================================
+   VISUAL PREMIUM
+======================================*/
+
+.lista-header{
+
+    background:#123d73;
+
+    color:#fff;
+
+    font-weight:700;
+
+    padding:16px 22px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.lista-header i{
+
+    font-size:18px;
+
+}
+
+.btn-adicionar-produto{
+
+    background:#fff;
+
+    color:#123d73;
+
+    border:2px solid #123d73;
+
+    border-radius:12px;
+
+    padding:12px 28px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.btn-adicionar-produto:hover{
+
+    background:#123d73;
+
+    color:#fff;
+
+}
+
+.btn-criar{
+
+    background:#16a34a;
+
+    border:none;
+
+    color:#fff;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    box-shadow:0 12px 30px rgba(22,163,74,.25);
+
+}
+
+.btn-enviar{
+
+    background:#fff;
+
+    color:#123d73;
+
+    border:2px solid #123d73;
+
+}
+
+.btn-enviar:hover{
+
+    background:#123d73;
+
+    color:#fff;
+
+}
+
+.entrada-row input{
+
+    border:1px solid #dbe4ef;
+
+    border-radius:12px;
+
+}
+
+.entrada-row input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/* =====================================
+   TABELA DE PRODUTOS
+===================================== */
+
+.lista-produtos{
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+}
+
+.tabela-produtos{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.tabela-produtos thead{
+
+    background:#f8fafc;
+
+}
+
+.tabela-produtos thead th{
+
+    padding:16px;
+
+    font-size:14px;
+
+    color:#64748b;
+
+    font-weight:700;
+
+    text-align:left;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+.tabela-produtos tbody tr{
+
+    transition:.2s;
+
+}
+
+.tabela-produtos tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+.tabela-produtos tbody td{
+
+    padding:16px;
+
+    border-bottom:1px solid #eef2f7;
+
+    color:#334155;
+
+}
+
+.tabela-produtos tbody tr:last-child td{
+
+    border-bottom:none;
+
+}

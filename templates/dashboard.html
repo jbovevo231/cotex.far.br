@@ -230,9 +230,11 @@ Dashboard - CotaFarma
     <div class="entrada-acoes">
 
         <button
-            type="button"
-            id="btnAdicionar"
-            class="btn-adicionar-produto">
+    type="button"
+    id="btnAdicionar"
+    class="btn-adicionar-produto">
+
+
 
             <i class="bi bi-plus-circle-fill"></i>
 
@@ -246,13 +248,41 @@ Dashboard - CotaFarma
 
     <div class="lista-header">
 
-        Produtos Adicionados à Lista
+    <i class="bi bi-list-check"></i>
 
-    </div>
+    Produtos Adicionados à Lista
+
+</div>
 
     <!-- AQUI continua funcionando seu JavaScript -->
 
-    <div id="listaMedicamentos"></div>
+    <div class="lista-produtos">
+
+    <table class="tabela-produtos">
+
+        <thead>
+
+            <tr>
+
+                <th>Medicamento</th>
+
+                <th>Laboratório</th>
+
+                <th>Quantidade</th>
+
+                <th></th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="listaMedicamentos">
+
+        </tbody>
+
+    </table>
+
+</div>
 
 </div> <!-- fecha medicine-table -->
 
