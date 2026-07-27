@@ -57,7 +57,7 @@ def validar_login(cnpj, senha):
 
     usuario = db.execute(
         """
-        SELECT id, cnpj, email, senha
+        SELECT id, nome, cnpj, email, senha
         FROM usuarios
         WHERE cnpj = ?
         """,
@@ -68,7 +68,7 @@ def validar_login(cnpj, senha):
         print("CNPJ NÃO ENCONTRADO")
         return None
 
-    senha_banco = usuario[3]
+    senha_banco = usuario[4]
 
     if not check_password_hash(senha_banco, senha):
         print("SENHA INCORRETA")
@@ -76,8 +76,16 @@ def validar_login(cnpj, senha):
 
     print("LOGIN APROVADO")
 
+    print("USUARIO RETORNADO:", {
+    "id": usuario[0],
+    "nome": usuario[1],
+    "cnpj": usuario[2],
+    "email": usuario[3]
+})
+
     return {
         "id": usuario[0],
-        "cnpj": usuario[1],
-        "email": usuario[2]
+        "nome": usuario[1],
+        "cnpj": usuario[2],
+        "email": usuario[3]
     }
