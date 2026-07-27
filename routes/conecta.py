@@ -39,21 +39,33 @@ def publicar():
 
     nome_arquivo = None
 
-    if foto and foto.filename:
+    try:
 
-        pasta = "static/uploads/conecta"
-        os.makedirs(pasta, exist_ok=True)
+        if foto and foto.filename:
 
-        extensao = os.path.splitext(foto.filename)[1]
+            pasta = "static/uploads/conecta"
+            os.makedirs(pasta, exist_ok=True)
 
-        nome_arquivo = f"{uuid.uuid4().hex}{extensao}"
+            extensao = os.path.splitext(foto.filename)[1]
 
-        foto.save(
-            os.path.join(
+            nome_arquivo = f"{uuid.uuid4().hex}{extensao}"
+
+            caminho = os.path.join(
                 pasta,
                 nome_arquivo
             )
-        )
+
+        print("SALVANDO EM:", caminho)
+
+        foto.save(caminho)
+
+        print("FOTO SALVA COM SUCESSO")
+
+    except Exception as e:
+
+        print("ERRO AO SALVAR FOTO:", e)
+
+        raise
 
         print("SESSÃO:", dict(session))
         print("NOME:", session.get("usuario_nome"))
