@@ -55,15 +55,27 @@ def publicar():
                 nome_arquivo
             )
 
-        print("SALVANDO EM:", caminho)
+            print("SALVANDO EM:", caminho)
 
-        foto.save(caminho)
+            foto.save(caminho)
 
-        print("FOTO SALVA COM SUCESSO")
+            print("FOTO SALVA COM SUCESSO")
+
+        print("SESSÃO:", dict(session))
+        print("NOME:", session.get("usuario_nome"))
+
+        salvar_post(
+            session.get("usuario_cnpj"),
+            session.get("usuario_nome", "Usuário"),
+            texto,
+            nome_arquivo
+        )
+
+        return redirect(url_for("conecta.conecta"))
 
     except Exception as e:
 
-        print("ERRO AO SALVAR FOTO:", e)
+        print("ERRO NA ROTA PUBLICAR:", repr(e))
 
         raise
 
