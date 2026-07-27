@@ -93,6 +93,12 @@ CREATE TABLE IF NOT EXISTS conecta_posts (
 )
 """)
 
-conn.commit()
+try:
+    conn.commit()
+    print("✅ Tabela criada com sucesso!")
+except Exception as e:
+    print("❌ ERRO NO COMMIT:")
+    print(e)
+
 conn.close()
 
