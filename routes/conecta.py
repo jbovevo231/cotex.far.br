@@ -18,10 +18,12 @@ from models.conecta import (
 
 conecta_bp = Blueprint("conecta", __name__)
 
-print("ENTROU NA ROTA CONECTA")
+
 
 @conecta_bp.route("/conecta")
 def conecta():
+
+    print("ENTROU NA ROTA CONECTA")
 
     posts = listar_posts()
 
