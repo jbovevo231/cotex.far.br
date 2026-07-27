@@ -65,7 +65,7 @@ def validar_login(cnpj, senha):
     ).fetchone()
 
     if usuario is None:
-        print("CNPJ NÃO ENCONTRADO")
+
         return None
 
     senha_banco = usuario[4]
@@ -74,14 +74,7 @@ def validar_login(cnpj, senha):
         print("SENHA INCORRETA")
         return None
 
-    print("LOGIN APROVADO")
 
-    print("USUARIO RETORNADO:", {
-    "id": usuario[0],
-    "nome": usuario[1],
-    "cnpj": usuario[2],
-    "email": usuario[3]
-})
 
     return {
         "id": usuario[0],
