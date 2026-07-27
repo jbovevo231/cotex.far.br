@@ -6,6 +6,8 @@ from routes.auth import auth_bp
 from routes.dashboard import dashboard_bp
 from routes.cotacao import cotacao_bp
 from routes.conecta import conecta_bp
+import routes.conecta
+print(routes.conecta.__file__)
 from routes.comparativo import comparativo_bp
 
 app = Flask(__name__)

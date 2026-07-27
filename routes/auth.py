@@ -52,6 +52,7 @@ def login():
     if usuario:
 
         session["usuario_id"] = usuario["id"]
+        session["usuario_nome"] = usuario["nome"]
         session["usuario_email"] = usuario["email"]
         session["usuario_cnpj"] = usuario["cnpj"]
 

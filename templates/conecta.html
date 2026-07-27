@@ -224,28 +224,67 @@ Conecta - CotaFarma
 
                     </div>
 
-                    <textarea
-                        placeholder="O que você deseja compartilhar hoje?"></textarea>
+                    <form
+    action="{{ url_for('conecta.publicar') }}"
+    method="POST"
+    enctype="multipart/form-data">
 
-                </div>
+    <textarea
+        name="texto"
+        placeholder="O que você deseja compartilhar hoje?"></textarea>
 
-                <div class="new-post-actions">
+    <input
+        type="file"
+        id="foto"
+        name="foto"
+        accept="image/*"
+        hidden>
 
-                    <button>
+        <div id="previewImagem" class="preview-imagem" style="display:none;">
 
-                        <i class="bi bi-image"></i>
+    <img id="imagemPreview">
 
-                        Foto
+    <button
+        type="button"
+        class="remover-imagem"
+        onclick="removerImagem()">
 
-                    </button>
+        ×
 
-                    <button>
+    </button>
 
-                        <i class="bi bi-file-earmark-text"></i>
+</div>
 
-                        Documento
+    <input
+    type="file"
+    id="documento"
+    name="documento"
+    accept=".pdf,.doc,.docx"
+    hidden>
 
-                    </button>
+</div>
+
+<div class="new-post-actions">
+
+                    <button
+    type="button"
+    onclick="document.getElementById('foto').click()">
+
+    <i class="bi bi-image"></i>
+
+    Foto
+
+</button>
+
+                    <button
+    type="button"
+    onclick="document.getElementById('documento').click()">
+
+    <i class="bi bi-file-earmark-text"></i>
+
+    Documento
+
+</button>
 
                     <button>
 
@@ -255,7 +294,9 @@ Conecta - CotaFarma
 
                     </button>
 
-                    <button class="btn-publicar">
+                    <button
+    type="submit"
+    class="btn-publicar">
 
                         Publicar
 
@@ -265,346 +306,71 @@ Conecta - CotaFarma
 
             </div>
 
+</form>
 
+<!-- AQUI ENTRARÃO AS PUBLICAÇÕES -->
 
-            <!-- AQUI ENTRARÃO AS PUBLICAÇÕES -->
-
-            <!-- ==========================
-     PUBLICAÇÃO 01
-========================== -->
+{% for post in posts %}
 
 <div class="card post">
 
     <div class="post-header">
 
         <div class="post-avatar">
-
-            FS
-
+            {{ post[1][0] }}
         </div>
 
         <div class="post-user">
 
-            <strong>Farmácia São Lucas</strong>
+            <strong>{{ post[1] }}</strong>
 
-            <span>
-
-                Belo Horizonte • MG
-
-                •
-
-                há 12 minutos
-
-            </span>
+            <span>{{ post[4] }}</span>
 
         </div>
 
-        <button class="post-menu">
-
-            <i class="bi bi-three-dots"></i>
-
-        </button>
-
     </div>
 
-
+    {% if post[2] %}
     <div class="post-content">
-
-        <p>
-
-            Recebemos uma excelente condição da EMS para este mês.
-
-            Alguém mais conseguiu um desconto parecido?
-
-        </p>
-
+        <p>{{ post[2] }}</p>
     </div>
+    {% endif %}
 
-
+    {% if post[3] %}
     <div class="post-image">
-
-        <img
-            src="https://placehold.co/900x320/e8f0ff/1e40af?text=Imagem+da+Publicação"
-            alt="Publicação">
-
+        <img src="{{ url_for('static', filename='uploads/conecta/' ~ post[3]) }}">
     </div>
-
-
-    <div class="post-info">
-
-        <div>
-
-            ❤️ 32 curtidas
-
-        </div>
-
-        <div>
-
-            8 comentários
-
-        </div>
-
-    </div>
-
+    {% endif %}
 
     <div class="post-actions">
 
         <button>
-
             <i class="bi bi-hand-thumbs-up"></i>
-
             Curtir
-
         </button>
 
         <button>
-
             <i class="bi bi-chat"></i>
-
             Comentar
-
         </button>
 
         <button>
-
             <i class="bi bi-share"></i>
-
             Compartilhar
-
         </button>
 
         <button>
-
             <i class="bi bi-bookmark"></i>
-
             Salvar
-
         </button>
 
     </div>
 
 </div>
 
+{% endfor %}
 
-
-<!-- ==========================
-     PUBLICAÇÃO 02
-========================== -->
-
-<div class="card post">
-
-    <div class="post-header">
-
-        <div class="post-avatar green">
-
-            DC
-
-        </div>
-
-        <div class="post-user">
-
-            <strong>Drogaria Central</strong>
-
-            <span>
-
-                São Paulo • SP
-
-                •
-
-                há 1 hora
-
-            </span>
-
-        </div>
-
-        <button class="post-menu">
-
-            <i class="bi bi-three-dots"></i>
-
-        </button>
-
-    </div>
-
-
-    <div class="post-content">
-
-        <p>
-
-            Alguém encontrou Ozempic disponível para compra?
-
-            Precisamos para alguns clientes.
-
-        </p>
-
-    </div>
-
-
-    <div class="post-info">
-
-        <div>
-
-            ❤️ 12 curtidas
-
-        </div>
-
-        <div>
-
-            15 comentários
-
-        </div>
-
-    </div>
-
-
-    <div class="post-actions">
-
-        <button>
-
-            <i class="bi bi-hand-thumbs-up"></i>
-
-            Curtir
-
-        </button>
-
-        <button>
-
-            <i class="bi bi-chat"></i>
-
-            Comentar
-
-        </button>
-
-        <button>
-
-            <i class="bi bi-share"></i>
-
-            Compartilhar
-
-        </button>
-
-        <button>
-
-            <i class="bi bi-bookmark"></i>
-
-            Salvar
-
-        </button>
-
-    </div>
-
-</div>
-
-
-
-<!-- ==========================
-     PUBLICAÇÃO 03
-========================== -->
-
-<div class="card post">
-
-    <div class="post-header">
-
-        <div class="post-avatar blue">
-
-            BE
-
-        </div>
-
-        <div class="post-user">
-
-            <strong>Farmácia Bem Estar</strong>
-
-            <span>
-
-                Curitiba • PR
-
-                •
-
-                há 2 horas
-
-            </span>
-
-        </div>
-
-        <button class="post-menu">
-
-            <i class="bi bi-three-dots"></i>
-
-        </button>
-
-    </div>
-
-
-    <div class="post-content">
-
-        <p>
-
-            Estamos procurando novos fornecedores de vitaminas.
-
-            Alguma indicação?
-
-        </p>
-
-    </div>
-
-
-    <div class="post-info">
-
-        <div>
-
-            ❤️ 48 curtidas
-
-        </div>
-
-        <div>
-
-            23 comentários
-
-        </div>
-
-    </div>
-
-
-    <div class="post-actions">
-
-        <button>
-
-            <i class="bi bi-hand-thumbs-up"></i>
-
-            Curtir
-
-        </button>
-
-        <button>
-
-            <i class="bi bi-chat"></i>
-
-            Comentar
-
-        </button>
-
-        <button>
-
-            <i class="bi bi-share"></i>
-
-            Compartilhar
-
-        </button>
-
-        <button>
-
-            <i class="bi bi-bookmark"></i>
-
-            Salvar
-
-        </button>
-
-    </div>
-
-</div>
-
-        </section>
-
+</section>
 
 
         <!-- ==========================
