@@ -7,8 +7,9 @@ from flask import (
     session
 )
 
-import os
-import uuid
+import cloudinary
+import cloudinary.uploader
+import cloudinary_config
 
 from models.conecta import (
     listar_posts,
@@ -17,12 +18,12 @@ from models.conecta import (
 
 conecta_bp = Blueprint("conecta", __name__)
 
+print("ENTROU NA ROTA CONECTA")
 
 @conecta_bp.route("/conecta")
 def conecta():
 
     posts = listar_posts()
-    print(posts)
 
     return render_template(
         "conecta.html",
@@ -43,38 +44,31 @@ def publicar():
 
         if foto and foto.filename:
 
-            pasta = "static/uploads/conecta"
-            os.makedirs(pasta, exist_ok=True)
-
-            extensao = os.path.splitext(foto.filename)[1]
-
-            nome_arquivo = f"{uuid.uuid4().hex}{extensao}"
-
-            caminho = os.path.join(
-                pasta,
-                nome_arquivo
+            resultado = cloudinary.uploader.upload(
+                foto,
+                folder="cotafarma/conecta",
+                resource_type="image"
             )
 
-            print("SALVANDO EM:", caminho)
+            nome_arquivo = resultado["secure_url"]
 
-            foto.save(caminho)
-
-            print("FOTO SALVA COM SUCESSO")
-
-        print("SESSÃO:", dict(session))
-        print("NOME:", session.get("usuario_nome"))
+            print("Imagem enviada:")
+            print(nome_arquivo)
 
         salvar_post(
             session.get("usuario_cnpj"),
-            session.get("usuario_nome", "Usuário"),
+            session.get("usuario_nome") or "Usuário",
             texto,
             nome_arquivo
         )
 
-        return redirect(url_for("conecta.conecta"))
+        return redirect(
+            url_for("conecta.conecta")
+        )
 
     except Exception as e:
 
-        print("ERRO NA ROTA PUBLICAR:", repr(e))
+        print("ERRO CLOUDINARY:")
+        print(repr(e))
 
         raise
