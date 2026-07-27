@@ -1,5 +1,6 @@
 from database.connection import get_db
 from werkzeug.security import generate_password_hash, check_password_hash
+import secrets
 
 
 def limpar_cnpj(cnpj):
@@ -65,7 +66,6 @@ def validar_login(cnpj, senha):
     ).fetchone()
 
     if usuario is None:
-
         return None
 
     senha_banco = usuario[4]
@@ -74,7 +74,53 @@ def validar_login(cnpj, senha):
         print("SENHA INCORRETA")
         return None
 
+    return {
+        "id": usuario[0],
+        "nome": usuario[1],
+        "cnpj": usuario[2],
+        "email": usuario[3]
+    }
 
+
+# =====================================================
+# REMEMBER ME
+# =====================================================
+
+def gerar_remember_token(usuario_id):
+
+    token = secrets.token_hex(32)
+
+    db = get_db()
+
+    db.execute(
+        """
+        UPDATE usuarios
+        SET remember_token=?
+        WHERE id=?
+        """,
+        (token, usuario_id)
+    )
+
+    db.commit()
+
+    return token
+
+
+def buscar_usuario_por_token(token):
+
+    db = get_db()
+
+    usuario = db.execute(
+        """
+        SELECT id, nome, cnpj, email
+        FROM usuarios
+        WHERE remember_token=?
+        """,
+        (token,)
+    ).fetchone()
+
+    if usuario is None:
+        return None
 
     return {
         "id": usuario[0],
@@ -82,3 +128,19 @@ def validar_login(cnpj, senha):
         "cnpj": usuario[2],
         "email": usuario[3]
     }
+
+
+def limpar_remember_token(usuario_id):
+
+    db = get_db()
+
+    db.execute(
+        """
+        UPDATE usuarios
+        SET remember_token=NULL
+        WHERE id=?
+        """,
+        (usuario_id,)
+    )
+
+    db.commit()
