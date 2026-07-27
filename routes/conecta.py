@@ -55,6 +55,9 @@ def publicar():
             )
         )
 
+        print("SESSÃO:", dict(session))
+        print("NOME:", session.get("usuario_nome"))
+
     salvar_post(
         session.get("usuario_cnpj"),
         session.get("usuario_nome", "Usuário"),
