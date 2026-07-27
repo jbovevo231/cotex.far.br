@@ -337,10 +337,11 @@ Conecta - CotaFarma
     {% endif %}
 
     {% if post[3] %}
-    <div class="post-image">
-        <img src="{{ post[3] }}" alt="Imagem da publicação">
-    </div>
-    {% endif %}
+    {% if post[3] %}
+<div class="post-image">
+    <img src="{{ post[3] }}" alt="Imagem">
+</div>
+{% endif %}
 
     <div class="post-actions">
 
