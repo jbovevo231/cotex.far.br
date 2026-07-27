@@ -78,16 +78,3 @@ def publicar():
         print("ERRO NA ROTA PUBLICAR:", repr(e))
 
         raise
-
-        print("SESSÃO:", dict(session))
-        print("NOME:", session.get("usuario_nome"))
-
-    salvar_post(
-        session.get("usuario_cnpj"),
-        session.get("usuario_nome", "Usuário"),
-        texto,
-        nome_arquivo
-    )
-
-    return redirect(url_for("conecta.conecta"))
-    print(">>> ROTA PUBLICAR CARREGADA <<<")
