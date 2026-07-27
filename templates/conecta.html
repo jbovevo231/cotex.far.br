@@ -338,7 +338,7 @@ Conecta - CotaFarma
 
     {% if post[3] %}
     <div class="post-image">
-        <img src="{{ url_for('static', filename='uploads/conecta/' ~ post[3]) }}">
+        <img src="{{ post[3] }}" alt="Imagem da publicação">
     </div>
     {% endif %}
 
