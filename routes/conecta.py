@@ -27,10 +27,13 @@ def conecta():
 
     posts = listar_posts()
 
+    print("NOME DA SESSÃO:", session.get("usuario_nome"))
+
     return render_template(
-        "conecta.html",
-        posts=posts
-    )
+    "conecta.html",
+    posts=posts,
+    usuario_nome=session.get("usuario_nome")
+)
 
 
 @conecta_bp.route("/conecta/publicar", methods=["POST"])
