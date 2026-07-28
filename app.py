@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, session
 
 from config import Config
 
@@ -10,9 +10,44 @@ import routes.conecta
 print(routes.conecta.__file__)
 from routes.comparativo import comparativo_bp
 
+from models.usuario import buscar_usuario_por_token
+
 app = Flask(__name__)
 
+app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['DEBUG'] = True
+
 app.config.from_object(Config)
+
+
+# =====================================
+# RESTAURA A SESSÃO PELO COOKIE
+# =====================================
+@app.before_request
+def restaurar_sessao():
+
+    # Se já existe sessão, não faz nada
+    if "usuario_id" in session:
+        return
+
+    # Lê o cookie
+    token = request.cookies.get("remember_token")
+
+    if not token:
+        return
+
+    # Procura o usuário pelo token
+    usuario = buscar_usuario_por_token(token)
+
+    if usuario is None:
+        return
+
+    # Recria a sessão
+    session["usuario_id"] = usuario["id"]
+    session["usuario_nome"] = usuario["nome"]
+    session["usuario_email"] = usuario["email"]
+    session["usuario_cnpj"] = usuario["cnpj"]
+
 
 # ===========================
 # REGISTRO DOS BLUEPRINTS
@@ -29,7 +64,9 @@ app.register_blueprint(comparativo_bp)
 def inicio():
     return render_template("login.html")
 
+
 print(app.url_map)
+
 if __name__ == "__main__":
     app.run(
         debug=True,
