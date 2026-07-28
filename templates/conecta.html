@@ -776,17 +776,184 @@ onchange="enviarFoto()">
 
 </div>
 
+<div id="modalCrop" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+z-index:9999;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+">
+
+    <img id="imagemCrop" style="max-width:90%;max-height:70%;">
+
+    <div style="margin-top:20px;">
+
+        <button onclick="confirmarCrop()">
+            Salvar
+        </button>
+
+        <button onclick="fecharCrop()">
+            Cancelar
+        </button>
+
+    </div>
+
+</div>
+
 {% block scripts %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 
 <script src="{{ url_for('static', filename='js/conecta.js') }}"></script>
 
+
 <script>
 
-function enviarFoto(){
+let cropper = null;
+let tipoImagem = null;
 
-    document.querySelector(".form-fotos").submit();
+
+
+document.getElementById("foto_perfil").addEventListener("change", function(e){
+
+    tipoImagem = "perfil";
+
+    abrirCrop(e);
+
+});
+
+
+
+document.getElementById("foto_capa").addEventListener("change", function(e){
+
+    tipoImagem = "capa";
+
+    abrirCrop(e);
+
+});
+
+
+
+function abrirCrop(event){
+
+    const arquivo = event.target.files[0];
+
+
+    if(!arquivo){
+        return;
+    }
+
+
+    const imagem = document.getElementById("imagemCrop");
+
+
+    imagem.src = URL.createObjectURL(arquivo);
+
+
+    document.getElementById("modalCrop").style.display = "flex";
+
+
+    if(cropper){
+
+        cropper.destroy();
+
+    }
+
+
+    cropper = new Cropper(imagem, {
+
+        aspectRatio: tipoImagem === "perfil" ? 1 : 3,
+
+        viewMode: 1,
+
+        autoCropArea: 1
+
+    });
 
 }
+
+
+
+function confirmarCrop(){
+
+
+    cropper.getCroppedCanvas().toBlob(function(blob){
+
+
+        const formData = new FormData();
+
+
+        if(tipoImagem === "perfil"){
+
+
+            formData.append(
+                "foto_perfil",
+                blob,
+                "perfil.jpg"
+            );
+
+
+        }else{
+
+
+            formData.append(
+                "foto_capa",
+                blob,
+                "capa.jpg"
+            );
+
+        }
+
+
+
+        fetch(
+            "{{ url_for('conecta.editar_perfil') }}",
+            {
+
+                method:"POST",
+
+                body:formData
+
+            }
+
+        )
+        .then(()=>{
+
+            location.reload();
+
+        });
+
+
+    });
+
+
+}
+
+
+
+function fecharCrop(){
+
+    document.getElementById("modalCrop").style.display="none";
+
+
+    if(cropper){
+
+        cropper.destroy();
+
+        cropper=null;
+
+    }
+
+}
+
 
 </script>
 

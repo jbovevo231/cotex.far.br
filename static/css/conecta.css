@@ -1801,3 +1801,87 @@ body{
     border-radius: 50%;
 
 }
+
+/* BOTÕES DO CROP DA FOTO */
+
+#modalCrop button{
+
+    padding:10px 25px;
+
+    border:none;
+
+    border-radius:25px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin:0 8px;
+
+    transition:.3s;
+
+}
+
+
+/* Botão salvar */
+
+#modalCrop button:first-child{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+#modalCrop button:first-child:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+/* Botão cancelar */
+
+#modalCrop button:last-child{
+
+    background:#e5e7eb;
+
+    color:#374151;
+
+}
+
+
+#modalCrop button:last-child:hover{
+
+    background:#d1d5db;
+
+}
+
+
+
+/* Caixa da área de corte */
+
+#modalCrop{
+
+    backdrop-filter:blur(5px);
+
+}
+
+
+/* Imagem dentro do corte */
+
+#imagemCrop{
+
+    max-width:90%;
+
+    max-height:70%;
+
+    border-radius:10px;
+
+    background:white;
+
+}
