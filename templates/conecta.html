@@ -76,13 +76,50 @@ Conecta - CotaFarma
 
             <div class="card profile-card">
 
-                <div class="profile-cover"></div>
+<div class="profile-cover"
+style="
+{% if foto_capa %}
+background-image: url('{{ foto_capa }}');
+{% endif %}
+">
 
-                <div class="profile-avatar">
+{% if session.get("usuario_cnpj") == perfil_cnpj %}
 
-                    <i class="bi bi-shop"></i>
+<button class="btn-editar-capa"
+onclick="document.getElementById('foto_capa').click()">
+    <i class="bi bi-camera"></i>
+</button>
 
-                </div>
+{% endif %}
+
+</div>
+
+
+<div class="profile-avatar">
+
+    {% if foto_perfil %}
+
+        <img src="{{ foto_perfil }}" alt="Foto da farmácia">
+
+    {% else %}
+
+        <i class="bi bi-shop"></i>
+
+    {% endif %}
+
+
+    {% if session.get("usuario_cnpj") == perfil_cnpj %}
+
+    <button class="btn-editar-foto"
+    onclick="document.getElementById('foto_perfil').click()">
+
+        <i class="bi bi-camera"></i>
+
+    </button>
+
+    {% endif %}
+
+</div>
 
                 <h3>{{ usuario_nome or "SEM NOME" }}</h3>
 
@@ -95,8 +132,6 @@ Conecta - CotaFarma
                 </div>
 
                 <div class="profile-stats">
-
-                    <div class="profile-stats">
 
     <div>
 
@@ -116,12 +151,59 @@ Conecta - CotaFarma
 
 </div>
 
-                <button class="btn-profile">
 
-                    Ver Perfil
+<div class="profile-button-area">
 
-                </button>
+    <a href="{{ url_for('conecta.perfil_usuario', cnpj=session.get('usuario_cnpj')) }}" 
+       class="btn-profile">
 
+        <i class="bi bi-shop"></i>
+        Ver Perfil
+
+    </a>
+
+</div>
+
+<div class="profile-button-area">
+
+    <a href="{{ url_for('conecta.perfil_usuario', cnpj=session.get('usuario_cnpj')) }}" 
+       class="btn-profile">
+
+        <i class="bi bi-shop"></i>
+        Ver Perfil
+
+    </a>
+
+</div>
+
+
+<form 
+action="{{ url_for('conecta.editar_perfil') }}"
+method="POST"
+enctype="multipart/form-data">
+
+
+<input 
+type="file"
+id="foto_perfil"
+name="foto_perfil"
+accept="image/*"
+hidden
+onchange="this.form.submit()">
+
+
+
+<input 
+type="file"
+id="foto_capa"
+name="foto_capa"
+accept="image/*"
+hidden
+onchange="this.form.submit()">
+
+
+
+</form>
             </div>
 
 

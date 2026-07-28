@@ -1205,3 +1205,590 @@ body{
     text-decoration:underline;
 
 }
+
+/* =====================================================
+   PERFIL DA FARMÁCIA (MESMO ESTILO DO CONECTA)
+===================================================== */
+
+.perfil-container{
+
+    width:100%;
+
+}
+
+
+/* CARD PRINCIPAL DO PERFIL */
+
+.perfil-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* CAPA */
+
+.perfil-capa{
+
+    height:180px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #0f766e
+    );
+
+    position:relative;
+
+}
+
+
+
+/* AVATAR */
+
+.perfil-avatar{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    position:absolute;
+
+    bottom:-60px;
+
+    left:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:50px;
+
+    color:#2563eb;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.18);
+
+}
+
+
+
+
+/* INFORMAÇÕES */
+
+.perfil-info{
+
+    padding:75px 35px 30px;
+
+}
+
+
+
+.perfil-info h1{
+
+    margin:0;
+
+    font-size:28px;
+
+    color:#0f172a;
+
+    font-weight:700;
+
+}
+
+
+
+.perfil-info p{
+
+    color:#64748b;
+
+    margin-top:8px;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+/* ESTATÍSTICAS */
+
+.perfil-estatisticas{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.perfil-estatisticas div{
+
+    background:#f8fafc;
+
+    padding:15px 25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+
+
+.perfil-estatisticas strong{
+
+    display:block;
+
+    color:#2563eb;
+
+    font-size:22px;
+
+}
+
+
+
+.perfil-estatisticas span{
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+
+
+/* BOTÃO */
+
+.perfil-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-top:25px;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+.perfil-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+
+
+
+
+/* =====================================================
+   NOME DA FARMÁCIA NO FEED
+===================================================== */
+
+
+.nome-farmacia{
+
+    color:#0f172a;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+
+.nome-farmacia:hover{
+
+    color:#2563eb;
+
+    text-decoration:underline;
+
+}
+
+
+
+
+
+/* =====================================================
+   PUBLICAÇÕES DO PERFIL
+===================================================== */
+
+
+.perfil-publicacoes{
+
+    margin-top:25px;
+
+}
+
+
+
+.perfil-titulo{
+
+    font-size:22px;
+
+    color:#0f172a;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+.perfil-post{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+    transition:.25s;
+
+}
+
+
+
+.perfil-post:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 35px rgba(0,0,0,.10);
+
+}
+
+
+
+
+
+/* BOTÃO VOLTAR */
+
+.perfil-voltar{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.perfil-voltar:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+
+    .perfil-info{
+
+        padding:75px 20px 25px;
+
+    }
+
+
+    .perfil-avatar{
+
+        left:20px;
+
+    }
+
+
+    .perfil-estatisticas{
+
+        flex-direction:column;
+
+    }
+
+
+}
+
+/* =====================================================
+   BOTÃO VER PERFIL
+===================================================== */
+
+.btn-profile{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 25px;
+
+    margin-top:18px;
+
+    border-radius:12px;
+
+    border:1px solid #2563eb;
+
+    background:white;
+
+    color:#2563eb;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+
+.btn-profile:hover{
+
+    background:#2563eb;
+
+    color:white;
+
+    text-decoration:none;
+
+    transform:translateY(-2px);
+
+}
+
+
+.btn-profile i{
+
+    font-size:16px;
+
+}
+
+.profile-cover{
+
+    height:120px;
+
+    background-size:cover;
+
+    background-position:center;
+
+    border-radius:18px 18px 0 0;
+
+}
+
+
+.profile-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.editar-capa{
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:20px;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+    color:#2563eb;
+
+}
+
+
+.editar-capa input,
+.editar-foto input{
+
+    display:none;
+
+}
+
+
+.editar-foto{
+
+    position:absolute;
+
+    bottom:5px;
+
+    right:5px;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    border:3px solid white;
+
+}
+
+
+.perfil-farmacia-avatar{
+
+    position:relative;
+
+}
+
+.btn-editar-capa{
+
+    position:absolute;
+
+    right:15px;
+
+    bottom:15px;
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#2563eb;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+
+.btn-editar-foto{
+
+    position:absolute;
+
+    right:0;
+
+    bottom:0;
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+.profile-avatar{
+
+    position:relative;
+
+}
+
+
+.profile-cover{
+
+    position:relative;
+
+    background-size:cover;
+
+    background-position:center;
+
+}

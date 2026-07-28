@@ -1,6 +1,7 @@
 from database.connection import get_db
 
 
+
 def listar_posts():
 
     db = get_db()
@@ -20,6 +21,7 @@ def listar_posts():
     ).fetchall()
 
     return posts
+
 
 
 
@@ -47,9 +49,11 @@ def listar_posts_usuario(cnpj):
         )
     ).fetchall()
 
+
     print("POSTS ENCONTRADOS:", posts)
 
     return posts
+
 
 
 
@@ -73,6 +77,7 @@ def excluir_post(id_post, cnpj):
 
 
 
+
 def salvar_post(cnpj, usuario, texto, imagem):
 
     db = get_db()
@@ -87,7 +92,12 @@ def salvar_post(cnpj, usuario, texto, imagem):
             imagem
         )
         VALUES
-        (?, ?, ?, ?)
+        (
+            ?,
+            ?,
+            ?,
+            ?
+        )
         """,
         (
             cnpj,
@@ -98,3 +108,26 @@ def salvar_post(cnpj, usuario, texto, imagem):
     )
 
     db.commit()
+
+
+
+
+def buscar_perfil(cnpj):
+
+    db = get_db()
+
+    perfil = db.execute(
+        """
+        SELECT
+            foto_capa,
+            foto_perfil
+        FROM usuarios
+        WHERE cnpj = ?
+        """,
+        (cnpj,)
+    ).fetchone()
+
+
+    print("PERFIL BUSCADO:", perfil)
+
+    return perfil

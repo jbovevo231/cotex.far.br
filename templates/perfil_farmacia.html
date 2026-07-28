@@ -35,17 +35,29 @@ Perfil da Farmácia
     <div class="perfil-farmacia-card">
 
 
-        <div class="perfil-farmacia-header">
+        <div class="perfil-farmacia-header"
+{% if foto_capa %}
+style="background-image:url('{{ foto_capa }}');"
+{% endif %}
+>
 
 
-            <div class="perfil-farmacia-avatar">
+    <div class="perfil-farmacia-avatar">
 
-                <i class="bi bi-shop"></i>
+        {% if foto_perfil %}
 
-            </div>
+            <img src="{{ foto_perfil }}">
+
+        {% else %}
+
+            <i class="bi bi-shop"></i>
+
+        {% endif %}
+
+    </div>
 
 
-        </div>
+</div>
 
 
 
