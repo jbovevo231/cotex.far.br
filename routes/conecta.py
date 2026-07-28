@@ -18,7 +18,12 @@ from models.conecta import (
     listar_posts,
     listar_posts_usuario,
     salvar_post,
-    excluir_post
+    excluir_post,
+    seguir_usuario,
+    deixar_de_seguir,
+    ja_segue,
+    total_seguidores,
+    total_seguindo
 )
 
 
@@ -67,8 +72,8 @@ def conecta():
         "conecta.html",
         posts=posts,
         usuario_nome=session.get("usuario_nome"),
-        seguidores=0,
-        seguindo=0,
+        seguidores=total_seguidores(cnpj),
+        seguindo=total_seguindo(cnpj),
         perfil_cnpj=cnpj,
         foto_perfil=foto_perfil,
         foto_capa=foto_capa
@@ -123,13 +128,25 @@ def perfil_usuario(cnpj):
     if posts:
         nome = posts[0][1]
 
+    meu_cnpj = session.get("usuario_cnpj")
+
+    print("===================================")
+    print("MEU CNPJ:", meu_cnpj)
+    print("CNPJ DO PERFIL:", cnpj)
+    print("MEU PERFIL?:", meu_cnpj == cnpj)
+    print("===================================")
 
     return render_template(
         "perfil_farmacia.html",
         posts=posts,
         usuario_nome=nome,
-        foto_perfil=perfil[1] if perfil else None,
-        foto_capa=perfil[0] if perfil else None
+        foto_perfil=perfil[0] if perfil else None,
+        foto_capa=perfil[1] if perfil else None,
+        perfil_cnpj=cnpj,
+        segue=ja_segue(meu_cnpj, cnpj),
+        seguidores=total_seguidores(cnpj),
+        seguindo=total_seguindo(cnpj),
+        meu_perfil=(meu_cnpj == cnpj)
     )
 
 
@@ -252,6 +269,35 @@ def editar_perfil():
 
     return redirect(
         url_for("conecta.conecta")
+    )
+
+@conecta_bp.route("/conecta/seguir/<cnpj>", methods=["POST"])
+def alternar_seguir(cnpj):
+
+    meu_cnpj = session.get("usuario_cnpj")
+
+    # impede seguir a si mesmo
+    if meu_cnpj == cnpj:
+        return redirect(
+            url_for("conecta.perfil_usuario", cnpj=cnpj)
+        )
+
+    if ja_segue(meu_cnpj, cnpj):
+
+        deixar_de_seguir(
+            meu_cnpj,
+            cnpj
+        )
+
+    else:
+
+        seguir_usuario(
+            meu_cnpj,
+            cnpj
+        )
+
+    return redirect(
+        url_for("conecta.perfil_usuario", cnpj=cnpj)
     )
 
 @conecta_bp.route("/conecta/publicar", methods=["POST"])

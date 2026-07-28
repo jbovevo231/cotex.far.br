@@ -164,29 +164,7 @@ onclick="document.getElementById('foto_capa').click()">
 
 </div>
 
-<div class="profile-button-area">
 
-    <a href="{{ url_for('conecta.perfil_usuario', cnpj=session.get('usuario_cnpj')) }}" 
-       class="btn-profile">
-
-        <i class="bi bi-shop"></i>
-        Ver Perfil
-
-    </a>
-
-</div>
-
-<div class="profile-button-area">
-
-    <a href="{{ url_for('conecta.perfil_usuario', cnpj=session.get('usuario_cnpj')) }}" 
-       class="btn-profile">
-
-        <i class="bi bi-shop"></i>
-        Ver Perfil
-
-    </a>
-
-</div>
 
 
 <form 
@@ -441,6 +419,10 @@ onchange="enviarFoto()">
     <strong>
         <a href="{{ url_for('conecta.perfil_usuario', cnpj=post[5]) }}"
            class="nome-farmacia">
+
+           <p style="color:red">
+    CNPJ: {{ post[5] }}
+</p>
 
             {{ post[1] }}
 

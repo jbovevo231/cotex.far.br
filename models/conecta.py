@@ -85,7 +85,87 @@ def excluir_post(id_post, cnpj):
 
     db.commit()
 
+def seguir_usuario(seguidor, seguindo):
 
+    db = get_db()
+
+    db.execute("""
+        INSERT OR IGNORE INTO seguidores
+        (
+            seguidor_cnpj,
+            seguindo_cnpj
+        )
+        VALUES (?, ?)
+    """,
+    (
+        seguidor,
+        seguindo
+    ))
+
+    db.commit()
+
+
+def deixar_de_seguir(seguidor, seguindo):
+
+    db = get_db()
+
+    db.execute("""
+        DELETE FROM seguidores
+        WHERE seguidor_cnpj = ?
+        AND seguindo_cnpj = ?
+    """,
+    (
+        seguidor,
+        seguindo
+    ))
+
+    db.commit()
+
+
+def ja_segue(seguidor, seguindo):
+
+    db = get_db()
+
+    retorno = db.execute("""
+        SELECT 1
+        FROM seguidores
+        WHERE seguidor_cnpj = ?
+        AND seguindo_cnpj = ?
+    """,
+    (
+        seguidor,
+        seguindo
+    )).fetchone()
+
+    return retorno is not None
+
+
+def total_seguidores(cnpj):
+
+    db = get_db()
+
+    return db.execute("""
+        SELECT COUNT(*)
+        FROM seguidores
+        WHERE seguindo_cnpj = ?
+    """,
+    (
+        cnpj,
+    )).fetchone()[0]
+
+
+def total_seguindo(cnpj):
+
+    db = get_db()
+
+    return db.execute("""
+        SELECT COUNT(*)
+        FROM seguidores
+        WHERE seguidor_cnpj = ?
+    """,
+    (
+        cnpj,
+    )).fetchone()[0]
 
 
 def salvar_post(cnpj, usuario, texto, imagem):

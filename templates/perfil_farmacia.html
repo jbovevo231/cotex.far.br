@@ -32,29 +32,69 @@ Perfil da Farmácia
 
     <!-- PERFIL DA FARMÁCIA -->
 
-    <div class="perfil-farmacia-card">
-
-
-        <div class="perfil-farmacia-header"
+    <div class="perfil-farmacia-header"
 {% if foto_capa %}
 style="background-image:url('{{ foto_capa }}');"
 {% endif %}
 >
 
 
-    <div class="perfil-farmacia-avatar">
+{% if meu_perfil %}
 
-        {% if foto_perfil %}
+<form action="{{ url_for('conecta.editar_perfil') }}"
+      method="POST"
+      enctype="multipart/form-data">
 
-            <img src="{{ foto_perfil }}">
+    <label class="editar-capa">
 
-        {% else %}
+        <i class="bi bi-camera-fill"></i>
 
-            <i class="bi bi-shop"></i>
+        <input 
+        type="file"
+        name="foto_capa"
+        onchange="this.form.submit()">
 
-        {% endif %}
+    </label>
 
-    </div>
+
+{% endif %}
+
+
+
+<div class="perfil-farmacia-avatar">
+
+
+    {% if foto_perfil %}
+
+        <img src="{{ foto_perfil }}">
+
+    {% else %}
+
+        <i class="bi bi-shop"></i>
+
+    {% endif %}
+
+
+{% if meu_perfil %}
+
+<label class="editar-foto">
+
+    <i class="bi bi-camera-fill"></i>
+
+    <input 
+    type="file"
+    name="foto_perfil"
+    onchange="this.form.submit()">
+
+</label>
+
+
+</form>
+
+{% endif %}
+
+
+</div>
 
 
 </div>
@@ -68,6 +108,39 @@ style="background-image:url('{{ foto_capa }}');"
                 {{ usuario_nome }}
             </h1>
 
+{% if not meu_perfil %}
+
+<div class="perfil-acoes">
+
+<form
+action="{{ url_for('conecta.alternar_seguir', cnpj=perfil_cnpj) }}"
+method="POST">
+
+<button
+class="btn-seguir {% if segue %}seguindo{% endif %}"
+type="submit">
+
+
+{% if segue %}
+
+<i class="bi bi-check-circle-fill"></i>
+Seguindo
+
+{% else %}
+
+<i class="bi bi-person-plus-fill"></i>
+Seguir
+
+{% endif %}
+
+
+</button>
+
+</form>
+
+</div>
+
+{% endif %}
 
             <p>
                 Farmácia participante da comunidade Conecta
@@ -92,31 +165,29 @@ style="background-image:url('{{ foto_capa }}');"
 
 
 
-                <div>
+              <div>
 
-                    <strong>
-                        0
-                    </strong>
+    <strong>
+        {{ seguidores }}
+    </strong>
 
-                    <span>
-                        Seguidores
-                    </span>
+    <span>
+        Seguidores
+    </span>
 
-                </div>
+</div>
 
+<div>
 
+    <strong>
+        {{ seguindo }}
+    </strong>
 
-                <div>
+    <span>
+        Seguindo
+    </span>
 
-                    <strong>
-                        0
-                    </strong>
-
-                    <span>
-                        Seguindo
-                    </span>
-
-                </div>
+</div>  
 
 
             </div>
