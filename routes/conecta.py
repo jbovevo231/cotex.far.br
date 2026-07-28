@@ -13,17 +13,13 @@ import cloudinary_config
 
 from models.conecta import (
     listar_posts,
-    salvar_post
+    listar_posts_usuario,
+    salvar_post,
+    excluir_post
 )
 
-from models.conecta import (
-    listar_posts,
-    listar_posts_usuario,
-    salvar_post
-)
 
 conecta_bp = Blueprint("conecta", __name__)
-
 
 
 @conecta_bp.route("/conecta")
@@ -36,10 +32,11 @@ def conecta():
     print("NOME DA SESSÃO:", session.get("usuario_nome"))
 
     return render_template(
-    "conecta.html",
-    posts=posts,
-    usuario_nome=session.get("usuario_nome")
-)
+        "conecta.html",
+        posts=posts,
+        usuario_nome=session.get("usuario_nome")
+    )
+
 
 @conecta_bp.route("/conecta/minhas-publicacoes")
 def minhas_publicacoes():
@@ -54,6 +51,23 @@ def minhas_publicacoes():
         "conecta.html",
         posts=posts,
         usuario_nome=session.get("usuario_nome")
+    )
+
+
+@conecta_bp.route("/conecta/excluir/<int:id_post>", methods=["POST"])
+def excluir(id_post):
+
+    print("EXCLUINDO POST:", id_post)
+
+    cnpj_usuario = session.get("usuario_cnpj")
+
+    excluir_post(
+        id_post,
+        cnpj_usuario
+    )
+
+    return redirect(
+        request.referrer or url_for("conecta.conecta")
     )
 
 
@@ -81,6 +95,7 @@ def publicar():
             print("Imagem enviada:")
             print(nome_arquivo)
 
+
         salvar_post(
             session.get("usuario_cnpj"),
             session.get("usuario_nome") or "Usuário",
@@ -88,9 +103,11 @@ def publicar():
             nome_arquivo
         )
 
+
         return redirect(
             url_for("conecta.conecta")
         )
+
 
     except Exception as e:
 

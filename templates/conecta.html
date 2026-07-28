@@ -341,17 +341,51 @@ Conecta - CotaFarma
 
 
     {% if post[2] %}
+
     <div class="post-content">
+
         <p>{{ post[2] }}</p>
+
     </div>
+
     {% endif %}
+
 
 
     {% if post[3] %}
+
     <div class="post-image">
+
         <img src="{{ post[3] }}" alt="Imagem">
+
     </div>
+
     {% endif %}
+
+
+
+    {% if session.get("usuario_cnpj") == post[5] %}
+
+    <div class="post-delete">
+
+        <form
+            action="{{ url_for('conecta.excluir', id_post=post[0]) }}"
+            method="POST"
+            onsubmit="return confirm('Deseja realmente excluir esta publicação?')">
+
+            <button type="submit" class="btn-excluir">
+
+                <i class="bi bi-trash"></i>
+                Excluir
+
+            </button>
+
+        </form>
+
+    </div>
+
+    {% endif %}
+
 
 
     <div class="post-actions">
@@ -377,6 +411,7 @@ Conecta - CotaFarma
         </button>
 
     </div>
+
 
 </div>
 

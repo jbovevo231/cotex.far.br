@@ -12,7 +12,8 @@ def listar_posts():
             usuario,
             texto,
             imagem,
-            data_postagem
+            data_postagem,
+            cnpj
         FROM conecta_posts
         ORDER BY id DESC
         """
@@ -23,6 +24,8 @@ def listar_posts():
 
 def listar_posts_usuario(cnpj):
 
+    print("CNPJ RECEBIDO:", cnpj)
+
     db = get_db()
 
     posts = db.execute(
@@ -32,7 +35,8 @@ def listar_posts_usuario(cnpj):
             usuario,
             texto,
             imagem,
-            data_postagem
+            data_postagem,
+            cnpj
         FROM conecta_posts
         WHERE cnpj = ?
         ORDER BY id DESC
@@ -40,7 +44,28 @@ def listar_posts_usuario(cnpj):
         (cnpj,)
     ).fetchall()
 
+    print("POSTS ENCONTRADOS:", posts)
+
     return posts
+
+
+def excluir_post(id_post, cnpj):
+
+    db = get_db()
+
+    db.execute(
+        """
+        DELETE FROM conecta_posts
+        WHERE id = ?
+        AND cnpj = ?
+        """,
+        (
+            id_post,
+            cnpj
+        )
+    )
+
+    db.commit()
 
 
 def salvar_post(cnpj, usuario, texto, imagem):
