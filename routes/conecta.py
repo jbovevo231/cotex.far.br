@@ -57,6 +57,24 @@ def minhas_publicacoes():
     seguindo=0
 )
 
+@conecta_bp.route("/conecta/perfil/<cnpj>")
+def perfil_usuario(cnpj):
+
+    posts = listar_posts_usuario(cnpj)
+
+    nome_usuario = "Farmácia"
+
+    if posts:
+        nome_usuario = posts[0][2]
+
+    return render_template(
+        "conecta.html",
+        posts=posts,
+        usuario_nome=nome_usuario,
+        seguidores=0,
+        seguindo=0
+    )
+
 
 @conecta_bp.route("/conecta/excluir/<int:id_post>", methods=["POST"])
 def excluir(id_post):
