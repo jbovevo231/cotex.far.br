@@ -895,3 +895,68 @@ body{
     cursor:pointer;
 
 }
+
+/* =====================================================
+   BOTÃO EXCLUIR PUBLICAÇÃO
+===================================================== */
+
+.post-delete{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:15px;
+
+}
+
+
+.btn-excluir{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#fff1f2;
+
+    color:#e11d48;
+
+    border:1px solid #fecdd3;
+
+    padding:9px 16px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.btn-excluir i{
+
+    font-size:16px;
+
+}
+
+
+.btn-excluir:hover{
+
+    background:#e11d48;
+
+    color:white;
+
+    border-color:#e11d48;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 6px 15px rgba(225,29,72,.25);
+
+}

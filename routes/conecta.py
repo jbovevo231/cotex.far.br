@@ -32,10 +32,12 @@ def conecta():
     print("NOME DA SESSÃO:", session.get("usuario_nome"))
 
     return render_template(
-        "conecta.html",
-        posts=posts,
-        usuario_nome=session.get("usuario_nome")
-    )
+    "conecta.html",
+    posts=posts,
+    usuario_nome=session.get("usuario_nome"),
+    seguidores=0,
+    seguindo=0
+)
 
 
 @conecta_bp.route("/conecta/minhas-publicacoes")
@@ -48,10 +50,12 @@ def minhas_publicacoes():
     )
 
     return render_template(
-        "conecta.html",
-        posts=posts,
-        usuario_nome=session.get("usuario_nome")
-    )
+    "conecta.html",
+    posts=posts,
+    usuario_nome=session.get("usuario_nome"),
+    seguidores=0,
+    seguindo=0
+)
 
 
 @conecta_bp.route("/conecta/excluir/<int:id_post>", methods=["POST"])
