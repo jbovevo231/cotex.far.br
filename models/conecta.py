@@ -9,16 +9,25 @@ def listar_posts():
     posts = db.execute(
         """
         SELECT
-            id,
-            usuario,
-            texto,
-            imagem,
-            data_postagem,
-            cnpj
+            conecta_posts.id,
+            conecta_posts.usuario,
+            conecta_posts.texto,
+            conecta_posts.imagem,
+            conecta_posts.data_postagem,
+            conecta_posts.cnpj,
+            usuarios.foto_perfil
         FROM conecta_posts
-        ORDER BY id DESC
+        LEFT JOIN usuarios
+        ON conecta_posts.cnpj = usuarios.cnpj
+        ORDER BY conecta_posts.id DESC
         """
     ).fetchall()
+
+
+    print("POSTS COM FOTO:")
+    for p in posts:
+        print(p)
+
 
     return posts
 
@@ -27,33 +36,34 @@ def listar_posts():
 
 def listar_posts_usuario(cnpj):
 
-    print("CNPJ RECEBIDO:", cnpj)
-
     db = get_db()
 
     posts = db.execute(
         """
         SELECT
-            id,
-            usuario,
-            texto,
-            imagem,
-            data_postagem,
-            cnpj
+            conecta_posts.id,
+            conecta_posts.usuario,
+            conecta_posts.texto,
+            conecta_posts.imagem,
+            conecta_posts.data_postagem,
+            conecta_posts.cnpj,
+            usuarios.foto_perfil
+
         FROM conecta_posts
-        WHERE cnpj = ?
-        ORDER BY id DESC
+
+        LEFT JOIN usuarios
+        ON conecta_posts.cnpj = usuarios.cnpj
+
+        WHERE conecta_posts.cnpj = ?
+
+        ORDER BY conecta_posts.id DESC
         """,
         (
             cnpj,
         )
     ).fetchall()
 
-
-    print("POSTS ENCONTRADOS:", posts)
-
     return posts
-
 
 
 

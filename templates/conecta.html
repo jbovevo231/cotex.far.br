@@ -176,8 +176,21 @@ onclick="document.getElementById('foto_capa').click()">
 
 </div>
 
+<div class="profile-button-area">
+
+    <a href="{{ url_for('conecta.perfil_usuario', cnpj=session.get('usuario_cnpj')) }}" 
+       class="btn-profile">
+
+        <i class="bi bi-shop"></i>
+        Ver Perfil
+
+    </a>
+
+</div>
+
 
 <form 
+class="form-fotos"
 action="{{ url_for('conecta.editar_perfil') }}"
 method="POST"
 enctype="multipart/form-data">
@@ -189,8 +202,7 @@ id="foto_perfil"
 name="foto_perfil"
 accept="image/*"
 hidden
-onchange="this.form.submit()">
-
+onchange="enviarFoto()">
 
 
 <input 
@@ -199,7 +211,7 @@ id="foto_capa"
 name="foto_capa"
 accept="image/*"
 hidden
-onchange="this.form.submit()">
+onchange="enviarFoto()">
 
 
 
@@ -411,8 +423,18 @@ onchange="this.form.submit()">
     <div class="post-header">
 
         <div class="post-avatar">
-            {{ post[1][0] }}
-        </div>
+
+    {% if post[6] %}
+
+        <img src="{{ post[6] }}" alt="Foto perfil">
+
+    {% else %}
+
+        {{ post[1][0] }}
+
+    {% endif %}
+
+</div>
 
        <div class="post-user">
 
@@ -757,6 +779,16 @@ onchange="this.form.submit()">
 {% block scripts %}
 
 <script src="{{ url_for('static', filename='js/conecta.js') }}"></script>
+
+<script>
+
+function enviarFoto(){
+
+    document.querySelector(".form-fotos").submit();
+
+}
+
+</script>
 
 {% endblock %}
 
