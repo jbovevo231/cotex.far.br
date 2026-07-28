@@ -16,6 +16,12 @@ from models.conecta import (
     salvar_post
 )
 
+from models.conecta import (
+    listar_posts,
+    listar_posts_usuario,
+    salvar_post
+)
+
 conecta_bp = Blueprint("conecta", __name__)
 
 
@@ -34,6 +40,21 @@ def conecta():
     posts=posts,
     usuario_nome=session.get("usuario_nome")
 )
+
+@conecta_bp.route("/conecta/minhas-publicacoes")
+def minhas_publicacoes():
+
+    print("CNPJ DA SESSÃO:", session.get("usuario_cnpj"))
+
+    posts = listar_posts_usuario(
+        session.get("usuario_cnpj")
+    )
+
+    return render_template(
+        "conecta.html",
+        posts=posts,
+        usuario_nome=session.get("usuario_nome")
+    )
 
 
 @conecta_bp.route("/conecta/publicar", methods=["POST"])

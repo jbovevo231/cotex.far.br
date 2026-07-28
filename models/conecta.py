@@ -21,6 +21,28 @@ def listar_posts():
     return posts
 
 
+def listar_posts_usuario(cnpj):
+
+    db = get_db()
+
+    posts = db.execute(
+        """
+        SELECT
+            id,
+            usuario,
+            texto,
+            imagem,
+            data_postagem
+        FROM conecta_posts
+        WHERE cnpj = ?
+        ORDER BY id DESC
+        """,
+        (cnpj,)
+    ).fetchall()
+
+    return posts
+
+
 def salvar_post(cnpj, usuario, texto, imagem):
 
     db = get_db()

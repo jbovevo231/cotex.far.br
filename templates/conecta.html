@@ -12,6 +12,7 @@ Conecta - CotaFarma
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/conecta-mobile.css') }}">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/minhas_publicacoes.css') }}">
 {% endblock %}
 
 {% block page_content %}
@@ -131,12 +132,20 @@ Conecta - CotaFarma
                 <ul class="menu-conecta">
 
                     <li>
+    <a href="{{ url_for('conecta.conecta') }}" class="menu-link">
+        <i class="bi bi-house-door"></i>
+        Feed
+    </a>
+</li>
 
-                        <i class="bi bi-pencil-square"></i>
 
-                        Minhas Publicações
+<li>
+    <a href="{{ url_for('conecta.minhas_publicacoes') }}" class="menu-link">
+        <i class="bi bi-pencil-square"></i>
+        Minhas Publicações
+    </a>
+</li>
 
-                    </li>
 
                     <li>
 
