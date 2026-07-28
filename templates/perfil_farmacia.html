@@ -5,74 +5,270 @@ Perfil da Farmácia
 {% endblock %}
 
 
+{% block css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/conecta.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/minhas_publicacoes.css') }}">
+
+{% endblock %}
+
+
+
 {% block page_content %}
+
 
 <div class="conecta-page">
 
-    <div class="card profile-card">
 
-        <div class="profile-avatar">
-            <i class="bi bi-shop"></i>
+    <a href="{{ url_for('conecta.conecta') }}" class="perfil-voltar">
+        <i class="bi bi-arrow-left"></i>
+        Voltar para o Feed
+    </a>
+
+
+
+    <!-- PERFIL DA FARMÁCIA -->
+
+    <div class="perfil-farmacia-card">
+
+
+        <div class="perfil-farmacia-header">
+
+
+            <div class="perfil-farmacia-avatar">
+
+                <i class="bi bi-shop"></i>
+
+            </div>
+
+
         </div>
 
-        <h2>{{ usuario_nome }}</h2>
 
-        <p>
-            Publicações da farmácia
-        </p>
+
+        <div class="perfil-farmacia-info">
+
+
+            <h1>
+                {{ usuario_nome }}
+            </h1>
+
+
+            <p>
+                Farmácia participante da comunidade Conecta
+            </p>
+
+
+
+            <div class="perfil-status">
+
+
+                <div>
+
+                    <strong>
+                        {{ posts|length }}
+                    </strong>
+
+                    <span>
+                        Publicações
+                    </span>
+
+                </div>
+
+
+
+                <div>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <span>
+                        Seguidores
+                    </span>
+
+                </div>
+
+
+
+                <div>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <span>
+                        Seguindo
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
 
     </div>
 
 
+
+
+    <h2 class="perfil-titulo">
+
+        Publicações de {{ usuario_nome }}
+
+    </h2>
+
+
+
+
+
     {% for post in posts %}
 
-    <div class="card post">
+
+    <div class="perfil-post">
 
 
         <div class="post-header">
 
+
             <div class="post-avatar">
+
                 {{ post[1][0] }}
+
             </div>
+
+
 
             <div class="post-user">
 
+
                 <strong>
+
                     {{ post[1] }}
+
                 </strong>
 
+
                 <span>
+
                     {{ post[4] }}
+
                 </span>
+
 
             </div>
 
+
         </div>
+
+
+
 
 
         {% if post[2] %}
 
+
         <div class="post-content">
 
+
             <p>
+
                 {{ post[2] }}
+
             </p>
+
 
         </div>
 
+
         {% endif %}
+
+
+
+
 
 
         {% if post[3] %}
 
+
         <div class="post-image">
+
 
             <img src="{{ post[3] }}">
 
+
         </div>
+
 
         {% endif %}
 
+
+
+
+        <div class="post-actions">
+
+
+            <button>
+
+                <i class="bi bi-hand-thumbs-up"></i>
+
+                Curtir
+
+            </button>
+
+
+
+            <button>
+
+                <i class="bi bi-chat"></i>
+
+                Comentar
+
+            </button>
+
+
+
+            <button>
+
+                <i class="bi bi-share"></i>
+
+                Compartilhar
+
+            </button>
+
+
+
+            <button>
+
+                <i class="bi bi-bookmark"></i>
+
+                Salvar
+
+            </button>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    {% else %}
+
+
+    <div class="card">
+
+        <p>
+            Esta farmácia ainda não possui publicações.
+        </p>
 
     </div>
 
@@ -80,7 +276,11 @@ Perfil da Farmácia
     {% endfor %}
 
 
+
+
+
 </div>
+
 
 
 {% endblock %}
