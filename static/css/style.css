@@ -880,3 +880,15 @@ input{
     }
 
 }
+
+
+
+.esqueci-senha a {
+    color: #021a4a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.esqueci-senha a:hover {
+    text-decoration: underline;
+}

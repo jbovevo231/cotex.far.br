@@ -139,6 +139,8 @@
                         placeholder="CNPJ"
                         required>
 
+                    
+
                     <input
                         type="password"
                         name="senha"
@@ -154,21 +156,31 @@
                     </button>
 
                 </form>
+<div>
 
-                <button
-                    class="btn-link"
-                    onclick="abrirCadastro()">
+    <button
+        class="btn-link"
+        onclick="abrirCadastro()">
 
-                    Não possui conta?
-                    Criar agora
+        Não possui conta?
+        Criar agora
 
-                </button>
+    </button>
 
-            </div>
+</div>
 
-        </div>
 
-    </section>
+<div class="esqueci-senha">
+
+    <button
+        class="btn-link"
+        onclick="abrirRecuperarSenha()">
+
+        Esqueci minha senha
+
+    </button>
+
+</div>
 
 
     <!-- ================= BENEFÍCIOS ================= -->
@@ -287,6 +299,12 @@
                 placeholder="CNPJ"
                 required>
 
+
+            <input
+                name="telefone"
+                placeholder="WhatsApp com DDD"
+                required>
+
             <input
                 type="email"
                 name="email"
@@ -320,6 +338,66 @@
 </div>
 
 
+<!-- ================= MODAL RECUPERAR SENHA ================= -->
+
+
+<div class="modal"
+     id="modalRecuperarSenha">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="fecharRecuperarSenha()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+
+            Recuperar senha
+
+        </h2>
+
+
+        <p>
+
+            Informe seus dados para recuperar o acesso.
+
+        </p>
+
+
+        <form
+            method="POST"
+            action="/recuperar-senha">
+
+
+            <input
+                name="identificacao"
+                placeholder="CNPJ ou E-mail Cadastrado"
+                required>
+
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Recuperar senha
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
 <script>
 
 function abrirCadastro(){
@@ -328,25 +406,53 @@ function abrirCadastro(){
 
 }
 
+
 function fecharCadastro(){
 
     document.getElementById("cadastroModal").style.display="none";
 
 }
 
+
+function abrirRecuperarSenha(){
+
+    document.getElementById("modalRecuperarSenha").style.display="flex";
+
+}
+
+
+function fecharRecuperarSenha(){
+
+    document.getElementById("modalRecuperarSenha").style.display="none";
+
+}
+
+
 window.onclick=function(e){
 
-    let modal=document.getElementById("cadastroModal");
+    let cadastro = document.getElementById("cadastroModal");
 
-    if(e.target==modal){
+    let recuperar = document.getElementById("modalRecuperarSenha");
+
+
+    if(e.target === cadastro){
 
         fecharCadastro();
 
     }
 
+
+    if(e.target === recuperar){
+
+        fecharRecuperarSenha();
+
+    }
+
 }
 
+
 </script>
+
 
 <script>
 
@@ -366,30 +472,7 @@ function irLogin(){
 
 }
 
-function abrirCadastro(){
-
-    document.getElementById("cadastroModal").style.display="flex";
-
-}
-
-function fecharCadastro(){
-
-    document.getElementById("cadastroModal").style.display="none";
-
-}
-
-window.onclick=function(e){
-
-    let modal=document.getElementById("cadastroModal");
-
-    if(e.target===modal){
-
-        fecharCadastro();
-
-    }
-
-}
-
 </script>
+
 
 {% endblock %}
