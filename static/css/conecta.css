@@ -960,3 +960,37 @@ body{
     box-shadow:0 6px 15px rgba(225,29,72,.25);
 
 }
+
+.nome-farmacia{
+
+    color:#0f172a;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+
+.nome-farmacia:hover{
+
+    color:#2563eb;
+
+}
+
+.nome-farmacia{
+
+    color: #1e293b;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:700;
+
+}
+
+
+.nome-farmacia:hover{
+
+    color:#2563eb;
+    text-decoration:underline;
+
+}

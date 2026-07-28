@@ -332,13 +332,23 @@ Conecta - CotaFarma
             {{ post[1][0] }}
         </div>
 
-        <div class="post-user">
+       <div class="post-user">
 
-            <strong>{{ post[1] }}</strong>
+    <strong>
+        <a href="{{ url_for('conecta.perfil_usuario', cnpj=post[5]) }}"
+           class="nome-farmacia">
 
-            <span>{{ post[4] }}</span>
+            {{ post[1] }}
 
-        </div>
+        </a>
+    </strong>
+
+
+    <span>
+        {{ post[4] }}
+    </span>
+
+</div>
 
     </div>
 

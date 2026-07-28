@@ -60,19 +60,19 @@ def minhas_publicacoes():
 @conecta_bp.route("/conecta/perfil/<cnpj>")
 def perfil_usuario(cnpj):
 
+    print("ABRINDO PERFIL DA FARMÁCIA:", cnpj)
+
     posts = listar_posts_usuario(cnpj)
 
-    nome_usuario = "Farmácia"
-
     if posts:
-        nome_usuario = posts[0][2]
+        nome_usuario = posts[0][1]
+    else:
+        nome_usuario = "Farmácia"
 
     return render_template(
-        "conecta.html",
+        "perfil_farmacia.html",
         posts=posts,
-        usuario_nome=nome_usuario,
-        seguidores=0,
-        seguindo=0
+        usuario_nome=nome_usuario
     )
 
 

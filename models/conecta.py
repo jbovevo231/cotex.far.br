@@ -22,6 +22,7 @@ def listar_posts():
     return posts
 
 
+
 def listar_posts_usuario(cnpj):
 
     print("CNPJ RECEBIDO:", cnpj)
@@ -41,12 +42,15 @@ def listar_posts_usuario(cnpj):
         WHERE cnpj = ?
         ORDER BY id DESC
         """,
-        (cnpj,)
+        (
+            cnpj,
+        )
     ).fetchall()
 
     print("POSTS ENCONTRADOS:", posts)
 
     return posts
+
 
 
 def excluir_post(id_post, cnpj):
@@ -66,6 +70,7 @@ def excluir_post(id_post, cnpj):
     )
 
     db.commit()
+
 
 
 def salvar_post(cnpj, usuario, texto, imagem):
