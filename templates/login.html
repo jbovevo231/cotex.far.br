@@ -281,8 +281,9 @@
         </p>
 
         <form
-            method="POST"
-            action="/cadastro">
+    method="POST"
+    action="{{ url_for('auth.cadastro') }}">
+
 
             <input
                 name="nome"

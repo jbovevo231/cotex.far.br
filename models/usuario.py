@@ -17,7 +17,7 @@ def limpar_cnpj(cnpj):
     )
 
 
-def criar_usuario(nome, cpf, cnpj, email, senha):
+def criar_usuario(nome, cpf, cnpj, telefone, email, senha):
 
     db = get_db()
 
@@ -33,19 +33,20 @@ def criar_usuario(nome, cpf, cnpj, email, senha):
         raise Exception("CNPJ já cadastrado")
 
     db.execute(
-        """
-        INSERT INTO usuarios
-        (nome, cpf, cnpj, email, senha)
-        VALUES (?, ?, ?, ?, ?)
-        """,
-        (
-            nome,
-            cpf,
-            cnpj,
-            email,
-            senha_hash
-        )
+    """
+    INSERT INTO usuarios
+    (nome, cpf, cnpj, telefone, email, senha)
+    VALUES (?, ?, ?, ?, ?, ?)
+    """,
+    (
+        nome,
+        cpf,
+        cnpj,
+        telefone,
+        email,
+        senha_hash
     )
+)
 
     db.commit()
 
@@ -144,3 +145,28 @@ def limpar_remember_token(usuario_id):
     )
 
     db.commit()
+
+
+def buscar_usuario_por_cnpj_ou_email(identificacao):
+
+    db = get_db()
+
+    return db.execute(
+        """
+        SELECT
+            id,
+            nome,
+            cnpj,
+            telefone,
+            email
+        FROM usuarios
+        WHERE cnpj = ?
+   OR email = ?
+   OR telefone = ?
+        """,
+        (
+    limpar_cnpj(identificacao),
+    identificacao,
+    identificacao
+)
+    ).fetchone()

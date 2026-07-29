@@ -4,7 +4,8 @@ from models.usuario import (
     criar_usuario,
     validar_login,
     gerar_remember_token,
-    limpar_remember_token
+    limpar_remember_token,
+    buscar_usuario_por_cnpj_ou_email
 )
 
 auth_bp = Blueprint(
@@ -19,6 +20,7 @@ def cadastro():
     nome = request.form["nome"]
     cpf = request.form["cpf"]
     cnpj = request.form["cnpj"]
+    telefone = request.form["telefone"]
     email = request.form["email"]
     senha = request.form["senha"]
     confirmar = request.form["confirmar"]
@@ -27,12 +29,13 @@ def cadastro():
         return "As senhas não conferem"
 
     criar_usuario(
-        nome,
-        cpf,
-        cnpj,
-        email,
-        senha
-    )
+    nome,
+    cpf,
+    cnpj,
+    telefone,
+    email,
+    senha
+)
 
     return redirect(url_for("inicio"))
 
@@ -76,6 +79,41 @@ def login():
 
     return "CNPJ ou senha inválidos"
 
+
+@auth_bp.route("/recuperar-senha", methods=["POST"])
+def recuperar_senha():
+
+    from models.usuario import buscar_usuario_por_cnpj_ou_email
+    import random
+
+    identificacao = request.form["identificacao"]
+
+    usuario = buscar_usuario_por_cnpj_ou_email(
+        identificacao
+    )
+
+    if usuario is None:
+        return "Usuário não encontrado"
+
+    codigo = random.randint(100000, 999999)
+
+    telefone = usuario[3]
+
+    print("USUARIO:", usuario)
+    print("TELEFONE:", usuario[3])
+
+    mensagem = (
+        f"Seu código de recuperação do CotaFarma é: {codigo}"
+    )
+
+    from urllib.parse import quote
+
+    link = (
+        f"https://wa.me/{telefone}"
+        f"?text={quote(mensagem)}"
+    )
+
+    return redirect(link)
 
 @auth_bp.route("/logout")
 def logout():
