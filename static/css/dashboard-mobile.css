@@ -705,3 +705,74 @@ canvas{
     }
 
 }
+
+/* =====================================
+   SIDEBAR MOBILE - EFEITO PREMIUM
+   SOMENTE ÍCONE ACESO
+===================================== */
+
+@media (max-width: 768px) {
+
+
+    .sidebar .menu a.active {
+
+        background: transparent !important;
+
+        border-left: none !important;
+
+        box-shadow: none !important;
+
+    }
+
+
+
+    .sidebar .menu a.active i {
+
+        color: #22c55e !important;
+
+        filter:
+        drop-shadow(0 0 8px rgba(34,197,94,.9));
+
+        transform: scale(1.18);
+
+        transition: .3s ease;
+
+    }
+
+
+
+    .sidebar .menu a.active span {
+
+        color: inherit;
+
+    }
+
+
+
+    .sidebar .menu a {
+
+        border-left: none !important;
+
+    }
+
+
+
+    .sidebar .menu a i {
+
+        transition:
+        transform .25s ease,
+        color .25s ease,
+        filter .25s ease;
+
+    }
+
+
+
+    .sidebar .menu a:active i {
+
+        transform: scale(.90);
+
+    }
+
+
+}

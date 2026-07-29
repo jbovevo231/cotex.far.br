@@ -1737,23 +1737,7 @@ EFEITOS PREMIUM
 
 }
 
-.menu a.active::before{
 
-    content:"";
-
-    position:absolute;
-
-    left:-30px;
-
-    width:4px;
-
-    height:28px;
-
-    border-radius:20px;
-
-    background:#34d399;
-
-}
 
 .search-box:focus-within{
 
