@@ -892,3 +892,51 @@ input{
 .esqueci-senha a:hover {
     text-decoration: underline;
 }
+
+.erro-cadastro {
+
+    display: none;
+
+    color: #b42318;
+
+    background: #fef3f2;
+
+    border: 1px solid #f04438;
+
+    padding: 12px 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    animation: aparecerErro 0.3s ease;
+
+}
+
+
+@keyframes aparecerErro {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-5px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}

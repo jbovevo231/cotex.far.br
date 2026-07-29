@@ -134,10 +134,11 @@
                       action="/login">
 
                     <input
-                        type="text"
-                        name="cnpj"
-                        placeholder="CNPJ"
-                        required>
+    type="text"
+    name="login"
+    placeholder="CNPJ, e-mail ou WhatsApp"
+    autocomplete="username"
+    required>
 
                     
 
@@ -280,9 +281,9 @@
 
         </p>
 
-        <form
-    method="POST"
-    action="{{ url_for('auth.cadastro') }}">
+        <div id="erroCadastro" class="erro-cadastro"></div>
+
+        <form id="formCadastro">
 
 
             <input
@@ -403,6 +404,9 @@
 
 function abrirCadastro(){
 
+    document.getElementById("erroCadastro").style.display = "none";
+    document.getElementById("erroCadastro").innerHTML = "";
+
     document.getElementById("cadastroModal").style.display="flex";
 
 }
@@ -455,7 +459,10 @@ window.onclick=function(e){
 </script>
 
 
+
 <script>
+
+    console.log("JS DO CADASTRO CARREGOU");
 
 function irLogin(){
 
@@ -472,6 +479,45 @@ function irLogin(){
     login.querySelector("input").focus();
 
 }
+
+
+document.getElementById("formCadastro").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+
+    let formulario = new FormData(this);
+
+
+    let resposta = await fetch(
+        "{{ url_for('auth.cadastro') }}",
+        {
+            method:"POST",
+            body:formulario
+        }
+    );
+
+
+    let dados = await resposta.json();
+
+
+    let erro = document.getElementById("erroCadastro");
+
+
+    if(dados.erro){
+
+        erro.innerHTML = "🔴 " + dados.erro;
+
+        erro.style.display = "block";
+
+        return;
+
+    }
+
+
+    window.location.href = "/";
+
+});
 
 </script>
 

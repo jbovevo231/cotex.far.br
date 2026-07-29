@@ -17,53 +17,149 @@ def limpar_cnpj(cnpj):
     )
 
 
+def limpar_telefone(telefone):
+    if not telefone:
+        return ""
+
+    return (
+        str(telefone)
+        .replace("(", "")
+        .replace(")", "")
+        .replace("-", "")
+        .replace(" ", "")
+        .replace("+", "")
+        .strip()
+    )
+
+
 def criar_usuario(nome, cpf, cnpj, telefone, email, senha):
 
     db = get_db()
 
     cnpj = limpar_cnpj(cnpj)
+    telefone = limpar_telefone(telefone)
+    email = email.strip().lower()
+    cpf = cpf.strip()
+
     senha_hash = generate_password_hash(senha)
 
     existe = db.execute(
-        "SELECT id FROM usuarios WHERE cnpj = ?",
-        (cnpj,)
+        """
+        SELECT 
+            cpf,
+            cnpj,
+            email,
+            telefone
+        FROM usuarios
+        WHERE cpf = ?
+           OR cnpj = ?
+           OR LOWER(email) = LOWER(?)
+           OR telefone = ?
+        """,
+        (
+            cpf,
+            cnpj,
+            email,
+            telefone
+        )
     ).fetchone()
 
+
     if existe:
-        raise Exception("CNPJ já cadastrado")
+
+        if existe[0] == cpf:
+            raise Exception(
+                "CPF já cadastrado."
+            )
+
+        if existe[1] == cnpj:
+            raise Exception(
+                "CNPJ já cadastrado."
+            )
+
+        if existe[2].lower() == email:
+            raise Exception(
+                "E-mail já cadastrado."
+            )
+
+        if existe[3] == telefone:
+            raise Exception(
+                "WhatsApp já cadastrado."
+            )
+
 
     db.execute(
-    """
-    INSERT INTO usuarios
-    (nome, cpf, cnpj, telefone, email, senha)
-    VALUES (?, ?, ?, ?, ?, ?)
-    """,
-    (
-        nome,
-        cpf,
-        cnpj,
-        telefone,
-        email,
-        senha_hash
+        """
+        INSERT INTO usuarios
+        (
+            nome,
+            cpf,
+            cnpj,
+            telefone,
+            email,
+            senha
+        )
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            nome,
+            cpf,
+            cnpj,
+            telefone,
+            email,
+            senha_hash
+        )
     )
-)
+
+    db.commit()
+
+    db.execute(
+        """
+        INSERT INTO usuarios
+        (nome, cpf, cnpj, telefone, email, senha)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            nome,
+            cpf,
+            cnpj,
+            telefone,
+            email,
+            senha_hash
+        )
+    )
 
     db.commit()
 
 
-def validar_login(cnpj, senha):
+def validar_login(login, senha):
 
     db = get_db()
 
-    cnpj = limpar_cnpj(cnpj)
+    login = login.strip()
+
+    login_cnpj = limpar_cnpj(login)
+    login_telefone = limpar_telefone(login)
+    login_email = login.lower()
 
     usuario = db.execute(
         """
-        SELECT id, nome, cnpj, email, senha
+        SELECT
+            id,
+            nome,
+            cnpj,
+            email,
+            senha
         FROM usuarios
         WHERE cnpj = ?
+           OR LOWER(email) = ?
+           OR telefone = ?
         """,
-        (cnpj,)
+        (
+            login_cnpj,
+            login_email,
+            login_telefone
+        )
     ).fetchone()
 
     if usuario is None:
@@ -72,7 +168,6 @@ def validar_login(cnpj, senha):
     senha_banco = usuario[4]
 
     if not check_password_hash(senha_banco, senha):
-        print("SENHA INCORRETA")
         return None
 
     return {
@@ -96,8 +191,8 @@ def gerar_remember_token(usuario_id):
     db.execute(
         """
         UPDATE usuarios
-        SET remember_token=?
-        WHERE id=?
+        SET remember_token = ?
+        WHERE id = ?
         """,
         (token, usuario_id)
     )
@@ -113,9 +208,13 @@ def buscar_usuario_por_token(token):
 
     usuario = db.execute(
         """
-        SELECT id, nome, cnpj, email
+        SELECT
+            id,
+            nome,
+            cnpj,
+            email
         FROM usuarios
-        WHERE remember_token=?
+        WHERE remember_token = ?
         """,
         (token,)
     ).fetchone()
@@ -138,8 +237,8 @@ def limpar_remember_token(usuario_id):
     db.execute(
         """
         UPDATE usuarios
-        SET remember_token=NULL
-        WHERE id=?
+        SET remember_token = NULL
+        WHERE id = ?
         """,
         (usuario_id,)
     )
@@ -151,6 +250,8 @@ def buscar_usuario_por_cnpj_ou_email(identificacao):
 
     db = get_db()
 
+    identificacao = identificacao.strip()
+
     return db.execute(
         """
         SELECT
@@ -161,15 +262,16 @@ def buscar_usuario_por_cnpj_ou_email(identificacao):
             email
         FROM usuarios
         WHERE cnpj = ?
-   OR email = ?
-   OR telefone = ?
+           OR LOWER(email) = ?
+           OR telefone = ?
         """,
         (
-    limpar_cnpj(identificacao),
-    identificacao,
-    identificacao
-)
+            limpar_cnpj(identificacao),
+            identificacao.lower(),
+            limpar_telefone(identificacao)
+        )
     ).fetchone()
+
 
 def buscar_usuario_por_id(usuario_id):
 
@@ -184,15 +286,13 @@ def buscar_usuario_por_id(usuario_id):
             telefone,
             email
         FROM usuarios
-        WHERE id=?
+        WHERE id = ?
         """,
         (usuario_id,)
     ).fetchone()
 
-
     if usuario is None:
         return None
-
 
     return {
         "id": usuario[0],

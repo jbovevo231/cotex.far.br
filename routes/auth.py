@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, url_for, session, make_response
+from flask import Blueprint, request, redirect, url_for, session, make_response, render_template, jsonify
 
 from models.usuario import (
     criar_usuario,
@@ -7,6 +7,7 @@ from models.usuario import (
     limpar_remember_token,
     buscar_usuario_por_cnpj_ou_email
 )
+
 
 auth_bp = Blueprint(
     "auth",
@@ -25,29 +26,46 @@ def cadastro():
     senha = request.form["senha"]
     confirmar = request.form["confirmar"]
 
+
     if senha != confirmar:
-        return "As senhas não conferem"
 
-    criar_usuario(
-    nome,
-    cpf,
-    cnpj,
-    telefone,
-    email,
-    senha
-)
+        return jsonify({
+            "erro": "As senhas não conferem."
+        })
 
-    return redirect(url_for("inicio"))
+
+    try:
+
+        criar_usuario(
+            nome,
+            cpf,
+            cnpj,
+            telefone,
+            email,
+            senha
+        )
+
+
+    except Exception as e:
+
+        return jsonify({
+            "erro": str(e)
+        })
+
+
+    return jsonify({
+        "sucesso": True
+    })
 
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
 
-    cnpj = request.form["cnpj"]
+    login = request.form["login"].strip()
     senha = request.form["senha"]
 
     usuario = validar_login(
-        cnpj,
+        login,
         senha
     )
 
@@ -69,15 +87,15 @@ def login():
         resposta.set_cookie(
             "remember_token",
             token,
-            max_age=60 * 60 * 24 * 30,  # 30 dias
+            max_age=60 * 60 * 24 * 30,
             httponly=True,
-            secure=True,          # Render utiliza HTTPS
+            secure=True,
             samesite="Lax"
         )
 
         return resposta
 
-    return "CNPJ ou senha inválidos"
+    return "CNPJ, e-mail, WhatsApp ou senha inválidos."
 
 
 @auth_bp.route("/recuperar-senha", methods=["POST"])

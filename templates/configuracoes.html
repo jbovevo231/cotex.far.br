@@ -87,7 +87,7 @@ href="{{ url_for('static', filename='css/configuracoes.css') }}">
                     type="text"
                     value="{{ usuario.nome }}"
                     class="form-control"
-                    readonly>
+                    disabled>
 
 
                 </div>
@@ -129,11 +129,10 @@ href="{{ url_for('static', filename='css/configuracoes.css') }}">
 
 
                     <input
-                    type="text"
-                    name="telefone"
-                    value="{{ usuario.telefone or '' }}"
-                    class="form-control"
-                    placeholder="DDD + número">
+type="text"
+value="{{ usuario.telefone or '' }}"
+class="form-control"
+disabled>
 
 
                 </div>
