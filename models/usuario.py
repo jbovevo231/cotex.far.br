@@ -170,3 +170,34 @@ def buscar_usuario_por_cnpj_ou_email(identificacao):
     identificacao
 )
     ).fetchone()
+
+def buscar_usuario_por_id(usuario_id):
+
+    db = get_db()
+
+    usuario = db.execute(
+        """
+        SELECT
+            id,
+            nome,
+            cnpj,
+            email,
+            telefone
+        FROM usuarios
+        WHERE id=?
+        """,
+        (usuario_id,)
+    ).fetchone()
+
+
+    if usuario is None:
+        return None
+
+
+    return {
+        "id": usuario[0],
+        "nome": usuario[1],
+        "cnpj": usuario[2],
+        "email": usuario[3],
+        "telefone": usuario[4]
+    }

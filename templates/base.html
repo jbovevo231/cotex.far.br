@@ -90,10 +90,12 @@
                     <span>Relatórios</span>
                 </a>
 
-                <a href="#">
-                    <i class="bi bi-gear"></i>
-                    <span>Configurações</span>
-                </a>
+                <a href="{{ url_for('dashboard.configuracoes') }}">
+    <i class="bi bi-gear"></i>
+    <span>Configurações</span>
+</a>
+
+
 
                 <a href="{{ url_for('auth.logout') }}">
                     <i class="bi bi-box-arrow-right"></i>

@@ -4,6 +4,7 @@
 Conecta - CotaFarma
 {% endblock %}
 
+
 {% block css %}
 
 <link rel="stylesheet"
@@ -12,13 +13,19 @@ Conecta - CotaFarma
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/conecta-mobile.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/minhas_publicacoes.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/minhas_publicacoes.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/configuracoes.css') }}">
+
 {% endblock %}
+
+
 
 {% block page_content %}
 
 <div class="conecta-page">
-    
 
     <!-- ==========================
          CABEÇALHO
@@ -420,9 +427,7 @@ onchange="enviarFoto()">
         <a href="{{ url_for('conecta.perfil_usuario', cnpj=post[5]) }}"
            class="nome-farmacia">
 
-           <p style="color:red">
-    CNPJ: {{ post[5] }}
-</p>
+           
 
             {{ post[1] }}
 
