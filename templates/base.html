@@ -60,37 +60,44 @@
 
             <nav class="menu">
 
-                <a href="{{ url_for('dashboard.dashboard') }}">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
+                <a href="{{ url_for('dashboard.dashboard') }}"
+   class="{% if request.endpoint == 'dashboard.dashboard' %}active{% endif %}">
+    <i class="bi bi-grid-fill"></i>
+    <span>Dashboard</span>
+</a>
 
-                <a href="{{ url_for('cotacao.cotacoes') }}">
-                    <i class="bi bi-clipboard2-pulse"></i>
-                    <span>Cotações</span>
-                </a>
+                <a href="{{ url_for('cotacao.cotacoes') }}"
+   class="{% if request.endpoint == 'cotacao.cotacoes' %}active{% endif %}">
+    <i class="bi bi-clipboard2-pulse"></i>
+    <span>Cotações</span>
+</a>
 
-                <a href="{{ url_for('conecta.conecta') }}">
-    <i class="bi bi-capsule-pill"></i>
+                <a href="{{ url_for('conecta.conecta') }}"
+   class="{% if request.endpoint == 'conecta.conecta' %}active{% endif %}">
+    <i class="bi bi-people-fill"></i>
     <span>Conecta</span>
 </a>
 
-                <a href="#">
-                    <i class="bi bi-building"></i>
-                    <span>Distribuidoras</span>
-                </a>
+                <a href="#"
+   class="{% if request.endpoint == 'fornecedores' %}active{% endif %}">
+    <i class="bi bi-building"></i>
+    <span>Fornecedores</span>
+</a>
 
-                <a href="#">
-                    <i class="bi bi-robot"></i>
-                    <span>Inteligência</span>
-                </a>
+                <a href="#"
+   class="{% if request.endpoint == 'inteligencia' %}active{% endif %}">
+    <i class="bi bi-robot"></i>
+    <span>CotaFarma IA</span>
+</a>
 
-                <a href="#">
-                    <i class="bi bi-bar-chart-line"></i>
-                    <span>Relatórios</span>
-                </a>
+                <a href="#"
+   class="{% if request.endpoint == 'relatorios' %}active{% endif %}">
+    <i class="bi bi-bar-chart-line"></i>
+    <span>Analytics</span>
+</a>
 
-                <a href="{{ url_for('dashboard.configuracoes') }}">
+                <a href="{{ url_for('dashboard.configuracoes') }}"
+   class="{% if request.endpoint == 'dashboard.configuracoes' %}active{% endif %}">
     <i class="bi bi-gear"></i>
     <span>Configurações</span>
 </a>
@@ -108,19 +115,34 @@
 
         <div class="user">
 
-            <div class="avatar">
-                {{ session.get('usuario_email','U')[0].upper() }}
-            </div>
+    <div class="avatar">
 
-            <div>
+        {% set nome = session.get('usuario_nome') %}
 
-                <strong>{{ session.get('usuario_email','Usuário') }}</strong>
+        {% if nome %}
+            {{ nome[0].upper() }}
+        {% else %}
+            U
+        {% endif %}
 
-                <small>Administrador</small>
+    </div>
 
-            </div>
 
-        </div>
+    <div>
+
+        <strong>
+            {{ session.get('usuario_nome', 'Usuário') }}
+        </strong>
+
+
+        <small>
+            CNPJ: {{ session.get('usuario_cnpj', '') }}
+        </small>
+
+
+    </div>
+
+</div>
 
     </aside>
 

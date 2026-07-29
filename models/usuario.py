@@ -181,8 +181,8 @@ def buscar_usuario_por_id(usuario_id):
             id,
             nome,
             cnpj,
-            email,
-            telefone
+            telefone,
+            email
         FROM usuarios
         WHERE id=?
         """,
@@ -198,6 +198,6 @@ def buscar_usuario_por_id(usuario_id):
         "id": usuario[0],
         "nome": usuario[1],
         "cnpj": usuario[2],
-        "email": usuario[3],
-        "telefone": usuario[4]
+        "telefone": usuario[3],
+        "email": usuario[4]
     }
