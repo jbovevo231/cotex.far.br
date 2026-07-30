@@ -1,46 +1,56 @@
 {% extends "base_public.html" %}
 
+
+{% block css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login-mobile.css') }}">
+
+{% endblock %}
+
 {% block content %}
 
 <div class="landing">
 
     <!-- ================= HEADER ================= -->
 
+<div class="header-wrapper">
+
+    <div class="logo">
+
+        <img src="{{ url_for('static', filename='img/logo.png') }}"
+             class="logo-img">
+
+    </div>
+
     <header class="topbar">
 
-        <div class="logo">
-            <div class="logo-icon">+</div>
+        <!-- BOTÃO MOBILE -->
 
-            <div class="logo-text">
-                <h2>CotaX</h2>
-                <span>FARMA</span>
-            </div>
+        <div class="mobile-menu-btn">
+
+            <span class="menu-icon">☰</span>
+
+            <span class="menu-text">EXPLORAR</span>
+
         </div>
+
+        <!-- MENU -->
 
         <nav>
 
             <a href="#">Recursos</a>
             <a href="#">Como funciona</a>
             <a href="#">Planos</a>
-            <a href="#">Depoimentos</a>
             <a href="#">Contato</a>
 
         </nav>
+</header>
 
-        <div class="top-actions">
-
-            <button class="btn-outline" onclick="irLogin()">
-    Entrar
-</button>
-
-            <button class="btn-primary"
-                    onclick="abrirCadastro()">
-                Criar minha conta
-            </button>
-
-        </div>
-
-    </header>
+</div>
 
 
     <!-- ================= HERO ================= -->

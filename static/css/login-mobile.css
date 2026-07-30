@@ -1,0 +1,547 @@
+/*=========================================================
+    LOGIN MOBILE
+    PARTE 1 - HEADER
+==========================================================*/
+
+
+/*=========================================================
+    NOTEBOOK
+==========================================================*/
+
+@media (max-width:1100px){
+
+    .header-wrapper{
+
+        width:95%;
+
+        grid-template-columns:190px 1fr;
+
+        gap:24px;
+
+    }
+
+    .logo-img{
+
+        width:170px;
+
+    }
+
+    .topbar{
+
+        padding:18px 22px;
+
+    }
+
+    .topbar nav{
+
+        gap:22px;
+
+    }
+
+}
+
+
+/*=========================================================
+    TABLET
+==========================================================*/
+
+@media (max-width:900px){
+
+    .header-wrapper{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:22px;
+
+        margin:24px auto 45px;
+
+    }
+
+    .logo{
+
+        justify-content:center;
+
+    }
+
+    .logo-img{
+
+        width:170px;
+
+    }
+
+    .topbar{
+
+        width:100%;
+
+        flex-direction:column;
+
+        gap:22px;
+
+        padding:22px;
+
+    }
+
+    .topbar nav{
+
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:18px;
+
+        text-align:center;
+
+    }
+
+    .topbar nav a{
+
+        display:block;
+
+        padding:12px;
+
+    }
+
+    .top-actions{
+
+        width:100%;
+
+        display:flex;
+
+    }
+
+    .top-actions .btn-outline,
+
+    .top-actions .btn-primary{
+
+        flex:1;
+
+    }
+
+}
+
+
+/*=========================================================
+    CELULAR
+==========================================================*/
+
+@media (max-width:600px){
+
+    body{
+
+        overflow-x:hidden;
+
+    }
+
+    .header-wrapper{
+
+        width:94%;
+
+        margin:20px auto 35px;
+
+        gap:20px;
+
+    }
+
+    .logo-img{
+
+        width:155px;
+
+    }
+
+    .topbar{
+
+        padding:18px;
+
+        border-radius:20px;
+
+        gap:18px;
+
+    }
+
+    .topbar nav{
+
+        grid-template-columns:1fr;
+
+        gap:10px;
+
+    }
+
+    .topbar nav a{
+
+        width:100%;
+
+        padding:14px;
+
+        border-radius:12px;
+
+    }
+
+    .topbar nav a:hover{
+
+        background:rgba(255,255,255,.05);
+
+    }
+
+    .top-actions{
+
+        flex-direction:column;
+
+        width:100%;
+
+        gap:12px;
+
+    }
+
+    .btn-outline,
+
+    .btn-primary{
+
+        width:100%;
+
+        height:54px;
+
+    }
+
+}
+
+
+/*=========================================================
+    CELULARES PEQUENOS
+==========================================================*/
+
+@media (max-width:380px){
+
+    .logo-img{
+
+        width:140px;
+
+    }
+
+    .topbar{
+
+        padding:16px;
+
+    }
+
+    .topbar nav{
+
+        gap:8px;
+
+    }
+
+    .topbar nav a{
+
+        font-size:15px;
+
+    }
+
+    .btn-outline,
+
+    .btn-primary{
+
+        height:52px;
+
+        font-size:15px;
+
+    }
+
+}
+
+.mobile-menu-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.menu-icon{
+
+    font-size:28px;
+
+    color:#fff;
+
+    transition:.3s;
+
+}
+
+.menu-text{
+
+    position:relative;
+
+    display:inline-block;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    letter-spacing:.22em;
+
+    text-transform:uppercase;
+
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #ffffff 20%,
+            #b9e6ff 35%,
+            #57b7ff 50%,
+            #b9bfff 65%,
+            #ffffff 80%,
+            #ffffff 100%
+        );
+
+    background-size:220% auto;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.15),
+        0 0 25px rgba(87,183,255,.20);
+
+    animation:shineText 3s ease-in-out infinite;
+
+}
+
+.mobile-menu-btn:hover .menu-text{
+
+    filter:
+
+        drop-shadow(0 0 12px rgba(96,165,250,.7));
+
+}
+
+/*=========================================================
+    MENU MOBILE PREMIUM
+==========================================================*/
+
+.mobile-menu-btn{
+
+    display:none;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.menu-icon{
+
+    color:#fff;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    line-height:1;
+
+    transition:.35s;
+
+}
+
+.menu-text{
+
+    font-size:17px;
+
+    font-weight:900;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #dff6ff 10%,
+            #71d4ff 22%,
+            #3b82f6 35%,
+            #7c5cff 50%,
+            #b66cff 62%,
+            #ffd166 75%,
+            #ffffff 88%,
+            #dff6ff 100%
+        );
+
+    background-size:240% 100%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+        0 0 6px rgba(255,255,255,.15),
+        0 0 16px rgba(59,130,246,.20),
+        0 0 24px rgba(124,92,255,.12);
+
+    animation:explorarGlow 3.8s ease-in-out infinite;
+
+}
+
+@keyframes explorarGlow{
+
+    from{
+
+        background-position:300% 0;
+
+    }
+
+    to{
+
+        background-position:-300% 0;
+
+    }
+
+}
+
+.mobile-menu-btn:hover .menu-icon{
+
+    color:#60A5FA;
+
+    transform:rotate(90deg);
+
+}
+
+.mobile-menu-btn:hover .menu-text{
+
+    filter:drop-shadow(0 0 10px rgba(96,165,250,.75));
+
+}
+
+
+/*=========================================================
+    MOBILE
+==========================================================*/
+
+@media (max-width:768px){
+
+    .topbar{
+
+        position:relative;
+
+        display:grid;
+
+        grid-template-columns:1fr auto;
+
+        align-items:center;
+
+        gap:18px;
+
+    }
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+    .topbar nav{
+
+        display:none;
+
+        position:absolute;
+
+        top:88px;
+
+        left:0;
+
+        width:100%;
+
+        padding:20px;
+
+        border-radius:20px;
+
+        background:rgba(7,18,34,.97);
+
+        backdrop-filter:blur(28px);
+
+        -webkit-backdrop-filter:blur(28px);
+
+        border:1px solid rgba(255,255,255,.08);
+
+        box-shadow:0 30px 70px rgba(0,0,0,.35);
+
+        flex-direction:column;
+
+        gap:12px;
+
+        z-index:999;
+
+    }
+
+    .topbar nav.active{
+
+        display:flex;
+
+    }
+
+    .topbar nav a{
+
+        width:100%;
+
+        padding:15px 18px;
+
+        border-radius:14px;
+
+        color:#fff;
+
+        font-weight:700;
+
+        transition:.25s;
+
+    }
+
+    .topbar nav a:hover{
+
+        background:rgba(59,130,246,.15);
+
+        color:#fff;
+
+    }
+
+    .top-actions{
+
+        width:100%;
+
+        margin-top:18px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:12px;
+
+        grid-column:1 / -1;
+
+    }
+
+    .btn-outline,
+
+    .btn-primary{
+
+        width:100%;
+
+    }
+
+}

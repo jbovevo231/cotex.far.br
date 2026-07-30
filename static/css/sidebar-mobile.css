@@ -1,0 +1,233 @@
+/* =====================================================
+   MOBILE - COTAFARMA 2027
+===================================================== */
+
+@media (max-width:768px){
+
+html,
+body{
+    overflow-x:hidden;
+}
+
+.app-layout{
+    display:block;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.sidebar{
+
+    position:sticky;
+    top:0;
+
+    width:100%;
+    height:auto;
+
+    margin:0;
+    padding:8px 10px 10px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(14,24,40,.98),
+        rgba(9,16,30,.98)
+    );
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 12px 30px rgba(15,23,42,.18);
+
+    z-index:999;
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.sidebar-logo{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:6px;
+
+}
+
+.logo-sidebar{
+
+    width:125px;
+
+    height:auto;
+
+}
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu{
+
+    display:flex !important;
+
+    flex-direction:row !important;
+
+    justify-content:space-evenly;
+
+    align-items:center;
+
+    flex-wrap:nowrap !important;
+
+    width:100%;
+
+    gap:2px;
+
+    padding:8px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+}
+
+/* remove títulos */
+
+.menu-title{
+
+    display:none;
+
+}
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.menu a{
+
+    width:40px;
+
+    height:40px;
+
+    min-width:40px;
+
+    display:flex !important;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:14px;
+
+    padding:0;
+
+    flex:none;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.04);
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.menu a:hover{
+
+    background:rgba(255,255,255,.12);
+
+    transform:translateY(-2px);
+
+}
+
+/* =====================================================
+   ATIVO
+===================================================== */
+
+.menu a.active{
+
+    background:#19c37d;
+
+    border-color:#19c37d;
+
+    box-shadow:
+        0 0 16px rgba(25,195,125,.45);
+
+}
+
+.menu a.active i{
+
+    color:#fff;
+
+}
+
+.menu a.active::after{
+
+    display:none;
+
+}
+
+/* =====================================================
+   ÍCONES
+===================================================== */
+
+.menu a i{
+
+    font-size:19px;
+
+    color:#f8fafc;
+
+}
+
+/* =====================================================
+   ESCONDE TEXTO
+===================================================== */
+
+.menu a span{
+
+    display:none;
+
+}
+
+/* =====================================================
+   USUÁRIO
+===================================================== */
+
+.user{
+
+    display:none;
+
+}
+
+/* =====================================================
+   CONTEÚDO
+===================================================== */
+
+.content{
+
+    margin-left:0;
+
+    width:100%;
+
+    padding:16px;
+
+}
+
+}
