@@ -440,233 +440,167 @@ body::after{
 ==========================================================*/
 
 /*=========================================================
-    BADGE PREMIUM
-==========================================================*/
+    ANIMAÇÃO DO TÍTULO
+=========================================================*/
 
-.badge{
+.hero-title{
 
-    display:inline-flex;
+    display:flex;
 
-    align-items:center;
+    flex-direction:column;
 
-    gap:14px;
+    gap:8px;
 
-    padding:12px 22px;
+    line-height:1;
 
-    border-radius:999px;
-
-    background:linear-gradient(
-        135deg,
-        rgba(255,255,255,.08),
-        rgba(255,255,255,.03)
-    );
-
-    border:1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(20px);
-
-    -webkit-backdrop-filter:blur(20px);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.18);
-
-    margin-bottom:30px;
+    margin-left:60px;
 
 }
 
-.badge-live{
+.hero-title .linha{
 
     position:relative;
 
-    width:14px;
+    display:inline-block;
 
-    height:14px;
+    width:max-content;
 
-    border-radius:50%;
+    font-weight:900;
 
-    background:#35d07f;
+    opacity:0;
 
-    box-shadow:
+    transform:translateY(30px);
 
-        0 0 15px rgba(53,208,127,.8);
+    background-size:300% 100%;
 
-}
+    background-position:-250% 0;
 
-.badge-live::after{
+    -webkit-background-clip:text;
 
-    content:"";
+    -webkit-text-fill-color:transparent;
 
-    position:absolute;
-
-    inset:-6px;
-
-    border-radius:50%;
-
-    border:2px solid rgba(53,208,127,.45);
-
-    animation:badgePulse 2s infinite;
+    animation-fill-mode:forwards;
 
 }
 
-.badge-text{
+/*-----------------------------------
+    COTE
+------------------------------------*/
 
-    font-size:15px;
+.hero-title .linha1{
 
-    font-weight:700;
+    background-image:linear-gradient(
 
-    color:#eef6ff;
+        90deg,
 
-    letter-spacing:.02em;
+        #ffffff 0%,
+
+        #4EA7FF 45%,
+
+        #ffffff 90%
+
+    );
+
+    animation:
+
+        aparecer .7s ease forwards,
+
+        brilho 1.2s ease forwards;
 
 }
 
-@keyframes badgePulse{
+/*-----------------------------------
+    CONECTE
+------------------------------------*/
+
+.hero-title .linha2{
+
+    background-image:linear-gradient(
+
+        90deg,
+
+        #ffffff 0%,
+
+        #22C55E 45%,
+
+        #ffffff 90%
+
+    );
+
+    animation:
+
+        aparecer .7s ease .45s forwards,
+
+        brilho 1.2s ease .45s forwards;
+
+}
+
+/*-----------------------------------
+    ECONOMIZE
+------------------------------------*/
+
+.hero-title .linha3{
+
+    background-image:linear-gradient(
+
+        90deg,
+
+        #ffffff 0%,
+
+        #F59E0B 45%,
+
+        #ffffff 90%
+
+    );
+
+    animation:
+
+        aparecer .7s ease .9s forwards,
+
+        brilho 1.2s ease .9s forwards;
+
+}
+
+/*-----------------------------------
+    ENTRADA
+------------------------------------*/
+
+@keyframes aparecer{
 
     from{
 
-        transform:scale(.7);
+        opacity:0;
 
-        opacity:1;
+        transform:translateY(30px);
 
     }
 
     to{
 
-        transform:scale(2);
+        opacity:1;
 
-        opacity:0;
+        transform:translateY(0);
 
     }
 
 }
 
-.badge{
+/*-----------------------------------
+    BRILHO
+------------------------------------*/
 
-    display:inline-flex;
+@keyframes brilho{
 
-    align-items:center;
+    from{
 
-    gap:14px;
+        background-position:-250% 0;
 
-    padding:12px 22px;
+    }
 
-    border-radius:999px;
+    to{
 
-    background:rgba(255,255,255,.05);
+        background-position:250% 0;
 
-    border:1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(20px);
-
-    color:#eef6ff;
-
-    font-size:15px;
-
-    font-weight:700;
-
-}
-
-.badge-icon{
-
-    position:relative;
-
-    width:28px;
-
-    height:28px;
-
-    border-radius:50%;
-
-    background:linear-gradient(
-        135deg,
-        #5db7ff,
-        #3b82f6,
-        #2563eb
-    );
-
-    box-shadow:
-        0 0 20px rgba(59,130,246,.45);
-
-    flex-shrink:0;
-
-}
-
-/* nós */
-
-.badge-icon .node{
-
-    position:absolute;
-
-    width:5px;
-
-    height:5px;
-
-    border-radius:50%;
-
-    background:#fff;
-
-    z-index:2;
-
-}
-
-.badge-icon .center{
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-}
-
-.badge-icon .top{
-
-    left:50%;
-    top:6px;
-
-    transform:translateX(-50%);
-
-}
-
-.badge-icon .right{
-
-    right:6px;
-    bottom:7px;
-
-}
-
-/* linhas */
-
-.badge-icon .line{
-
-    position:absolute;
-
-    height:2px;
-
-    background:#fff;
-
-    transform-origin:left center;
-
-    opacity:.95;
-
-}
-
-.badge-icon .l1{
-
-    width:8px;
-
-    left:50%;
-    top:9px;
-
-    transform:rotate(-90deg);
-
-}
-
-.badge-icon .l2{
-
-    width:10px;
-
-    left:14px;
-    top:15px;
-
-    transform:rotate(35deg);
+    }
 
 }
