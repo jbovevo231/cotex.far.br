@@ -2003,3 +2003,37 @@ body{
     text-decoration:underline;
 
 }
+
+.titulo-noticia{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#12345b;
+
+    margin-bottom:12px;
+
+    line-height:1.4;
+
+}
+
+.btn-noticia{
+
+    display:inline-block;
+
+    margin-top:16px;
+
+    font-weight:700;
+
+    color:#12345b;
+
+    text-decoration:none;
+
+}
+
+.btn-noticia:hover{
+
+    text-decoration:underline;
+
+}

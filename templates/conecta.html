@@ -442,15 +442,55 @@ onchange="enviarFoto()">
     </div>
 
 
-    {% if post[2] %}
+{% if post[2] %}
 
-    <div class="post-content">
+<div class="post-content">
 
-        <p>{{ post[2] }}</p>
 
-    </div>
+{% set conteudo = post[2] %}
 
-    {% endif %}
+{% if "[FONTE]" in conteudo %}
+<div class="fonte-noticia">
+📰 {{ conteudo.split("[FONTE]")[1].split("[/FONTE]")[0] }}
+</div>
+{% endif %}
+
+{% if "[TITULO]" in conteudo %}
+<div class="titulo-noticia">
+{{ conteudo.split("[TITULO]")[1].split("[/TITULO]")[0] }}
+</div>
+{% endif %}
+
+{% if "[TEXTO]" in conteudo %}
+<p class="texto-post curto">
+{{ conteudo.split("[TEXTO]")[1].split("[/TEXTO]")[0].strip() }}
+</p>
+
+<a
+href="#"
+class="btn-ler"
+onclick="expandirPost(this); return false;">
+
+Ler mais
+
+</a>
+{% endif %}
+
+{% if "[LINK]" in conteudo %}
+<a
+href="{{ conteudo.split('[LINK]')[1].split('[/LINK]')[0] }}"
+target="_blank"
+class="btn-noticia">
+
+Ler notícia completa →
+
+</a>
+{% endif %}
+
+</div>
+
+{% endif %}
+
 
 
 
@@ -703,6 +743,28 @@ function fecharCrop(){
 
 }
 
+
+</script>
+
+<script>
+
+function expandirPost(botao){
+
+    const texto = botao.parentElement.querySelector(".texto-post");
+
+    texto.classList.toggle("curto");
+
+    if(texto.classList.contains("curto")){
+
+        botao.innerHTML="Ler completo";
+
+    }else{
+
+        botao.innerHTML="Mostrar menos";
+
+    }
+
+}
 
 </script>
 

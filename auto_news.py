@@ -7,6 +7,29 @@ URL = "https://site.cff.org.br/noticias"
 
 EMAIL_OFICIAL = "jandersonpharma@gmail.com"
 
+URL_ANVISA = "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa"
+
+PALAVRAS_ANVISA = [
+
+    "medicamento",
+    "medicamentos",
+    "novo medicamento",
+    "registro",
+    "registro sanitário",
+    "indicação terapêutica",
+    "farmacovigilância",
+    "recall",
+    "recolhimento",
+    "lote",
+    "suspensão",
+    "interdição",
+    "cancelamento de registro",
+    "rdc",
+    "controlado",
+    "controlados",
+    "sncr"
+
+]
 
 def buscar_usuario():
 
@@ -27,7 +50,7 @@ def buscar_usuario():
     ).fetchone()
 
 
-def buscar_noticia():
+def buscar_noticia_cff():
 
     resposta = requests.get(
         URL,
@@ -55,7 +78,64 @@ def buscar_noticia():
 
     return None
 
+def noticia_eh_medicamento(texto):
 
+    texto = texto.lower()
+
+    return any(
+        palavra in texto
+        for palavra in PALAVRAS_ANVISA
+    )
+
+def buscar_noticia_anvisa():
+
+    resposta = requests.get(
+        URL_ANVISA,
+        timeout=20,
+        headers={
+            "User-Agent": "Mozilla/5.0"
+        }
+    )
+
+    resposta.raise_for_status()
+
+    soup = BeautifulSoup(resposta.text, "html.parser")
+
+    for a in soup.find_all("a", href=True):
+
+        titulo = a.get_text(" ", strip=True)
+        href = a.get("href", "").strip()
+
+        if not titulo:
+            continue
+
+        if href.startswith("/"):
+            href = "https://www.gov.br" + href
+
+        if not href.startswith("https://"):
+            continue
+
+        try:
+
+            conteudo = ler_noticia(href)
+
+            texto_completo = (
+                titulo + " " + conteudo["texto"]
+            )
+
+        except Exception:
+            continue
+
+        if not noticia_eh_medicamento(texto_completo):
+            continue
+
+        return {
+            "titulo": titulo,
+            "link": href,
+            "fonte": "ANVISA"
+        }
+
+    return None
 def ler_noticia(link):
 
     resposta = requests.get(
@@ -79,7 +159,24 @@ def ler_noticia(link):
         if len(conteudo) > 40:
             texto += conteudo + "\n\n"
 
-    return texto.strip()
+    imagem = None
+
+    meta = soup.find("meta", property="og:image")
+
+    if meta:
+        imagem = meta.get("content")
+
+    if not imagem:
+
+        img = soup.find("img")
+
+        if img:
+            imagem = img.get("src")
+
+    return {
+        "texto": texto.strip(),
+        "imagem": imagem
+    }
 
 
 def noticia_ja_publicada(link):
@@ -134,38 +231,75 @@ if __name__ == "__main__":
 
     cnpj = usuario[0]
 
-    noticia = buscar_noticia()
+    fontes = [
+
+    buscar_noticia_cff,
+
+    buscar_noticia_anvisa
+
+]
+
+    noticia = None
+
+    for buscar in fontes:
+
+            noticia = buscar()
+
+            if noticia is None:
+                continue
+
+            if noticia_ja_publicada(noticia["link"]):
+                continue
+
+            break
 
     if noticia is None:
-        print("Nenhuma notícia encontrada.")
-        exit()
 
-    if noticia_ja_publicada(noticia["link"]):
-        print("Essa notícia já foi publicada.")
-        exit()
+            print("Nenhuma notícia nova encontrada.")
 
-    texto = ler_noticia(noticia["link"])
+            exit()
+
+    if noticia.get("fonte") == "ANVISA":
+
+        conteudo = ler_noticia(noticia["link"])
+
+    else:
+
+        conteudo = ler_noticia(noticia["link"])
+
+    texto = conteudo["texto"]
+    print("=" * 80)
+    print(texto[:1500])
+    print("=" * 80)
+    imagem = conteudo["imagem"]
 
     print("=" * 80)
     print("PUBLICANDO NO CONECTA")
     print("=" * 80)
 
-    postagem = f"""📰 CFF
+    fonte = noticia.get("fonte", "CFF")
 
-{noticia["titulo"]}
+    resumo = texto[:800]
 
-{texto[:1200]}
+    postagem = f"""[FONTE]{fonte}[/FONTE]
 
-🔗 Leia a matéria completa:
-{noticia["link"]}
-"""
+    print(postagem)
+
+    [TITULO]{noticia["titulo"]}[/TITULO]
+
+    [TEXTO]
+    {resumo}
+    [/TEXTO]
+
+    [LINK]{noticia["link"]}[/LINK]
+    """
 
     salvar_post(
-        cnpj,
-        "Cotex Conecta",
-        postagem,
-        None
-    )
+    cnpj,
+    "Cotex Conecta",
+    postagem,
+    imagem
+)
 
     salvar_noticia_publicada(
         noticia["titulo"],
