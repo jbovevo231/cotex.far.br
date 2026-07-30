@@ -40,14 +40,14 @@
 
         <!-- MENU -->
 
-        <nav>
+<nav class="top-nav">
 
-            <a href="#">Recursos</a>
-            <a href="#">Como funciona</a>
-            <a href="#">Planos</a>
-            <a href="#">Contato</a>
+    <a href="#">Recursos</a>
+    <a href="#">Como funciona</a>
+    <a href="#">Planos</a>
+    <a href="#">Contato</a>
 
-        </nav>
+</nav>
 </header>
 
 </div>
@@ -536,7 +536,16 @@ document.getElementById("formCadastro").addEventListener("submit", async functio
 
 });
 
+const menuBtn = document.querySelector(".mobile-menu-btn");
+const nav = document.querySelector(".topbar nav");
+
+menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("active");
+});
+
+
 </script>
+
 
 
 {% endblock %}

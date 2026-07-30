@@ -442,11 +442,9 @@
 
     display:flex;
 
-    justify-content:center;
+    flex-direction:column;
 
     align-items:center;
-
-    flex-wrap:wrap;
 
 }
 
@@ -456,57 +454,45 @@
 
     }
 
-    .topbar nav{
+.topbar nav{
 
-        display:none;
+    display:none;
 
-        position:absolute;
+    width:100%;
 
-        top:88px;
+    margin-top:16px;
 
-        left:0;
+    flex-direction:column;
 
-        width:100%;
+    gap:10px;
 
-        padding:20px;
-
-        border-radius:20px;
-
-        background:rgba(7,18,34,.97);
-
-        backdrop-filter:blur(28px);
-
-        -webkit-backdrop-filter:blur(28px);
-
-        border:1px solid rgba(255,255,255,.08);
-
-        box-shadow:0 30px 70px rgba(0,0,0,.35);
-
-        flex-direction:column;
-
-        gap:12px;
-
-        z-index:999;
-
-    }
+}
 
     .topbar nav.active{
 
-        display:flex;
+    display:flex;
 
-    }
+    flex-direction:column;
+
+}
 
     .topbar nav a{
 
+        display:block;
+
         width:100%;
 
-        padding:15px 18px;
+        padding:16px 18px;
 
         border-radius:14px;
 
-        color:#fff;
+        color:#e3e7ef;
 
-        font-weight:700;
+        text-decoration:none;
+
+        font-size:15px;
+
+        font-weight:600;
 
         transition:.25s;
 
@@ -514,9 +500,9 @@
 
     .topbar nav a:hover{
 
-        background:rgba(59,130,246,.15);
+        background:#f8fafc;
 
-        color:#fff;
+        color:#2563eb;
 
     }
 
@@ -545,3 +531,10 @@
     }
 
 }
+
+
+
+/*=========================================================
+FIM DA PARTE 1 -MOBILE EXPLORAR 
+==========================================================*/
+
