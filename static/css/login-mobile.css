@@ -257,11 +257,11 @@
 
     align-items:center;
 
-    gap:12px;
+    justify-content:center;
 
-    cursor:pointer;
+    gap:14px;
 
-    user-select:none;
+    margin:0 auto;
 
 }
 
@@ -438,17 +438,17 @@
 
     .topbar{
 
-        position:relative;
+    position:relative;
 
-        display:grid;
+    display:flex;
 
-        grid-template-columns:1fr auto;
+    justify-content:center;
 
-        align-items:center;
+    align-items:center;
 
-        gap:18px;
+    flex-wrap:wrap;
 
-    }
+}
 
     .mobile-menu-btn{
 

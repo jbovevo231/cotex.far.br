@@ -1,6 +1,5 @@
 /*=========================================================
-    COTAX FARMA
-    LOGIN PREMIUM 2027
+    PARTE 1 - TOPO (LOGO, DOCK, COR DE FUNDO E EFEITO AZUL, COR DAS LETRAS E BOTÕES
 ==========================================================*/
 
 :root{
@@ -433,5 +432,110 @@ body::after{
     box-shadow:
 
         0 28px 55px rgba(59,130,246,.45);
+
+}
+
+/*=========================================================
+   FIM DA PARTE 1 - TOPO (LOGO, DOCK, COR DE FUNDO E EFEITO AZUL, COR DAS LETRAS E BOTÕES
+==========================================================*/
+
+/*=========================================================
+    BADGE PREMIUM
+==========================================================*/
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.03)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.18);
+
+    margin-bottom:30px;
+
+}
+
+.badge-live{
+
+    position:relative;
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:#35d07f;
+
+    box-shadow:
+
+        0 0 15px rgba(53,208,127,.8);
+
+}
+
+.badge-live::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-6px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(53,208,127,.45);
+
+    animation:badgePulse 2s infinite;
+
+}
+
+.badge-text{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#eef6ff;
+
+    letter-spacing:.02em;
+
+}
+
+@keyframes badgePulse{
+
+    from{
+
+        transform:scale(.7);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:scale(2);
+
+        opacity:0;
+
+    }
 
 }
