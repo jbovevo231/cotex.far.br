@@ -604,3 +604,699 @@ body::after{
     }
 
 }
+
+/*=========================================================
+    TÍTULO - SOMENTE DESKTOP
+=========================================================*/
+
+@media (min-width: 769px){
+
+    .hero-title{
+
+        font-size: 4.8rem;
+
+    }
+
+}
+
+/*=========================================================
+    BOTÕES DO MENU
+=========================================================*/
+
+.top-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-left:28px;
+
+}
+
+.btn-login{
+
+    height:46px;
+
+    padding:0 24px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:transparent;
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.btn-login:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.btn-buy{
+
+    height:46px;
+
+    padding:0 28px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #3B82F6,
+        #2563EB
+    );
+
+    color:#fff;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+    box-shadow:
+        0 15px 35px rgba(37,99,235,.35);
+
+}
+
+.btn-buy:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 20px 45px rgba(37,99,235,.45);
+
+}
+
+/*=========================================================
+    LOGIN CARD PREMIUM
+=========================================================*/
+
+.login-card{
+
+    width:100%;
+
+    margin-top:-620px;
+
+    max-width:380px;
+
+    padding:42px;
+
+    border-radius:28px;
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.04)
+    );
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+
+}
+
+.login-card h2{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+}
+
+.login-card p{
+
+    color:#9fb4c8;
+
+    font-size:16px;
+
+    margin-bottom:34px;
+
+}
+
+.login-card input{
+
+    width:100%;
+
+    height:58px;
+
+    margin-bottom:18px;
+
+    padding:0 20px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    background:rgba(255,255,255,.05);
+
+    color:#fff;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.30s;
+
+}
+
+.login-card input::placeholder{
+
+    color:#8fa6bb;
+
+}
+
+.login-card input:focus{
+
+    border-color:#3B82F6;
+
+    background:rgba(59,130,246,.08);
+
+    box-shadow:
+        0 0 0 4px rgba(59,130,246,.12);
+
+}
+
+.login-card .btn-primary{
+
+    width:100%;
+
+    height:58px;
+
+    margin-top:10px;
+
+    border-radius:16px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+}
+
+.btn-link{
+
+    margin-top:18px;
+
+    background:none;
+
+    border:none;
+
+    color:#60A5FA;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-link:hover{
+
+    color:#ffffff;
+
+}
+
+.esqueci-senha{
+
+    margin-top:10px;
+
+    text-align:center;
+
+}
+
+.login-card form{
+
+    margin-bottom:18px;
+
+}
+
+/*=========================================================
+    LOGIN MOLDAL
+=========================================================*/
+
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    backdrop-filter:blur(8px);
+
+    z-index:9999;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.modal.show{
+
+    display:flex;
+
+}
+
+/*=========================================================
+    LOGIN ESCONDIDO
+=========================================================*/
+
+.login-card{
+
+    visibility:hidden;
+
+    opacity:0;
+
+    transform:
+        translateX(120px)
+        scale(.92);
+
+    filter:blur(12px);
+
+    pointer-events:none;
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1),
+        filter .7s,
+        visibility .7s;
+
+}
+
+.login-card.show{
+
+    visibility:visible;
+
+    opacity:1;
+
+    transform:
+        translateX(0)
+        scale(1);
+
+    filter:blur(0);
+
+    pointer-events:auto;
+
+}
+
+/*=========================================================
+    HERO LAYOUT
+=========================================================*/
+
+.hero{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    max-width:1400px;
+
+    margin:80px auto;
+
+}
+
+.hero-left{
+
+    flex:0 0 40%;
+
+    max-width:40%;
+
+}
+
+.hero-right{
+
+    width:430px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:flex-start;
+
+    padding-top:150px;
+
+}
+
+/*=========================================================
+    BADGE HERO
+=========================================================*/
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:12px 22px;
+
+    margin:20px 0 35px 60px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    color:#dbeafe;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+    box-shadow:
+        0 10px 35px rgba(37,99,235,.10);
+
+    transition:.35s;
+
+}
+
+.badge:hover{
+
+    transform:translateY(-2px);
+
+    border-color:rgba(59,130,246,.30);
+
+    box-shadow:
+        0 18px 45px rgba(37,99,235,.18);
+
+}
+
+/*=========================================================
+    HERO DESCRIPTION PREMIUM
+=========================================================*/
+
+.hero-description{
+
+    position:relative;
+
+    max-width:720px;
+
+    margin:45px 0 0;
+
+    padding:30px 38px;
+
+    text-align:left;
+
+    font-size:1.38rem;
+
+    line-height:1.9;
+
+    font-weight:500;
+
+    color:#f8fafc;
+
+    letter-spacing:.3px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.02)
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    box-shadow:
+        0 20px 70px rgba(37,99,235,.18),
+        inset 0 1px 0 rgba(255,255,255,.10);
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transform:translateY(120px) scale(.92);
+
+    animation:
+        heroDescription 2.8s cubic-bezier(.16,1,.3,1) .8s forwards,
+        floating 8s ease-in-out 4s infinite;
+
+}
+
+.hero-description::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:30px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6,
+        #60a5fa,
+        #2563eb
+    );
+
+    background-size:300%;
+
+    animation:borderMove 8s linear infinite;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+.hero-description strong{
+
+    font-weight:800;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #93c5fd,
+        #60a5fa
+    );
+
+    background-size:200%;
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+/*=========================================================
+    ANIMAÇÕES
+=========================================================*/
+
+@keyframes borderMove{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:300%;
+
+    }
+
+}
+
+@keyframes heroDescription{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(120px)
+            scale(.92);
+
+        filter:blur(18px);
+
+    }
+
+    35%{
+
+        opacity:.25;
+
+    }
+
+    70%{
+
+        opacity:1;
+
+        transform:
+            translateY(-8px)
+            scale(1.01);
+
+        filter:blur(0);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:blur(0);
+
+    }
+
+}
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================================================
+    DASHBOARD HERO
+=========================================================*/
+
+.hero-right{
+
+    flex:0 0 60%;
+
+    max-width:60%;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+.hero-dashboard{
+
+    width:900px;
+
+    max-width:950px;
+
+    margin-left:80px;
+
+}
+
+.hero-dashboard img{
+
+    width:250%;
+
+    display:block;
+
+    border-radius:24px;
+
+    box-shadow:
+        0 45px 100px rgba(15,23,42,.28);
+
+}
+
+.hero-dashboard img:hover{
+
+    transform:scale(1.02);
+
+}
+
+@keyframes dashboardFloat{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(80px)
+            translateY(30px)
+            scale(.92);
+
+        filter:blur(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0)
+            translateY(0)
+            scale(1);
+
+        filter:blur(0);
+
+    }
+
+}

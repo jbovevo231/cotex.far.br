@@ -47,15 +47,37 @@
     <a href="#">Planos</a>
     <a href="#">Contato</a>
 
+    <div class="top-actions">
+
+        <button
+    class="btn-login"
+    onclick="toggleLoginCard()">
+
+    Login
+
+</button>
+
+        <button class="btn-buy">
+
+            Comprar agora
+
+        </button>
+
+    </div>
+
 </nav>
 </header>
 
 </div>
 
 
-    <!-- ================= HERO ================= -->
+<!-- ================= HERO ================= -->
 
-<div class="badge">
+<div class="hero">
+
+    <div class="hero-left">
+
+        <div class="badge">
 
     <span class="badge-icon">
 
@@ -84,10 +106,9 @@
 
 <p class="hero-description">
 
-    Encontre os melhores fornecedores,
-    compare preços em segundos e aumente
-    a lucratividade da sua farmácia com
-    uma plataforma moderna.
+    Uma plataforma para negociar, conectar pessoas e compartilhar conhecimento.
+    Porque os melhores resultados surgem quando o mercado farmacêutico trabalha
+    em rede.
 
 </p>
 
@@ -135,9 +156,19 @@
 
         <!-- RIGHT -->
 
-        <div class="hero-right" id="login">
+        <div class="hero-right">
 
-    <div class="login-card">
+    <div class="hero-dashboard">
+
+        <img
+            src="{{ url_for('static', filename='img/dashboard.png') }}"
+            alt="Dashboard CotaX">
+
+    </div>
+
+    <div
+        class="login-card"
+        id="loginCard">
 
                 <h2>Entrar</h2>
 
@@ -198,75 +229,9 @@
 
 </div>
 
-
-    <!-- ================= BENEFÍCIOS ================= -->
-
-    <section class="features">
-
-        <div class="feature">
-
-            <div class="icon">🛡</div>
-
-            <h3>Cotações Inteligentes</h3>
-
-            <p>
-
-                Solicite preços de vários
-                fornecedores ao mesmo tempo.
-
-            </p>
-
-        </div>
-
-        <div class="feature">
-
-            <div class="icon">⚖</div>
-
-            <h3>Compare Preços</h3>
-
-            <p>
-
-                Escolha sempre a melhor
-                proposta disponível.
-
-            </p>
-
-        </div>
-
-        <div class="feature">
-
-            <div class="icon">📦</div>
-
-            <h3>Gestão Completa</h3>
-
-            <p>
-
-                Controle pedidos,
-                produtos e fornecedores.
-
-            </p>
-
-        </div>
-
-        <div class="feature">
-
-            <div class="icon">📊</div>
-
-            <h3>Relatórios</h3>
-
-            <p>
-
-                Descubra quanto sua
-                empresa economizou.
-
-            </p>
-
-        </div>
-
-    </section>
-
 </div>
 
+</div>
 
 <!-- ================= MODAL ================= -->
 
@@ -541,6 +506,13 @@ menuBtn.addEventListener("click", () => {
     nav.classList.toggle("active");
 });
 
+function toggleLoginCard(){
+
+    document
+        .getElementById("loginCard")
+        .classList.toggle("show");
+
+}
 
 </script>
 

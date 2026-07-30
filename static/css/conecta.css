@@ -1971,3 +1971,35 @@ body{
     color:white;
 
 }
+
+.texto-post{
+
+    white-space:pre-line;
+    transition:.3s;
+
+}
+
+.texto-post.curto{
+
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+
+}
+
+.btn-ler{
+
+    display:inline-block;
+    margin-top:10px;
+    font-weight:700;
+    color:#2563eb;
+    text-decoration:none;
+
+}
+
+.btn-ler:hover{
+
+    text-decoration:underline;
+
+}
