@@ -1090,7 +1090,7 @@ body::after{
 
     inset:-2px;
 
-    border-radius:30px;
+    border-radius:38px;
 
     padding:1px;
 
@@ -1305,73 +1305,29 @@ body::after{
 
 }
 
-/* ================= RECURSOS ================= */
+/*==================================
+RECURSOS
+==================================*/
 
-.recursos{
+.landing-recursos{
 
-    background:#081a35;
+    background:#fff;
 
-    padding:100px 0;
+    padding:120px 0;
 
 }
 
-.recursos .container{
+.landing-recursos .container{
 
-    max-width:1250px;
+    width:min(1350px,92%);
 
     margin:auto;
 
-    padding:0 25px;
-
 }
 
-.recursos-badge{
-
-    display:block;
-
-    width:max-content;
-
-    margin:auto;
-
-    padding:8px 22px;
-
-    border:1px solid #2563eb;
-
-    border-radius:999px;
-
-    color:#3b82f6;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    letter-spacing:2px;
-
-}
-
-.recursos-titulo{
+.recursos-topo{
 
     text-align:center;
-
-    color:#fff;
-
-    font-size:58px;
-
-    margin-top:24px;
-
-    font-weight:800;
-
-}
-
-.recursos-subtitulo{
-
-    text-align:center;
-
-    color:#b8c4d6;
-
-    font-size:22px;
-
-    margin-top:15px;
 
     margin-bottom:70px;
 
@@ -1387,26 +1343,29 @@ body::after{
 
 }
 
-/*==================================================
-                SEÇÃO RECURSOS
-==================================================*/
+.recurso-card{
 
-.landing-recursos{
+    background:#fff;
 
-    position:relative;
+    border:1px solid #e5e7eb;
 
-    padding:140px 0;
+    border-radius:24px;
 
-    background:
-        linear-gradient(
-            180deg,
-            #071120 0%,
-            #0d1c33 100%
-        );
+    padding:35px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.05);
 
 }
 
-.landing-recursos::before{
+
+
+/*=========================================
+FUNDO
+=========================================*/
+
+
+
+.landing-recursos::after{
 
     content:"";
 
@@ -1416,18 +1375,23 @@ body::after{
 
     background-image:
 
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+        linear-gradient(rgba(15,23,42,.03) 1px,transparent 1px),
 
-    background-size:50px 50px;
+        linear-gradient(90deg,rgba(15,23,42,.03) 1px,transparent 1px);
 
-    pointer-events:none;
+    background-size:80px 80px;
+
+    opacity:.45;
 
 }
 
+/*=========================================
+CONTAINER
+=========================================*/
+
 .landing-recursos .container{
 
-    width:min(1400px,92%);
+    width:min(1450px,92%);
 
     margin:auto;
 
@@ -1437,112 +1401,207 @@ body::after{
 
 }
 
+/*=========================================
+TOPO
+=========================================*/
+
 .recursos-topo{
+
+    max-width:900px;
+
+    margin:auto;
 
     text-align:center;
 
-    margin-bottom:70px;
+    margin-bottom:90px;
 
 }
 
 .recursos-topo span{
 
-    display:inline-block;
+    display:inline-flex;
 
-    padding:10px 20px;
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px 22px;
 
     border-radius:999px;
 
-    background:rgba(16,185,129,.12);
+    background:#eef4ff;
 
-    color:#34d399;
+    color:#2563eb;
 
-    font-size:13px;
+    font-size:12px;
 
-    font-weight:700;
+    font-weight:800;
 
     letter-spacing:2px;
 
-    margin-bottom:22px;
+    text-transform:uppercase;
 
 }
 
 .recursos-topo h2{
 
-    font-size:54px;
+    margin:28px 0;
 
-    font-weight:800;
+    font-size:64px;
 
-    color:#fff;
+    line-height:1.05;
 
-    margin-bottom:20px;
+    letter-spacing:-2px;
 
-    line-height:1.15;
+    color:#08111f;
+
+    font-weight:900;
 
 }
 
 .recursos-topo p{
 
-    max-width:760px;
-
-    margin:auto;
-
-    color:#9fb2cb;
-
     font-size:20px;
 
-    line-height:1.8;
+    color:#64748b;
+
+    line-height:1.9;
 
 }
 
-.recursos-grid{
+/*=========================================
+GRID
+=========================================*/
+
+.recursos-layout{
 
     display:grid;
 
     grid-template-columns:repeat(3,1fr);
 
-    gap:30px;
+    gap:32px;
 
 }
 
-.recurso-card{
+/*=========================================
+CARDS
+=========================================*/
 
-    padding:38px;
+.card,
+.card-xl{
 
-    border-radius:24px;
+    position:relative;
+
+    min-height:360px;
+
+    padding:42px;
+
+    border-radius:34px;
+
+    background:#ffffff;
+
+    border:1px solid #e8edf5;
+
+    overflow:hidden;
+
+    transition:.45s cubic-bezier(.2,.8,.2,1);
+
+    box-shadow:
+
+        0 15px 40px rgba(15,23,42,.04),
+
+        0 35px 70px rgba(15,23,42,.04);
+
+}
+
+/* card-xl ficará igual aos outros */
+
+.card-xl{
+
+    grid-column:auto;
+
+}
+
+/*=========================================
+HOVER
+=========================================*/
+
+.card:hover,
+.card-xl:hover{
+
+    transform:
+
+        translateY(-12px);
+
+    box-shadow:
+
+        0 35px 80px rgba(15,23,42,.10);
+
+}
+
+/* brilho passando */
+
+
+.card::before,
+.card-xl::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
 
     background:
 
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.06),
-            rgba(255,255,255,.02)
+        radial-gradient(
+
+            circle at top left,
+
+            rgba(59,130,246,.05),
+
+            transparent 55%
+
         );
 
-    border:1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(20px);
-
-    transition:.35s;
+    pointer-events:none;
 
 }
 
-.recurso-card:hover{
+.card:hover::before,
+.card-xl:hover::before{
 
-    transform:translateY(-10px);
-
-    border-color:#18d27f;
-
-    box-shadow:
-        0 30px 60px rgba(0,0,0,.30);
+    left:120%;
 
 }
 
-.recurso-card i{
+/*==================================================
+            CONTEÚDO DOS CARDS
+==================================================*/
 
-    width:72px;
+.card,
+.card-xl{
 
-    height:72px;
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+}
+
+/*=========================================
+ÍCONE
+=========================================*/
+
+.icone{
+
+    position:relative;
+
+    width:88px;
+
+    height:88px;
+
+    border-radius:26px;
 
     display:flex;
 
@@ -1550,52 +1609,1107 @@ body::after{
 
     justify-content:center;
 
-    border-radius:18px;
+    overflow:hidden;
 
-    margin-bottom:24px;
+    margin-bottom:32px;
+
+    transition:.45s cubic-bezier(.2,.8,.2,1);
+
+    box-shadow:
+
+        inset 0 1px 1px rgba(255,255,255,.45),
+
+        0 12px 25px rgba(15,23,42,.12);
+
+}
+
+/* brilho superior */
+
+.icone::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
 
     background:
 
         linear-gradient(
-            135deg,
-            #18d27f,
-            #00b86b
+
+            180deg,
+
+            rgba(255,255,255,.45),
+
+            rgba(255,255,255,0) 55%
+
         );
 
-    color:#fff;
+}
 
-    font-size:32px;
+/* brilho lateral */
+
+.icone::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:160%;
+
+    height:40px;
+
+    background:rgba(255,255,255,.22);
+
+    transform:
+
+        rotate(-35deg)
+
+        translateY(-120px);
+
+    transition:.8s;
+
+}
+
+.card:hover .icone::after,
+.card-xl:hover .icone::after{
+
+    transform:
+
+        rotate(-35deg)
+
+        translateY(140px);
+
+}
+
+/*=========================================
+CORES DOS ÍCONES
+=========================================*/
+
+.icone.verde{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #34d399,
+
+            #10b981
+
+        );
+
+}
+
+.icone.azul{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #60a5fa,
+
+            #2563eb
+
+        );
+
+}
+
+.icone.roxo{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #c084fc,
+
+            #8b5cf6
+
+        );
+
+}
+
+.icone.laranja{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #fb923c,
+
+            #f97316
+
+        );
+
+}
+
+.icone.ciano{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #67e8f9,
+
+            #06b6d4
+
+        );
+
+}
+
+.icone.rosa{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #fb7185,
+
+            #ec4899
+
+        );
+
+}
+
+/*=========================================
+TEXTOS
+=========================================*/
+
+.card h3,
+.card-xl h3{
+
+    margin:0 0 18px;
+
+    font-size:31px;
+
+    line-height:1.1;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
+    color:#0f172a;
+
+    transition:.35s;
+
+}
+
+.card p,
+.card-xl p{
+
+    margin:0;
+
+    font-size:17px;
+
+    line-height:1.9;
+
+    color:#64748b;
+
+    transition:.35s;
+
+}
+
+.card small,
+.card-xl small{
+
+    display:inline-block;
+
+    margin-bottom:18px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    color:#2563eb;
+
+}
+
+/*=========================================
+HOVER
+=========================================*/
+
+.card:hover,
+.card-xl:hover{
+
+    transform:
+
+        translateY(-10px);
+
+    border-color:#dbe4ef;
+
+}
+
+.card:hover h3,
+.card-xl:hover h3{
+
+    color:#2563eb;
+
+}
+
+.card:hover p,
+.card-xl:hover p{
+
+    color:#475569;
+
+}
+
+.card:hover .icone,
+.card-xl:hover .icone{
+
+    transform:
+
+        translateY(-8px)
+
+        rotate(-5deg)
+
+        scale(1.06);
+
+}
+
+/*==================================================
+            ILUSTRAÇÕES DOS CARDS
+==================================================*/
+
+/*=========================================
+BASE
+=========================================*/
+
+.money-icon,
+.analytics-icon,
+.connect-icon,
+.building-icon,
+.brain{
+
+    position:relative;
+
+    width:60px;
+
+    height:60px;
+
+}
+
+/*==================================================
+            ECONOMIA
+==================================================*/
+
+.coin{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:linear-gradient(180deg,#ffffff,#edf4ff);
 
     box-shadow:
-        0 18px 35px rgba(24,210,127,.30);
+
+        inset 0 -3px 6px rgba(0,0,0,.08),
+
+        0 6px 10px rgba(0,0,0,.10);
 
 }
 
-.recurso-card h3{
+.coin1{
 
-    color:#fff;
+    width:30px;
+    height:30px;
 
-    font-size:26px;
-
-    font-weight:700;
-
-    margin-bottom:16px;
+    left:4px;
+    bottom:6px;
 
 }
 
-.recurso-card p{
+.coin2{
 
-    color:#9fb2cb;
+    width:24px;
+    height:24px;
 
-    font-size:16px;
-
-    line-height:1.8;
+    right:2px;
+    top:10px;
 
 }
+
+.coin3{
+
+    width:18px;
+    height:18px;
+
+    left:34px;
+    bottom:2px;
+
+}
+
+.coin::after{
+
+    content:"$";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    color:#2563eb;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+.arrow{
+
+    position:absolute;
+
+    width:28px;
+
+    height:3px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    right:-2px;
+
+    top:30px;
+
+    transform:rotate(-35deg);
+
+}
+
+.arrow::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-1px;
+
+    top:-4px;
+
+    width:10px;
+
+    height:10px;
+
+    border-right:3px solid #fff;
+
+    border-top:3px solid #fff;
+
+    transform:rotate(45deg);
+
+}
+
+/*==================================================
+            ANALYTICS
+==================================================*/
+
+.bar{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:10px;
+
+    border-radius:20px;
+
+    background:#fff;
+
+}
+
+.b1{
+
+    left:4px;
+    height:16px;
+
+}
+
+.b2{
+
+    left:18px;
+    height:28px;
+
+}
+
+.b3{
+
+    left:32px;
+    height:40px;
+
+}
+
+.b4{
+
+    left:46px;
+    height:52px;
+
+}
+
+.trend{
+
+    position:absolute;
+
+    left:2px;
+
+    top:18px;
+
+    width:48px;
+
+    height:24px;
+
+    border-top:3px solid #fff;
+
+    border-right:3px solid #fff;
+
+    transform:skewY(-26deg);
+
+}
+
+/*==================================================
+            CONECTA
+==================================================*/
+
+.person{
+
+    position:absolute;
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+}
+
+.p1{
+
+    left:6px;
+    top:30px;
+
+}
+
+.p2{
+
+    right:6px;
+    top:10px;
+
+}
+
+.p3{
+
+    right:12px;
+    bottom:4px;
+
+}
+
+.line{
+
+    position:absolute;
+
+    height:2px;
+
+    background:#fff;
+
+    transform-origin:left center;
+
+}
+
+.l1{
+
+    left:18px;
+
+    top:33px;
+
+    width:26px;
+
+    transform:rotate(-25deg);
+
+}
+
+.l2{
+
+    left:18px;
+
+    top:36px;
+
+    width:22px;
+
+    transform:rotate(25deg);
+
+}
+
+/*==================================================
+            PERFIL
+==================================================*/
+
+.roof{
+
+    position:absolute;
+
+    left:18px;
+
+    top:2px;
+
+    width:24px;
+
+    height:5px;
+
+    border-radius:10px;
+
+    background:#fff;
+
+}
+
+.window{
+
+    position:absolute;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:2px;
+
+    background:#fff;
+
+}
+
+.w1{
+
+    left:16px;
+    top:16px;
+
+}
+
+.w2{
+
+    left:36px;
+    top:16px;
+
+}
+
+.w3{
+
+    left:16px;
+    top:32px;
+
+}
+
+.w4{
+
+    left:36px;
+    top:32px;
+
+}
+
+.door{
+
+    position:absolute;
+
+    width:12px;
+
+    height:18px;
+
+    left:26px;
+
+    bottom:2px;
+
+    border-radius:4px 4px 0 0;
+
+    background:#fff;
+
+}
+
+/*==================================================
+            IA
+==================================================*/
+
+.core{
+
+    position:absolute;
+
+    width:24px;
+
+    height:24px;
+
+    left:18px;
+
+    top:18px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+}
+
+.node{
+
+    position:absolute;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+}
+
+.n1{
+
+    top:2px;
+
+    left:26px;
+
+}
+
+.n2{
+
+    left:2px;
+
+    top:28px;
+
+}
+
+.n3{
+
+    right:2px;
+
+    top:28px;
+
+}
+
+.n4{
+
+    left:26px;
+
+    bottom:2px;
+
+}
+
+.wire{
+
+    position:absolute;
+
+    background:#fff;
+
+}
+
+.w1{
+
+    width:2px;
+
+    height:16px;
+
+    left:29px;
+
+    top:8px;
+
+}
+
+.w2{
+
+    width:16px;
+
+    height:2px;
+
+    left:10px;
+
+    top:31px;
+
+}
+
+.w3{
+
+    width:16px;
+
+    height:2px;
+
+    right:10px;
+
+    top:31px;
+
+}
+
+.w4{
+
+    width:2px;
+
+    height:16px;
+
+    left:29px;
+
+    bottom:8px;
+
+}
+
+/*==================================================
+            PARTE 4
+            ANIMAÇÕES + ACABAMENTO PREMIUM
+==================================================*/
+
+/*====================================
+HOVER DO CARD
+====================================*/
+
+.card,
+.card-xl{
+
+    transition:
+
+        transform .45s cubic-bezier(.19,1,.22,1),
+
+        box-shadow .45s,
+
+        border-color .45s;
+
+}
+
+.card:hover,
+.card-xl:hover{
+
+    transform:
+
+        translateY(-12px);
+
+    border-color:#d8e3f2;
+
+    box-shadow:
+
+        0 25px 60px rgba(15,23,42,.08),
+
+        0 50px 90px rgba(15,23,42,.08);
+
+}
+
+/*====================================
+BRILHO PASSANDO
+====================================*/
+
+.card::after,
+.card-xl::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-160%;
+
+    left:-160%;
+
+    width:220%;
+
+    height:220%;
+
+    background:
+
+        linear-gradient(
+
+            120deg,
+
+            transparent,
+
+            rgba(255,255,255,.65),
+
+            transparent
+
+        );
+
+    transform:rotate(20deg);
+
+    transition:1.1s;
+
+}
+
+.card:hover::after,
+.card-xl:hover::after{
+
+    left:140%;
+
+}
+
+/*====================================
+ÍCONE
+====================================*/
+
+.icone{
+
+    transition:
+
+        transform .45s,
+
+        box-shadow .45s;
+
+}
+
+.card:hover .icone,
+.card-xl:hover .icone{
+
+    transform:
+
+        translateY(-8px)
+
+        rotate(-6deg)
+
+        scale(1.07);
+
+    box-shadow:
+
+        0 20px 45px rgba(0,0,0,.18);
+
+}
+
+/*====================================
+TEXTOS
+====================================*/
+
+.card h3,
+.card-xl h3{
+
+    transition:.35s;
+
+}
+
+.card p,
+.card-xl p{
+
+    transition:.35s;
+
+}
+
+.card:hover h3,
+.card-xl:hover h3{
+
+    color:#2563eb;
+
+}
+
+.card:hover p,
+.card-xl:hover p{
+
+    color:#475569;
+
+}
+
+/*====================================
+ECONOMIA
+====================================*/
+
+.coin{
+
+    transition:.4s;
+
+}
+
+.card:hover .coin1{
+
+    transform:translateY(-6px);
+
+}
+
+.card:hover .coin2{
+
+    transform:translateY(-10px);
+
+}
+
+.card:hover .coin3{
+
+    transform:translateY(-4px);
+
+}
+
+.arrow{
+
+    transition:.4s;
+
+}
+
+.card:hover .arrow{
+
+    transform:
+
+        rotate(-35deg)
+
+        translate(5px,-3px);
+
+}
+
+/*====================================
+ANALYTICS
+====================================*/
+
+.bar{
+
+    transition:.4s;
+
+}
+
+.card:hover .b1{
+
+    height:22px;
+
+}
+
+.card:hover .b2{
+
+    height:36px;
+
+}
+
+.card:hover .b3{
+
+    height:48px;
+
+}
+
+.card:hover .b4{
+
+    height:60px;
+
+}
+
+.trend{
+
+    transition:.4s;
+
+}
+
+.card:hover .trend{
+
+    transform:
+
+        skewY(-26deg)
+
+        translateY(-4px);
+
+}
+
+/*====================================
+CONECTA
+====================================*/
+
+.person{
+
+    transition:.35s;
+
+}
+
+.line{
+
+    transition:.35s;
+
+}
+
+.card:hover .person{
+
+    transform:scale(1.18);
+
+}
+
+.card:hover .l1{
+
+    width:34px;
+
+}
+
+.card:hover .l2{
+
+    width:30px;
+
+}
+
+/*====================================
+PRÉDIO
+====================================*/
+
+.window{
+
+    transition:.35s;
+
+}
+
+.card:hover .window{
+
+    background:#fff8a8;
+
+    box-shadow:
+
+        0 0 10px rgba(255,248,168,.9);
+
+}
+
+/*====================================
+IA
+====================================*/
+
+.core{
+
+    transition:.4s;
+
+}
+
+.card-xl:hover .core{
+
+    transform:scale(1.12);
+
+}
+
+.node{
+
+    transition:.35s;
+
+}
+
+.card-xl:hover .node{
+
+    animation:pulseNode .8s infinite alternate;
+
+}
+
+@keyframes pulseNode{
+
+    from{
+
+        transform:scale(1);
+
+        opacity:.7;
+
+    }
+
+    to{
+
+        transform:scale(1.45);
+
+        opacity:1;
+
+    }
+
+}
+
+/*====================================
+RESPONSIVO
+====================================*/
 
 @media(max-width:1100px){
 
-    .recursos-grid{
+    .recursos-layout{
 
         grid-template-columns:repeat(2,1fr);
 
@@ -1605,34 +2719,26 @@ body::after{
 
 @media(max-width:768px){
 
-    .landing-recursos{
-
-        padding:90px 0;
-
-    }
-
-    .recursos-topo h2{
-
-        font-size:36px;
-
-    }
-
-    .recursos-topo p{
-
-        font-size:16px;
-
-    }
-
-    .recursos-grid{
+    .recursos-layout{
 
         grid-template-columns:1fr;
 
     }
 
-    .recurso-card{
+    .card,
+    .card-xl{
 
-        padding:28px;
+        min-height:auto;
+
+        padding:30px;
+
+    }
+
+    .recursos-topo h2{
+
+        font-size:40px;
 
     }
 
 }
+
