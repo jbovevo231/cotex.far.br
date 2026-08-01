@@ -1258,7 +1258,7 @@ body::after{
 }
 .hero-dashboard img{
 
-    width:250%;
+    width:100%;
 
     display:block;
 
@@ -3791,8 +3791,3 @@ RESPONSIVO
 
 }
 
-.hero-dashboard img{
-
-    pointer-events:none;
-
-}
