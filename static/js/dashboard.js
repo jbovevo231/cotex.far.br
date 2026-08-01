@@ -4,11 +4,8 @@ const medicamentos = [];
 
 const btnAdicionar = document.getElementById("btnAdicionar");
 
-const campoMedicamento =
-    document.getElementById("medicamento");
 
-const listaSugestoes =
-    document.getElementById("sugestoesMedicamentos");
+
 document
 .getElementById("btnPendencias")
 .addEventListener(
@@ -390,15 +387,3 @@ campoMedicamento.addEventListener("input", async function () {
 });
 
 
-document.addEventListener("click", function(e){
-
-    if(!listaSugestoes.contains(e.target) &&
-       e.target !== campoMedicamento){
-
-        listaSugestoes.innerHTML = "";
-
-        listaSugestoes.style.display = "none";
-
-    }
-
-});

@@ -198,34 +198,39 @@ Dashboard - CotaFarma
 
     </div>
 
-    <!-- Linha de cadastro -->
+<!-- Linha de cadastro -->
 
-    <div class="entrada-row">
+<div class="entrada-row">
+
+    <div class="campo-autocomplete">
 
         <input
             type="text"
             id="medicamento"
             placeholder="Ex.: Dipirona 500mg">
 
-        <input
-            type="text"
-            id="laboratorio"
-            placeholder="Ex.: Neo Química">
-
-        <input
-            type="number"
-            id="quantidade"
-            placeholder="120">
-
-        <button
-            type="button"
-            class="btn-remover">
-
-            <i class="bi bi-trash"></i>
-
-        </button>
 
     </div>
+
+    <input
+        type="text"
+        id="laboratorio"
+        placeholder="Ex.: Neo Química">
+
+    <input
+        type="number"
+        id="quantidade"
+        placeholder="120">
+
+    <button
+        type="button"
+        class="btn-remover">
+
+        <i class="bi bi-trash"></i>
+
+    </button>
+
+</div>
 
     <!-- Botão azul -->
 
@@ -456,7 +461,8 @@ Dashboard - CotaFarma
 
 <div
     id="modalPendencias"
-    class="modal-pendencias">
+    class="modal-pendencias"
+    style="display:none;">
 
     <div class="modal-pendencias-box">
 
@@ -481,12 +487,10 @@ Dashboard - CotaFarma
 
         </div>
 
-        <p class="modal-subtitulo">
-
-            Encontramos os seguintes medicamentos sem cotação
-            ou com preço igual a zero na última cotação encerrada.
-
-        </p>
+        <p
+    id="textoPendencias"
+    class="modal-subtitulo">
+</p>
 
         <div
             id="listaPendencias"

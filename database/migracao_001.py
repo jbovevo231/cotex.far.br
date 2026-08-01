@@ -93,9 +93,31 @@ CREATE TABLE IF NOT EXISTS conecta_posts (
 )
 """)
 
+# ==========================================
+# HISTÓRICO DE MEDICAMENTOS
+# ==========================================
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS historico_medicamentos (
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    cnpj_usuario TEXT NOT NULL,
+
+    medicamento TEXT NOT NULL,
+
+    laboratorio TEXT,
+
+    vezes INTEGER DEFAULT 1,
+
+    ultima_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+)
+""")
+
 try:
     conn.commit()
-    print("✅ Tabela criada com sucesso!")
+    print("✅ Tabelas criadas com sucesso!")
 except Exception as e:
     print("❌ ERRO NO COMMIT:")
     print(e)
