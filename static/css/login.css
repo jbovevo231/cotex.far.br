@@ -2949,9 +2949,35 @@ LINHA
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:40px;
+    gap:50px;
 
-    z-index:2;
+}
+
+.timeline{
+
+    position:absolute;
+
+    left:12%;
+
+    right:12%;
+
+    top:78px;
+
+    height:3px;
+
+    background:linear-gradient(
+        90deg,
+        #22c55e,
+        #3b82f6,
+        #8b5cf6,
+        #f59e0b
+    );
+
+    border-radius:999px;
+
+    opacity:.35;
+
+    z-index:0;
 
 }
 
@@ -2959,7 +2985,7 @@ LINHA
 
     position:relative;
 
-    z-index:5;
+    z-index:2;
 
 }
 
@@ -3731,5 +3757,42 @@ RESPONSIVO
         height:130px;
 
     }
+
+}
+
+.hero{
+
+    position:relative;
+    z-index:1;
+
+}
+
+.hero-right{
+
+    position:relative;
+
+}
+
+.login-card{
+
+    position:absolute;
+
+    z-index:9999;
+
+    pointer-events:auto;
+
+}
+
+.hero-dashboard{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+.hero-dashboard img{
+
+    pointer-events:none;
 
 }
