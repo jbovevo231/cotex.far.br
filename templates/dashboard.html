@@ -148,9 +148,12 @@ Dashboard - CotaFarma
 
         <div class="card quote-card">
 
-            <form method="POST" action="{{ url_for('cotacao.criar_cotacao') }}">
-
-            <div class="card-header">
+    <form
+        method="POST"
+        action="{{ url_for('cotacao.criar_cotacao') }}"
+        onsubmit="localStorage.removeItem('rascunhoCotacao')">
+            
+        <div class="card-header">
 
                 <div>
 
@@ -172,10 +175,12 @@ Dashboard - CotaFarma
 
                 <label>Nome da cotação</label>
 
-                <input
+        <input
     type="text"
+    id="nomeCotacao"
     name="nome_cotacao"
     placeholder="Ex.: Compra Hospital Municipal"
+    oninput="salvarRascunho()"
     required>
 
             </div>

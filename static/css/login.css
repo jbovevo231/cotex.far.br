@@ -1300,3 +1300,85 @@ body::after{
     }
 
 }
+
+/* ================= RECURSOS ================= */
+
+.recursos{
+
+    background:#081a35;
+
+    padding:100px 0;
+
+}
+
+.recursos .container{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:0 25px;
+
+}
+
+.recursos-badge{
+
+    display:block;
+
+    width:max-content;
+
+    margin:auto;
+
+    padding:8px 22px;
+
+    border:1px solid #2563eb;
+
+    border-radius:999px;
+
+    color:#3b82f6;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+}
+
+.recursos-titulo{
+
+    text-align:center;
+
+    color:#fff;
+
+    font-size:58px;
+
+    margin-top:24px;
+
+    font-weight:800;
+
+}
+
+.recursos-subtitulo{
+
+    text-align:center;
+
+    color:#b8c4d6;
+
+    font-size:22px;
+
+    margin-top:15px;
+
+    margin-bottom:70px;
+
+}
+
+.recursos-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:28px;
+
+}
