@@ -244,6 +244,17 @@ Dashboard - CotaFarma
 
         </button>
 
+        <button
+    type="button"
+    id="btnPendencias"
+    class="btn-pendencias">
+
+    <i class="bi bi-box-seam"></i>
+
+    Recuperar Pendências
+
+</button>
+
     </div>
 
     <!-- Cabeçalho verde -->
@@ -434,13 +445,73 @@ Dashboard - CotaFarma
 </table>
 
 </div>
-   
 
 </div>
 
 </div> <!-- fecha left-column -->
 
+</div>
 
+<!-- ================= MODAL REPOR PENDÊNCIAS ================= -->
+
+<div
+    id="modalPendencias"
+    class="modal-pendencias">
+
+    <div class="modal-pendencias-box">
+
+        <div class="modal-pendencias-header">
+
+            <h2>
+
+                <i class="bi bi-box-seam"></i>
+
+                Recuperar Pendências
+
+            </h2>
+
+            <button
+                type="button"
+                class="fechar-modal"
+                onclick="fecharPendencias()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <p class="modal-subtitulo">
+
+            Encontramos os seguintes medicamentos sem cotação
+            ou com preço igual a zero na última cotação encerrada.
+
+        </p>
+
+        <div
+            id="listaPendencias"
+            class="lista-pendencias">
+
+            <!-- JavaScript preencherá aqui -->
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="btn-adicionar-produto"
+                id="btnAdicionarPendencias">
+
+                <i class="bi bi-plus-circle-fill"></i>
+
+                Adicionar à Lista
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -453,4 +524,5 @@ Dashboard - CotaFarma
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
 <script src="{{ url_for('static', filename='js/cotacoes.js') }}"></script>
+
 {% endblock %}

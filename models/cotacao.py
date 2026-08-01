@@ -230,3 +230,54 @@ def excluir_cotacao(cotacao_id):
 
     db.commit()
     db.close()
+
+
+def buscar_pendencias(cnpj):
+
+    db = get_db()
+
+    return db.execute(
+        """
+        SELECT
+            ci.medicamento,
+            ci.laboratorio,
+            ci.quantidade
+
+        FROM cotacao_itens ci
+
+        WHERE ci.cotacao_id = (
+
+            SELECT id
+
+            FROM cotacoes
+
+            WHERE status='ENCERRADA'
+            AND cnpj_usuario=?
+
+            ORDER BY id DESC
+
+            LIMIT 1
+
+        )
+
+        AND NOT EXISTS (
+
+            SELECT 1
+
+            FROM respostas_cotacao rc
+
+            WHERE rc.cotacao_id = ci.cotacao_id
+
+            AND rc.medicamento = ci.medicamento
+
+            AND rc.preco IS NOT NULL
+
+            AND rc.preco > 0
+
+        )
+
+        ORDER BY ci.medicamento
+
+        """,
+        (cnpj,)
+    ).fetchall()

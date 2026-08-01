@@ -1,18 +1,25 @@
-from flask import Blueprint, render_template, session, request, redirect, url_for
+from flask import (
+    Blueprint,
+    render_template,
+    session,
+    request,
+    redirect,
+    url_for,
+    jsonify
+)
 
 from services.dashboard_service import (
     carregar_indicadores,
     carregar_ultimas_cotacoes
 )
 
+print(">>>>>>>> DASHBOARD.PY FOI CARREGADO <<<<<<<<")
+print(__file__)
 
 dashboard_bp = Blueprint(
     "dashboard",
     __name__
 )
-
-
-
 
 
 @dashboard_bp.route("/dashboard")
@@ -39,7 +46,18 @@ def dashboard():
         ultimas_cotacoes=ultimas_cotacoes
     )
 
+print(">>> ROTA PENDÊNCIAS CARREGADA <<<")
 
+@dashboard_bp.route("/dashboard/pendencias")
+def dashboard_pendencias():
+
+    from models.cotacao import buscar_pendencias
+
+    resultado = buscar_pendencias(session["usuario_cnpj"])
+
+    print(resultado)
+
+    return jsonify(resultado)
 
 
 

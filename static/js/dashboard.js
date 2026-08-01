@@ -4,6 +4,16 @@ const medicamentos = [];
 
 const btnAdicionar = document.getElementById("btnAdicionar");
 
+document
+.getElementById("btnPendencias")
+.addEventListener(
+
+    "click",
+
+    abrirPendencias
+
+);
+
 btnAdicionar.addEventListener("click", function () {
 
     let medicamento = document.getElementById("medicamento").value.trim();
@@ -25,21 +35,23 @@ btnAdicionar.addEventListener("click", function () {
         quantidade = "-";
     }
 
-    medicamentos.push({
-        medicamento,
-        laboratorio,
-        quantidade
-    });
+        medicamentos.push({
+            medicamento,
+            laboratorio,
+            quantidade
+        });
 
-    atualizarLista();
+        atualizarLista();
 
-    document.getElementById("medicamento").value = "";
-    document.getElementById("laboratorio").value = "";
-    document.getElementById("quantidade").value = "";
+        salvarRascunho();
 
-    document.getElementById("medicamento").focus();
+        document.getElementById("medicamento").value = "";
+        document.getElementById("laboratorio").value = "";
+        document.getElementById("quantidade").value = "";
 
-});
+        document.getElementById("medicamento").focus();
+
+        });
 
 function atualizarLista() {
 
@@ -79,6 +91,8 @@ function removerMedicamento(indice) {
 
     atualizarLista();
 
+    salvarRascunho();
+
 }
 
 document.getElementById("btnLimparLista").addEventListener("click", function () {
@@ -91,8 +105,206 @@ document.getElementById("btnLimparLista").addEventListener("click", function () 
         return;
     }
 
+medicamentos.length = 0;
+
+atualizarLista();
+
+localStorage.removeItem("rascunhoCotacao");
+
+});
+
+/* ===================================
+   RASCUNHO AUTOMÁTICO DA COTAÇÃO
+=================================== */
+
+function salvarRascunho() {
+
+    localStorage.setItem(
+
+        "rascunhoCotacao",
+
+        JSON.stringify({
+
+            nomeCotacao: document.getElementById("nomeCotacao").value,
+
+            medicamentos: medicamentos
+
+        })
+
+    );
+
+}
+
+function restaurarRascunho() {
+
+    const salvo = localStorage.getItem("rascunhoCotacao");
+
+    if (!salvo) {
+
+        return;
+
+    }
+
+    const dados = JSON.parse(salvo);
+
+    document.getElementById("nomeCotacao").value =
+        dados.nomeCotacao || "";
+
     medicamentos.length = 0;
+
+    dados.medicamentos.forEach(item => {
+
+        medicamentos.push(item);
+
+    });
 
     atualizarLista();
 
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    restaurarRascunho();
+
 });
+
+/* ==========================================
+   REPOR PENDÊNCIAS
+========================================== */
+
+async function abrirPendencias(){
+
+    const resposta = await fetch(
+        "/dashboard/pendencias"
+    );
+
+    const dados = await resposta.json();
+
+
+`Encontramos <strong>${dados.length}</strong> medicamento(s) sem cotação ou com valor igual a zero na última cotação encerrada. Selecione os itens que deseja adicionar à nova lista.`;
+
+    console.log(JSON.stringify(dados));
+
+    const lista =
+        document.getElementById("listaPendencias");
+
+    lista.innerHTML = "";
+
+    if(dados.length===0){
+
+        lista.innerHTML = `
+            <p>
+                Nenhuma pendência encontrada.
+            </p>
+        `;
+
+        document
+            .getElementById("modalPendencias")
+            .style.display="flex";
+
+        return;
+
+    }
+
+    dados.forEach(item => {
+
+    const jaExiste = medicamentos.some(med =>
+
+    med.medicamento.toLowerCase() === item[0].toLowerCase()
+
+);
+
+console.log(item[0], jaExiste);
+
+    lista.innerHTML += `
+
+        <label class="item-pendencia ${jaExiste ? 'ja-adicionado' : ''}">
+
+            <input
+                type="checkbox"
+                class="chkPendencia"
+                ${jaExiste ? 'disabled' : 'checked'}
+                data-medicamento="${item[0]}"
+                data-laboratorio="${item[1]}"
+                data-quantidade="${item[2]}">
+
+            <span>
+
+                <strong>${item[0]}</strong>
+
+                <br>
+
+                ${item[1]}
+
+                • Quantidade: ${item[2]}
+
+                ${
+                    jaExiste
+                    ? '<span class="badge-adicionado">✓ Já adicionado</span>'
+                    : ''
+                }
+
+            </span>
+
+        </label>
+
+    `;
+
+});
+
+    document
+        .getElementById("modalPendencias")
+        .style.display="flex";
+
+}
+
+document
+.getElementById("btnAdicionarPendencias")
+.addEventListener("click", function () {
+
+    document
+    .querySelectorAll(".chkPendencia:checked")
+    .forEach(function (item) {
+
+        const jaExiste = medicamentos.some(med =>
+
+            med.medicamento.toLowerCase() ===
+            item.dataset.medicamento.toLowerCase()
+
+        );
+
+        if (!jaExiste) {
+
+            medicamentos.push({
+
+                medicamento: item.dataset.medicamento,
+
+                laboratorio: item.dataset.laboratorio,
+
+                quantidade: item.dataset.quantidade
+
+            });
+
+        }
+
+    });
+
+    atualizarLista();
+
+    salvarRascunho();
+
+    fecharPendencias();
+
+});
+
+function fecharPendencias(){
+
+    document
+        .getElementById("modalPendencias")
+        .style.display = "none";
+
+    document
+        .getElementById("listaPendencias")
+        .innerHTML = "";
+
+}
