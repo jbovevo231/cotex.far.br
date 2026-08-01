@@ -3,6 +3,7 @@ import uuid
 
 
 def salvar_cotacao(cnpj, nome, medicamentos, laboratorios, quantidades):
+
     db = get_db()
 
     cursor = db.execute(
@@ -42,6 +43,57 @@ def salvar_cotacao(cnpj, nome, medicamentos, laboratorios, quantidades):
                 quantidade
             )
         )
+
+        historico = db.execute(
+            """
+            SELECT
+                id,
+                vezes
+            FROM historico_medicamentos
+            WHERE cnpj_usuario=?
+            AND medicamento=?
+            AND laboratorio=?
+            """,
+            (
+                cnpj,
+                medicamento,
+                laboratorio
+            )
+        ).fetchone()
+
+        if historico:
+
+            db.execute(
+                """
+                UPDATE historico_medicamentos
+                SET
+                    vezes=?,
+                    ultima_data=CURRENT_TIMESTAMP
+                WHERE id=?
+                """,
+                (
+                    historico[1] + 1,
+                    historico[0]
+                )
+            )
+
+        else:
+
+            db.execute(
+                """
+                INSERT INTO historico_medicamentos(
+                    cnpj_usuario,
+                    medicamento,
+                    laboratorio
+                )
+                VALUES (?, ?, ?)
+                """,
+                (
+                    cnpj,
+                    medicamento,
+                    laboratorio
+                )
+            )
 
     db.commit()
 
@@ -277,7 +329,63 @@ def buscar_pendencias(cnpj):
         )
 
         ORDER BY ci.medicamento
-
         """,
         (cnpj,)
+    ).fetchall()
+
+
+def buscar_historico(cnpj, termo):
+
+    db = get_db()
+
+    return db.execute(
+        """
+        SELECT
+            medicamento,
+            laboratorio
+
+        FROM historico_medicamentos
+
+        WHERE cnpj_usuario=?
+
+        AND LOWER(medicamento) LIKE LOWER(?)
+
+        ORDER BY
+            vezes DESC,
+            ultima_data DESC
+
+        LIMIT 8
+        """,
+        (
+            cnpj,
+            termo + "%"
+        )
+    ).fetchall()
+
+    def buscar_historico(cnpj, termo):
+
+        db = get_db()
+
+    return db.execute(
+        """
+        SELECT
+            medicamento,
+            laboratorio
+
+        FROM historico_medicamentos
+
+        WHERE cnpj_usuario=?
+
+        AND LOWER(medicamento) LIKE LOWER(?)
+
+        ORDER BY
+            vezes DESC,
+            ultima_data DESC
+
+        LIMIT 8
+        """,
+        (
+            cnpj,
+            termo + "%"
+        )
     ).fetchall()

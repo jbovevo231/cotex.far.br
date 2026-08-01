@@ -59,9 +59,19 @@ def dashboard_pendencias():
 
     return jsonify(resultado)
 
+@dashboard_bp.route("/dashboard/historico")
+def dashboard_historico():
 
+    from models.cotacao import buscar_historico
 
+    termo = request.args.get("q", "").strip()
 
+    return jsonify(
+        buscar_historico(
+            session["usuario_cnpj"],
+            termo
+        )
+    )
 
 # ==========================================
 # CONFIGURAÇÕES

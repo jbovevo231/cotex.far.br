@@ -4,6 +4,11 @@ const medicamentos = [];
 
 const btnAdicionar = document.getElementById("btnAdicionar");
 
+const campoMedicamento =
+    document.getElementById("medicamento");
+
+const listaSugestoes =
+    document.getElementById("sugestoesMedicamentos");
 document
 .getElementById("btnPendencias")
 .addEventListener(
@@ -308,3 +313,92 @@ function fecharPendencias(){
         .innerHTML = "";
 
 }
+
+/* =====================================
+   AUTOCOMPLETE DE MEDICAMENTOS
+===================================== */
+
+campoMedicamento.addEventListener("input", async function () {
+
+    console.log("Digitou:", this.value);
+    const termo = this.value.trim();
+
+    if (termo.length < 2) {
+
+        listaSugestoes.innerHTML = "";
+        listaSugestoes.style.display = "none";
+
+        return;
+    }
+
+        console.log("Buscando...");
+
+    const resposta = await fetch(
+        "/dashboard/historico?q=" +
+        encodeURIComponent(termo)
+    );
+
+    const dados = await resposta.json();
+
+    console.log(dados);
+
+    listaSugestoes.innerHTML = "";
+
+    if (dados.length === 0) {
+
+        listaSugestoes.style.display = "none";
+        return;
+
+    }
+
+    dados.forEach(item => {
+
+        const div = document.createElement("div");
+
+        div.className = "item-sugestao";
+
+        div.innerHTML = `
+            <strong>${item[0]}</strong>
+            <br>
+            <small>${item[1]}</small>
+        `;
+
+        div.onclick = function(){
+
+            campoMedicamento.value = item[0];
+
+            document
+                .getElementById("laboratorio")
+                .value = item[1];
+
+            listaSugestoes.innerHTML = "";
+
+            listaSugestoes.style.display = "none";
+
+            document
+                .getElementById("quantidade")
+                .focus();
+
+        };
+
+        listaSugestoes.appendChild(div);
+
+    });
+
+    listaSugestoes.style.display = "block";
+
+});
+
+
+document.addEventListener("click", function(e){
+
+    if(!listaSugestoes.contains(e.target) &&
+       e.target !== campoMedicamento){
+
+        listaSugestoes.innerHTML = "";
+
+        listaSugestoes.style.display = "none";
+
+    }
+
+});
