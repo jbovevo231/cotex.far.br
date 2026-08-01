@@ -958,15 +958,18 @@ body::after{
 
 .hero-right{
 
-    width:430px;
+    flex:0 0 60%;
+    max-width:60%;
 
     display:flex;
 
-    justify-content:flex-end;
+    justify-content:center;
 
     align-items:flex-start;
 
     padding-top:150px;
+
+    transform:translateX(-320px);
 
 }
 
