@@ -43,7 +43,7 @@
 <nav class="top-nav">
 
     <a href="#recursos">Recursos</a>
-    <a href="#">Como funciona</a>
+    <a href="#como-funciona">Como funciona</a>
     <a href="#">Planos</a>
     <a href="#">Contato</a>
 
@@ -121,11 +121,13 @@
 
                 </button>
 
-                <button class="btn-outline btn-lg">
+                <button
+    class="btn-outline btn-lg"
+    onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">
 
-                    Ver como funciona
+    Ver como funciona
 
-                </button>
+</button>
 
             </div>
 
@@ -554,54 +556,195 @@
 
         </div>
 
+            </div>
+
     </div>
 
-</div>
+</section>
+
+<!--==================================================
+                COMO FUNCIONA
+===================================================-->
+
+<section id="como-funciona" class="como-funciona">
+
+    <div class="container">
+
+        <div class="funciona-topo">
+
+            <span>COMO FUNCIONA</span>
+
+            <h2>
+                Negociar nunca foi tão simples.
+            </h2>
+
+            <p>
+                Em poucos minutos sua farmácia envia uma cotação,
+                recebe propostas e fecha o melhor negócio.
+            </p>
+
+        </div>
+
+        <div class="funciona-grid">
+
+            <!-- LINHA -->
+            <div class="timeline"></div>
+
+            <!-- PASSO 1 -->
+
+            <div class="passo">
+
+                <div class="circulo verde">
+
+                    <div class="icone-funcao cotacao">
+
+                        <span class="folha"></span>
+
+                        <span class="mais-h"></span>
+
+                        <span class="mais-v"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">01</div>
+
+                <h3>Crie sua cotação</h3>
+
+                <p>
+                    Informe os medicamentos e envie sua lista para
+                    diversos distribuidores simultaneamente.
+                </p>
+
+            </div>
+
+            <!-- PASSO 2 -->
+
+            <div class="passo">
+
+                <div class="circulo azul">
+
+                    <div class="icone-funcao proposta">
+
+                        <span class="envelope"></span>
+
+                        <span class="seta"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">02</div>
+
+                <h3>Receba propostas</h3>
+
+                <p>
+                    Os fornecedores respondem diretamente pela
+                    plataforma em tempo real.
+                </p>
+
+            </div>
+
+            <!-- PASSO 3 -->
+
+            <div class="passo">
+
+                <div class="circulo roxo">
+
+                    <div class="icone-funcao grafico">
+
+                        <span class="barra b1"></span>
+                        <span class="barra b2"></span>
+                        <span class="barra b3"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">03</div>
+
+                <h3>Compare preços</h3>
+
+                <p>
+                    Visualize automaticamente quem oferece
+                    o menor preço e a melhor condição.
+                </p>
+
+            </div>
+
+            <!-- PASSO 4 -->
+
+            <div class="passo">
+
+                <div class="circulo amarelo">
+
+                    <div class="icone-funcao check">
+
+                        <span class="c1"></span>
+                        <span class="c2"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">04</div>
+
+                <h3>Feche o negócio</h3>
+
+                <p>
+                    Escolha a melhor proposta e finalize
+                    sua compra com segurança.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
 
 function abrirCadastro(){
 
     document.getElementById("erroCadastro").style.display = "none";
     document.getElementById("erroCadastro").innerHTML = "";
 
-    document.getElementById("cadastroModal").style.display="flex";
+    document.getElementById("cadastroModal").style.display = "flex";
 
 }
-
 
 function fecharCadastro(){
 
-    document.getElementById("cadastroModal").style.display="none";
+    document.getElementById("cadastroModal").style.display = "none";
 
 }
-
 
 function abrirRecuperarSenha(){
 
-    document.getElementById("modalRecuperarSenha").style.display="flex";
+    document.getElementById("modalRecuperarSenha").style.display = "flex";
 
 }
-
 
 function fecharRecuperarSenha(){
 
-    document.getElementById("modalRecuperarSenha").style.display="none";
+    document.getElementById("modalRecuperarSenha").style.display = "none";
 
 }
 
+window.onclick = function(e){
 
-window.onclick=function(e){
+    const cadastro = document.getElementById("cadastroModal");
 
-    let cadastro = document.getElementById("cadastroModal");
-
-    let recuperar = document.getElementById("modalRecuperarSenha");
-
+    const recuperar = document.getElementById("modalRecuperarSenha");
 
     if(e.target === cadastro){
 
         fecharCadastro();
 
     }
-
 
     if(e.target === recuperar){
 
@@ -610,7 +753,6 @@ window.onclick=function(e){
     }
 
 }
-
 
 </script>
 
