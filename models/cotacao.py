@@ -129,7 +129,6 @@ def buscar_itens(cotacao_id):
         """
         SELECT
             medicamento,
-            laboratorio,
             quantidade
         FROM cotacao_itens
         WHERE cotacao_id = ?

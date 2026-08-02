@@ -1,134 +1,113 @@
-/* =====================================================
-   CONECTA
-===================================================== */
+/*====================================================
+               CONECTA PREMIUM V2
+====================================================*/
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+
+    --green:#10b981;
+
+    --danger:#ef4444;
+
+    --orange:#f59e0b;
+
+    --bg:#f4f8fc;
+
+    --card:#ffffff;
+
+    --border:#e7edf5;
+
+    --text:#0f172a;
+
+    --text-light:#64748b;
+
+    --radius:26px;
+
+    --shadow-sm:
+        0 2px 6px rgba(15,23,42,.04);
+
+    --shadow:
+
+        0 15px 45px rgba(15,23,42,.06);
+
+    --shadow-lg:
+
+        0 30px 80px rgba(15,23,42,.08);
+
+}
 
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
-}
-
-body,
-.conecta-page,
-.conecta-page *{
-
-    font-family:'Inter', sans-serif;
 
 }
 
-.conecta-page{
+html{
 
-    max-width:1600px;
-    margin:auto;
-    padding:30px;
+    scroll-behavior:smooth;
 
 }
 
 body{
 
-    background:#f4f7fb;
+    font-family:'Inter',sans-serif;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(37,99,235,.08),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(16,185,129,.06),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(59,130,246,.05),
+            transparent 30%
+        ),
+
+        linear-gradient(
+
+            180deg,
+
+            #f8fbff,
+
+            #f3f7fb
+
+        );
+
+    min-height:100vh;
 
 }
 
 
-/* =====================================================
-   HEADER
-===================================================== */
+/*====================================================
+LAYOUT
+====================================================*/
 
-.conecta-header{
+.conecta-page{
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    max-width:1750px;
 
-    margin-bottom:30px;
+    margin:auto;
 
-}
-
-.conecta-header h1{
-
-    font-size:34px;
-    font-weight:800;
-
-    color:#0f172a;
+    padding:42px;
 
 }
-
-.conecta-header p{
-
-    color:#64748b;
-    margin-top:6px;
-
-}
-
-.header-actions{
-
-    display:flex;
-    gap:12px;
-
-}
-
-.header-actions button{
-
-    width:48px;
-    height:48px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:white;
-
-    cursor:pointer;
-
-    font-size:20px;
-
-    color:#1e3a8a;
-
-    box-shadow:0 5px 18px rgba(0,0,0,.05);
-
-    position:relative;
-
-    transition:.25s;
-
-}
-
-.header-actions button:hover{
-
-    transform:translateY(-3px);
-
-}
-
-.badge{
-
-    position:absolute;
-
-    top:6px;
-    right:6px;
-
-    width:18px;
-    height:18px;
-
-    border-radius:50%;
-
-    background:#ef4444;
-
-    color:white;
-
-    font-size:11px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-
-/* =====================================================
-   GRID
-===================================================== */
 
 .conecta-grid{
 
@@ -136,304 +115,27 @@ body{
 
     grid-template-columns:
 
-        300px
+        minmax(220px,240px)
 
-        1fr
+        minmax(0,1fr)
 
-        320px;
+        minmax(240px,280px);
 
-    gap:28px;
+    gap:20px;
 
     align-items:start;
 
 }
 
-
-/* =====================================================
-   CARD PADRÃO
-===================================================== */
-
-.card{
-
-    background:white;
-
-    border-radius:22px;
-
-    padding:22px;
-
-    box-shadow:
-
-    0 10px 30px rgba(15,23,42,.06);
-
-    margin-bottom:22px;
-
-}
-
-
-/* =====================================================
-   PERFIL
-===================================================== */
-
-.profile-card{
-
-    overflow:hidden;
-
-    text-align:center;
-
-}
-
-.profile-cover{
-
-    height:95px;
-
-    margin:-22px -22px 0 -22px;
-
-    background:linear-gradient(135deg,#2563eb,#1e3a8a);
-
-}
-
-.profile-avatar{
-
-    width:90px;
-
-    height:90px;
-
-    margin:-45px auto 18px;
-
-    border-radius:50%;
-
-    background:white;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:34px;
-
-    color:#2563eb;
-
-    border:5px solid white;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-}
-
-.profile-card h3{
-
-    font-size:21px;
-
-    color:#0f172a;
-
-}
-
-.profile-card span{
-
-    color:#64748b;
-
-    display:block;
-
-    margin-top:5px;
-
-}
-
-.member{
-
-    margin-top:16px;
-
-    color:#2563eb;
-
-    font-weight:600;
-
-}
-
-.profile-stats{
-
-    display:flex;
-
-    justify-content:space-around;
-
-    margin:28px 0;
-
-}
-
-.profile-stats strong{
-
-    display:block;
-
-    font-size:24px;
-
-    color:#0f172a;
-
-}
-
-.profile-stats small{
-
-    color:#64748b;
-
-}
-
-.btn-profile{
-
-    width:100%;
-
-    padding:13px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-.btn-profile:hover{
-
-    background:#1d4ed8;
-
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-.menu-conecta{
-
-    list-style:none;
-
-}
-
-.menu-conecta li{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    padding:14px 10px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    color:#334155;
-
-    font-weight:600;
-
-}
-
-.menu-conecta li:hover{
-
-    background:#eff6ff;
-
-    color:#2563eb;
-
-}
-
-.menu-conecta i{
-
-    font-size:20px;
-
-}
-
-
-/* =====================================================
-   PREMIUM
-===================================================== */
-
-.premium-card{
-
-    border-radius:22px;
-
-    padding:30px;
-
-    text-align:center;
-
-    background:
-
-    linear-gradient(
-
-        135deg,
-
-        #1e40af,
-
-        #2563eb
-
-    );
-
-    color:white;
-
-}
-
-.premium-card i{
-
-    font-size:40px;
-
-}
-
-.premium-card h3{
-
-    margin-top:16px;
-
-}
-
-.premium-card p{
-
-    margin:18px 0;
-
-    line-height:1.6;
-
-    opacity:.95;
-
-}
-
-.premium-card button{
-
-    width:100%;
-
-    padding:14px;
-
-    border:none;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    font-weight:700;
-
-    background:white;
-
-    color:#1e3a8a;
-
-}
-
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
-
-@media(max-width:1200px){
+@media (max-width:1400px){
 
     .conecta-grid{
 
         grid-template-columns:
 
-        260px
+            220px
 
-        1fr;
+            1fr;
 
     }
 
@@ -445,13 +147,7 @@ body{
 
 }
 
-@media(max-width:850px){
-
-    .conecta-page{
-
-        padding:18px;
-
-    }
+@media (max-width:1100px){
 
     .conecta-grid{
 
@@ -472,96 +168,86 @@ body{
     }
 
 }
+/*====================================================
+CARDS
+====================================================*/
 
-/* =====================================================
-   FEED
-===================================================== */
+.card{
 
-.feed-column{
+    position:relative;
 
-    display:flex;
-    flex-direction:column;
-    gap:24px;
+    overflow:hidden;
 
-}
+    background:rgba(255,255,255,.94);
 
+    backdrop-filter:blur(20px);
 
-/* =====================================================
-   NOVA PUBLICAÇÃO
-===================================================== */
+    border:1px solid var(--border);
 
-.new-post{
+    border-radius:30px;
 
-    padding:24px;
+    padding:28px;
 
-}
+    box-shadow:var(--shadow);
 
-.new-post-top{
-
-    display:flex;
-    gap:18px;
-    align-items:flex-start;
+    transition:.35s;
 
 }
 
-.avatar-user{
+.card::before{
 
-    width:58px;
-    height:58px;
+    content:"";
 
-    border-radius:50%;
+    position:absolute;
 
-    background:linear-gradient(135deg,#2563eb,#1e40af);
+    top:0;
 
-    color:#fff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-weight:700;
-    font-size:20px;
-
-    flex-shrink:0;
-
-}
-
-.new-post textarea{
+    left:0;
 
     width:100%;
-    min-height:110px;
 
-    resize:none;
+    height:4px;
 
-    border:none;
-    outline:none;
+    background:
 
-    font-size:16px;
-    font-family:inherit;
+        linear-gradient(
 
-    color:#334155;
+            90deg,
 
-    background:#f8fafc;
+            #2563eb,
 
-    border-radius:16px;
+            #3b82f6,
 
-    padding:18px;
+            #60a5fa
 
-    transition:.25s;
+        );
 
-}
+    opacity:0;
 
-.new-post textarea:focus{
-
-    background:white;
-
-    box-shadow:0 0 0 2px #2563eb22;
+    transition:.35s;
 
 }
 
-.new-post-actions{
+.card:hover{
 
-    margin-top:20px;
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.card:hover::before{
+
+    opacity:1;
+
+}
+
+
+/*====================================================
+HEADER
+====================================================*/
+
+.conecta-header{
 
     display:flex;
 
@@ -569,66 +255,920 @@ body{
 
     align-items:center;
 
-    flex-wrap:wrap;
-
-    gap:10px;
+    margin-bottom:42px;
 
 }
 
-.new-post-actions button{
+.conecta-header h1{
+
+    font-size:52px;
+
+    font-weight:900;
+
+    color:var(--text);
+
+    letter-spacing:-2px;
+
+    line-height:1;
+
+}
+
+.conecta-header p{
+
+    margin-top:12px;
+
+    font-size:17px;
+
+    color:var(--text-light);
+
+}
+
+
+/*====================================================
+BOTÕES DO TOPO
+====================================================*/
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.header-actions button{
+
+    position:relative;
+
+    width:58px;
+
+    height:58px;
 
     border:none;
+
+    border-radius:20px;
+
+    background:white;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    color:#2563eb;
+
+    transition:.30s;
+
+    box-shadow:
+
+        0 15px 35px rgba(37,99,235,.08);
+
+}
+
+.header-actions button:hover{
+
+    transform:
+
+        translateY(-4px)
+
+        rotate(-4deg);
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.header-actions button i{
+
+    transition:.35s;
+
+}
+
+.header-actions button:hover i{
+
+    transform:scale(1.15);
+
+}
+
+
+/*====================================================
+BADGE
+====================================================*/
+
+.badge{
+
+    position:absolute;
+
+    top:6px;
+
+    right:6px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:3px solid white;
+
+    box-shadow:
+
+        0 5px 15px rgba(239,68,68,.35);
+
+}
+
+
+/*====================================================
+SCROLLBAR
+====================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#cfd9e8;
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#9db4d8;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+/*====================================================
+PROFILE PREMIUM
+====================================================*/
+
+/* CARD */
+
+.profile-card{
+
+    max-width:320px;
+
+    padding:0;
+
+}
+
+
+/*=========================
+CAPA
+=========================*/
+
+.profile-cover{
+
+    position:relative;
+
+    height:120px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #1d4ed8,
+
+            #1e40af
+
+        );
+
+    overflow:hidden;
+
+}
+
+.profile-cover::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(circle at 20% 20%,
+        rgba(255,255,255,.22),
+        transparent 45%),
+
+        radial-gradient(circle at 85% 10%,
+        rgba(255,255,255,.15),
+        transparent 35%),
+
+        radial-gradient(circle at 80% 90%,
+        rgba(255,255,255,.10),
+        transparent 40%);
+
+}
+
+.profile-cover::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:340px;
+
+    height:340px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+    right:-140px;
+
+    top:-160px;
+
+}
+
+
+/*=========================
+BOTÃO EDITAR CAPA
+=========================*/
+
+.btn-editar-capa{
+
+    position:absolute;
+
+    right:18px;
+
+    bottom:18px;
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(12px);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    z-index:20;
+
+}
+
+.btn-editar-capa:hover{
+
+    transform:scale(1.08);
+
+    background:white;
+
+    color:#2563eb;
+
+}
+
+
+/*=========================
+AVATAR
+=========================*/
+
+.profile-avatar{
+
+    position:relative;
+
+    width:150px;
+
+    height:150px;
+
+    margin:-75px auto 22px;
+
+    border-radius:50%;
+
+    background:white;
+
+    border:7px solid white;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:
+
+        0 25px 60px rgba(15,23,42,.18);
+
+}
+
+.profile-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.profile-avatar i{
+
+    font-size:60px;
+
+    color:#2563eb;
+
+}
+
+
+/*=========================
+BOTÃO FOTO
+=========================*/
+
+.btn-editar-foto{
+
+    position:absolute;
+
+    right:4px;
+    bottom:4px;
+
+    width:28px;
+    height:28px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(10px);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    z-index:20;
+
+}
+
+.btn-editar-foto i{
+
+    font-size:12px;
+
+}
+
+.btn-editar-foto:hover{
+
+    background:#fff;
+
+    color:#2563eb;
+
+    transform:scale(1.08);
+
+}
+
+/*=========================
+NOME
+=========================*/
+
+.profile-card h3{
+
+    text-align:center;
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    letter-spacing:-.5px;
+
+}
+
+
+/*=========================
+LOCALIZAÇÃO
+=========================*/
+
+.profile-card span{
+
+    font-size:14px;
+
+    margin-top:6px;
+
+}
+
+
+/*=========================
+MEMBRO
+=========================*/
+
+.member{
+
+    width:max-content;
+
+    margin:22px auto;
+
+    padding:10px 18px;
+
+    border-radius:999px;
 
     background:#eff6ff;
 
     color:#2563eb;
 
-    padding:12px 18px;
+    font-size:14px;
 
-    border-radius:12px;
+    font-weight:700;
+
+}
+
+
+/*=========================
+ESTATÍSTICAS
+=========================*/
+
+.profile-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+    margin:30px;
+
+}
+
+.profile-stats div{
+
+    background:#f8fbff;
+
+    border:1px solid #edf2f7;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.profile-stats div:hover{
+
+    transform:translateY(-3px);
+
+    background:white;
+
+    box-shadow:
+
+        0 20px 40px rgba(15,23,42,.06);
+
+}
+
+.profile-stats strong{
+
+    display:block;
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:#2563eb;
+
+}
+
+.profile-stats small{
+
+    margin-top:8px;
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+
+/*=========================
+BOTÃO PERFIL
+=========================*/
+
+.profile-button-area{
+
+    padding:0 30px 30px;
+
+}
+
+.btn-profile{
+
+    width:100%;
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #1d4ed8
+
+        );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    transition:.35s;
+
+    box-shadow:
+
+        0 18px 40px rgba(37,99,235,.28);
+
+}
+
+.btn-profile:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 28px 60px rgba(37,99,235,.35);
+
+}
+
+.btn-profile i{
+
+    font-size:18px;
+
+}
+
+/*====================================================
+                FEED PREMIUM
+====================================================*/
+
+.feed-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+
+/*====================================================
+NOVA PUBLICAÇÃO
+====================================================*/
+
+.new-post{
+
+    padding:34px;
+
+    border-radius:30px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #ffffff,
+
+            #fbfdff
+
+        );
+
+}
+
+.new-post-top{
+
+    display:flex;
+
+    gap:22px;
+
+    align-items:flex-start;
+
+}
+
+
+/*====================================================
+AVATAR
+====================================================*/
+
+.avatar-user{
+
+    flex-shrink:0;
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #3b82f6
+
+        );
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:
+
+        0 20px 40px rgba(37,99,235,.22);
+
+}
+
+
+/*====================================================
+TEXTAREA
+====================================================*/
+
+.new-post textarea{
+
+    width:100%;
+
+    min-height:150px;
+
+    border:none;
+
+    resize:none;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:#0f172a;
+
+    background:transparent;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+.new-post textarea::placeholder{
+
+    color:#94a3b8;
+
+    font-size:18px;
+
+}
+
+
+/*====================================================
+PREVIEW DA IMAGEM
+====================================================*/
+
+.preview-imagem{
+
+    margin-top:22px;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.preview-imagem img{
+
+    width:100%;
+
+    border-radius:22px;
+
+}
+
+.remover-imagem{
+
+    position:absolute;
+
+    top:16px;
+
+    right:16px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:rgba(15,23,42,.75);
+
+    color:white;
 
     cursor:pointer;
 
-    font-weight:600;
+    font-size:22px;
 
-    transition:.25s;
+}
+
+
+/*====================================================
+BOTÕES
+====================================================*/
+
+.new-post-actions{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:28px;
+
+    border-top:1px solid #edf2f7;
+
+    padding-top:24px;
+
+}
+
+.new-post-actions button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    height:52px;
+
+    padding:0 22px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#f8fbff;
+
+    color:#2563eb;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.30s;
 
 }
 
 .new-post-actions button:hover{
 
-    background:#dbeafe;
+    background:#2563eb;
+
+    color:white;
+
+    transform:translateY(-2px);
 
 }
 
+.new-post-actions i{
+
+    font-size:18px;
+
+}
+
+
+/*====================================================
+BOTÃO PUBLICAR
+====================================================*/
+
 .btn-publicar{
-
-    background:#2563eb !important;
-
-    color:white !important;
 
     margin-left:auto;
 
-    padding:12px 30px !important;
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #1d4ed8
+
+        ) !important;
+
+    color:white !important;
+
+    padding:0 34px !important;
+
+    box-shadow:
+
+        0 20px 40px rgba(37,99,235,.25);
 
 }
 
 .btn-publicar:hover{
 
-    background:#1d4ed8 !important;
+    transform:translateY(-3px);
 
 }
 
 
-/* =====================================================
-   POST
-===================================================== */
+/*====================================================
+POST
+====================================================*/
 
 .post{
 
-    padding:24px;
+    padding:34px;
+
+    border-radius:30px;
+
+    transition:.35s;
 
 }
+
+.post:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+/*====================================================
+HEADER
+====================================================*/
 
 .post-header{
 
@@ -636,120 +1176,141 @@ body{
 
     align-items:center;
 
-    gap:15px;
+    gap:18px;
 
 }
 
+
+/*====================================================
+AVATAR
+====================================================*/
+
 .post-avatar{
 
-    width:56px;
+    width:64px;
 
-    height:56px;
+    height:64px;
 
-    border-radius:50%;
+    border-radius:20px;
 
-    background:#e3e9f6;
+    overflow:hidden;
 
-    color:white;
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #2563eb,
+
+            #3b82f6
+
+        );
 
     display:flex;
 
-    justify-content:center;
-
     align-items:center;
 
-    font-weight:700;
+    justify-content:center;
 
-    font-size:18px;
+    color:white;
+
+    font-size:24px;
+
+    font-weight:800;
 
     flex-shrink:0;
 
 }
 
-.post-avatar.green{
+.post-avatar img{
 
-    background:#16a34a;
+    width:100%;
 
-}
+    height:100%;
 
-.post-avatar.blue{
-
-    background:#1d4ed8;
+    object-fit:cover;
 
 }
+
+
+/*====================================================
+USUÁRIO
+====================================================*/
 
 .post-user{
 
-    flex:1;
+    display:flex;
+
+    flex-direction:column;
 
 }
 
 .post-user strong{
 
-    display:block;
+    font-size:18px;
+
+}
+
+.nome-farmacia{
 
     color:#0f172a;
 
-    font-size:17px;
-
-}
-
-.post-user span{
-
-    color:#64748b;
-
-    font-size:14px;
-
-}
-
-.post-menu{
-
-    width:40px;
-
-    height:40px;
-
-    border:none;
-
-    background:#f8fafc;
-
-    border-radius:10px;
-
-    cursor:pointer;
+    text-decoration:none;
 
     transition:.25s;
 
 }
 
-.post-menu:hover{
+.nome-farmacia:hover{
 
-    background:#e2e8f0;
+    color:#2563eb;
 
 }
 
+.post-user span{
+
+    margin-top:4px;
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+}
+
+
+/*====================================================
+CONTEÚDO
+====================================================*/
+
 .post-content{
 
-    margin-top:22px;
+    margin-top:26px;
 
 }
 
 .post-content p{
 
+    font-size:17px;
+
+    line-height:1.9;
+
     color:#334155;
-
-    line-height:1.8;
-
-    font-size:15px;
 
 }
 
 
-/* =====================================================
-   IMAGEM
-===================================================== */
+/*====================================================
+IMAGEM
+====================================================*/
 
 .post-image{
 
-    margin-top:20px;
+    margin-top:26px;
+
+    border-radius:24px;
+
+    overflow:hidden;
 
 }
 
@@ -757,77 +1318,62 @@ body{
 
     width:100%;
 
-    border-radius:18px;
-
     display:block;
 
+    transition:.45s;
+
 }
 
+.post-image:hover img{
 
-/* =====================================================
-   CURTIDAS
-===================================================== */
-
-.post-info{
-
-    margin-top:18px;
-
-    padding:14px 0;
-
-    border-top:1px solid #edf2f7;
-
-    border-bottom:1px solid #edf2f7;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    color:#64748b;
-
-    font-size:14px;
+    transform:scale(1.04);
 
 }
 
 
-/* =====================================================
-   AÇÕES
-===================================================== */
+/*====================================================
+AÇÕES
+====================================================*/
 
 .post-actions{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:repeat(4,1fr);
+    justify-content:space-around;
 
-    gap:10px;
+    margin-top:28px;
 
-    margin-top:18px;
+    padding-top:22px;
+
+    border-top:1px solid #edf2f7;
 
 }
 
 .post-actions button{
 
+    background:none;
+
     border:none;
 
-    background:#f8fafc;
+    display:flex;
 
-    padding:14px;
+    align-items:center;
 
-    border-radius:12px;
+    gap:10px;
 
     cursor:pointer;
 
-    font-weight:600;
+    color:#64748b;
 
-    color:#475569;
+    font-weight:700;
 
     transition:.25s;
+
+    font-size:15px;
 
 }
 
 .post-actions button:hover{
-
-    background:#dbeafe;
 
     color:#2563eb;
 
@@ -837,215 +1383,190 @@ body{
 
 .post-actions i{
 
-    margin-right:8px;
-
-}
-
-
-/* =====================================================
-   ESPAÇAMENTO ENTRE POSTS
-===================================================== */
-
-.feed-column .post{
-
-    margin-bottom:0;
-
-}
-
-.preview-imagem{
-
-    position:relative;
-
-    margin-top:15px;
-
-    border-radius:14px;
-
-    overflow:hidden;
-
-    border:1px solid #dbe4f2;
-
-}
-
-.preview-imagem img{
-
-    width:100%;
-
-    max-height:320px;
-
-    object-fit:cover;
-
-    display:block;
-
-}
-
-.remover-imagem{
-
-    position:absolute;
-
-    top:10px;
-
-    right:10px;
-
-    width:34px;
-
-    height:34px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#ef4444;
-
-    color:#fff;
-
     font-size:20px;
 
-    cursor:pointer;
-
 }
 
-/* =====================================================
-   BOTÃO EXCLUIR PUBLICAÇÃO
-===================================================== */
+
+/*====================================================
+EXCLUIR
+====================================================*/
 
 .post-delete{
 
-    display:flex;
+    position:absolute;
 
-    justify-content:flex-end;
+    top:26px;
 
-    margin-top:15px;
+    right:26px;
 
 }
-
 
 .btn-excluir{
 
-    display:flex;
+    width:44px;
 
-    align-items:center;
+    height:44px;
 
-    gap:8px;
+    border:none;
 
-    background:#fff1f2;
+    border-radius:14px;
 
-    color:#e11d48;
+    background:#fff5f5;
 
-    border:1px solid #fecdd3;
-
-    padding:9px 16px;
-
-    border-radius:12px;
-
-    font-size:14px;
-
-    font-weight:600;
+    color:#ef4444;
 
     cursor:pointer;
 
     transition:.25s;
 
 }
-
-
-.btn-excluir i{
-
-    font-size:16px;
-
-}
-
 
 .btn-excluir:hover{
 
-    background:#e11d48;
+    background:#ef4444;
 
     color:white;
 
-    border-color:#e11d48;
+}
 
-    transform:translateY(-2px);
+/*====================================================
+COLUNA ESQUERDA
+====================================================*/
 
-    box-shadow:0 6px 15px rgba(225,29,72,.25);
+.left-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:26px;
 
 }
 
-.nome-farmacia{
 
-    color:#0f172a;
+/*====================================================
+CARD DOS ATALHOS
+====================================================*/
+
+.left-column .card h4{
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    color:#94a3b8;
+
+    margin-bottom:26px;
+
+    font-weight:800;
+
+}
+
+
+/*====================================================
+MENU
+====================================================*/
+
+.menu-conecta{
+
+    list-style:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+/*====================================================
+LINKS
+====================================================*/
+
+.menu-link{
 
     text-decoration:none;
 
-    font-weight:700;
+    color:inherit;
 
 }
 
 
-.nome-farmacia:hover{
+.menu-conecta li{
 
-    color:#2563eb;
+    position:relative;
 
-}
+    display:flex;
 
-.nome-farmacia{
+    align-items:center;
 
-    color: #1e293b;
-    text-decoration:none;
+    gap:18px;
+
+    height:72px;
+
+    padding:0 22px;
+
+    border-radius:22px;
+
     cursor:pointer;
-    font-weight:700;
+
+    transition:.35s;
+
+    background:white;
+
+    border:1px solid transparent;
 
 }
 
 
-.nome-farmacia:hover{
+/*====================================================
+EFEITO VIDRO
+====================================================*/
 
-    color:#2563eb;
-    text-decoration:underline;
+.menu-conecta li::before{
 
-}
+    content:"";
 
-/* =====================================================
-   PERFIL DE OUTRA FARMÁCIA
-===================================================== */
+    position:absolute;
 
-
-.perfil-farmacia-header{
-
-    background:linear-gradient(135deg,#0f766e,#2563eb);
-
-    height:180px;
-
-    border-radius:22px 22px 0 0;
-
-    position:relative;
-
-}
-
-
-.perfil-farmacia-card{
-
-    background:#fff;
+    inset:0;
 
     border-radius:22px;
 
-    overflow:hidden;
+    background:
 
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+        linear-gradient(
 
-    margin-bottom:25px;
+            90deg,
+
+            rgba(37,99,235,.06),
+
+            rgba(255,255,255,0)
+
+        );
+
+    opacity:0;
+
+    transition:.35s;
 
 }
 
 
+/*====================================================
+ÍCONE
+====================================================*/
 
-.perfil-farmacia-avatar{
+.menu-conecta i{
 
-    width:110px;
+    width:46px;
 
-    height:110px;
+    height:46px;
 
-    border-radius:50%;
-
-    background:white;
+    border-radius:16px;
 
     display:flex;
 
@@ -1053,1022 +1574,785 @@ body{
 
     justify-content:center;
 
-    font-size:45px;
+    background:#eff6ff;
 
     color:#2563eb;
 
-    position:absolute;
+    font-size:21px;
 
-    bottom:-55px;
-
-    left:40px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.15);
+    transition:.35s;
 
 }
 
 
-
-.perfil-farmacia-info{
-
-    padding:70px 40px 30px;
-
-}
-
-
-
-.perfil-farmacia-info h1{
-
-    margin:0;
-
-    font-size:28px;
-
-    color:#0f172a;
-
-}
-
-
-
-.perfil-farmacia-info p{
-
-    color:#64748b;
-
-    margin-top:8px;
-
-}
-
-
-
-.perfil-status{
-
-    display:flex;
-
-    gap:30px;
-
-    margin-top:25px;
-
-}
-
-
-
-.perfil-status div{
-
-    background:#f8fafc;
-
-    padding:15px 25px;
-
-    border-radius:15px;
-
-    text-align:center;
-
-}
-
-
-
-.perfil-status strong{
-
-    display:block;
-
-    font-size:22px;
-
-    color:#2563eb;
-
-}
-
-
-
-.perfil-status span{
-
-    color:#64748b;
-
-    font-size:14px;
-
-}
-
-
-/* PUBLICAÇÕES DO PERFIL */
-
-
-.perfil-titulo{
-
-    font-size:22px;
-
-    margin:30px 0 15px;
-
-    color:#0f172a;
-
-}
-
-
-.perfil-post{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:22px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
-
-}
-
-
-
-.perfil-post:hover{
-
-    transform:translateY(-3px);
-
-    transition:.25s;
-
-    box-shadow:0 12px 35px rgba(0,0,0,.10);
-
-}
-
-
-
-.perfil-voltar{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    margin-bottom:20px;
-
-    color:#2563eb;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-}
-
-
-
-.perfil-voltar:hover{
-
-    text-decoration:underline;
-
-}
-
-/* =====================================================
-   PERFIL DA FARMÁCIA (MESMO ESTILO DO CONECTA)
-===================================================== */
-
-.perfil-container{
-
-    width:100%;
-
-}
-
-
-/* CARD PRINCIPAL DO PERFIL */
-
-.perfil-card{
-
-    background:#ffffff;
-
-    border-radius:22px;
-
-    overflow:hidden;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-    margin-bottom:25px;
-
-}
-
-
-
-/* CAPA */
-
-.perfil-capa{
-
-    height:180px;
-
-    background:linear-gradient(
-        135deg,
-        #2563eb,
-        #0f766e
-    );
-
-    position:relative;
-
-}
-
-
-
-/* AVATAR */
-
-.perfil-avatar{
-
-    width:120px;
-
-    height:120px;
-
-    border-radius:50%;
-
-    background:#ffffff;
-
-    position:absolute;
-
-    bottom:-60px;
-
-    left:35px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:50px;
-
-    color:#2563eb;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.18);
-
-}
-
-
-
-
-/* INFORMAÇÕES */
-
-.perfil-info{
-
-    padding:75px 35px 30px;
-
-}
-
-
-
-.perfil-info h1{
-
-    margin:0;
-
-    font-size:28px;
-
-    color:#0f172a;
-
-    font-weight:700;
-
-}
-
-
-
-.perfil-info p{
-
-    color:#64748b;
-
-    margin-top:8px;
+/*====================================================
+TEXTO
+====================================================*/
+
+.menu-conecta li{
 
     font-size:15px;
 
-}
-
-
-
-
-
-/* ESTATÍSTICAS */
-
-.perfil-estatisticas{
-
-    display:flex;
-
-    gap:15px;
-
-    margin-top:25px;
-
-}
-
-
-
-.perfil-estatisticas div{
-
-    background:#f8fafc;
-
-    padding:15px 25px;
-
-    border-radius:15px;
-
-    text-align:center;
-
-}
-
-
-
-.perfil-estatisticas strong{
-
-    display:block;
-
-    color:#2563eb;
-
-    font-size:22px;
-
-}
-
-
-
-.perfil-estatisticas span{
-
-    color:#64748b;
-
-    font-size:14px;
-
-}
-
-
-
-/* BOTÃO */
-
-.perfil-btn{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-top:25px;
-
-    background:#2563eb;
-
-    color:white;
-
-    padding:12px 25px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    transition:.25s;
-
-}
-
-
-.perfil-btn:hover{
-
-    background:#1d4ed8;
-
-    transform:translateY(-2px);
-
-}
-
-
-
-
-
-/* =====================================================
-   NOME DA FARMÁCIA NO FEED
-===================================================== */
-
-
-.nome-farmacia{
-
-    color:#0f172a;
-
-    text-decoration:none;
-
     font-weight:700;
 
-    cursor:pointer;
-
-    transition:.2s;
+    color:#334155;
 
 }
 
 
+/*====================================================
+HOVER
+====================================================*/
 
-.nome-farmacia:hover{
+.menu-conecta li:hover{
 
-    color:#2563eb;
+    border-color:#dbeafe;
 
-    text-decoration:underline;
+    transform:translateX(8px);
 
-}
+    box-shadow:
 
-
-
-
-
-/* =====================================================
-   PUBLICAÇÕES DO PERFIL
-===================================================== */
-
-
-.perfil-publicacoes{
-
-    margin-top:25px;
+        0 18px 45px rgba(37,99,235,.10);
 
 }
 
 
+.menu-conecta li:hover::before{
 
-.perfil-titulo{
-
-    font-size:22px;
-
-    color:#0f172a;
-
-    margin-bottom:20px;
+    opacity:1;
 
 }
 
 
-
-
-.perfil-post{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:24px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
-
-    transition:.25s;
-
-}
-
-
-
-.perfil-post:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 12px 35px rgba(0,0,0,.10);
-
-}
-
-
-
-
-
-/* BOTÃO VOLTAR */
-
-.perfil-voltar{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:#2563eb;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    margin-bottom:20px;
-
-}
-
-
-
-.perfil-voltar:hover{
-
-    text-decoration:underline;
-
-}
-
-
-
-
-/* RESPONSIVO */
-
-@media(max-width:768px){
-
-
-    .perfil-info{
-
-        padding:75px 20px 25px;
-
-    }
-
-
-    .perfil-avatar{
-
-        left:20px;
-
-    }
-
-
-    .perfil-estatisticas{
-
-        flex-direction:column;
-
-    }
-
-
-}
-
-/* =====================================================
-   BOTÃO VER PERFIL
-===================================================== */
-
-.btn-profile{
-
-    display:inline-flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:8px;
-
-    padding:10px 25px;
-
-    margin-top:18px;
-
-    border-radius:12px;
-
-    border:1px solid #2563eb;
-
-    background:white;
-
-    color:#2563eb;
-
-    font-size:14px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    text-decoration:none;
-
-    transition:.25s;
-
-}
-
-
-.btn-profile:hover{
+.menu-conecta li:hover i{
 
     background:#2563eb;
 
     color:white;
 
-    text-decoration:none;
-
-    transform:translateY(-2px);
+    transform:rotate(-8deg) scale(1.08);
 
 }
 
 
-.btn-profile i{
+/*====================================================
+ITEM ATIVO
+====================================================*/
 
-    font-size:16px;
+.menu-conecta li.active{
 
-}
+    background:
 
-.profile-cover{
+        linear-gradient(
 
-    height:120px;
+            135deg,
 
-    background-size:cover;
+            #2563eb,
 
-    background-position:center;
+            #1d4ed8
 
-    border-radius:18px 18px 0 0;
+        );
 
-}
-
-
-.profile-avatar img{
-
-    width:100%;
-
-    height:100%;
-
-    border-radius:50%;
-
-    object-fit:cover;
+    color:white;
 
 }
 
-.editar-capa{
+
+.menu-conecta li.active i{
+
+    background:white;
+
+    color:#2563eb;
+
+}
+
+
+/*====================================================
+PREMIUM CARD
+====================================================*/
+
+.premium-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:34px;
+
+    border-radius:30px;
+
+    color:white;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #0f172a,
+
+            #1e293b,
+
+            #2563eb
+
+        );
+
+    box-shadow:
+
+        0 30px 70px rgba(37,99,235,.25);
+
+}
+
+
+/*====================================================
+EFEITOS
+====================================================*/
+
+.premium-card::before{
+
+    content:"";
 
     position:absolute;
 
-    right:20px;
+    width:260px;
 
-    bottom:20px;
-
-    width:42px;
-
-    height:42px;
+    height:260px;
 
     border-radius:50%;
 
-    background:white;
+    background:rgba(255,255,255,.05);
 
-    display:flex;
+    right:-80px;
 
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
-
-    color:#2563eb;
+    top:-80px;
 
 }
 
 
-.editar-capa input,
-.editar-foto input{
+.premium-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.04);
+
+    left:-70px;
+
+    bottom:-70px;
+
+}
+
+
+/*====================================================
+ÍCONE
+====================================================*/
+
+.premium-card i{
+
+    position:relative;
+
+    font-size:54px;
+
+    margin-bottom:18px;
+
+    display:inline-block;
+
+}
+
+
+/*====================================================
+TÍTULO
+====================================================*/
+
+.premium-card h3{
+
+    position:relative;
+
+    font-size:30px;
+
+    font-weight:800;
+
+}
+
+
+/*====================================================
+TEXTO
+====================================================*/
+
+.premium-card p{
+
+    position:relative;
+
+    margin-top:18px;
+
+    line-height:1.9;
+
+    color:rgba(255,255,255,.88);
+
+}
+
+
+/*====================================================
+BOTÃO
+====================================================*/
+
+.premium-card button{
+
+    position:relative;
+
+    margin-top:28px;
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:white;
+
+    color:#2563eb;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+
+.premium-card button:hover{
+
+    transform:translateY(-3px);
+
+    background:#eff6ff;
+
+    box-shadow:
+
+        0 18px 35px rgba(255,255,255,.15);
+
+}
+
+
+/*====================================================
+ANIMAÇÃO
+====================================================*/
+
+.premium-card:hover{
+
+    transform:translateY(-6px);
+
+    transition:.4s;
+
+}
+
+
+/*====================================================
+MICRO BADGE
+====================================================*/
+
+.premium-card::marker{
 
     display:none;
 
 }
 
+.profile-cover{
 
-.editar-foto{
-
-    position:absolute;
-
-    bottom:5px;
-
-    right:5px;
-
-    width:35px;
-
-    height:35px;
-
-    border-radius:50%;
-
-    background:#2563eb;
-
-    color:white;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    border:3px solid white;
+    height:90px !important;
 
 }
-
-
-.perfil-farmacia-avatar{
-
-    position:relative;
-
-}
-
-.btn-editar-capa{
-
-    position:absolute;
-
-    right:15px;
-
-    bottom:15px;
-
-    width:38px;
-
-    height:38px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:white;
-
-    color:#2563eb;
-
-    cursor:pointer;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
-
-}
-
-
-.btn-editar-foto{
-
-    position:absolute;
-
-    right:0;
-
-    bottom:0;
-
-    width:35px;
-
-    height:35px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#2563eb;
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
 
 .profile-avatar{
 
-    position:relative;
+    width:90px !important;
+    height:90px !important;
+
+    margin:-45px auto 12px !important;
+
+    border-width:5px !important;
 
 }
 
+.profile-card h3{
+
+    font-size:20px !important;
+
+    margin:0 !important;
+
+}
+
+.profile-card span{
+
+    margin-top:4px !important;
+
+    font-size:13px !important;
+
+}
+
+.member{
+
+    margin:10px auto !important;
+
+    padding:6px 12px !important;
+
+    font-size:12px !important;
+
+}
+
+.profile-stats{
+
+    margin:12px 16px !important;
+
+    gap:8px !important;
+
+}
+
+.profile-stats div{
+
+    padding:12px !important;
+
+}
+
+.profile-stats strong{
+
+    font-size:20px !important;
+
+}
+
+.profile-stats small{
+
+    font-size:11px !important;
+
+}
+
+.profile-button-area{
+
+    padding:0 16px 16px !important;
+
+}
+
+.btn-profile{
+
+    height:44px !important;
+
+}
+
+/*====================================================
+        LAYOUT MAIS COMPACTO
+====================================================*/
+
+.conecta-page{
+
+    max-width:1550px;
+    padding:18px 20px;
+
+}
+
+.conecta-grid{
+
+    grid-template-columns:220px minmax(0,1fr) 270px;
+
+    gap:18px;
+
+    align-items:start;
+
+}
+
+
+/*====================================================
+HEADER
+====================================================*/
+
+.conecta-header{
+
+    margin-bottom:18px;
+
+}
+
+.conecta-header h1{
+
+    font-size:26px;
+
+}
+
+.conecta-header p{
+
+    font-size:14px;
+
+}
+
+
+/*====================================================
+CARD DO PERFIL
+====================================================*/
+
+.profile-card{
+
+    padding:0;
+    overflow:hidden;
+
+}
 
 .profile-cover{
 
-    position:relative;
-
-    background-size:cover;
-
-    background-position:center;
+    height:72px;
 
 }
 
-.post-avatar img {
+.profile-avatar{
 
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+    width:72px;
+    height:72px;
+
+    margin:-34px auto 10px;
+
+    border-width:3px;
 
 }
 
-/* BOTÕES DO CROP DA FOTO */
+.profile-card h3{
 
-#modalCrop button{
+    font-size:14px;
 
-    padding:10px 25px;
+    margin-top:4px;
 
-    border:none;
+}
 
-    border-radius:25px;
+.profile-card span{
+
+    font-size:13px;
+
+}
+
+.member{
+
+    margin-top:8px;
+
+    font-size:12px;
+
+}
+
+
+/*====================================================
+SEGUIDORES
+====================================================*/
+
+.profile-stats{
+
+    margin:12px;
+
+    gap:6px;
+
+}
+
+.profile-stats div{
+
+    padding:10px 6px;
+
+    border-radius:14px;
+
+}
+
+.profile-stats strong{
+
+    font-size:20px;
+
+}
+
+.profile-stats small{
+
+    font-size:10px;
+
+}
+
+
+/*====================================================
+BOTÃO
+====================================================*/
+
+.btn-profile{
+
+    height:42px;
+
+    border-radius:14px;
+
+    margin:0 14px 14px;
+
+    font-size:13px;
+
+}
+
+
+/*====================================================
+ATALHOS
+====================================================*/
+
+.menu-card{
+
+    padding:18px;
+
+}
+
+.menu-conecta li{
+
+    padding:10px;
+
+    gap:10px;
+
+}
+
+.menu-conecta i{
+
+    width:34px;
+    height:34px;
 
     font-size:15px;
 
-    font-weight:600;
+}
 
-    cursor:pointer;
+.menu-conecta span{
 
-    margin:0 8px;
-
-    transition:.3s;
+    font-size:14px;
 
 }
 
 
-/* Botão salvar */
+/*====================================================
+PUBLICAÇÃO
+====================================================*/
 
-#modalCrop button:first-child{
+.publish-card{
 
-    background:#2563eb;
+    padding:18px;
 
-    color:white;
+}
+
+.publish-avatar{
+
+    width:52px;
+
+    height:52px;
+
+}
+
+.publish-input textarea{
+
+    min-height:75px;
+
+    font-size:14px;
+
+}
+
+.publish-actions{
+
+    margin-top:14px;
+
+}
+
+.publish-actions button{
+
+    height:40px;
+
+    font-size:13px;
 
 }
 
 
-#modalCrop button:first-child:hover{
+/*====================================================
+POST
+====================================================*/
 
-    background:#1d4ed8;
+.post-card{
 
-}
-
-
-
-/* Botão cancelar */
-
-#modalCrop button:last-child{
-
-    background:#e5e7eb;
-
-    color:#374151;
+    padding:20px;
 
 }
 
+.post-header{
 
-#modalCrop button:last-child:hover{
-
-    background:#d1d5db;
-
-}
-
-
-
-/* Caixa da área de corte */
-
-#modalCrop{
-
-    backdrop-filter:blur(5px);
+    gap:14px;
 
 }
 
+.post-avatar{
 
-/* Imagem dentro do corte */
+    width:52px;
 
-#imagemCrop{
+    height:52px;
 
-    max-width:90%;
-
-    max-height:70%;
-
-    border-radius:10px;
-
-    background:white;
+    border-radius:16px;
 
 }
 
-.perfil-acoes{
+.post-info h3{
+
+    font-size:17px;
+
+}
+
+.post-info span{
+
+    font-size:12px;
+
+}
+
+.post-content{
 
     margin-top:18px;
 
 }
 
-.btn-seguir{
+.post-content p{
 
-    padding:12px 30px;
+    font-size:14px;
 
-    border:none;
-
-    border-radius:30px;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.25s;
+    line-height:1.75;
 
 }
 
-.btn-seguir:hover{
-
-    transform:translateY(-2px);
-
-}
-
-.btn-seguir.seguindo{
-
-    background:#16a34a;
-
-}
-
-.perfil-acoes{
-    margin-top:15px;
-}
-
-
-.btn-seguir{
-
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    padding:10px 22px;
-
-    border:none;
-    border-radius:25px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-
-.btn-seguir:hover{
-
-    opacity:.9;
-
-}
-
-
-/* QUANDO JÁ SEGUE */
-
-.btn-seguir.seguindo{
-
-    background:#16a34a;
-
-    color:white;
-
-}
-
-.texto-post{
-
-    white-space:pre-line;
-    transition:.3s;
-
-}
-
-.texto-post.curto{
-
-    display:-webkit-box;
-    -webkit-line-clamp:3;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-
-}
-
-.btn-ler{
-
-    display:inline-block;
-    margin-top:10px;
-    font-weight:700;
-    color:#2563eb;
-    text-decoration:none;
-
-}
-
-.btn-ler:hover{
-
-    text-decoration:underline;
-
-}
-
-.titulo-noticia{
-
-    font-size:20px;
-
-    font-weight:700;
-
-    color:#12345b;
-
-    margin-bottom:12px;
-
-    line-height:1.4;
-
-}
-
-.btn-noticia{
-
-    display:inline-block;
+.post-image{
 
     margin-top:16px;
 
-    font-weight:700;
-
-    color:#12345b;
-
-    text-decoration:none;
+    border-radius:18px;
 
 }
 
-.btn-noticia:hover{
+.post-actions{
 
-    text-decoration:underline;
+    margin-top:16px;
 
 }
 
-.fonte-noticia{
+.post-actions button{
 
-    color:#64748b;
+    height:40px;
+
+    padding:0 14px;
+
+    border-radius:12px;
 
     font-size:13px;
 
-    font-weight:700;
+}
 
-    margin-bottom:8px;
+.post-actions button i{
+
+    font-size:17px;
 
 }
 
-.titulo-noticia{
 
-    color:#12345b;
+/*====================================================
+COLUNA DIREITA
+====================================================*/
 
-    font-size:22px;
+.right-column .card{
 
-    font-weight:800;
-
-    line-height:1.4;
-
-    margin-bottom:15px;
+    padding:18px;
 
 }
 
+.right-column h3{
+
+    font-size:16px;
+
+}
+
+
+/*====================================================
+ESPAÇAMENTO ENTRE POSTS
+====================================================*/
+
+.feed-column{
+
+    gap:18px;
+
+}
+
+/*=========================================
+CORREÇÃO DO GRID
+=========================================*/
+
+.conecta-grid{
+
+    display:grid;
+
+    grid-template-columns:240px minmax(0,1fr) 280px;
+
+    gap:20px;
+
+}
+
+.left-column,
+.feed-column,
+.right-column{
+
+    min-width:0;
+
+}
+
+.publish-card,
+.post-card{
+
+    width:100%;
+
+    max-width:100%;
+
+}
+
+.post-header{
+
+    display:flex;
+
+    min-width:0;
+
+}
+
+.post-user{
+
+    display:flex;
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.post-info{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.publish-input{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.publish-input textarea{
+
+    width:100%;
+
+    min-width:0;
+
+    max-width:100%;
+
+}
