@@ -191,12 +191,11 @@ Dashboard - CotaFarma
 
     <div class="entrada-header">
 
-        <div>Medicamento</div>
-        <div>Laboratório</div>
-        <div>Quantidade</div>
-        <div>Ações</div>
+    <div>Produto</div>
 
-    </div>
+    <div>Quantidade</div>
+
+</div>
 
 <!-- Linha de cadastro -->
 
@@ -204,31 +203,30 @@ Dashboard - CotaFarma
 
     <div class="campo-autocomplete">
 
-        <input
-            type="text"
-            id="medicamento"
-            placeholder="Ex.: Dipirona 500mg">
+        <div class="campo-medicamento">
 
+            <input
+                type="text"
+                id="medicamento"
+                placeholder="Ex.: Dipirona 500mg">
+
+            <button
+                type="button"
+                class="btn-colar-lista"
+                onclick="abrirImportacao()">
+
+                <i class="bi bi-clipboard-plus"></i>
+
+            </button>
+
+        </div>
 
     </div>
-
-    <input
-        type="text"
-        id="laboratorio"
-        placeholder="Ex.: Neo Química">
 
     <input
         type="number"
         id="quantidade"
         placeholder="120">
-
-    <button
-        type="button"
-        class="btn-remover">
-
-        <i class="bi bi-trash"></i>
-
-    </button>
 
 </div>
 
@@ -280,19 +278,15 @@ Dashboard - CotaFarma
 
         <thead>
 
-            <tr>
+    <tr>
 
-                <th>Medicamento</th>
+        <th>Produto</th>
 
-                <th>Laboratório</th>
+        <th style="width:140px;">Quantidade</th>
 
-                <th>Quantidade</th>
+    </tr>
 
-                <th></th>
-
-            </tr>
-
-        </thead>
+</thead>
 
         <tbody id="listaMedicamentos">
 
@@ -510,6 +504,60 @@ Dashboard - CotaFarma
                 <i class="bi bi-plus-circle-fill"></i>
 
                 Adicionar à Lista
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= IMPORTAR LISTA ================= -->
+
+<div id="modalImportacao" class="modal-importacao">
+
+    <div class="modal-importacao-box">
+
+        <div class="modal-importacao-header">
+
+            <h2>
+
+                <i class="bi bi-clipboard-plus"></i>
+
+                Colar Lista
+
+            </h2>
+
+            <button
+                type="button"
+                class="fechar-modal"
+                onclick="fecharImportacao()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <p>
+
+            Cole um medicamento por linha.
+
+        </p>
+
+        <textarea
+            id="listaMedicamentosTexto"
+            placeholder="Dipirona 500mg&#10;Paracetamol 750mg&#10;Escitalopram 10mg"></textarea>
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="btn-adicionar-produto"
+                onclick="importarLista()">
+
+                Importar Lista
 
             </button>
 

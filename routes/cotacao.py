@@ -154,8 +154,7 @@ def itens_cotacao(id):
 
         lista.append({
             "medicamento": item[0],
-            "laboratorio": item[1],
-            "quantidade": item[2]
+            "quantidade": item[1]
         })
 
     return jsonify(lista)
@@ -208,14 +207,12 @@ def criar_cotacao():
     nome = request.form.get("nome_cotacao")
 
     medicamentos = request.form.getlist("medicamento[]")
-    laboratorios = request.form.getlist("laboratorio[]")
     quantidades = request.form.getlist("quantidade[]")
 
     salvar_cotacao(
         cnpj,
         nome,
         medicamentos,
-        laboratorios,
         quantidades
     )
 

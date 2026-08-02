@@ -19,7 +19,6 @@ document
 btnAdicionar.addEventListener("click", function () {
 
     let medicamento = document.getElementById("medicamento").value.trim();
-    let laboratorio = document.getElementById("laboratorio").value.trim();
     let quantidade = document.getElementById("quantidade").value.trim();
 
     // Somente o medicamento é obrigatório
@@ -29,26 +28,22 @@ btnAdicionar.addEventListener("click", function () {
     }
 
     // Campos opcionais
-    if (laboratorio === "") {
-        laboratorio = "-";
-    }
+
 
     if (quantidade === "") {
         quantidade = "-";
     }
 
         medicamentos.push({
-            medicamento,
-            laboratorio,
-            quantidade
-        });
+        medicamento,
+        quantidade
+    });
 
         atualizarLista();
 
         salvarRascunho();
 
         document.getElementById("medicamento").value = "";
-        document.getElementById("laboratorio").value = "";
         document.getElementById("quantidade").value = "";
 
         document.getElementById("medicamento").focus();
@@ -64,23 +59,41 @@ function atualizarLista() {
     medicamentos.forEach((item, index) => {
 
         lista.innerHTML += `
-            <div class="table-row">
-                <div>${item.medicamento}</div>
-                <div>${item.laboratorio}</div>
-                <div>${item.quantidade}</div>
+            <tr>
 
-                <button
-                    type="button"
-                    onclick="removerMedicamento(${index})">
+    <td>${item.medicamento}</td>
 
-                    <i class="bi bi-trash"></i>
+    <td>${item.quantidade}</td>
 
-                </button>
+    <td class="acoes">
 
-                <input type="hidden" name="medicamento[]" value="${item.medicamento}">
-                <input type="hidden" name="laboratorio[]" value="${item.laboratorio}">
-                <input type="hidden" name="quantidade[]" value="${item.quantidade}">
-            </div>
+        <button
+            type="button"
+            class="btn-remover-lista"
+            onclick="removerMedicamento(${index})">
+
+            <i class="bi bi-trash"></i>
+
+        </button>
+
+        <input
+            type="hidden"
+            name="medicamento[]"
+            value="${item.medicamento}">
+
+        <input
+            type="hidden"
+            name="laboratorio[]"
+            value="">
+
+        <input
+            type="hidden"
+            name="quantidade[]"
+            value="${item.quantidade}">
+
+    </td>
+
+</tr>
         `;
 
     });
@@ -279,13 +292,11 @@ document
 
             medicamentos.push({
 
-                medicamento: item.dataset.medicamento,
+    medicamento: item.dataset.medicamento,
 
-                laboratorio: item.dataset.laboratorio,
+    quantidade: item.dataset.quantidade
 
-                quantidade: item.dataset.quantidade
-
-            });
+});
 
         }
 
@@ -355,18 +366,12 @@ campoMedicamento.addEventListener("input", async function () {
         div.className = "item-sugestao";
 
         div.innerHTML = `
-            <strong>${item[0]}</strong>
-            <br>
-            <small>${item[1]}</small>
-        `;
+    <strong>${item[0]}</strong>
+`;
 
         div.onclick = function(){
 
             campoMedicamento.value = item[0];
-
-            document
-                .getElementById("laboratorio")
-                .value = item[1];
 
             listaSugestoes.innerHTML = "";
 
@@ -386,4 +391,77 @@ campoMedicamento.addEventListener("input", async function () {
 
 });
 
+function abrirImportacao(){
 
+
+    document.getElementById("modalImportacao").style.display = "flex";
+
+}
+
+function fecharImportacao(){
+
+    document.getElementById("modalImportacao").style.display = "none";
+
+}
+
+window.addEventListener("click", function(e){
+
+    const modal = document.getElementById("modalImportacao");
+
+    if(e.target === modal){
+
+        fecharImportacao();
+
+    }
+
+});
+
+function importarLista(){
+
+    const texto = document
+        .getElementById("listaMedicamentosTexto")
+        .value
+        .trim();
+
+    if(texto === ""){
+
+        alert("Cole uma lista de medicamentos.");
+
+        return;
+
+    }
+
+    const linhas = texto
+        .split(/\r?\n/)
+        .map(l => l.trim())
+        .filter(l => l !== "");
+
+    linhas.forEach(function(linha){
+
+        const existe = medicamentos.some(item =>
+            item.medicamento.toLowerCase() === linha.toLowerCase()
+        );
+
+        if(!existe){
+
+            medicamentos.push({
+
+    medicamento: linha,
+
+    quantidade: "-"
+
+});
+
+        }
+
+    });
+
+    atualizarLista();
+
+    salvarRascunho();
+
+    document.getElementById("listaMedicamentosTexto").value = "";
+
+    fecharImportacao();
+
+}
