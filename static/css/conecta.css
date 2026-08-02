@@ -8,6 +8,14 @@
     box-sizing:border-box;
 }
 
+body,
+.conecta-page,
+.conecta-page *{
+
+    font-family:'Inter', sans-serif;
+
+}
+
 .conecta-page{
 
     max-width:1600px;
