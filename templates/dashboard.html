@@ -401,41 +401,99 @@ Dashboard - CotaFarma
 
             </td>
 
-            <td class="acoes-tabela">
+           <td class="acoes-tabela">
 
-                <button class="acao-btn">
+    <!-- Visualizar -->
 
-                    <i class="bi bi-eye-fill"></i>
+    <button
+        class="acao-btn"
+        title="Visualizar"
+        onclick="abrirCotacaoDashboard({{ cotacao[0] }})">
 
-                </button>
+        <i class="bi bi-eye-fill"></i>
 
-                <button class="acao-btn">
+    </button>
 
-                    <i class="bi bi-send-fill"></i>
+    <!-- Enviar -->
 
-                </button>
+    {% if cotacao[3] == "ENCERRADA" %}
 
-                <button class="acao-btn">
+    <button
+        class="acao-btn"
+        title="Cotação Encerrada"
+        onclick="cotacaoEncerrada()">
 
-                    <i class="bi bi-trophy-fill"></i>
+        <i class="bi bi-send-fill"></i>
 
-                </button>
+    </button>
 
-                <button class="acao-btn">
+    {% else %}
 
-                    <i class="bi bi-file-earmark-text-fill"></i>
+    <button
+        class="acao-btn"
+        title="Enviar"
+        onclick="enviarCotacao({{ cotacao[0] }})">
 
-                </button>
+        <i class="bi bi-send-fill"></i>
 
-                <button class="acao-btn excluir">
+    </button>
 
-                    <i class="bi bi-trash-fill"></i>
+    {% endif %}
 
-                </button>
+    <!-- Encerrar -->
 
-            </td>
+    <button
+        class="acao-btn excluir"
+        title="Encerrar Cotação"
+        onclick="encerrarCotacao({{ cotacao[0] }})">
 
-        </tr>
+        <i class="bi bi-x-circle-fill"></i>
+
+    </button>
+
+    <!-- Excluir -->
+
+    <button
+        class="acao-btn excluir"
+        title="Excluir"
+        onclick="excluirCotacao({{ cotacao[0] }})">
+
+        <i class="bi bi-trash-fill"></i>
+
+    </button>
+
+</td>
+
+    </td>
+
+</tr>
+
+<tr class="linha-itens">
+
+    <td colspan="4" style="padding:0;border:none;">
+
+        <div
+            id="itens-{{ cotacao[0] }}"
+            class="itens-cotacao"
+            style="display:none;">
+        </div>
+
+    </td>
+
+</tr>
+
+<tr class="linha-itens">
+
+    <td colspan="4" style="padding:0;border:none;">
+
+        <div
+            id="itens-{{ cotacao[0] }}"
+            style="display:none;">
+        </div>
+
+    </td>
+
+</tr>
 
         {% endfor %}
 
@@ -577,4 +635,95 @@ Dashboard - CotaFarma
 
 <script src="{{ url_for('static', filename='js/cotacoes.js') }}"></script>
 
+<script>
+
+function abrirCotacaoDashboard(id){
+
+    const div = document.getElementById("itens-" + id);
+
+    if(div.style.display === "block"){
+
+        div.style.display = "none";
+        div.innerHTML = "";
+
+        return;
+    }
+
+    document.querySelectorAll("[id^='itens-']").forEach(el=>{
+
+        el.style.display = "none";
+        el.innerHTML = "";
+
+    });
+
+    fetch("/cotacoes/" + id + "/itens")
+    .then(r=>r.json())
+    .then(itens=>{
+
+        let html = `
+
+        <div class="painel-itens">
+
+            <table class="tabela-produtos">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Medicamento</th>
+
+                        <th>Laboratório</th>
+
+                        <th>Quantidade</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+        itens.forEach(item=>{
+
+            html += `
+
+            <tr>
+
+                <td>${item.medicamento}</td>
+
+                <td>${item.laboratorio}</td>
+
+                <td>${item.quantidade}</td>
+
+            </tr>
+
+            `;
+
+        });
+
+        html += `
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        `;
+
+        div.innerHTML = html;
+
+        div.style.display = "block";
+
+        div.scrollIntoView({
+            behavior:"smooth",
+            block:"nearest"
+        });
+
+    });
+
+}
+
+</script>
 {% endblock %}

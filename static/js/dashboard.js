@@ -326,6 +326,9 @@ function fecharPendencias(){
    AUTOCOMPLETE DE MEDICAMENTOS
 ===================================== */
 
+const campoMedicamento = document.getElementById("medicamento");
+const listaSugestoes = document.getElementById("listaSugestoes");
+
 campoMedicamento.addEventListener("input", async function () {
 
     console.log("Digitou:", this.value);
@@ -463,5 +466,105 @@ function importarLista(){
     document.getElementById("listaMedicamentosTexto").value = "";
 
     fecharImportacao();
+
+}
+
+function fecharTodosOsPaineisDashboard(id){
+
+    document
+        .querySelectorAll("[id^='itens-']")
+        .forEach(div => {
+
+            if(div.id !== "itens-" + id){
+
+                div.style.display = "none";
+
+            }
+
+        });
+
+}
+
+function abrirCotacaoDashboard(id){
+    
+    console.log("Abrindo", id);
+    const div = document.getElementById("itens-" + id);
+    console.log(div);
+
+    const aberto = div.style.display === "block";
+
+    fecharTodosOsPaineisDashboard(id);
+
+    if(aberto){
+
+        div.style.display = "none";
+
+        return;
+
+    }
+
+    fetch("/cotacoes/" + id + "/itens")
+        .then(response => response.json())
+        .then(itens => {
+
+            let html = `
+
+                <div class="painel-itens">
+
+                    <div class="painel-itens-header">
+
+                        Medicamentos da Cotação
+
+                    </div>
+
+                    <table class="tabela-produtos">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Medicamento</th>
+
+                                <th>Quantidade</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+            `;
+
+            itens.forEach(item => {
+
+                html += `
+
+                    <tr>
+
+                        <td>${item.medicamento}</td>
+
+                        <td>${item.quantidade}</td>
+
+                    </tr>
+
+                `;
+
+            });
+
+            html += `
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            `;
+
+            div.innerHTML = html;
+
+            div.style.display = "block";
+
+        });
 
 }
