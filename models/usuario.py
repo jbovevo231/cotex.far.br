@@ -88,6 +88,30 @@ def criar_usuario(nome, cpf, cnpj, telefone, email, senha):
             )
 
 
+    db.execute(
+        """
+        INSERT INTO usuarios
+        (
+            nome,
+            cpf,
+            cnpj,
+            telefone,
+            email,
+            senha
+        )
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            nome,
+            cpf,
+            cnpj,
+            telefone,
+            email,
+            senha_hash
+        )
+    )
+
+    db.commit()
 
     db.execute(
         """
@@ -110,6 +134,8 @@ def criar_usuario(nome, cpf, cnpj, telefone, email, senha):
 
 def validar_login(login, senha):
 
+    print("VERSÃO NOVA DO USUARIO.PY")
+
     db = get_db()
 
     login = login.strip()
@@ -125,9 +151,7 @@ def validar_login(login, senha):
             nome,
             cnpj,
             email,
-            senha,
-            plano,
-            premium_ate
+            senha
         FROM usuarios
         WHERE cnpj = ?
            OR LOWER(email) = ?
@@ -145,38 +169,6 @@ def validar_login(login, senha):
 
     senha_banco = usuario[4]
 
-    plano = usuario[5]
-    premium_ate = usuario[6]
-
-    if plano == "premium" and premium_ate:
-
-        try:
-
-            vencimento = datetime.strptime(
-                premium_ate,
-                "%Y-%m-%d %H:%M:%S"
-            )
-
-            if datetime.now() > vencimento:
-
-                db.execute(
-                    """
-                    UPDATE usuarios
-                    SET
-                        plano = 'gratuito',
-                        premium_ate = NULL
-                    WHERE id = ?
-                    """,
-                    (usuario[0],)
-                )
-
-                db.commit()
-
-                plano = "gratuito"
-
-        except Exception:
-            pass
-
     if not check_password_hash(senha_banco, senha):
         return None
 
@@ -184,8 +176,7 @@ def validar_login(login, senha):
         "id": usuario[0],
         "nome": usuario[1],
         "cnpj": usuario[2],
-        "email": usuario[3],
-        "plano": plano
+        "email": usuario[3]
     }
 
 
@@ -311,58 +302,4 @@ def buscar_usuario_por_id(usuario_id):
         "cnpj": usuario[2],
         "telefone": usuario[3],
         "email": usuario[4]
-    }
-
-from datetime import datetime, timedelta
-from database.connection import get_db
-
-
-def ativar_teste_gratis(cnpj):
-    conn = get_db()
-    cursor = conn.cursor()
-
-    premium_ate = (
-    datetime.now() + timedelta(days=14)
-).strftime("%Y-%m-%d %H:%M:%S")
-
-    cursor.execute("""
-        UPDATE usuarios
-        SET
-            plano = 'premium',
-            premium_ate = ?,
-            periodo_teste = TRUE
-        WHERE cnpj = ?
-    """, (premium_ate, cnpj))
-
-    conn.commit()
-
-def buscar_usuario_por_cnpj(cnpj):
-
-    db = get_db()
-
-    usuario = db.execute(
-        """
-        SELECT
-            id,
-            nome,
-            cnpj,
-            plano,
-            premium_ate,
-            periodo_teste
-        FROM usuarios
-        WHERE cnpj = ?
-        """,
-        (limpar_cnpj(cnpj),)
-    ).fetchone()
-
-    if usuario is None:
-        return None
-
-    return {
-        "id": usuario[0],
-        "nome": usuario[1],
-        "cnpj": usuario[2],
-        "plano": usuario[3],
-        "premium_ate": usuario[4],
-        "periodo_teste": usuario[5]
     }
