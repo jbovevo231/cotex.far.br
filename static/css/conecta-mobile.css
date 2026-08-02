@@ -525,3 +525,59 @@ button{
 }
 
 }
+
+.mobile-menu-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.menu-icon{
+
+    font-size:28px;
+
+    color:#fff;
+
+    transition:.3s;
+
+}
+
+.menu-text{
+
+    font-size:17px;
+
+    font-weight:800;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #ffffff 35%,
+            #7dc7ff 50%,
+            #ffffff 65%,
+            #ffffff 100%
+        );
+
+    background-size:300% 100%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:explorarGlow 4s linear infinite;
+
+}

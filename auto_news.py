@@ -283,8 +283,6 @@ if __name__ == "__main__":
 
     postagem = f"""[FONTE]{fonte}[/FONTE]
 
-    print(postagem)
-
     [TITULO]{noticia["titulo"]}[/TITULO]
 
     [TEXTO]
@@ -294,12 +292,14 @@ if __name__ == "__main__":
     [LINK]{noticia["link"]}[/LINK]
     """
 
+    print(postagem)
+
     salvar_post(
-    cnpj,
-    "Cotex Conecta",
-    postagem,
-    imagem
-)
+        cnpj,
+        "Cotex Conecta",
+        postagem,
+        imagem
+    )
 
     salvar_noticia_publicada(
         noticia["titulo"],

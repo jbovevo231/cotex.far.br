@@ -26,74 +26,85 @@ def salvar_cotacao(cnpj, nome, medicamentos, laboratorios, quantidades):
         quantidades
     ):
 
-        db.execute(
-            """
-            INSERT INTO cotacao_itens (
-                cotacao_id,
-                medicamento,
-                laboratorio,
-                quantidade
-            )
-            VALUES (?, ?, ?, ?)
-            """,
-            (
-                cotacao_id,
-                medicamento,
-                laboratorio,
-                quantidade
-            )
-        )
+        linhas = [
+            linha.strip()
+            for linha in medicamento.splitlines()
+            if linha.strip()
+        ]
 
-        historico = db.execute(
-            """
-            SELECT
-                id,
-                vezes
-            FROM historico_medicamentos
-            WHERE cnpj_usuario=?
-            AND medicamento=?
-            AND laboratorio=?
-            """,
-            (
-                cnpj,
-                medicamento,
-                laboratorio
-            )
-        ).fetchone()
+        if not linhas:
+            linhas = [medicamento]
 
-        if historico:
+        for med in linhas:
 
             db.execute(
                 """
-                UPDATE historico_medicamentos
-                SET
-                    vezes=?,
-                    ultima_data=CURRENT_TIMESTAMP
-                WHERE id=?
+                INSERT INTO cotacao_itens (
+                    cotacao_id,
+                    medicamento,
+                    laboratorio,
+                    quantidade
+                )
+                VALUES (?, ?, ?, ?)
                 """,
                 (
-                    historico[1] + 1,
-                    historico[0]
+                    cotacao_id,
+                    med,
+                    laboratorio,
+                    quantidade
                 )
             )
 
-        else:
-
-            db.execute(
+            historico = db.execute(
                 """
-                INSERT INTO historico_medicamentos(
-                    cnpj_usuario,
-                    medicamento,
-                    laboratorio
-                )
-                VALUES (?, ?, ?)
+                SELECT
+                    id,
+                    vezes
+                FROM historico_medicamentos
+                WHERE cnpj_usuario=?
+                AND medicamento=?
+                AND laboratorio=?
                 """,
                 (
                     cnpj,
-                    medicamento,
+                    med,
                     laboratorio
                 )
-            )
+            ).fetchone()
+
+            if historico:
+
+                db.execute(
+                    """
+                    UPDATE historico_medicamentos
+                    SET
+                        vezes=?,
+                        ultima_data=CURRENT_TIMESTAMP
+                    WHERE id=?
+                    """,
+                    (
+                        historico[1] + 1,
+                        historico[0]
+                    )
+                )
+
+            else:
+
+                db.execute(
+                    """
+                    INSERT INTO historico_medicamentos(
+                        cnpj_usuario,
+                        medicamento,
+                        laboratorio
+                    )
+                    VALUES (?, ?, ?)
+                    """,
+                    (
+                        cnpj,
+                        med,
+                        laboratorio
+                    )
+                )
 
     db.commit()
 
@@ -362,30 +373,4 @@ def buscar_historico(cnpj, termo):
         )
     ).fetchall()
 
-    def buscar_historico(cnpj, termo):
-
-        db = get_db()
-
-    return db.execute(
-        """
-        SELECT
-            medicamento,
-            laboratorio
-
-        FROM historico_medicamentos
-
-        WHERE cnpj_usuario=?
-
-        AND LOWER(medicamento) LIKE LOWER(?)
-
-        ORDER BY
-            vezes DESC,
-            ultima_data DESC
-
-        LIMIT 8
-        """,
-        (
-            cnpj,
-            termo + "%"
-        )
-    ).fetchall()
+    
