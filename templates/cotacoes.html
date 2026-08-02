@@ -282,16 +282,12 @@ function abrirCotacao(id){
                             <tr style="background:#efefef">
 
                                 <th style="padding:10px;text-align:left;">
-                                    Medicamento
-                                </th>
+    Medicamento
+</th>
 
-                                <th style="padding:10px;text-align:left;">
-                                    Laboratório
-                                </th>
-
-                                <th style="padding:10px;text-align:center;">
-                                    Quantidade
-                                </th>
+<th style="padding:10px;text-align:center;">
+    Quantidade
+</th>
 
                             </tr>
 
@@ -302,25 +298,23 @@ function abrirCotacao(id){
 
             itens.forEach(item => {
 
-                html += `
-                    <tr>
+    html += `
 
-                        <td style="padding:10px;border-top:1px solid #eee;">
-                            ${item.medicamento}
-                        </td>
+        <tr>
 
-                        <td style="padding:10px;border-top:1px solid #eee;">
-                            ${item.laboratorio}
-                        </td>
+            <td style="padding:10px;border-top:1px solid #eee;">
+                ${item.medicamento}
+            </td>
 
-                        <td style="padding:10px;border-top:1px solid #eee;text-align:center;">
-                            ${item.quantidade}
-                        </td>
+            <td style="padding:10px;border-top:1px solid #eee;text-align:center;">
+                ${item.quantidade}
+            </td>
 
-                    </tr>
-                `;
+        </tr>
 
-            });
+    `;
+
+});
 
             html += `
                         </tbody>
@@ -482,11 +476,6 @@ async function abrirComparativo(id){
 
     </div>
 
-    <div class="ranking-laboratorio">
-
-        ${rep.laboratorio}
-
-    </div>
 
     ${
     rep.oferta

@@ -80,21 +80,27 @@ function abrirCotacao(id){
 
                         <thead>
 
-                            <tr style="background:#efefef">
+    <tr style="background:#f5f7fb;">
 
-                                <th style="padding:10px;text-align:left;">
-                                    Medicamento
-                                </th>
+    <th style="
+        padding:12px 16px;
+        text-align:left;
+        color:#1f2937;
+        font-weight:700;
+    ">
+        Medicamento
+    </th>
 
-                                <th style="padding:10px;text-align:left;">
-                                    Laboratório
-                                </th>
+    <th style="
+        padding:12px 16px;
+        text-align:center;
+        color:#1f2937;
+        font-weight:700;
+    ">
+        Quantidade
+    </th>
 
-                                <th style="padding:10px;text-align:center;">
-                                    Quantidade
-                                </th>
-
-                            </tr>
+</tr>
 
                         </thead>
 
@@ -110,9 +116,7 @@ function abrirCotacao(id){
                             ${item.medicamento}
                         </td>
 
-                        <td style="padding:10px;border-top:1px solid #eee;">
-                            ${item.laboratorio}
-                        </td>
+
 
                         <td style="padding:10px;border-top:1px solid #eee;text-align:center;">
                             ${item.quantidade}

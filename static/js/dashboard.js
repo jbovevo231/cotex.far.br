@@ -81,10 +81,7 @@ function atualizarLista() {
             name="medicamento[]"
             value="${item.medicamento}">
 
-        <input
-            type="hidden"
-            name="laboratorio[]"
-            value="">
+
 
         <input
             type="hidden"
@@ -240,8 +237,7 @@ console.log(item[0], jaExiste);
                 class="chkPendencia"
                 ${jaExiste ? 'disabled' : 'checked'}
                 data-medicamento="${item[0]}"
-                data-laboratorio="${item[1]}"
-                data-quantidade="${item[2]}">
+                data-quantidade="${item[1]}">
 
             <span>
 
@@ -509,57 +505,94 @@ function abrirCotacaoDashboard(id){
 
             let html = `
 
-                <div class="painel-itens">
+<div style="
+    margin-top:15px;
+    background:#f8f9fa;
+    border:1px solid #dcdcdc;
+    border-radius:10px;
+    overflow:hidden;
+">
 
-                    <div class="painel-itens-header">
+    <div style="
+        padding:12px 18px;
+        background:#198754;
+        color:white;
+        font-weight:600;
+    ">
 
-                        Medicamentos da Cotação
+        ▼ Medicamentos da Cotação #${id}
 
-                    </div>
+    </div>
 
-                    <table class="tabela-produtos">
+    <table style="
+        width:100%;
+        border-collapse:collapse;
+    ">
 
-                        <thead>
+        <thead>
 
-                            <tr>
+            <tr style="background:#efefef;">
 
-                                <th>Medicamento</th>
+                <th style="
+                    padding:10px;
+                    text-align:left;
+                ">
+                    Medicamento
+                </th>
 
-                                <th>Quantidade</th>
 
-                            </tr>
 
-                        </thead>
+                <th style="
+                    padding:10px;
+                    text-align:center;
+                ">
+                    Quantidade
+                </th>
 
-                        <tbody>
+            </tr>
 
-            `;
+        </thead>
+
+        <tbody>
+`;
 
             itens.forEach(item => {
 
-                html += `
+    html += `
 
-                    <tr>
+        <tr>
 
-                        <td>${item.medicamento}</td>
+            <td style="
+                padding:10px;
+                border-top:1px solid #eee;
+            ">
+                ${item.medicamento}
+            </td>
 
-                        <td>${item.quantidade}</td>
 
-                    </tr>
+            <td style="
+                padding:10px;
+                border-top:1px solid #eee;
+                text-align:center;
+            ">
+                ${item.quantidade}
+            </td>
 
-                `;
+        </tr>
 
-            });
+    `;
+
+});
 
             html += `
 
-                        </tbody>
+        </tbody>
 
-                    </table>
+    </table>
 
-                </div>
+</div>
 
-            `;
+`;
 
             div.innerHTML = html;
 

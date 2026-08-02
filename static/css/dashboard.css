@@ -4910,3 +4910,24 @@ PAINEL DE VISUALIZAÇÃO DA COTAÇÃO
     }
 
 }
+
+/* NÃO ALTERAR O CABEÇALHO DA TABELA AO PASSAR O MOUSE */
+
+.itens-cotacao thead,
+.itens-cotacao thead tr,
+.itens-cotacao thead th{
+
+    background:#2563eb !important;
+
+    color:#ffffff !important;
+
+}
+
+.itens-cotacao thead tr:hover,
+.itens-cotacao thead th:hover{
+
+    background:#2563eb !important;
+
+    color:#ffffff !important;
+
+}
