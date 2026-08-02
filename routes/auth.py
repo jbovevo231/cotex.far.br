@@ -14,6 +14,9 @@ auth_bp = Blueprint(
     __name__
 )
 
+print("AUTH.PY CARREGADO")
+
+
 
 @auth_bp.route("/cadastro", methods=["POST"])
 def cadastro():
@@ -75,6 +78,8 @@ def login():
         session["usuario_nome"] = usuario["nome"]
         session["usuario_email"] = usuario["email"]
         session["usuario_cnpj"] = usuario["cnpj"]
+
+        print("SESSÃO:", dict(session))
 
         token = gerar_remember_token(usuario["id"])
 
@@ -148,3 +153,34 @@ def logout():
     resposta.delete_cookie("remember_token")
 
     return resposta
+
+from flask import session, jsonify
+from models.usuario import ativar_teste_gratis, buscar_usuario_por_cnpj
+
+print("ROTA /ativar-teste REGISTRADA")
+@auth_bp.route("/ativar-teste", methods=["POST"])
+def ativar_teste():
+
+    if "usuario_cnpj" not in session:
+
+        return jsonify({
+            "erro": "LOGIN"
+        }), 401
+
+    usuario = buscar_usuario_por_cnpj(
+        session["usuario_cnpj"]
+    )
+
+    if usuario["periodo_teste"]:
+
+        return jsonify({
+            "erro": "JA_UTILIZADO"
+        })
+
+    ativar_teste_gratis(
+        session["usuario_cnpj"]
+    )
+
+    return jsonify({
+        "ok": True
+    })

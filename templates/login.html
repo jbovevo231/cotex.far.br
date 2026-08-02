@@ -44,7 +44,7 @@
 
     <a href="#recursos">Recursos</a>
     <a href="#como-funciona">Como funciona</a>
-    <a href="#">Planos</a>
+    <a href="#planos">Planos</a>
     <a href="#">Contato</a>
 
     <div class="top-actions">
@@ -407,6 +407,7 @@
 
             </div>
 
+            
             <!-- ================= ECONOMIA ================= -->
 
 <div class="card">
@@ -751,6 +752,146 @@
 
 </section>
 
+<section id="planos" class="planos-section">
+
+    <div class="container">
+
+        <span class="tag-planos">
+            PLANOS
+        </span>
+
+        <h2>
+            Escolha o plano ideal para sua farmácia
+        </h2>
+
+        <p>
+            Comece gratuitamente e evolua quando precisar de mais recursos.
+        </p>
+
+        <div class="planos-grid">
+
+    <!-- Gratuito -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">Gratuito</span>
+
+        <h3>R$ 0</h3>
+
+        <small>Para conhecer a plataforma</small>
+
+        <ul>
+
+            <li>✅ 14 dias Premium grátis</li>
+            <li>✅ Até 2 cotações por mês</li>
+            <li>✅ Histórico</li>
+            <li>❌ Conecta</li>
+            <li>❌ Analytics</li>
+            <li>❌ CotaFarma IA</li>
+            <li>❌ Relatórios</li>
+            <li>❌ Exportação</li>
+
+        </ul>
+
+        <button
+    type="button"
+    class="btn-plano"
+    onclick="ativarTesteGratis()">
+
+    Começar grátis
+
+</button>
+
+    </div>
+
+    <!-- Mensal -->
+
+    <div class="plano-card destaque">
+
+        <span class="badge-plano">
+            Mais escolhido
+        </span>
+
+        <span class="plano-titulo">Mensal</span>
+
+        <h3>R$ 49,90</h3>
+
+        <small>por mês</small>
+
+        <ul>
+
+            <li>✅ Cotações ilimitadas</li>
+            <li>✅ Conecta</li>
+            <li>✅ Analytics</li>
+            <li>✅ CotaFarma IA</li>
+            <li>✅ Relatórios</li>
+            <li>✅ Exportação</li>
+            <li>✅ Suporte prioritário</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Semestral -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">6 Meses</span>
+
+        <h3>R$ 269,90</h3>
+
+        <small>R$ 44,98/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 10%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Anual -->
+
+    <div class="plano-card">
+
+        <span class="badge-plano verde">
+            Melhor custo-benefício
+        </span>
+
+        <span class="plano-titulo">Anual</span>
+
+        <h3>R$ 479,90</h3>
+
+        <small>R$ 39,99/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 20%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
 <script>
 
 function abrirCadastro(){
@@ -878,7 +1019,36 @@ function toggleLoginCard(){
 
 }
 
+async function ativarTesteGratis(){
+
+    const resposta = await fetch("/ativar-teste",{
+        method:"POST"
+    });
+
+    if(resposta.status === 401){
+        abrirCadastro();
+        return;
+    }
+
+    const dados = await resposta.json();
+
+    if(dados.erro === "JA_UTILIZADO"){
+        alert("Você já utilizou os 14 dias gratuitos.");
+        return;
+    }
+
+    if(dados.ok){
+        alert("Parabéns! Seu Premium foi ativado por 14 dias.");
+        window.location.href="/dashboard";
+    }
+
+}
+
+
+
 </script>
+
+
 
 
 
