@@ -191,20 +191,63 @@ def salvar_resposta_cotacao(
 
     db = get_db()
 
+    indice_preco = 0
+    indice_oferta = 0
+
+def salvar_resposta_cotacao(
+    cotacao_id,
+    representante,
+    distribuidora,
+    whatsapp,
+    medicamentos,
+    status,
+    precos,
+    precos_oferta,
+    quantidades_oferta
+):
+
+    db = get_db()
+
+    indice_preco = 0
+    indice_oferta = 0
+
     for i in range(len(medicamentos)):
 
         preco = None
         preco_oferta = None
         quantidade_oferta = None
 
-        if i < len(precos) and precos[i]:
-            preco = precos[i].replace(",", ".")
+        if status[i] == "TENHO":
 
-        if i < len(precos_oferta) and precos_oferta[i]:
-            preco_oferta = precos_oferta[i].replace(",", ".")
+            if indice_preco < len(precos):
 
-        if i < len(quantidades_oferta) and quantidades_oferta[i]:
-            quantidade_oferta = quantidades_oferta[i]
+                if precos[indice_preco]:
+
+                    preco = precos[indice_preco].replace(",", ".")
+
+            indice_preco += 1
+
+        elif status[i] == "OFERTA":
+
+            if indice_oferta < len(precos_oferta):
+
+                if precos_oferta[indice_oferta]:
+
+                    preco_oferta = precos_oferta[indice_oferta].replace(",", ".")
+
+                if indice_oferta < len(quantidades_oferta):
+
+                    quantidade_oferta = quantidades_oferta[indice_oferta]
+
+            indice_oferta += 1
+
+        print(
+            medicamentos[i],
+            status[i],
+            preco,
+            preco_oferta,
+            quantidade_oferta
+        )
 
         db.execute(
             """
@@ -227,7 +270,7 @@ def salvar_resposta_cotacao(
                 representante,
                 distribuidora,
                 whatsapp,
-                status[i] if i < len(status) else "",
+                status[i],
                 preco,
                 preco_oferta,
                 quantidade_oferta
