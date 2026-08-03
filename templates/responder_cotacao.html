@@ -305,6 +305,20 @@
 
             </form>
 
+    <div id="loadingOverlay" class="loading-overlay d-none">
+
+    <div class="loading-box">
+
+        <div class="spinner"></div>
+
+        <h3>Enviando cotação...</h3>
+
+        <p>Estamos processando sua resposta...</p>
+
+    </div>
+
+</div>
+
         </main>
 
     </div>
@@ -430,7 +444,13 @@ function irParaCampo(campo){
 
 }
 
-document.querySelector("form").addEventListener("submit", function(e){
+const formulario = document.querySelector("form");
+
+formulario.addEventListener("submit", function(e){
+
+    const overlay = document.getElementById("loadingOverlay");
+
+overlay.classList.remove("d-none");
 
     const representante = document
         .querySelector('input[name="representante"]')
@@ -453,6 +473,8 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     e.preventDefault();
 
+    overlay.classList.add("d-none");
+
     const campo = document.querySelector('input[name="representante"]');
 
     irParaCampo(campo);
@@ -469,6 +491,8 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     e.preventDefault();
 
+    overlay.classList.add("d-none");
+
     const campo = document.querySelector('input[name="distribuidora"]');
 
     irParaCampo(campo);
@@ -482,6 +506,8 @@ document.querySelector("form").addEventListener("submit", function(e){
     alert("Informe o WhatsApp.");
 
     e.preventDefault();
+
+    overlay.classList.add("d-none");
 
     const campo = document.querySelector('input[name="whatsapp"]');
 
@@ -508,6 +534,8 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     e.preventDefault();
 
+    overlay.classList.add("d-none");
+
     irParaCampo(
         card.querySelector('input[name="preco[]"]')
     );
@@ -529,6 +557,8 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     e.preventDefault();
 
+    overlay.classList.add("d-none");
+
     irParaCampo(
         card.querySelector('input[name="preco_oferta[]"]')
     );
@@ -540,6 +570,8 @@ document.querySelector("form").addEventListener("submit", function(e){
     }
 
 });
+
+
 
 });
 
