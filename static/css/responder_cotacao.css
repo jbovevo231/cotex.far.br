@@ -511,9 +511,11 @@ MEDICAMENTOS
 .medicine-left h3{
 
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     font-size:20px;
     font-weight:700;
+    line-height:1.35;
+    flex-wrap:wrap;
 
 }
 
@@ -617,5 +619,63 @@ body.pagina-retorno{
 .botao-retorno:hover{
 
     transform:translateY(-2px);
+
+}
+
+/* ===========================================
+   MOBILE
+=========================================== */
+
+@media (max-width:700px){
+
+    .medicine-header{
+
+        flex-direction:column;
+        align-items:stretch;
+        gap:18px;
+
+    }
+
+    .medicine-left{
+
+        width:100%;
+        min-width:0;
+
+    }
+
+    .medicine-left h3{
+
+        font-size:18px;
+        line-height:1.35;
+        word-break:break-word;
+
+    }
+
+    .medicine-info{
+
+        gap:8px;
+        flex-direction:column;
+
+    }
+
+    .medicine-status{
+
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:1fr;
+
+        gap:10px;
+
+    }
+
+    .status-button{
+
+        width:100%;
+
+        justify-content:flex-start;
+
+    }
 
 }
