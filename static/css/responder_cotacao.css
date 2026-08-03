@@ -684,22 +684,59 @@ body.pagina-retorno{
    NÃO TENHO
 ===================================== */
 
-.status-indisponivel{
+/* =====================================
+   NÃO TENHO
+===================================== */
 
-    border:2px solid #ef4444;
+.status-indisponivel{
 
     background:#fef2f2;
 
+    border:2px solid #ef4444;
+
     box-shadow:
-        0 8px 22px rgba(239,68,68,.12);
+        0 10px 24px rgba(239,68,68,.14);
 
 }
 
-.status-indisponivel:hover{
+.status-indisponivel .medicine-header{
 
-    border-color:#dc2626;
+    border-bottom:1px solid #fecaca;
 
-    box-shadow:
-        0 12px 30px rgba(239,68,68,.20);
+}
+
+.status-indisponivel .medicine-left h3{
+
+    color:#b91c1c;
+
+}
+
+/* =====================================
+   CAMPO OBRIGATÓRIO NÃO PREENCHIDO
+===================================== */
+
+.status-erro{
+
+    border:3px solid #ef4444 !important;
+
+    background:#fff !important;
+
+    animation:pulsarErro .8s ease;
+
+}
+
+@keyframes pulsarErro{
+
+    0%{
+        box-shadow:0 0 0 0 rgba(239,68,68,.45);
+    }
+
+    70%{
+        box-shadow:0 0 0 12px rgba(239,68,68,0);
+    }
+
+    100%{
+        box-shadow:0 0 0 0 rgba(239,68,68,0);
+    }
 
 }

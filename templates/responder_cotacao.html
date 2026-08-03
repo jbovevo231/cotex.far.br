@@ -419,6 +419,17 @@
 
 });
 
+function irParaCampo(campo){
+
+    campo.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    campo.focus();
+
+}
+
 document.querySelector("form").addEventListener("submit", function(e){
 
     const representante = document
@@ -438,30 +449,47 @@ document.querySelector("form").addEventListener("submit", function(e){
 
     if(!representante){
 
-        alert("Informe o nome do representante.");
-        e.preventDefault();
-        return;
+    alert("Informe o nome do representante.");
 
-    }
+    e.preventDefault();
+
+    const campo = document.querySelector('input[name="representante"]');
+
+    irParaCampo(campo);
+
+    return;
+
+}
 
     
 
     if(!distribuidora){
 
-        alert("Informe a distribuidora.");
-        e.preventDefault();
-        return;
+    alert("Informe a distribuidora.");
 
-    }
+    e.preventDefault();
+
+    const campo = document.querySelector('input[name="distribuidora"]');
+
+    irParaCampo(campo);
+
+    return;
+
+}
 
     if(!whatsapp){
 
-        alert("Informe o WhatsApp.");
-        e.preventDefault();
-        return;
+    alert("Informe o WhatsApp.");
 
-    }
+    e.preventDefault();
 
+    const campo = document.querySelector('input[name="whatsapp"]');
+
+    irParaCampo(campo);
+
+    return;
+
+}
     document.querySelectorAll(".medicine-card").forEach((card, indice) => {
 
     const id = indice + 1;
@@ -475,10 +503,18 @@ document.querySelector("form").addEventListener("submit", function(e){
         const preco = card.querySelector('input[name="preco[]"]').value.trim();
 
         if (preco === "") {
-            alert("Preencha o valor do medicamento ou marque 'Não Tenho'.");
-            e.preventDefault();
-            throw "erro";
-        }
+
+    alert("Preencha o valor do medicamento ou marque 'Não Tenho'.");
+
+    e.preventDefault();
+
+    irParaCampo(
+        card.querySelector('input[name="preco[]"]')
+    );
+
+    throw "erro";
+
+}
 
     }
 
@@ -488,10 +524,18 @@ document.querySelector("form").addEventListener("submit", function(e){
         const quantidade = card.querySelector('input[name="quantidade_oferta[]"]').value.trim();
 
         if (precoOferta === "" || quantidade === "") {
-            alert("Preencha o preço e a quantidade da oferta.");
-            e.preventDefault();
-            throw "erro";
-        }
+
+    alert("Preencha o preço e a quantidade da oferta.");
+
+    e.preventDefault();
+
+    irParaCampo(
+        card.querySelector('input[name="preco_oferta[]"]')
+    );
+
+    throw "erro";
+
+}
 
     }
 
