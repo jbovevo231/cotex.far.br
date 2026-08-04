@@ -753,13 +753,15 @@ html+=`
 
         </div>
 
-        <button class="btn-gerar-pedido">
+        <button
+    class="btn-gerar-pedido"
+    onclick="abrirPedido(${id}, '${rep.representante}')">
 
-            <i class="bi bi-cart3"></i>
+    <i class="bi bi-cart3"></i>
 
-            GERAR PEDIDO
+    GERAR PEDIDO
 
-        </button>
+</button>
 
     </div>
 
@@ -927,8 +929,142 @@ if(response.ok && dados.sucesso){
 
 }
 
+async function abrirPedido(cotacaoId, representante){
+
+    const response = await fetch(`/resultado/${cotacaoId}`);
+    const dados = await response.json();
+
+    const pedido = dados.find(r => r.representante === representante);
+
+    if(!pedido){
+        alert("Pedido não encontrado.");
+        return;
+    }
+
+    let html = "";
+    let total = 0;
+
+    const card = [...document.querySelectorAll(".resultado-representante")]
+        .find(c =>
+            c.querySelector("h2").innerText.trim() === representante
+        );
+
+    const linhas = card.querySelectorAll("tbody tr");
+
+    pedido.itens.forEach((item,index)=>{
+
+        const quantidade = Number(
+            linhas[index]
+                .querySelector(".campo-quantidade")
+                .value
+        );
+
+        const preco = Number(
+            item.oferta
+                ? item.preco_oferta
+                : item.preco
+        );
+
+        const subtotal = preco * quantidade;
+
+        total += subtotal;
+
+        html += `
+            <tr>
+
+                <td>${item.medicamento}</td>
+
+                <td>R$ ${preco.toFixed(2)}</td>
+
+                <td>${quantidade}</td>
+
+                <td>R$ ${subtotal.toFixed(2)}</td>
+
+            </tr>
+        `;
+    });
+
+    document.getElementById("pedidoRepresentante").innerText =
+        representante;
+
+    document.getElementById("pedidoItens").innerHTML = html;
+
+    document.getElementById("pedidoTotal").innerHTML =
+        "R$ " + total.toFixed(2);
+
+    document.getElementById("modalPedido").style.display = "flex";
+}
+
+function fecharPedido(){
+
+    document.getElementById("modalPedido").style.display = "none";
+
+}
+
+
         
 </script>
+
+<div id="modalPedido" class="modal-acoes" style="display:none;">
+
+    <div class="modal-conteudo">
+
+        <h2>Pedido</h2>
+
+        <p>
+            Representante:
+            <strong id="pedidoRepresentante"></strong>
+        </p>
+
+        <table class="resultado-tabela">
+
+            <thead>
+
+                <tr>
+
+                    <th>Medicamento</th>
+
+                    <th>Preço</th>
+
+                    <th>Qtd.</th>
+
+                    <th>Subtotal</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="pedidoItens">
+
+            </tbody>
+
+        </table>
+
+        <div
+            id="pedidoTotal"
+            style="
+                margin-top:20px;
+                text-align:right;
+                font-size:32px;
+                font-weight:bold;
+            ">
+        </div>
+
+        <div style="margin-top:25px">
+
+            <button
+                class="btn-gerar-pedido"
+                onclick="fecharPedido()">
+
+                Fechar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script src="{{ url_for('static', filename='js/cotacoes.js') }}"></script>
 

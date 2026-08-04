@@ -766,10 +766,18 @@ function abrirPedido(cotacaoId, representante){
         return;
     }
 
+    // Card do representante na tela
+    const card = [...document.querySelectorAll(".resultado-representante")]
+        .find(c =>
+            c.querySelector("h2").innerText.trim() === representante
+        );
+
+    const inputs = card.querySelectorAll(".campo-quantidade");
+
     let html = "";
     let total = 0;
 
-    pedido.itens.forEach(item=>{
+    pedido.itens.forEach((item, i)=>{
 
         const preco = Number(
             item.oferta
@@ -777,7 +785,8 @@ function abrirPedido(cotacaoId, representante){
                 : item.preco
         );
 
-        const quantidade = Number(item.quantidade ?? 1);
+        // PEGA A QUANTIDADE DIGITADA NA TELA
+        const quantidade = Number(inputs[i].value);
 
         const subtotal = preco * quantidade;
 
@@ -786,18 +795,9 @@ function abrirPedido(cotacaoId, representante){
         html += `
             <tr>
                 <td>${item.medicamento}</td>
-
-                <td>
-                    R$ ${preco.toFixed(2)}
-                </td>
-
-                <td style="text-align:center;">
-                    ${quantidade}
-                </td>
-
-                <td>
-                    R$ ${subtotal.toFixed(2)}
-                </td>
+                <td>R$ ${preco.toFixed(2)}</td>
+                <td style="text-align:center">${quantidade}</td>
+                <td>R$ ${subtotal.toFixed(2)}</td>
             </tr>
         `;
     });
