@@ -755,6 +755,16 @@ html+=`
 
         <button
     class="btn-gerar-pedido"
+    onclick="enviarWhatsappPedido()">
+
+    <i class="bi bi-whatsapp"></i>
+
+    Enviar WhatsApp
+
+</button>
+
+        <button
+    class="btn-gerar-pedido"
     onclick="abrirPedido(${id}, '${rep.representante}')">
 
     <i class="bi bi-cart3"></i>
@@ -929,77 +939,7 @@ if(response.ok && dados.sucesso){
 
 }
 
-async function abrirPedido(cotacaoId, representante){
 
-    const response = await fetch(`/resultado/${cotacaoId}`);
-    const dados = await response.json();
-
-    const pedido = dados.find(r => r.representante === representante);
-
-    if(!pedido){
-        alert("Pedido não encontrado.");
-        return;
-    }
-
-    let html = "";
-    let total = 0;
-
-    const card = [...document.querySelectorAll(".resultado-representante")]
-        .find(c =>
-            c.querySelector("h2").innerText.trim() === representante
-        );
-
-    const linhas = card.querySelectorAll("tbody tr");
-
-    pedido.itens.forEach((item,index)=>{
-
-        const quantidade = Number(
-            linhas[index]
-                .querySelector(".campo-quantidade")
-                .value
-        );
-
-        const preco = Number(
-            item.oferta
-                ? item.preco_oferta
-                : item.preco
-        );
-
-        const subtotal = preco * quantidade;
-
-        total += subtotal;
-
-        html += `
-            <tr>
-
-                <td>${item.medicamento}</td>
-
-                <td>R$ ${preco.toFixed(2)}</td>
-
-                <td>${quantidade}</td>
-
-                <td>R$ ${subtotal.toFixed(2)}</td>
-
-            </tr>
-        `;
-    });
-
-    document.getElementById("pedidoRepresentante").innerText =
-        representante;
-
-    document.getElementById("pedidoItens").innerHTML = html;
-
-    document.getElementById("pedidoTotal").innerHTML =
-        "R$ " + total.toFixed(2);
-
-    document.getElementById("modalPedido").style.display = "flex";
-}
-
-function fecharPedido(){
-
-    document.getElementById("modalPedido").style.display = "none";
-
-}
 
 
         
@@ -1050,17 +990,31 @@ function fecharPedido(){
             ">
         </div>
 
-        <div style="margin-top:25px">
+<div class="pedido-acoes">
 
-            <button
-                class="btn-gerar-pedido"
-                onclick="fecharPedido()">
+    <button
+        type="button"
+        class="btn-gerar-pedido"
+        onclick="enviarWhatsappPedido()">
 
-                Fechar
+        <i class="bi bi-whatsapp"></i>
 
-            </button>
+        Enviar WhatsApp
 
-        </div>
+    </button>
+
+    <button
+        type="button"
+        class="btn-gerar-pedido"
+        onclick="fecharPedido()">
+
+        <i class="bi bi-x-circle"></i>
+
+        Fechar
+
+    </button>
+
+</div>
 
     </div>
 

@@ -109,3 +109,44 @@
     cursor: pointer;
 
 }
+
+.pedido-acoes{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+.pedido-acoes .btn-gerar-pedido{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:14px 22px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.pedido-acoes .btn-gerar-pedido:first-child{
+
+    background:#25D366;
+
+    color:#fff;
+
+}
+
