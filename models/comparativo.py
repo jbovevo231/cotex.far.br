@@ -8,16 +8,22 @@ def buscar_comparativo(cotacao_id):
 
     cursor.execute("""
         SELECT
-            medicamento,
-            representante,
-            distribuidora,
-            status,
-            preco,
-            preco_oferta,
-            quantidade_oferta
-        FROM respostas_cotacao
-        WHERE cotacao_id = ?
-        ORDER BY medicamento
+            rc.medicamento,
+            rc.representante,
+            rc.distribuidora,
+            rc.status,
+            rc.preco,
+            rc.preco_oferta,
+            ci.quantidade
+        FROM respostas_cotacao rc
+
+        INNER JOIN cotacao_itens ci
+            ON ci.cotacao_id = rc.cotacao_id
+           AND ci.medicamento = rc.medicamento
+
+        WHERE rc.cotacao_id = ?
+
+        ORDER BY rc.medicamento
     """, (cotacao_id,))
 
     dados = cursor.fetchall()
@@ -50,6 +56,12 @@ def buscar_comparativo(cotacao_id):
 
             continue
 
+        print(
+    "MED:", medicamento,
+    "| QTD:", item[6],
+    "| TIPO:", type(item[6])
+)
+
         comparativo[medicamento]["representantes"].append({
             "representante": item[1],
             "laboratorio": item[2],
@@ -59,6 +71,25 @@ def buscar_comparativo(cotacao_id):
             "oferta": status == "OFERTA",
             "menor_preco": False
         })
+
+    # Ordena os representantes pelo menor preço e marca o vencedor
+    for med in comparativo.values():
+
+        def valor_preco(rep):
+
+            preco = rep["preco_oferta"] if rep["oferta"] else rep["preco"]
+
+            try:
+                return float(str(preco).replace(",", "."))
+            except (ValueError, TypeError):
+                return float("inf")
+
+        med["representantes"].sort(key=valor_preco)
+
+        if med["representantes"]:
+            med["representantes"][0]["menor_preco"] = True
+
+    return list(comparativo.values())
 
         
 
@@ -123,3 +154,25 @@ def buscar_resultado(cotacao_id):
         })
 
     return list(representantes.values())
+
+    print(representantes)
+
+def buscar_pedido(cotacao_id, representante):
+
+    resultado = buscar_resultado(cotacao_id)
+
+    for rep in resultado:
+
+        if rep["representante"] == representante:
+
+            return {
+                "representante": rep["representante"],
+                "distribuidora": rep["distribuidora"],
+                "itens": rep["itens"]
+            }
+
+    return {
+        "representante": representante,
+        "distribuidora": "",
+        "itens": []
+    }

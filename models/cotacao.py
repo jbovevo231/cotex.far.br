@@ -25,6 +25,37 @@ def salvar_cotacao(cnpj, nome, medicamentos, quantidades):
     quantidades
 ):
 
+        if quantidade in ("", "-", None):
+            quantidade = 1
+
+        linhas = [
+        linha.strip()
+        for linha in medicamento.splitlines()
+        if linha.strip()
+    ]
+def salvar_cotacao(cnpj, nome, medicamentos, quantidades):
+
+    db = get_db()
+
+    cursor = db.execute(
+        """
+        INSERT INTO cotacoes (
+            cnpj_usuario,
+            nome,
+            status
+        )
+        VALUES (?, ?, 'ABERTA')
+        """,
+        (cnpj, nome)
+    )
+
+    cotacao_id = cursor.lastrowid
+
+    for medicamento, quantidade in zip(medicamentos, quantidades):
+
+        if quantidade in ("", "-", None):
+            quantidade = 1
+
         linhas = [
             linha.strip()
             for linha in medicamento.splitlines()
@@ -36,36 +67,45 @@ def salvar_cotacao(cnpj, nome, medicamentos, quantidades):
 
         for med in linhas:
 
+            print(
+                "SALVANDO:",
+                med,
+                "| quantidade:",
+                quantidade,
+                "| tipo:",
+                type(quantidade)
+            )
+
             db.execute(
-    """
-    INSERT INTO cotacao_itens (
-        cotacao_id,
-        medicamento,
-        quantidade
-    )
-    VALUES (?, ?, ?)
-    """,
-    (
-        cotacao_id,
-        med,
-        quantidade
-    )
-)
+                """
+                INSERT INTO cotacao_itens (
+                    cotacao_id,
+                    medicamento,
+                    quantidade
+                )
+                VALUES (?, ?, ?)
+                """,
+                (
+                    cotacao_id,
+                    med,
+                    quantidade
+                )
+            )
 
             historico = db.execute(
-    """
-    SELECT
-        id,
-        vezes
-    FROM historico_medicamentos
-    WHERE cnpj_usuario=?
-    AND medicamento=?
-    """,
-    (
-        cnpj,
-        med
-    )
-).fetchone()
+                """
+                SELECT
+                    id,
+                    vezes
+                FROM historico_medicamentos
+                WHERE cnpj_usuario=?
+                AND medicamento=?
+                """,
+                (
+                    cnpj,
+                    med
+                )
+            ).fetchone()
 
             if historico:
 
@@ -86,18 +126,18 @@ def salvar_cotacao(cnpj, nome, medicamentos, quantidades):
             else:
 
                 db.execute(
-    """
-    INSERT INTO historico_medicamentos(
-        cnpj_usuario,
-        medicamento
-    )
-    VALUES (?, ?)
-    """,
-    (
-        cnpj,
-        med
-    )
-)
+                    """
+                    INSERT INTO historico_medicamentos(
+                        cnpj_usuario,
+                        medicamento
+                    )
+                    VALUES (?, ?)
+                    """,
+                    (
+                        cnpj,
+                        med
+                    )
+                )
 
     db.commit()
 

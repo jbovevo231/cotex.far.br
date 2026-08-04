@@ -16,6 +16,10 @@ def get_db():
         auth_token=token
     )
 
-    db.sync()
+    try:
+        db.sync()
+    except Exception as e:
+        print("Aviso: não foi possível sincronizar com o Turso.")
+        print(e)
 
     return db

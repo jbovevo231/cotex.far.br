@@ -21,34 +21,28 @@ btnAdicionar.addEventListener("click", function () {
     let medicamento = document.getElementById("medicamento").value.trim();
     let quantidade = document.getElementById("quantidade").value.trim();
 
-    // Somente o medicamento é obrigatório
+    console.log("Campo quantidade:", document.getElementById("quantidade").value);
+    console.log("Quantidade variável:", quantidade);
+
     if (!medicamento) {
         alert("Informe o nome do medicamento.");
         return;
     }
 
-    // Campos opcionais
-
-
     if (quantidade === "") {
-        quantidade = "-";
+        quantidade = 1;
     }
 
-        medicamentos.push({
+    medicamentos.push({
         medicamento,
         quantidade
     });
 
-        atualizarLista();
+    console.log("Array:", medicamentos);
 
-        salvarRascunho();
-
-        document.getElementById("medicamento").value = "";
-        document.getElementById("quantidade").value = "";
-
-        document.getElementById("medicamento").focus();
-
-        });
+    atualizarLista();
+    salvarRascunho();
+});
 
 function atualizarLista() {
 
@@ -443,13 +437,10 @@ function importarLista(){
 
         if(!existe){
 
-            medicamentos.push({
-
+medicamentos.push({
     medicamento: linha,
-
-    quantidade: "-"
-
-});
+    quantidade: 1
+}); 
 
         }
 

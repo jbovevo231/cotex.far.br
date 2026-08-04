@@ -391,9 +391,11 @@ async function abrirResultado(id){
     try{
 
         const response = await fetch("/resultado/" + id);
-        const dados = await response.json();
+const dados = await response.json();
 
-        console.log(dados);
+resultadoAtual = dados;
+
+console.log(dados);
 
         let html = `
 
@@ -573,13 +575,15 @@ html+=`
 
         </div>
 
-        <button class="btn-gerar-pedido">
+        <button
+    class="btn-gerar-pedido"
+    onclick="abrirPedido(${id}, '${rep.representante}')">
 
-            <i class="bi bi-cart3"></i>
+    <i class="bi bi-cart3"></i>
 
-            GERAR PEDIDO
+    GERAR PEDIDO
 
-        </button>
+</button>
 
     </div>
 
@@ -745,4 +749,63 @@ if(response.ok && dados.sucesso){
 
 }
 
+}
+let resultadoAtual = [];
+
+function abrirPedido(cotacaoId, representante){
+
+    document.getElementById("pedidoRepresentante").innerText =
+        representante;
+
+    const pedido = resultadoAtual.find(
+        r => r.representante === representante
+    );
+
+    if(!pedido){
+        alert("Pedido não encontrado.");
+        return;
+    }
+
+    let html = "";
+    let total = 0;
+
+    pedido.itens.forEach(item=>{
+
+        const preco = Number(
+            item.oferta
+                ? item.preco_oferta
+                : item.preco
+        );
+
+        const quantidade = Number(item.quantidade ?? 1);
+
+        const subtotal = preco * quantidade;
+
+        total += subtotal;
+
+        html += `
+            <tr>
+                <td>${item.medicamento}</td>
+
+                <td>
+                    R$ ${preco.toFixed(2)}
+                </td>
+
+                <td style="text-align:center;">
+                    ${quantidade}
+                </td>
+
+                <td>
+                    R$ ${subtotal.toFixed(2)}
+                </td>
+            </tr>
+        `;
+    });
+
+    document.getElementById("pedidoItens").innerHTML = html;
+
+    document.getElementById("pedidoTotal").innerHTML =
+        "R$ " + total.toFixed(2);
+
+    document.getElementById("modalPedido").style.display = "flex";
 }

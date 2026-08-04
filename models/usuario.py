@@ -88,28 +88,6 @@ def criar_usuario(nome, cpf, cnpj, telefone, email, senha):
             )
 
 
-    db.execute(
-        """
-        INSERT INTO usuarios
-        (
-            nome,
-            cpf,
-            cnpj,
-            telefone,
-            email,
-            senha
-        )
-        VALUES (?, ?, ?, ?, ?, ?)
-        """,
-        (
-            nome,
-            cpf,
-            cnpj,
-            telefone,
-            email,
-            senha_hash
-        )
-    )
 
     db.commit()
 

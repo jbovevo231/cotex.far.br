@@ -34,6 +34,9 @@ from routes.auth import auth_bp
 from routes.dashboard import dashboard_bp
 from routes.cotacao import cotacao_bp
 from routes.conecta import conecta_bp
+from routes.analytics import analytics_bp
+
+print("IMPORT DO ANALYTICS OK")
 
 import routes.conecta
 
@@ -92,6 +95,11 @@ app.register_blueprint(dashboard_bp)
 app.register_blueprint(cotacao_bp)
 app.register_blueprint(conecta_bp)
 app.register_blueprint(comparativo_bp)
+
+print("ANALYTICS_BP:", analytics_bp)
+app.register_blueprint(analytics_bp)
+
+print("BLUEPRINT ANALYTICS REGISTRADO")
 
 
 @app.route("/")
