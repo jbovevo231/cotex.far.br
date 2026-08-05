@@ -14,7 +14,8 @@ def buscar_comparativo(cotacao_id):
             rc.status,
             rc.preco,
             rc.preco_oferta,
-            ci.quantidade
+            ci.quantidade,
+            rc.whatsapp
         FROM respostas_cotacao rc
 
         INNER JOIN cotacao_itens ci
@@ -32,7 +33,6 @@ def buscar_comparativo(cotacao_id):
 
     comparativo = {}
 
-    # Monta a lista de representantes por medicamento
     for item in dados:
 
         medicamento = item[0]
@@ -57,10 +57,10 @@ def buscar_comparativo(cotacao_id):
             continue
 
         print(
-    "MED:", medicamento,
-    "| QTD:", item[6],
-    "| TIPO:", type(item[6])
-)
+            "MED:", medicamento,
+            "| QTD:", item[6],
+            "| TIPO:", type(item[6])
+        )
 
         comparativo[medicamento]["representantes"].append({
             "representante": item[1],
@@ -68,11 +68,11 @@ def buscar_comparativo(cotacao_id):
             "preco": item[4],
             "preco_oferta": item[5],
             "quantidade": item[6],
+            "whatsapp": item[7],
             "oferta": status == "OFERTA",
             "menor_preco": False
         })
 
-    # Ordena os representantes pelo menor preço e marca o vencedor
     for med in comparativo.values():
 
         def valor_preco(rep):
@@ -86,30 +86,6 @@ def buscar_comparativo(cotacao_id):
 
         med["representantes"].sort(key=valor_preco)
 
-        if med["representantes"]:
-            med["representantes"][0]["menor_preco"] = True
-
-    return list(comparativo.values())
-
-        
-
-
-        # Ordena os representantes pelo menor preço e marca o vencedor
-    for med in comparativo.values():
-
-        def valor_preco(rep):
-
-            preco = rep["preco_oferta"] if rep["oferta"] else rep["preco"]
-
-            try:
-                return float(str(preco).replace(",", "."))
-            except (ValueError, TypeError):
-                return float("inf")
-
-        # Ordena do menor para o maior
-        med["representantes"].sort(key=valor_preco)
-
-        # Marca apenas o primeiro como vencedor
         if med["representantes"]:
             med["representantes"][0]["menor_preco"] = True
 
@@ -140,39 +116,18 @@ def buscar_resultado(cotacao_id):
 
         if nome not in representantes:
             representantes[nome] = {
-                "representante": nome,
-                "distribuidora": vencedor["laboratorio"],
-                "itens": []
-            }
+    "representante": nome,
+    "distribuidora": vencedor["laboratorio"],
+    "whatsapp": vencedor["whatsapp"],
+    "itens": []
+}
 
         representantes[nome]["itens"].append({
-            "medicamento": medicamento["nome"],
-            "preco": vencedor["preco"],
-            "preco_oferta": vencedor["preco_oferta"],
-            "quantidade": vencedor["quantidade"],
-            "oferta": vencedor["oferta"]
-        })
+    "medicamento": medicamento["nome"],
+    "preco": vencedor["preco"],
+    "preco_oferta": vencedor["preco_oferta"],
+    "quantidade": vencedor["quantidade"],
+    "oferta": vencedor["oferta"]
+})
 
     return list(representantes.values())
-
-    print(representantes)
-
-def buscar_pedido(cotacao_id, representante):
-
-    resultado = buscar_resultado(cotacao_id)
-
-    for rep in resultado:
-
-        if rep["representante"] == representante:
-
-            return {
-                "representante": rep["representante"],
-                "distribuidora": rep["distribuidora"],
-                "itens": rep["itens"]
-            }
-
-    return {
-        "representante": representante,
-        "distribuidora": "",
-        "itens": []
-    }

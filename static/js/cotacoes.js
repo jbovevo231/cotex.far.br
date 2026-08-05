@@ -395,6 +395,8 @@ const dados = await response.json();
 
 resultadoAtual = dados;
 
+console.log(resultadoAtual);
+
 console.log(dados);
 
         let html = `
@@ -577,7 +579,7 @@ html+=`
 
         <button
     class="btn-gerar-pedido"
-    onclick="abrirPedido(${id}, '${rep.representante}')">
+    onclick="abrirPedido(this, ${id}, '${rep.representante}')">
 
     <i class="bi bi-cart3"></i>
 
@@ -752,30 +754,45 @@ if(response.ok && dados.sucesso){
 }
 let resultadoAtual = [];
 
-function abrirPedido(cotacaoId, representante){
+let whatsappPedido = "";
+let mensagemPedido = "";
+
+function abrirPedido(botao, cotacaoId, representante){
 
     document.getElementById("pedidoRepresentante").innerText =
         representante;
 
-    const pedido = resultadoAtual.find(
-        r => r.representante === representante
-    );
+const pedido = resultadoAtual.find(
+    r => r.representante === representante
+);
 
-    if(!pedido){
-        alert("Pedido não encontrado.");
-        return;
-    }
+if(!pedido){
+
+    alert("Pedido não encontrado.");
+
+    return;
+
+}
+
+whatsappPedido = pedido.whatsapp;
+
+console.log("Whats:", whatsappPedido);
 
     // Card do representante na tela
-    const card = [...document.querySelectorAll(".resultado-representante")]
-        .find(c =>
-            c.querySelector("h2").innerText.trim() === representante
-        );
+    const card = botao.closest(".resultado-representante");
 
     const inputs = card.querySelectorAll(".campo-quantidade");
 
     let html = "";
     let total = 0;
+
+    let mensagem = `🟢 *PEDIDO - COTEX CONECTA*
+
+    👤 *Representante:* ${representante}
+
+    ────────────────────────
+
+`;
 
     pedido.itens.forEach((item, i)=>{
 
@@ -790,6 +807,14 @@ function abrirPedido(cotacaoId, representante){
 
         const subtotal = preco * quantidade;
 
+        mensagem +=
+`💊 *${item.medicamento}*
+📦 Quantidade: ${quantidade}
+💰 Preço: R$ ${preco.toFixed(2)}
+💵 Subtotal: R$ ${subtotal.toFixed(2)}
+
+`;
+
         total += subtotal;
 
         html += `
@@ -802,10 +827,46 @@ function abrirPedido(cotacaoId, representante){
         `;
     });
 
-    document.getElementById("pedidoItens").innerHTML = html;
+mensagem +=
+`────────────────────────
 
-    document.getElementById("pedidoTotal").innerHTML =
-        "R$ " + total.toFixed(2);
+💲 *TOTAL DO PEDIDO*
+R$ ${total.toFixed(2)}
 
-    document.getElementById("modalPedido").style.display = "flex";
+🤝 Pedido gerado automaticamente pelo *Cotex Conecta*.`;
+
+mensagemPedido = mensagem;
+
+document.getElementById("pedidoItens").innerHTML = html;
+
+document.getElementById("pedidoTotal").innerHTML =
+    "R$ " + total.toFixed(2);
+
+document.getElementById("modalPedido").style.display = "flex";
+}
+
+function enviarWhatsappPedido(){
+
+    if(!whatsappPedido){
+
+        alert("WhatsApp do representante não encontrado.");
+
+        return;
+
+    }
+
+    window.open(
+
+        `https://wa.me/55${whatsappPedido}?text=${encodeURIComponent(mensagemPedido)}`,
+
+        "_blank"
+
+    );
+
+}
+
+function fecharPedido(){
+
+    document.getElementById("modalPedido").style.display = "none";
+
 }
