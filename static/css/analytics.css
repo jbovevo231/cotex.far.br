@@ -1,0 +1,209 @@
+/* ==========================
+   CONTAINER
+========================== */
+
+.analytics-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+    padding:30px;
+
+    background:#f6f8fc;
+
+    align-items:start;
+
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.analytics-card{
+
+    width:100%;
+
+    min-width:0;
+
+    background:#fff;
+
+    border:1px solid #eef2f7;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:
+        0 8px 30px rgba(15,23,42,.06);
+
+    transition:.25s;
+
+}
+
+.analytics-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(15,23,42,.10);
+
+}
+
+/* ==========================
+   CABEÇALHO
+========================== */
+
+.analytics-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.analytics-header h2{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+/* ==========================
+   SELECT
+========================== */
+
+.analytics-header select{
+
+    padding:8px 14px;
+
+    border:1px solid #dbe3ef;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    font-size:14px;
+
+    color:#374151;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.analytics-header select:hover{
+
+    border-color:#2563eb;
+
+}
+
+.analytics-header select:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+
+}
+
+/* ==========================
+   GRÁFICO
+========================== */
+
+.grafico-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+    height:250px;
+
+}
+
+#graficoCotacoes,
+#graficoEconomia,
+#graficoResposta{
+
+    width:100% !important;
+
+    height:100% !important;
+
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:1200px){
+
+    .analytics-container{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+/* ==========================
+   CELULAR
+========================== */
+
+@media (max-width:768px){
+
+    .analytics-container{
+
+        grid-template-columns:1fr;
+
+        padding:16px;
+
+        gap:18px;
+
+    }
+
+    .analytics-card{
+
+        padding:18px;
+
+    }
+
+    .analytics-header{
+
+        flex-direction:column;
+align-items:flex-start;
+        gap:12px;
+
+    }
+
+    .analytics-header h2{
+
+        font-size:20px;
+
+    }
+
+    .analytics-header select{
+
+        width:100%;
+
+    }
+
+    .grafico-wrapper{
+
+        height:220px;
+
+    }
+
+}

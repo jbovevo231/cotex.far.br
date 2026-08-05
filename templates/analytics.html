@@ -1,12 +1,76 @@
-
 {% extends "base.html" %}
 
 {% block title %}
 Analytics
 {% endblock %}
 
-{% block content %}
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/analytics.css') }}">
+{% endblock %}
 
-<h1>Analytics</h1>
+{% block page_content %}
+
+<div class="analytics-container">
+
+    <!-- COTAÇÕES -->
+    <div class="analytics-card">
+
+        <div class="analytics-header">
+            <h2>Cotações realizadas</h2>
+
+            <select id="tipoGraficoCotacoes">
+                <option value="dia">Por dia</option>
+            </select>
+        </div>
+
+        <div class="grafico-wrapper">
+            <canvas id="graficoCotacoes"></canvas>
+        </div>
+
+    </div>
+
+    <!-- ECONOMIA -->
+    <div class="analytics-card">
+
+        <div class="analytics-header">
+            <h2>Economia gerada (R$)</h2>
+
+            <select id="tipoGraficoEconomia">
+                <option value="dia">Por dia</option>
+            </select>
+        </div>
+
+        <div class="grafico-wrapper">
+            <canvas id="graficoEconomia"></canvas>
+        </div>
+
+    </div>
+
+    <!-- TAXA DE RESPOSTA -->
+    <div class="analytics-card">
+
+        <div class="analytics-header">
+            <h2>Taxa de resposta (%)</h2>
+
+            <select id="tipoGraficoResposta">
+                <option value="dia">Por dia</option>
+            </select>
+        </div>
+
+        <div class="grafico-wrapper">
+            <canvas id="graficoResposta"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
 
 {% endblock %}
