@@ -79,33 +79,25 @@ body{
 
     flex-direction:row !important;
 
-    justify-content:space-evenly;
-
-    align-items:center;
-
     flex-wrap:nowrap !important;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    justify-content:flex-start;
+
+    gap:8px;
 
     width:100%;
 
-    gap:2px;
-
     padding:8px;
 
-    border-radius:22px;
-
-    background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.06);
-
-    backdrop-filter:blur(18px);
-
-    -webkit-backdrop-filter:blur(18px);
+    scrollbar-width:none;
 
 }
 
-/* remove títulos */
-
-.menu-title{
+.menu::-webkit-scrollbar{
 
     display:none;
 
@@ -117,31 +109,13 @@ body{
 
 .menu a{
 
-    width:40px;
+    flex:0 0 44px;
 
-    height:40px;
+    width:44px;
 
-    min-width:40px;
+    height:44px;
 
-    display:flex !important;
-
-    justify-content:center;
-
-    align-items:center;
-
-    border-radius:14px;
-
-    padding:0;
-
-    flex:none;
-
-    background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.04);
-
-    transition:.25s;
-
-    position:relative;
+    min-width:44px;
 
 }
 

@@ -67,6 +67,7 @@ def buscar_comparativo(cotacao_id):
             "laboratorio": item[2],
             "preco": item[4],
             "preco_oferta": item[5],
+            "preco_final": preco,
             "quantidade": item[6],
             "whatsapp": item[7],
             "oferta": status == "OFERTA",
@@ -123,11 +124,12 @@ def buscar_resultado(cotacao_id):
 }
 
         representantes[nome]["itens"].append({
-    "medicamento": medicamento["nome"],
-    "preco": vencedor["preco"],
-    "preco_oferta": vencedor["preco_oferta"],
-    "quantidade": vencedor["quantidade"],
-    "oferta": vencedor["oferta"]
-})
+            "medicamento": medicamento["nome"],
+            "preco": vencedor["preco"],
+            "preco_oferta": vencedor["preco_oferta"],
+            "preco_final": vencedor["preco_final"],
+            "quantidade": vencedor["quantidade"],
+            "oferta": vencedor["oferta"]
+        })
 
     return list(representantes.values())
