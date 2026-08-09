@@ -147,49 +147,107 @@ Conecta - CotaFarma
 
                         </div>
 
-                        <textarea
-                            name="texto"
-                            class="publicar-input"
-                            placeholder="O que você está pensando?"
-                            required
-                        ></textarea>
+<textarea
+    name="texto"
+    class="publicar-input"
+    placeholder="O que você está pensando?"
+    required
+></textarea>
+
+<input
+    type="hidden"
+    name="tipo"
+    id="tipo-publicacao"
+    value="normal"
+>
 
                     </div>
 
-                    <div class="publicar-options">
+<div class="publicar-options">
 
-                        <label class="publicar-option">
-                            <i class="bi bi-image"></i>
-                            Foto
-                            <input
-                                type="file"
-                                name="foto"
-                                accept="image/*"
-                                hidden
-                            >
-                        </label>
+    <!-- FOTO -->
+<label class="publicar-option" for="input-foto">
+    <i class="bi bi-image"></i>
+    Foto
 
-                        <button type="button">
-                            <i class="bi bi-question-circle"></i>
-                            Pergunta
-                        </button>
+    <input
+        type="file"
+        id="input-foto"
+        name="foto"
+        accept="image/*"
+        hidden
+    >
+</label>
 
-                        <button type="button">
-                            <i class="bi bi-briefcase"></i>
-                            Oportunidade
-                        </button>
+<div id="preview-foto" class="preview-foto" style="display: none;">
+    <img id="preview-foto-img" src="" alt="Pré-visualização">
 
-                        <button type="button">
-                            <i class="bi bi-bar-chart"></i>
-                            Enquete
-                        </button>
+    <button
+        type="button"
+        id="remover-foto"
+        class="remover-foto"
+        title="Remover foto"
+    >
+        <i class="bi bi-x"></i>
+    </button>
+</div>
 
-                        <button type="submit" class="btn-publicar">
-                            <i class="bi bi-send"></i>
-                            Publicar
-                        </button>
 
-                    </div>
+    <!-- OPORTUNIDADE -->
+    <button
+        type="button"
+        id="btn-oportunidade"
+        class="publicar-option"
+    >
+
+        <i class="bi bi-briefcase"></i>
+
+        Oportunidade
+
+    </button>
+
+
+    <!-- DÚVIDA DE RECEITA -->
+    <button
+        type="button"
+        id="btn-receita"
+        class="publicar-option"
+    >
+
+        <i class="bi bi-prescription2"></i>
+
+        Dúvida de Receita
+
+    </button>
+
+
+    <!-- ENQUETE -->
+    <button
+        type="button"
+        id="btn-enquete"
+        class="publicar-option"
+    >
+
+        <i class="bi bi-bar-chart"></i>
+
+        Enquete
+
+    </button>
+
+
+    <!-- PUBLICAR -->
+    <button
+        type="submit"
+        class="btn-publicar"
+    >
+
+        <i class="bi bi-send"></i>
+
+        Publicar
+
+    </button>
+
+</div>
 
                 </form>
 
@@ -273,6 +331,22 @@ Conecta - CotaFarma
     <small>
         • {{ post[4] }}
     </small>
+
+{% if post[7] == "oportunidade" %}
+
+    <span class="post-tag oportunidade">
+        <i class="bi bi-briefcase"></i>
+        OPORTUNIDADE
+    </span>
+
+{% elif post[7] == "duvida_receita" %}
+
+    <span class="post-tag duvida-receita">
+        <i class="bi bi-prescription2"></i>
+        DÚVIDA DE RECEITA
+    </span>
+
+{% endif %}
 
 </div>
 
@@ -786,3 +860,4 @@ Conecta - CotaFarma
 <script src="{{ url_for('static', filename='js/conecta.js') }}"></script>
 
 {% endblock %}
+

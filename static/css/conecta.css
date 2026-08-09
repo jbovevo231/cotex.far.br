@@ -221,17 +221,34 @@
 
 .publicar-options button,
 .publicar-option {
-    display: flex;
+
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
+
     gap: 6px;
+
     padding: 8px 11px;
+
+    width: auto;
+    min-width: 0;
+
+    flex: 0 0 auto;
+
+    white-space: nowrap;
+
     border: 0;
     border-radius: 9px;
+
     background: transparent;
+
     color: #667085;
+
     font-family: "Inter", sans-serif;
+
     font-size: 12px;
     font-weight: 600;
+
     cursor: pointer;
 }
 
@@ -789,4 +806,509 @@
         right: 18px;
         bottom: 18px;
     }
+}
+
+/* =========================================================
+   OPORTUNIDADE — PUBLICAÇÃO SELECIONADA
+   ========================================================= */
+
+.publicar-option.selecionado {
+
+    background: #e9fbf2 !important;
+
+    color: #009b5a !important;
+
+    border-radius: 9px;
+
+}
+
+.publicar-option.selecionado i {
+
+    color: #009b5a !important;
+
+}
+
+
+/* =========================================================
+   TAG OPORTUNIDADE NO POST
+   ========================================================= */
+
+.post-tag.oportunidade {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    width: fit-content;
+
+    margin-top: 3px;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background: #e9fbf2;
+
+    color: #009b5a;
+
+    border: 1px solid #b7ebd2;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .4px;
+
+}
+
+.post-tag.oportunidade i {
+
+    font-size: 10px;
+
+}
+
+/* =====================================================
+   OPÇÃO DE PUBLICAÇÃO SELECIONADA
+===================================================== */
+
+.publicar-option.selecionado,
+button.publicar-option.selecionado {
+
+    background: linear-gradient(
+        135deg,
+        #18d27f,
+        #00b86b
+    );
+
+    color: #ffffff;
+
+    border-color: #18d27f;
+
+    box-shadow:
+        0 8px 22px rgba(24, 210, 127, .28);
+
+    transform: translateY(-1px);
+}
+
+
+/* ícone da opção selecionada */
+
+.publicar-option.selecionado i,
+button.publicar-option.selecionado i {
+
+    color: #ffffff;
+}
+
+
+/* efeito ao passar o mouse */
+
+.publicar-option.selecionado:hover,
+button.publicar-option.selecionado:hover {
+
+    background: linear-gradient(
+        135deg,
+        #18d27f,
+        #00b86b
+    );
+
+    color: #ffffff;
+}
+
+/* =====================================================
+   OPORTUNIDADE — VERDE
+===================================================== */
+
+#btn-oportunidade.selecionado {
+
+    background: linear-gradient(
+        135deg,
+        #18d27f,
+        #00b86b
+    ) !important;
+
+    color: #ffffff !important;
+
+    border-color: #18d27f !important;
+
+    box-shadow:
+        0 8px 22px rgba(24, 210, 127, .30) !important;
+
+    transform: translateY(-1px);
+}
+
+
+#btn-oportunidade.selecionado i {
+    color: #ffffff !important;
+}
+
+
+/* =====================================================
+   DÚVIDA DE RECEITA — LARANJA
+===================================================== */
+
+#btn-receita.selecionado {
+
+    background: linear-gradient(
+        135deg,
+        #ff9f43,
+        #f57c00
+    ) !important;
+
+    color: #ffffff !important;
+
+    border-color: #ff9f43 !important;
+
+    box-shadow:
+        0 8px 22px rgba(245, 124, 0, .30) !important;
+
+    transform: translateY(-1px);
+}
+
+
+#btn-receita.selecionado i {
+    color: #ffffff !important;
+}
+
+/* =====================================================
+   TAG DO POST
+===================================================== */
+
+.post-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    margin-top: 6px;
+}
+
+
+/* =====================================================
+   OPORTUNIDADE
+===================================================== */
+
+.post-tag.oportunidade {
+
+    color: #00a86b;
+
+    background: #e9fbf3;
+
+    border: 1px solid #b9efd8;
+}
+
+
+/* =====================================================
+   DÚVIDA DE RECEITA
+===================================================== */
+
+.post-tag.duvida-receita {
+
+    color: #e87500;
+
+    background: #fff3e5;
+
+    border: 1px solid #ffd3a3;
+}
+
+.post-tag.duvida-receita i {
+    color: #f57c00;
+}
+
+/* =====================================================
+   TAMANHO DOS BOTÕES DE PUBLICAÇÃO
+===================================================== */
+
+#btn-oportunidade {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+
+#btn-receita {
+    width: 125px !important;
+    min-width: 125px !important;
+    max-width: 125px !important;
+
+    flex: 0 0 125px !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =====================================================
+   DÚVIDA DE RECEITA — SELECIONADA
+===================================================== */
+
+#btn-receita.selecionado {
+
+    background: linear-gradient(
+        135deg,
+        #ff9f43,
+        #f57c00
+    ) !important;
+
+    color: white !important;
+
+    border: 1px solid #ff9f43 !important;
+
+    box-shadow:
+        0 8px 22px rgba(245,124,0,.30) !important;
+
+    transform: translateY(-1px);
+}
+
+
+#btn-receita.selecionado i {
+    color: white !important;
+}
+
+/* =====================================================
+   CORREÇÃO DEFINITIVA DAS TAGS DOS POSTS
+===================================================== */
+
+.post-tag {
+    display: inline-flex !important;
+
+    width: fit-content !important;
+    max-width: fit-content !important;
+
+    flex: 0 0 auto !important;
+    align-self: flex-start !important;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 5px;
+
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    margin-top: 6px;
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   OPORTUNIDADE
+===================================================== */
+
+.post-tag.oportunidade {
+    display: inline-flex !important;
+
+    width: fit-content !important;
+    max-width: fit-content !important;
+
+    flex: 0 0 auto !important;
+
+    color: #00a86b !important;
+
+    background: #e9fbf3 !important;
+
+    border: 1px solid #b9efd8;
+}
+
+
+/* =====================================================
+   DÚVIDA DE RECEITA
+===================================================== */
+
+.post-tag.duvida-receita {
+    display: inline-flex !important;
+
+    width: fit-content !important;
+    max-width: fit-content !important;
+
+    flex: 0 0 auto !important;
+
+    color: #e87500 !important;
+
+    background: #fff3e5 !important;
+
+    border: 1px solid #ffd3a3;
+}
+
+
+.post-tag.duvida-receita i {
+    color: #f57c00 !important;
+}
+
+/* =====================================================
+   ENQUETE
+===================================================== */
+
+#btn-enquete.selecionado {
+
+    background: linear-gradient(
+        135deg,
+        #172554,
+        #0f172a
+    ) !important;
+
+    color: #ffffff !important;
+
+    border-color: #172554 !important;
+
+    box-shadow:
+        0 6px 18px rgba(23, 37, 84, 0.25) !important;
+
+}
+
+
+#btn-enquete.selecionado i {
+
+    color: #ffffff !important;
+
+}
+
+
+/* =====================================================
+   CAIXA DA ENQUETE
+===================================================== */
+
+.enquete-box {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 12px;
+
+    padding: 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid #dbe2ea;
+
+    border-left: 3px solid #172554;
+
+    border-radius: 10px;
+
+}
+
+
+.enquete-titulo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+
+    color: #172554;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.enquete-input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: block;
+
+    margin-top: 8px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #d9e0e8;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #172554;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    outline: none;
+
+}
+
+
+.enquete-input:focus {
+
+    border-color: #172554;
+
+    box-shadow:
+        0 0 0 3px rgba(23, 37, 84, 0.08);
+
+}
+
+/* =====================================================
+   PRÉ-VISUALIZAÇÃO DA FOTO
+===================================================== */
+
+.preview-foto {
+    position: relative;
+    margin-top: 12px;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    background: #f8fafc;
+}
+
+.preview-foto img {
+    display: block;
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+}
+
+
+/* BOTÃO REMOVER */
+
+.remover-foto {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+.remover-foto:hover {
+    background: rgba(0, 0, 0, 0.85);
 }

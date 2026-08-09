@@ -307,9 +307,26 @@ def publicar():
 
     foto = request.files.get("foto")
 
+    # Tipo da publicação
+    tipo = request.form.get("tipo", "normal")
+
     nome_arquivo = None
 
     try:
+
+        # ==========================
+        # VALIDAÇÃO
+        # ==========================
+
+        if not texto and not foto:
+            return redirect(
+                url_for("conecta.conecta")
+            )
+
+
+        # ==========================
+        # ENVIA FOTO
+        # ==========================
 
         if foto and foto.filename:
 
@@ -325,12 +342,30 @@ def publicar():
             print(nome_arquivo)
 
 
+        # ==========================
+        # SALVA PUBLICAÇÃO
+        # ==========================
+
+        tipo = request.form.get("tipo", "normal")
+
+        print("TIPO DA PUBLICAÇÃO:", tipo)
+
+
         salvar_post(
             session.get("usuario_cnpj"),
             session.get("usuario_nome") or "Usuário",
             texto,
-            nome_arquivo
+            nome_arquivo,
+            tipo
         )
+
+
+        print("================================")
+        print("PUBLICAÇÃO SALVA")
+        print("CNPJ:", session.get("usuario_cnpj"))
+        print("USUÁRIO:", session.get("usuario_nome"))
+        print("TIPO:", tipo)
+        print("================================")
 
 
         return redirect(
@@ -340,7 +375,7 @@ def publicar():
 
     except Exception as e:
 
-        print("ERRO CLOUDINARY:")
+        print("ERRO AO PUBLICAR:")
         print(repr(e))
 
         raise

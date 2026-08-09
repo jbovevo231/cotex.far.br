@@ -8,28 +8,31 @@ def listar_posts():
 
     posts = db.execute(
         """
-SELECT
-    conecta_posts.id,
-    usuarios.nome AS usuario,
-    conecta_posts.texto,
-    conecta_posts.imagem,
-    conecta_posts.data_postagem,
-    conecta_posts.cnpj,
-    usuarios.foto_perfil
+        SELECT
+            conecta_posts.id,
+            usuarios.nome AS usuario,
+            conecta_posts.texto,
+            conecta_posts.imagem,
+            conecta_posts.data_postagem,
+            conecta_posts.cnpj,
+            usuarios.foto_perfil,
+            conecta_posts.tipo
+
         FROM conecta_posts
+
         LEFT JOIN usuarios
         ON conecta_posts.cnpj = usuarios.cnpj
+
         ORDER BY conecta_posts.id DESC
         """
     ).fetchall()
-
 
     print("POSTS COM FOTO:")
     for p in posts:
         print(p)
 
-
     return posts
+
 
 
 
@@ -47,7 +50,8 @@ def listar_posts_usuario(cnpj):
             conecta_posts.imagem,
             conecta_posts.data_postagem,
             conecta_posts.cnpj,
-            usuarios.foto_perfil
+            usuarios.foto_perfil,
+            conecta_posts.tipo
 
         FROM conecta_posts
 
@@ -64,7 +68,6 @@ def listar_posts_usuario(cnpj):
     ).fetchall()
 
     return posts
-
 
 
 def excluir_post(id_post, cnpj):
@@ -168,7 +171,7 @@ def total_seguindo(cnpj):
     )).fetchone()[0]
 
 
-def salvar_post(cnpj, usuario, texto, imagem):
+def salvar_post(cnpj, usuario, texto, imagem, tipo="normal"):
 
     db = get_db()
 
@@ -179,10 +182,12 @@ def salvar_post(cnpj, usuario, texto, imagem):
             cnpj,
             usuario,
             texto,
-            imagem
+            imagem,
+            tipo
         )
         VALUES
         (
+            ?,
             ?,
             ?,
             ?,
@@ -193,7 +198,8 @@ def salvar_post(cnpj, usuario, texto, imagem):
             cnpj,
             usuario,
             texto,
-            imagem
+            imagem,
+            tipo
         )
     )
 
