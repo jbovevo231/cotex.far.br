@@ -436,256 +436,164 @@ if (inputFoto) {
 });
 
 /* =====================================================
-   FILTRO — OPORTUNIDADES
+   FILTROS DAS ABAS DO CONECTA
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const tabs =
-        document.querySelectorAll(".conecta-tabs a");
-
-    const posts =
-        document.querySelectorAll(".post-card");
-
-
-    console.log(
-        "FILTRO CONECTA:",
-        posts.length,
-        "posts encontrados"
-    );
-
-
-    /* =========================================
-       LOCALIZA A ABA OPORTUNIDADES
-    ========================================= */
-
-    let tabOportunidades = null;
-
-    tabs.forEach(function (tab) {
-
-        if (
-            tab.textContent
-                .trim()
-                .toLowerCase()
-                .includes("oportunidades")
-        ) {
-
-            tabOportunidades = tab;
-
-        }
-
-    });
-
-
-    console.log(
-        "ABA OPORTUNIDADES:",
-        tabOportunidades
-    );
-
-
-    if (!tabOportunidades) {
-
-        console.error(
-            "Aba Oportunidades não encontrada."
+        document.querySelectorAll(
+            ".conecta-tabs a[data-filtro]"
         );
 
-        return;
-    }
+    const posts =
+        document.querySelectorAll(
+            ".post-card[data-tipo]"
+        );
 
 
-    /* =========================================
-       CLICAR EM OPORTUNIDADES
-    ========================================= */
-
-    tabOportunidades.addEventListener(
-        "click",
-        function (evento) {
-
-            evento.preventDefault();
-
-
-            console.log(
-                "CLICOU EM OPORTUNIDADES"
-            );
-
-
-            /* ==============================
-               ESCONDE / MOSTRA POSTS
-            ============================== */
-
-            posts.forEach(function (post) {
-
-                const oportunidade =
-                    post.querySelector(
-                        ".post-tag.oportunidade"
-                    );
-
-
-                if (oportunidade) {
-
-                    post.style.display = "";
-
-                } else {
-
-                    post.style.display = "none";
-
-                }
-
-            });
-
-
-            /* ==============================
-               ATIVA ABA OPORTUNIDADES
-            ============================== */
-
-            tabs.forEach(function (tab) {
-
-                tab.classList.remove("active");
-
-            });
-
-
-            tabOportunidades.classList.add(
-                "active"
-            );
-
-        }
+    console.log(
+        "ABAS COM FILTRO:",
+        tabs.length
     );
 
-
-    /* =========================================
-       INÍCIO — MOSTRA TODOS
-    ========================================= */
-
-    let tabInicio = null;
+    console.log(
+        "POSTS:",
+        posts.length
+    );
 
 
     tabs.forEach(function (tab) {
 
-        if (
-            tab.textContent
-                .trim()
-                .toLowerCase()
-                .includes("início")
-        ) {
-
-            tabInicio = tab;
-
-        }
-
-    });
-
-
-    if (tabInicio) {
-
-        tabInicio.addEventListener(
+        tab.addEventListener(
             "click",
             function (evento) {
 
                 evento.preventDefault();
 
 
+                const filtro =
+                    tab.getAttribute(
+                        "data-filtro"
+                    );
+
+
                 console.log(
-                    "VOLTANDO PARA TODOS"
+                    "FILTRO CLICADO:",
+                    filtro
                 );
 
 
-                posts.forEach(function (post) {
+                /* =====================================
+                   ATIVA A ABA
+                ===================================== */
 
-                    post.style.display = "";
+                tabs.forEach(function (t) {
 
-                });
-
-
-                tabs.forEach(function (tab) {
-
-                    tab.classList.remove(
+                    t.classList.remove(
                         "active"
                     );
 
                 });
 
 
-                tabInicio.classList.add(
+                tab.classList.add(
                     "active"
                 );
+
+
+                /* =====================================
+                   FILTRA PUBLICAÇÕES
+                ===================================== */
+
+                posts.forEach(function (post) {
+
+                    const tipo =
+                        post.getAttribute(
+                            "data-tipo"
+                        ) || "normal";
+
+
+                    console.log(
+                        "POST:",
+                        tipo
+                    );
+
+
+                    /* =================================
+                       INÍCIO
+                    ================================= */
+
+                    if (
+                        filtro === "todos"
+                    ) {
+
+                        post.style.display = "";
+
+                    }
+
+
+                    /* =================================
+                       DISCUSSÕES
+
+                       MOSTRA:
+                       normal
+                       duvida_receita
+
+                       ESCONDE:
+                       oportunidade
+                       enquete
+                    ================================= */
+
+                    else if (
+                        filtro === "discussoes"
+                    ) {
+
+                        if (
+                            tipo === "normal" ||
+                            tipo === "duvida_receita"
+                        ) {
+
+                            post.style.display = "";
+
+                        } else {
+
+                            post.style.display =
+                                "none";
+
+                        }
+
+                    }
+
+
+                    /* =================================
+                       OPORTUNIDADES
+                    ================================= */
+
+                    else if (
+                        filtro === "oportunidade"
+                    ) {
+
+                        if (
+                            tipo === "oportunidade"
+                        ) {
+
+                            post.style.display = "";
+
+                        } else {
+
+                            post.style.display =
+                                "none";
+
+                        }
+
+                    }
+
+                });
 
             }
         );
 
-    }
+    });
 
 });
-
-/* =================================================
-   DISCUSSÕES
-================================================= */
-
-if (texto.includes("discussões")) {
-
-    tab.addEventListener(
-        "click",
-        function (evento) {
-
-            evento.preventDefault();
-
-            console.log("CLICOU EM DISCUSSÕES");
-
-            posts.forEach(function (post) {
-
-                const oportunidade =
-                    post.querySelector(
-                        ".post-tag.oportunidade"
-                    );
-
-                const enquete =
-                    post.querySelector(
-                        ".post-tag.enquete"
-                    );
-
-                /*
-                 * DISCUSSÕES:
-                 *
-                 * MOSTRA:
-                 * - publicações normais
-                 * - dúvida de receita
-                 *
-                 * ESCONDE:
-                 * - oportunidade
-                 * - enquete
-                 */
-
-                if (
-                    !oportunidade &&
-                    !enquete
-                ) {
-
-                    post.style.display = "";
-
-                } else {
-
-                    post.style.display = "none";
-
-                }
-
-            });
-
-
-            /* ATIVA A ABA */
-
-            tabs.forEach(function (t) {
-
-                t.classList.remove(
-                    "active"
-                );
-
-            });
-
-            tab.classList.add(
-                "active"
-            );
-
-        }
-    );
-
-}

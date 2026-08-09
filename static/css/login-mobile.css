@@ -534,7 +534,71 @@
 
 
 
-/*=========================================================
-FIM DA PARTE 1 -MOBILE EXPLORAR 
-==========================================================*/
+/* =========================================================
+   LOGIN MOBILE — FICAR SEMPRE NA FRENTE
+========================================================= */
 
+@media (max-width: 768px) {
+
+    /* O container não pode criar um contexto que prenda o login */
+    .hero,
+    .hero-right,
+    .hero-dashboard {
+        transform: none !important;
+    }
+
+    .hero {
+        position: relative !important;
+        z-index: auto !important;
+    }
+
+    .hero-right {
+        position: static !important;
+        z-index: auto !important;
+    }
+
+    .hero-dashboard {
+        position: relative !important;
+        z-index: 1 !important;
+    }
+
+    /* LOGIN */
+    .login-card {
+        position: fixed !important;
+
+        top: 50% !important;
+        left: 50% !important;
+
+        width: calc(100vw - 32px) !important;
+        max-width: 360px !important;
+
+        margin: 0 !important;
+
+        z-index: 2147483647 !important;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.92) !important;
+    }
+
+    /* LOGIN ABERTO */
+    .login-card.show {
+        position: fixed !important;
+
+        top: 50% !important;
+        left: 50% !important;
+
+        margin: 0 !important;
+
+        z-index: 2147483647 !important;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1) !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+        filter: blur(0) !important;
+        pointer-events: auto !important;
+    }
+}
