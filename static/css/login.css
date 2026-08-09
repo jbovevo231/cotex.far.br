@@ -51,7 +51,28 @@ body{
 
     color:var(--text);
 
-    background:#06111e;
+    background:
+        radial-gradient(
+            circle at 8% 12%,
+            rgba(37,99,235,.20),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 92% 18%,
+            rgba(14,165,233,.13),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 85%,
+            rgba(16,185,129,.07),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #020817 0%,
+            #061426 45%,
+            #071a2e 100%
+        );
 
     overflow-x:hidden;
 
@@ -65,31 +86,20 @@ body::before{
 
     inset:0;
 
+    pointer-events:none;
+
     background:
 
         radial-gradient(
-            circle at 10% 15%,
-            rgba(59,130,246,.16),
-            transparent 30%
+            circle at 20% 40%,
+            rgba(59,130,246,.10),
+            transparent 24%
         ),
 
         radial-gradient(
-            circle at 90% 10%,
-            rgba(96,165,250,.15),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 70% 90%,
-            rgba(37,99,235,.12),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            135deg,
-            #04111d,
-            #081A2F 45%,
-            #0C223D
+            circle at 80% 70%,
+            rgba(96,165,250,.08),
+            transparent 22%
         );
 
     z-index:-3;
@@ -104,29 +114,24 @@ body::after{
 
     inset:0;
 
+    pointer-events:none;
+
     background-image:
 
         linear-gradient(
-
-            rgba(255,255,255,.025) 1px,
-
+            rgba(255,255,255,.018) 1px,
             transparent 1px
-
         ),
 
         linear-gradient(
-
             90deg,
-
-            rgba(255,255,255,.025) 1px,
-
+            rgba(255,255,255,.018) 1px,
             transparent 1px
-
         );
 
-    background-size:42px 42px;
+    background-size:90px 90px;
 
-    pointer-events:none;
+    opacity:.45;
 
     z-index:-2;
 
@@ -4112,47 +4117,3 @@ RESPONSIVO
 
 }
 
-/* =========================================================
-   BOTÃO FECHAR LOGIN
-========================================================= */
-
-.login-close {
-    position: absolute;
-
-    top: 12px;
-    right: 14px;
-
-    width: 34px;
-    height: 34px;
-
-    padding: 0;
-
-    border: none;
-    background: transparent;
-
-    color: #ffffff;
-
-    font-size: 28px;
-    font-weight: 400;
-
-    line-height: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    opacity: .75;
-
-    z-index: 20;
-
-    transition:
-        opacity .2s ease,
-        transform .2s ease;
-}
-
-.login-close:hover {
-    opacity: 1;
-    transform: scale(1.12);
-}
