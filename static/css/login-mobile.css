@@ -602,3 +602,40 @@
         pointer-events: auto !important;
     }
 }
+
+.login-close {
+    position: absolute !important;
+
+    top: 10px !important;
+    right: 10px !important;
+
+    width: 36px !important;
+    height: 36px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border: 0 !important;
+    background: transparent !important;
+
+    color: #ffffff !important;
+
+    font-size: 30px !important;
+    font-weight: 300 !important;
+    line-height: 36px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    cursor: pointer !important;
+
+    opacity: 1 !important;
+
+    z-index: 999999 !important;
+}
+
+.login-close:hover {
+    opacity: 1 !important;
+    transform: scale(1.1);
+}

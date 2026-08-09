@@ -4111,3 +4111,48 @@ RESPONSIVO
     text-align:center;
 
 }
+
+/* =========================================================
+   BOTÃO FECHAR LOGIN
+========================================================= */
+
+.login-close {
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 28px;
+    font-weight: 400;
+
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    opacity: .75;
+
+    z-index: 20;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+.login-close:hover {
+    opacity: 1;
+    transform: scale(1.12);
+}
