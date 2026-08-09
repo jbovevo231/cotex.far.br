@@ -434,3 +434,258 @@ if (inputFoto) {
 
 
 });
+
+/* =====================================================
+   FILTRO — OPORTUNIDADES
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const tabs =
+        document.querySelectorAll(".conecta-tabs a");
+
+    const posts =
+        document.querySelectorAll(".post-card");
+
+
+    console.log(
+        "FILTRO CONECTA:",
+        posts.length,
+        "posts encontrados"
+    );
+
+
+    /* =========================================
+       LOCALIZA A ABA OPORTUNIDADES
+    ========================================= */
+
+    let tabOportunidades = null;
+
+    tabs.forEach(function (tab) {
+
+        if (
+            tab.textContent
+                .trim()
+                .toLowerCase()
+                .includes("oportunidades")
+        ) {
+
+            tabOportunidades = tab;
+
+        }
+
+    });
+
+
+    console.log(
+        "ABA OPORTUNIDADES:",
+        tabOportunidades
+    );
+
+
+    if (!tabOportunidades) {
+
+        console.error(
+            "Aba Oportunidades não encontrada."
+        );
+
+        return;
+    }
+
+
+    /* =========================================
+       CLICAR EM OPORTUNIDADES
+    ========================================= */
+
+    tabOportunidades.addEventListener(
+        "click",
+        function (evento) {
+
+            evento.preventDefault();
+
+
+            console.log(
+                "CLICOU EM OPORTUNIDADES"
+            );
+
+
+            /* ==============================
+               ESCONDE / MOSTRA POSTS
+            ============================== */
+
+            posts.forEach(function (post) {
+
+                const oportunidade =
+                    post.querySelector(
+                        ".post-tag.oportunidade"
+                    );
+
+
+                if (oportunidade) {
+
+                    post.style.display = "";
+
+                } else {
+
+                    post.style.display = "none";
+
+                }
+
+            });
+
+
+            /* ==============================
+               ATIVA ABA OPORTUNIDADES
+            ============================== */
+
+            tabs.forEach(function (tab) {
+
+                tab.classList.remove("active");
+
+            });
+
+
+            tabOportunidades.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       INÍCIO — MOSTRA TODOS
+    ========================================= */
+
+    let tabInicio = null;
+
+
+    tabs.forEach(function (tab) {
+
+        if (
+            tab.textContent
+                .trim()
+                .toLowerCase()
+                .includes("início")
+        ) {
+
+            tabInicio = tab;
+
+        }
+
+    });
+
+
+    if (tabInicio) {
+
+        tabInicio.addEventListener(
+            "click",
+            function (evento) {
+
+                evento.preventDefault();
+
+
+                console.log(
+                    "VOLTANDO PARA TODOS"
+                );
+
+
+                posts.forEach(function (post) {
+
+                    post.style.display = "";
+
+                });
+
+
+                tabs.forEach(function (tab) {
+
+                    tab.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+                tabInicio.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+
+});
+
+/* =================================================
+   DISCUSSÕES
+================================================= */
+
+if (texto.includes("discussões")) {
+
+    tab.addEventListener(
+        "click",
+        function (evento) {
+
+            evento.preventDefault();
+
+            console.log("CLICOU EM DISCUSSÕES");
+
+            posts.forEach(function (post) {
+
+                const oportunidade =
+                    post.querySelector(
+                        ".post-tag.oportunidade"
+                    );
+
+                const enquete =
+                    post.querySelector(
+                        ".post-tag.enquete"
+                    );
+
+                /*
+                 * DISCUSSÕES:
+                 *
+                 * MOSTRA:
+                 * - publicações normais
+                 * - dúvida de receita
+                 *
+                 * ESCONDE:
+                 * - oportunidade
+                 * - enquete
+                 */
+
+                if (
+                    !oportunidade &&
+                    !enquete
+                ) {
+
+                    post.style.display = "";
+
+                } else {
+
+                    post.style.display = "none";
+
+                }
+
+            });
+
+
+            /* ATIVA A ABA */
+
+            tabs.forEach(function (t) {
+
+                t.classList.remove(
+                    "active"
+                );
+
+            });
+
+            tab.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+}

@@ -73,43 +73,43 @@ Conecta - CotaFarma
     </div>
 
 
-    <!-- =========================================
-         NAVEGAÇÃO
-    ========================================== -->
-
     <nav class="conecta-tabs">
 
-        <a href="#" class="active">
-            <i class="bi bi-house"></i>
-            Início
-        </a>
+    <a href="#"
+       class="active"
+       data-filtro="todos">
+        <i class="bi bi-house"></i>
+        Início
+    </a>
 
-        <a href="#">
-            <i class="bi bi-chat"></i>
-            Discussões
-        </a>
+    <a href="#"
+       data-filtro="discussoes">
+        <i class="bi bi-chat"></i>
+        Discussões
+    </a>
 
-        <a href="#">
-            <i class="bi bi-megaphone"></i>
-            Oportunidades
-        </a>
+    <a href="#"
+       data-filtro="oportunidade">
+        <i class="bi bi-megaphone"></i>
+        Oportunidades
+    </a>
 
-        <a href="#">
-            <i class="bi bi-calendar-event"></i>
-            Eventos
-        </a>
+    <a href="#">
+        <i class="bi bi-calendar-event"></i>
+        Eventos
+    </a>
 
-        <a href="#">
-            <i class="bi bi-person"></i>
-            Pessoas
-        </a>
+    <a href="#">
+        <i class="bi bi-person"></i>
+        Pessoas
+    </a>
 
-        <a href="#">
-            <i class="bi bi-people"></i>
-            Grupos
-        </a>
+    <a href="#">
+        <i class="bi bi-people"></i>
+        Grupos
+    </a>
 
-    </nav>
+</nav>
 
 
     <!-- =========================================
@@ -254,45 +254,18 @@ Conecta - CotaFarma
             </div>
 
 
-            <!-- FILTROS -->
-            <div class="feed-filters">
-
-                <button class="active">
-                    Todos
-                </button>
-
-                <button>
-                    Seguindo
-                </button>
-
-                <button>
-                    Discussões
-                </button>
-
-                <button>
-                    Oportunidades
-                </button>
-
-                <button>
-                    Anúncios
-                </button>
-
-                <select>
-                    <option>Mais recentes</option>
-                    <option>Mais comentados</option>
-                    <option>Mais relevantes</option>
-                </select>
-
-            </div>
 
 
             <!-- =================================
                  PUBLICAÇÕES REAIS DO BANCO
             ================================== -->
 
-            {% for post in posts %}
+{% for post in posts %}
 
-            <article class="post-card">
+<article
+    class="post-card"
+    data-tipo="{{ post[7] or 'normal' }}"
+>
 
                 <div class="post-header">
 
