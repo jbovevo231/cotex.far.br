@@ -1,0 +1,1871 @@
+/* =========================================================
+   COTAFARMA • PERFIL FARMÁCIA
+   CONECTA 2026
+========================================================= */
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+.perfil-page{
+
+    width:100%;
+
+    max-width:1500px;
+
+    margin:0 auto;
+
+    color:#101828;
+
+    font-family:"Inter",sans-serif;
+
+}
+
+
+/* =========================================================
+   BARRA SUPERIOR
+========================================================= */
+
+.perfil-barra-topo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:24px;
+
+    margin-bottom:18px;
+
+}
+
+
+.perfil-voltar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#08a866;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    white-space:nowrap;
+
+}
+
+
+.perfil-voltar:hover{
+
+    color:#078c57;
+
+}
+
+
+.perfil-busca{
+
+    flex:1;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 16px;
+
+    background:#ffffff;
+
+    border:1px solid #e4e9ef;
+
+    border-radius:14px;
+
+}
+
+
+.perfil-busca i{
+
+    color:#8290a3;
+
+}
+
+
+.perfil-busca input{
+
+    width:100%;
+
+    border:0;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    color:#172033;
+
+}
+
+
+.perfil-topo-acoes{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+
+.perfil-topo-acoes button{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:13px;
+
+    border:1px solid #e3e8ef;
+
+    background:#fff;
+
+    color:#536174;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.perfil-hero{
+
+    background:#fff;
+
+    border:1px solid #e4e9ef;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 30px rgba(15,23,42,.05);
+
+}
+
+
+/* =========================================================
+   CAPA
+========================================================= */
+
+.perfil-capa{
+
+    height:190px;
+
+    overflow:hidden;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #d9f8e9,
+            #effbf5
+        );
+
+}
+
+
+.perfil-capa img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+}
+
+
+.capa-padrao{
+
+    width:100%;
+
+    height:100%;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 80% 40%,
+            rgba(0,180,105,.35),
+            transparent 24%
+        ),
+
+        linear-gradient(
+            135deg,
+            #d9f8e9,
+            #f5fffa
+        );
+
+}
+
+
+.capa-padrao::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    border-top:2px solid rgba(0,184,107,.25);
+
+    transform:rotate(-8deg);
+
+    left:0;
+
+    top:30px;
+
+}
+
+
+.capa-circulo{
+
+    position:absolute;
+
+    right:120px;
+
+    top:25px;
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#08b96e;
+
+    color:white;
+
+    font-size:55px;
+
+}
+
+
+/* =========================================================
+   IDENTIDADE
+========================================================= */
+
+.perfil-identidade{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:28px;
+
+    padding:0 28px 26px;
+
+    position:relative;
+
+}
+
+
+.perfil-avatar{
+
+    width:128px;
+
+    height:128px;
+
+    flex-shrink:0;
+
+    margin-top:-62px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    border:7px solid #fff;
+
+    box-shadow:0 8px 25px rgba(15,23,42,.15);
+
+    overflow:visible;
+
+    position:relative;
+
+}
+
+
+.perfil-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+
+.perfil-avatar span{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#e9f9f1;
+
+    color:#08ae68;
+
+    font-size:40px;
+
+    font-weight:800;
+
+}
+
+
+.perfil-status{
+
+    position:absolute;
+
+    right:3px;
+
+    bottom:6px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:#18c879;
+
+    border:4px solid white;
+
+}
+
+
+/* =========================================================
+   DADOS
+========================================================= */
+
+.perfil-dados{
+
+    flex:1;
+
+    padding-top:16px;
+
+}
+
+
+.perfil-nome{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+
+.perfil-nome h1{
+
+    margin:0;
+
+    font-size:26px;
+
+    line-height:1.2;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+
+.perfil-verificado{
+
+    width:20px;
+
+    height:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#08b96e;
+
+    color:#fff;
+
+    font-size:12px;
+
+}
+
+
+.perfil-descricao{
+
+    margin:7px 0 6px;
+
+    color:#667085;
+
+    font-size:13px;
+
+}
+
+
+.perfil-local{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#7a8798;
+
+    font-size:12px;
+
+}
+
+
+.perfil-local i{
+
+    color:#08ad67;
+
+}
+
+
+/* =========================================================
+   ESTATÍSTICAS DO PERFIL
+========================================================= */
+
+.perfil-estatisticas{
+
+    display:flex;
+
+    gap:32px;
+
+    margin-top:18px;
+
+}
+
+
+.perfil-estatisticas div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+
+}
+
+
+.perfil-estatisticas strong{
+
+    font-size:17px;
+
+    color:#101828;
+
+}
+
+
+.perfil-estatisticas span{
+
+    font-size:11px;
+
+    color:#7b8797;
+
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.perfil-acoes{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.perfil-acoes form{
+
+    margin:0;
+
+}
+
+
+.btn-seguir,
+.btn-seguindo{
+
+    height:42px;
+
+    padding:0 22px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    border-radius:11px;
+
+    font-family:inherit;
+
+    font-weight:700;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+}
+
+
+.btn-seguir{
+
+    color:#08a965;
+
+    background:#fff;
+
+    border:1px solid #08b96e;
+
+}
+
+
+.btn-seguir:hover{
+
+    background:#edfff6;
+
+}
+
+
+.btn-seguindo{
+
+    color:white;
+
+    background:#08b96e;
+
+    border:1px solid #08b96e;
+
+}
+
+
+.btn-opcoes{
+
+    width:42px;
+
+    height:42px;
+
+    border:1px solid #e1e7ee;
+
+    background:#fff;
+
+    color:#526071;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   ABAS
+========================================================= */
+
+.perfil-tabs{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:4px;
+
+    margin-top:16px;
+
+    padding:5px;
+
+    background:#fff;
+
+    border:1px solid #e5eaf0;
+
+    border-radius:14px;
+
+}
+
+
+.perfil-tabs a{
+
+    height:43px;
+
+    padding:0 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    border-radius:10px;
+
+    color:#647084;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+.perfil-tabs a:hover{
+
+    background:#f5f8fa;
+
+}
+
+
+.perfil-tabs a.ativo{
+
+    color:#08a965;
+
+    background:#edfff6;
+
+    box-shadow:inset 0 -2px 0 #08b96e;
+
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.perfil-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        330px;
+
+    gap:22px;
+
+    margin-top:14px;
+
+}
+
+
+.perfil-main{
+
+    min-width:0;
+
+}
+
+
+/* =========================================================
+   COMPOSITOR
+========================================================= */
+
+.perfil-compositor{
+
+    padding:16px;
+
+    background:#fff;
+
+    border:1px solid #e3e8ef;
+
+    border-radius:16px;
+
+    margin-bottom:16px;
+
+}
+
+
+.compositor-topo{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+
+.compositor-avatar{
+
+    width:40px;
+
+    height:40px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#e9f9f1;
+
+    color:#08a965;
+
+    font-weight:800;
+
+    overflow:hidden;
+
+}
+
+
+.compositor-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.compositor-topo textarea{
+
+    flex:1;
+
+    min-height:65px;
+
+    resize:vertical;
+
+    border:1px solid #e1e7ee;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+}
+
+
+.compositor-topo textarea:focus{
+
+    border-color:#58d99d;
+
+    box-shadow:0 0 0 3px rgba(8,185,110,.08);
+
+}
+
+
+.compositor-acoes{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin-top:12px;
+
+    padding-top:12px;
+
+    border-top:1px solid #edf0f3;
+
+}
+
+
+.compositor-acoes button{
+
+    height:36px;
+
+    padding:0 12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:transparent;
+
+    color:#59677a;
+
+    font-family:inherit;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+
+.compositor-acoes button:hover{
+
+    background:#f2f7f5;
+
+    color:#08a965;
+
+}
+
+
+.compositor-acoes .btn-publicar{
+
+    margin-left:auto;
+
+    padding:0 18px;
+
+    color:white;
+
+    background:#08b96e;
+
+}
+
+
+.compositor-acoes .btn-publicar:hover{
+
+    color:white;
+
+    background:#079e5e;
+
+}
+
+
+/* =========================================================
+   TÍTULO PUBLICAÇÕES
+========================================================= */
+
+.publicacoes-titulo{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+}
+
+
+.publicacoes-titulo h2{
+
+    margin:0;
+
+    font-size:17px;
+
+    font-weight:800;
+
+}
+
+
+.publicacoes-titulo p{
+
+    margin:4px 0 0;
+
+    color:#7b8797;
+
+    font-size:12px;
+
+}
+
+
+.publicacoes-titulo button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:9px 12px;
+
+    border:1px solid #e2e7ed;
+
+    background:#fff;
+
+    border-radius:9px;
+
+    color:#657184;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   POST
+========================================================= */
+
+.perfil-post{
+
+    background:#fff;
+
+    border:1px solid #e3e8ef;
+
+    border-radius:16px;
+
+    margin-bottom:14px;
+
+    overflow:hidden;
+
+}
+
+
+.post-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    padding:17px 18px 10px;
+
+}
+
+
+.post-avatar{
+
+    width:40px;
+
+    height:40px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#e9f9f1;
+
+    color:#08a965;
+
+    font-weight:800;
+
+}
+
+
+.post-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.post-autor{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+
+}
+
+
+.post-autor strong{
+
+    color:#172033;
+
+    font-size:13px;
+
+}
+
+
+.post-autor small{
+
+    color:#8994a5;
+
+    font-size:10px;
+
+}
+
+
+.post-menu{
+
+    margin-left:auto;
+
+    border:0;
+
+    background:transparent;
+
+    color:#9aa4b2;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+}
+
+
+.post-texto{
+
+    padding:13px 20px 18px;
+
+    color:#283448;
+
+    font-size:14px;
+
+    line-height:1.65;
+
+}
+
+
+.post-imagem{
+
+    width:100%;
+
+    max-height:600px;
+
+    overflow:hidden;
+
+}
+
+
+.post-imagem img{
+
+    width:100%;
+
+    max-height:600px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+.post-footer{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:9px 14px;
+
+    border-top:1px solid #edf0f3;
+
+}
+
+
+.post-footer button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:8px 11px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#657184;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    cursor:pointer;
+
+    border-radius:8px;
+
+}
+
+
+.post-footer button:hover{
+
+    background:#f2f7f5;
+
+    color:#08a965;
+
+}
+
+
+/* =========================================================
+   VAZIO
+========================================================= */
+
+.perfil-vazio{
+
+    text-align:center;
+
+    padding:70px 30px;
+
+    background:#fff;
+
+    border:1px solid #e3e8ef;
+
+    border-radius:16px;
+
+}
+
+
+.vazio-icon{
+
+    width:60px;
+
+    height:60px;
+
+    margin:0 auto 14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:#eafaf3;
+
+    color:#08ad67;
+
+    font-size:25px;
+
+}
+
+
+.perfil-vazio h3{
+
+    margin:0 0 6px;
+
+    font-size:16px;
+
+}
+
+
+.perfil-vazio p{
+
+    margin:0;
+
+    color:#8792a2;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+   SIDEBAR DO PERFIL
+========================================================= */
+
+.perfil-sidebar{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+
+.perfil-card{
+
+    position:relative;
+
+    padding:18px;
+
+    background:#fff;
+
+    border:1px solid #e3e8ef;
+
+    border-radius:16px;
+
+}
+
+
+.card-titulo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:14px;
+
+}
+
+
+.card-icon{
+
+    width:32px;
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:#eafaf3;
+
+    color:#08a965;
+
+}
+
+
+.card-titulo h3{
+
+    margin:0;
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.perfil-card > p{
+
+    margin:0;
+
+    color:#667085;
+
+    font-size:12px;
+
+    line-height:1.65;
+
+}
+
+
+.card-linha{
+
+    height:1px;
+
+    margin:16px 0;
+
+    background:#edf0f3;
+
+}
+
+
+.card-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+
+.card-info span{
+
+    color:#8994a5;
+
+    font-size:10px;
+
+}
+
+
+.card-info strong{
+
+    color:#263247;
+
+    font-size:12px;
+
+}
+
+
+.status-ativo{
+
+    position:absolute;
+
+    right:18px;
+
+    bottom:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:5px 9px;
+
+    background:#eafaf3;
+
+    border-radius:20px;
+
+    color:#08a965;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.status-ativo span{
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:#08b96e;
+
+}
+
+
+/* =========================================================
+   ESTATÍSTICAS
+========================================================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+}
+
+
+.stat-box{
+
+    padding:16px 10px;
+
+    text-align:center;
+
+    border:1px solid #e7ebf0;
+
+    border-radius:11px;
+
+    background:#fafbfc;
+
+}
+
+
+.stat-box strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+    color:#172033;
+
+    font-size:18px;
+
+}
+
+
+.stat-box span{
+
+    color:#8994a5;
+
+    font-size:10px;
+
+}
+
+
+.btn-rede{
+
+    width:100%;
+
+    height:37px;
+
+    margin-top:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:1px solid #08b96e;
+
+    border-radius:9px;
+
+    color:#08a965;
+
+    text-decoration:none;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.btn-rede:hover{
+
+    background:#edfff6;
+
+}
+
+
+/* =========================================================
+   CONQUISTAS
+========================================================= */
+
+.conquista{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.conquista-icon{
+
+    width:48px;
+
+    height:48px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:#eaf3ff;
+
+    color:#3178e5;
+
+    font-size:20px;
+
+}
+
+
+.conquista div:last-child{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+
+.conquista strong{
+
+    font-size:11px;
+
+    color:#263247;
+
+}
+
+
+.conquista span{
+
+    color:#8994a5;
+
+    font-size:10px;
+
+    line-height:1.4;
+
+}
+
+
+/* =========================================================
+   ATIVIDADE
+========================================================= */
+
+.atividade{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.atividade-ponto{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#08b96e;
+
+    box-shadow:
+        0 0 0 5px #e8faf2;
+
+}
+
+
+.atividade div:last-child{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+
+}
+
+
+.atividade strong{
+
+    font-size:11px;
+
+}
+
+
+.atividade span{
+
+    font-size:10px;
+
+    color:#8994a5;
+
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width:1200px){
+
+    .perfil-grid{
+
+        grid-template-columns:
+            minmax(0,1fr)
+            280px;
+
+    }
+
+    .perfil-identidade{
+
+        gap:18px;
+
+    }
+
+}
+
+
+@media(max-width:992px){
+
+    .perfil-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .perfil-sidebar{
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .perfil-identidade{
+
+        flex-wrap:wrap;
+
+    }
+
+    .perfil-acoes{
+
+        margin-left:auto;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .perfil-barra-topo{
+
+        gap:10px;
+
+    }
+
+    .perfil-busca{
+
+        display:none;
+
+    }
+
+    .perfil-topo-acoes{
+
+        margin-left:auto;
+
+    }
+
+    .perfil-capa{
+
+        height:140px;
+
+    }
+
+    .perfil-identidade{
+
+        padding:0 16px 20px;
+
+        gap:13px;
+
+    }
+
+    .perfil-avatar{
+
+        width:92px;
+
+        height:92px;
+
+        margin-top:-45px;
+
+        border-width:5px;
+
+    }
+
+    .perfil-avatar span{
+
+        font-size:30px;
+
+    }
+
+    .perfil-status{
+
+        width:16px;
+
+        height:16px;
+
+        border-width:3px;
+
+    }
+
+    .perfil-dados{
+
+        padding-top:10px;
+
+        min-width:0;
+
+    }
+
+    .perfil-nome h1{
+
+        font-size:20px;
+
+    }
+
+    .perfil-descricao{
+
+        font-size:11px;
+
+    }
+
+    .perfil-estatisticas{
+
+        gap:18px;
+
+    }
+
+    .perfil-acoes{
+
+        width:100%;
+
+        margin-left:0;
+
+    }
+
+    .perfil-tabs{
+
+        overflow-x:auto;
+
+    }
+
+    .perfil-tabs a{
+
+        white-space:nowrap;
+
+        padding:0 13px;
+
+    }
+
+    .perfil-sidebar{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .compositor-acoes{
+
+        flex-wrap:wrap;
+
+    }
+
+    .compositor-acoes .btn-publicar{
+
+        margin-left:0;
+
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .perfil-page{
+
+        width:100%;
+
+    }
+
+    .perfil-topo-acoes button{
+
+        width:38px;
+
+        height:38px;
+
+    }
+
+    .perfil-capa{
+
+        height:110px;
+
+    }
+
+    .perfil-avatar{
+
+        width:76px;
+
+        height:76px;
+
+        margin-top:-38px;
+
+    }
+
+    .perfil-nome h1{
+
+        font-size:18px;
+
+    }
+
+    .perfil-estatisticas{
+
+        gap:12px;
+
+    }
+
+    .perfil-estatisticas strong{
+
+        font-size:15px;
+
+    }
+
+    .perfil-estatisticas span{
+
+        font-size:9px;
+
+    }
+
+    .perfil-grid{
+
+        margin-top:10px;
+
+    }
+
+    .post-header{
+
+        padding:13px;
+
+    }
+
+    .post-texto{
+
+        padding:10px 14px 15px;
+
+    }
+
+}

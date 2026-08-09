@@ -260,28 +260,21 @@ Conecta - CotaFarma
                     </div>
 
 
-                    <div class="post-author">
+<div class="post-author">
 
-                        <strong>
-                            <a
-                                href="{{ url_for(
-                                    'conecta.perfil_usuario',
-                                    cnpj=post[5]
-                                ) }}"
-                            >
-                                {{ post[1] }}
-                            </a>
-                        </strong>
+    <strong>
+        {{ post[1] }}
+    </strong>
 
-                        <span class="post-type">
-                            Usuário CotaFarma
-                        </span>
+    <span class="post-type">
+        Usuário CotaFarma
+    </span>
 
-                        <small>
-                            • {{ post[4] }}
-                        </small>
+    <small>
+        • {{ post[4] }}
+    </small>
 
-                    </div>
+</div>
 
 
                     {% if session.get('usuario_cnpj') == post[5] %}

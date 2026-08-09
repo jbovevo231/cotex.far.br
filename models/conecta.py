@@ -8,14 +8,14 @@ def listar_posts():
 
     posts = db.execute(
         """
-        SELECT
-            conecta_posts.id,
-            conecta_posts.usuario,
-            conecta_posts.texto,
-            conecta_posts.imagem,
-            conecta_posts.data_postagem,
-            conecta_posts.cnpj,
-            usuarios.foto_perfil
+SELECT
+    conecta_posts.id,
+    usuarios.nome AS usuario,
+    conecta_posts.texto,
+    conecta_posts.imagem,
+    conecta_posts.data_postagem,
+    conecta_posts.cnpj,
+    usuarios.foto_perfil
         FROM conecta_posts
         LEFT JOIN usuarios
         ON conecta_posts.cnpj = usuarios.cnpj
@@ -42,7 +42,7 @@ def listar_posts_usuario(cnpj):
         """
         SELECT
             conecta_posts.id,
-            conecta_posts.usuario,
+            usuarios.nome AS usuario,
             conecta_posts.texto,
             conecta_posts.imagem,
             conecta_posts.data_postagem,

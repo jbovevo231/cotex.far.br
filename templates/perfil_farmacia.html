@@ -1,369 +1,339 @@
 {% extends "base.html" %}
 
 {% block title %}
-Perfil da Farmácia
+{{ usuario_nome }} - Conecta
 {% endblock %}
-
 
 {% block css %}
 
 <link rel="stylesheet"
-      href="{{ url_for('static', filename='css/conecta.css') }}">
-
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/minhas_publicacoes.css') }}">
+      href="{{ url_for('static', filename='css/perfil_farmacia.css') }}">
 
 {% endblock %}
 
-
-
 {% block page_content %}
 
+<!-- CABEÇALHO DO PERFIL -->
 
-<div class="conecta-page">
+<div class="perfil-topo">
 
+    <a href="{{ url_for('conecta.conecta') }}"
+       class="perfil-voltar">
 
-    <a href="{{ url_for('conecta.conecta') }}" class="perfil-voltar">
         <i class="bi bi-arrow-left"></i>
-        Voltar para o Feed
+
+        Voltar para o Conecta
+
     </a>
 
 
+    <div class="perfil-capa">
 
-    <!-- PERFIL DA FARMÁCIA -->
+        {% if foto_capa %}
 
-    <div class="perfil-farmacia-header"
-{% if foto_capa %}
-style="background-image:url('{{ foto_capa }}');"
-{% endif %}
->
+            <img src="{{ foto_capa }}"
+                 alt="Capa de {{ usuario_nome }}">
 
+        {% endif %}
 
-{% if meu_perfil %}
-
-<form action="{{ url_for('conecta.editar_perfil') }}"
-      method="POST"
-      enctype="multipart/form-data">
-
-    <label class="editar-capa">
-
-        <i class="bi bi-camera-fill"></i>
-
-        <input 
-        type="file"
-        name="foto_capa"
-        onchange="this.form.submit()">
-
-    </label>
+    </div>
 
 
-{% endif %}
+    <div class="perfil-info">
+
+        <div class="perfil-avatar">
+
+            {% if foto_perfil %}
+
+                <img src="{{ foto_perfil }}"
+                     alt="{{ usuario_nome }}">
+
+            {% else %}
+
+                <span>
+                    {{ usuario_nome[0].upper() }}
+                </span>
+
+            {% endif %}
+
+        </div>
 
 
-
-<div class="perfil-farmacia-avatar">
-
-
-    {% if foto_perfil %}
-
-        <img src="{{ foto_perfil }}">
-
-    {% else %}
-
-        <i class="bi bi-shop"></i>
-
-    {% endif %}
-
-
-{% if meu_perfil %}
-
-<label class="editar-foto">
-
-    <i class="bi bi-camera-fill"></i>
-
-    <input 
-    type="file"
-    name="foto_perfil"
-    onchange="this.form.submit()">
-
-</label>
-
-
-</form>
-
-{% endif %}
-
-
-</div>
-
-
-</div>
-
-
-
-        <div class="perfil-farmacia-info">
-
+        <div class="perfil-dados">
 
             <h1>
                 {{ usuario_nome }}
             </h1>
 
-{% if not meu_perfil %}
-
-<div class="perfil-acoes">
-
-<form
-action="{{ url_for('conecta.alternar_seguir', cnpj=perfil_cnpj) }}"
-method="POST">
-
-<button
-class="btn-seguir {% if segue %}seguindo{% endif %}"
-type="submit">
-
-
-{% if segue %}
-
-<i class="bi bi-check-circle-fill"></i>
-Seguindo
-
-{% else %}
-
-<i class="bi bi-person-plus-fill"></i>
-Seguir
-
-{% endif %}
-
-
-</button>
-
-</form>
-
-</div>
-
-{% endif %}
-
             <p>
                 Farmácia participante da comunidade Conecta
             </p>
 
-
-
-            <div class="perfil-status">
-
-
-                <div>
-
-                    <strong>
-                        {{ posts|length }}
-                    </strong>
-
-                    <span>
-                        Publicações
-                    </span>
-
-                </div>
-
-
-
-              <div>
-
-    <strong>
-        {{ seguidores }}
-    </strong>
-
-    <span>
-        Seguidores
-    </span>
-
-</div>
-
-<div>
-
-    <strong>
-        {{ seguindo }}
-    </strong>
-
-    <span>
-        Seguindo
-    </span>
-
-</div>  
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-
-    <h2 class="perfil-titulo">
-
-        Publicações de {{ usuario_nome }}
-
-    </h2>
-
-
-
-
-
-    {% for post in posts %}
-
-
-    <div class="perfil-post">
-
-
-        <div class="post-header">
-
-
-            <div class="post-avatar">
-
-                {{ post[1][0] }}
-
-            </div>
-
-
-
-            <div class="post-user">
-
-
-                <strong>
-
-                    {{ post[1] }}
-
-                </strong>
-
+            <div class="perfil-numeros">
 
                 <span>
-
-                    {{ post[4] }}
-
+                    <strong>{{ posts|length }}</strong>
+                    Publicações
                 </span>
 
+                <span>
+                    <strong>{{ seguidores }}</strong>
+                    Seguidores
+                </span>
+
+                <span>
+                    <strong>{{ seguindo }}</strong>
+                    Seguindo
+                </span>
 
             </div>
 
-
         </div>
 
 
+        {% if not meu_perfil %}
 
+            <div class="perfil-acoes">
 
+                {% if segue %}
 
-        {% if post[2] %}
+                    <form method="POST"
+                          action="{{ url_for('conecta.alternar_seguir', cnpj=perfil_cnpj) }}">
 
+                        <button type="submit"
+                                class="btn-seguindo">
 
-        <div class="post-content">
+                            <i class="bi bi-check2"></i>
 
+                            Seguindo
 
-            <p>
+                        </button>
 
-                {{ post[2] }}
+                    </form>
 
-            </p>
+                {% else %}
 
+                    <form method="POST"
+                          action="{{ url_for('conecta.alternar_seguir', cnpj=perfil_cnpj) }}">
 
-        </div>
+                        <button type="submit"
+                                class="btn-seguir">
 
+                            <i class="bi bi-person-plus"></i>
+
+                            Seguir
+
+                        </button>
+
+                    </form>
+
+                {% endif %}
+
+            </div>
 
         {% endif %}
 
-
-
-
-
-
-        {% if post[3] %}
-
-
-        <div class="post-image">
-
-
-            <img src="{{ post[3] }}">
-
-
-        </div>
-
-
-        {% endif %}
-
-
-
-
-        <div class="post-actions">
-
-
-            <button>
-
-                <i class="bi bi-hand-thumbs-up"></i>
-
-                Curtir
-
-            </button>
-
-
-
-            <button>
-
-                <i class="bi bi-chat"></i>
-
-                Comentar
-
-            </button>
-
-
-
-            <button>
-
-                <i class="bi bi-share"></i>
-
-                Compartilhar
-
-            </button>
-
-
-
-            <button>
-
-                <i class="bi bi-bookmark"></i>
-
-                Salvar
-
-            </button>
-
-
-        </div>
-
-
-
     </div>
-
-
-
-    {% else %}
-
-
-    <div class="card">
-
-        <p>
-            Esta farmácia ainda não possui publicações.
-        </p>
-
-    </div>
-
-
-    {% endfor %}
-
-
-
-
 
 </div>
 
 
+<!-- PUBLICAÇÕES -->
 
+<div class="perfil-conteudo">
+
+    <div class="perfil-feed">
+
+        <div class="secao-titulo">
+
+            <div>
+
+                <h2>
+                    Publicações de {{ usuario_nome }}
+                </h2>
+
+                <p>
+                    Conteúdos publicados no Conecta
+                </p>
+
+            </div>
+
+        </div>
+
+
+        {% if posts %}
+
+            {% for post in posts %}
+
+                <article class="post-card">
+
+                    <div class="post-header">
+
+                        <div class="post-avatar">
+
+                            {% if post[6] %}
+
+                                <img src="{{ post[6] }}"
+                                     alt="{{ usuario_nome }}">
+
+                            {% else %}
+
+                                {{ usuario_nome[0].upper() }}
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="post-identidade">
+
+                            <strong>
+                                {{ usuario_nome }}
+                            </strong>
+
+                            <small>
+                                {{ post[4] }}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    {% if post[2] %}
+
+                        <div class="post-texto">
+
+                            {{ post[2] }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    {% if post[3] %}
+
+                        <div class="post-imagem">
+
+                            <img src="{{ post[3] }}"
+                                 alt="Imagem da publicação">
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="post-acoes">
+
+                        <button type="button">
+
+                            <i class="bi bi-heart"></i>
+
+                            Curtir
+
+                        </button>
+
+
+                        <button type="button">
+
+                            <i class="bi bi-chat"></i>
+
+                            Comentar
+
+                        </button>
+
+
+                        <button type="button">
+
+                            <i class="bi bi-share"></i>
+
+                            Compartilhar
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="perfil-vazio">
+
+                <i class="bi bi-chat-square-text"></i>
+
+                <h3>
+                    Nenhuma publicação ainda
+                </h3>
+
+                <p>
+                    Esta farmácia ainda não publicou nada no Conecta.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- LATERAL -->
+
+    <aside class="perfil-lateral">
+
+        <div class="perfil-card">
+
+            <h3>
+                Sobre
+            </h3>
+
+            <p>
+                Farmácia participante da comunidade profissional
+                do mercado farmacêutico.
+            </p>
+
+        </div>
+
+
+        <div class="perfil-card">
+
+            <h3>
+                Comunidade
+            </h3>
+
+            <div class="perfil-estatistica">
+
+                <strong>
+                    {{ seguidores }}
+                </strong>
+
+                <span>
+                    seguidores
+                </span>
+
+            </div>
+
+            <div class="perfil-estatistica">
+
+                <strong>
+                    {{ seguindo }}
+                </strong>
+
+                <span>
+                    seguindo
+                </span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
 {% endblock %}
