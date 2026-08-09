@@ -1,207 +1,325 @@
-/* =====================================================
-   MOBILE - COTAFARMA 2027
-===================================================== */
+/* ==================================================
+   COTAFARMA • SIDEBAR MOBILE HORIZONTAL
+================================================== */
 
-@media (max-width:768px){
 
-html,
-body{
-    overflow-x:hidden;
+/* ==================================================
+   TABLET / MOBILE
+================================================== */
+
+@media (max-width: 992px) {
+
+    /* SIDEBAR HORIZONTAL */
+
+    .sidebar {
+
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+
+        width: 100%;
+        height: 76px;
+
+        padding: 8px 14px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        border-radius: 22px 22px 0 0;
+
+        z-index: 9999;
+
+        overflow: visible;
+
+    }
+
+
+    /* LOGO */
+
+    .sidebar-logo {
+
+        display: none;
+
+    }
+
+
+    /* MENU */
+
+    .menu {
+
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        justify-content: space-around;
+
+        gap: 6px;
+
+    }
+
+
+    /* ESCONDE TÍTULOS */
+
+    .menu-title {
+
+        display: none;
+
+    }
+
+
+    /* LINKS */
+
+    .menu a {
+
+        flex: 1;
+
+        width: auto;
+
+        height: 58px;
+
+        margin: 0;
+
+        padding: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 0;
+
+        border-radius: 16px;
+
+        transform: none !important;
+
+    }
+
+
+    /* ESCONDE TEXTO */
+
+    .menu a span {
+
+        display: none;
+
+    }
+
+
+    /* ÍCONES */
+
+    .menu a i {
+
+        width: 42px;
+
+        height: 42px;
+
+        margin: 0;
+
+        border-radius: 13px;
+
+        font-size: 18px;
+
+    }
+
+
+    /* REMOVE BARRA LATERAL */
+
+    .menu a::before {
+
+        display: none;
+
+    }
+
+
+    /* ITEM ATIVO */
+
+    .menu a.active {
+
+        border: 1px solid rgba(24,210,127,.18);
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(24,210,127,.18),
+                rgba(24,210,127,.10)
+            );
+
+    }
+
+
+    .menu a.active i {
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--green),
+                var(--green2)
+            );
+
+        color: white;
+
+        box-shadow:
+            0 8px 20px rgba(24,210,127,.30);
+
+    }
+
+
+    /* USUÁRIO */
+
+    .user {
+
+        display: none;
+
+    }
+
+
+    /* CONTEÚDO */
+
+    .content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        padding: 18px;
+
+        padding-bottom: 100px;
+
+    }
+
+
+    .page-wrapper {
+
+        width: 100%;
+
+    }
+
 }
 
-.app-layout{
-    display:block;
-}
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* ==================================================
+   CELULAR
+================================================== */
 
-.sidebar{
+@media (max-width: 768px) {
 
-    position:sticky;
-    top:0;
+    .sidebar {
 
-    width:100%;
-    height:auto;
+        height: 70px;
 
-    margin:0;
-    padding:8px 10px 10px;
+        padding: 6px 10px;
 
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+        border-radius: 18px 18px 0 0;
 
-    background:
-    linear-gradient(
-        180deg,
-        rgba(14,24,40,.98),
-        rgba(9,16,30,.98)
-    );
+    }
 
-    border-bottom:1px solid rgba(255,255,255,.08);
 
-    box-shadow:
-        0 12px 30px rgba(15,23,42,.18);
+    .menu {
 
-    z-index:999;
-}
+        gap: 4px;
 
-/* =====================================================
-   LOGO
-===================================================== */
+    }
 
-.sidebar-logo{
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    .menu a {
 
-    margin-bottom:6px;
+        height: 56px;
 
-}
+        border-radius: 14px;
 
-.logo-sidebar{
+    }
 
-    width:125px;
 
-    height:auto;
+    .menu a i {
 
-}
+        width: 40px;
 
-/* =====================================================
-   MENU
-===================================================== */
+        height: 40px;
 
-.menu{
+        font-size: 17px;
 
-    display:flex !important;
+        border-radius: 12px;
 
-    flex-direction:row !important;
+    }
 
-    flex-wrap:nowrap !important;
 
-    overflow-x:auto;
+    .content {
 
-    overflow-y:hidden;
+        margin-left: 0;
 
-    justify-content:flex-start;
+        width: 100%;
 
-    gap:8px;
+        padding: 16px;
 
-    width:100%;
+        padding-bottom: 90px;
 
-    padding:8px;
-
-    scrollbar-width:none;
+    }
 
 }
 
-.menu::-webkit-scrollbar{
 
-    display:none;
+/* ==================================================
+   CELULAR PEQUENO
+================================================== */
 
-}
+@media (max-width: 480px) {
 
-/* =====================================================
-   BOTÕES
-===================================================== */
+    .sidebar {
 
-.menu a{
+        height: 66px;
 
-    flex:0 0 44px;
+        padding: 5px 6px;
 
-    width:44px;
+        border-radius: 16px 16px 0 0;
 
-    height:44px;
+    }
 
-    min-width:44px;
 
-}
+    .menu {
 
-/* =====================================================
-   HOVER
-===================================================== */
+        gap: 2px;
 
-.menu a:hover{
+    }
 
-    background:rgba(255,255,255,.12);
 
-    transform:translateY(-2px);
+    .menu a {
 
-}
+        height: 54px;
 
-/* =====================================================
-   ATIVO
-===================================================== */
+        border-radius: 13px;
 
-.menu a.active{
+    }
 
-    background:#19c37d;
 
-    border-color:#19c37d;
+    .menu a i {
 
-    box-shadow:
-        0 0 16px rgba(25,195,125,.45);
+        width: 38px;
 
-}
+        height: 38px;
 
-.menu a.active i{
+        font-size: 16px;
 
-    color:#fff;
+    }
 
-}
 
-.menu a.active::after{
+    .content {
 
-    display:none;
+        padding: 14px;
 
-}
+        padding-bottom: 84px;
 
-/* =====================================================
-   ÍCONES
-===================================================== */
-
-.menu a i{
-
-    font-size:19px;
-
-    color:#f8fafc;
-
-}
-
-/* =====================================================
-   ESCONDE TEXTO
-===================================================== */
-
-.menu a span{
-
-    display:none;
-
-}
-
-/* =====================================================
-   USUÁRIO
-===================================================== */
-
-.user{
-
-    display:none;
-
-}
-
-/* =====================================================
-   CONTEÚDO
-===================================================== */
-
-.content{
-
-    margin-left:0;
-
-    width:100%;
-
-    padding:16px;
-
-}
+    }
 
 }
