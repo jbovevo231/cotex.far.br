@@ -1,45 +1,792 @@
-/*==================================================*
-*COTAFARMA • SIDEBAR PREMIUM 2026*
-*==================================================*/
+/* =========================================================
+   COTAFARMA — CONECTA
+   ========================================================= */
 
-:root{
-
-    --bg:#08111f;
-    --bg2:#0f172a;
-    --card:#111c2d;
-    --hover:#18263b;
-
-    --green:#18d27f;
-    --green2:#00b86b;
-
-    --text:#eef4ff;
-    --muted:#8fa3bd;
-
-    --border:rgba(255,255,255,.06);
-
-    --shadow:
-        0 15px 45px rgba(0,0,0,.35);
+.conecta-page {
+    width: 100%;
+    font-family: "Inter", sans-serif;
+    color: #101828;
 }
 
 
-/*==================================================
-  FONTE GLOBAL
-==================================================*/
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
 
-html,
-body {
-
-    margin:0;
-    padding:0;
-
-    font-family:"Inter", sans-serif;
-
-    box-sizing:border-box;
+.conecta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
 }
 
-*,
-*::before,
-*::after {
+.conecta-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
-    box-sizing:inherit;
+.conecta-title-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #18d27f, #00b86b);
+    color: white;
+    font-size: 21px;
+    box-shadow: 0 8px 20px rgba(24,210,127,.22);
+}
+
+.conecta-title h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.conecta-title p {
+    margin: 4px 0 0;
+    color: #667085;
+    font-size: 13px;
+}
+
+.conecta-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.conecta-icon-button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #eaecf0;
+    border-radius: 12px;
+    background: white;
+    color: #667085;
+    cursor: pointer;
+}
+
+.conecta-icon-button:hover {
+    color: #00a968;
+    border-color: #b7ebd2;
+}
+
+
+/* =========================================================
+   PESQUISA
+   ========================================================= */
+
+.conecta-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 48px;
+    margin-bottom: 18px;
+    padding: 0 16px;
+    background: white;
+    border: 1px solid #eaecf0;
+    border-radius: 14px;
+}
+
+.conecta-search i {
+    color: #98a2b3;
+}
+
+.conecta-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ABAS
+   ========================================================= */
+
+.conecta-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 22px;
+    padding: 5px;
+    background: #f8fafc;
+    border: 1px solid #eaecf0;
+    border-radius: 14px;
+    overflow-x: auto;
+}
+
+.conecta-tabs a {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #667085;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.conecta-tabs a:hover {
+    background: white;
+    color: #00a968;
+}
+
+.conecta-tabs a.active {
+    background: white;
+    color: #00a968;
+    box-shadow: 0 2px 8px rgba(16,24,40,.06);
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.conecta-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 22px;
+    align-items: start;
+}
+
+.conecta-main {
+    min-width: 0;
+}
+
+.conecta-right {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   PUBLICAR
+   ========================================================= */
+
+.publicar-card {
+    padding: 18px;
+    margin-bottom: 16px;
+    background: white;
+    border: 1px solid #eaecf0;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(16,24,40,.04);
+}
+
+.publicar-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.publicar-avatar {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #18d27f, #00b86b);
+    color: white;
+    font-weight: 800;
+}
+
+.publicar-input {
+    flex: 1;
+    min-height: 70px;
+    resize: vertical;
+    padding: 12px 14px;
+    border: 1px solid #eaecf0;
+    border-radius: 13px;
+    outline: none;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+}
+
+.publicar-input:focus {
+    border-color: #18d27f;
+    box-shadow: 0 0 0 3px rgba(24,210,127,.08);
+}
+
+.publicar-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top: 1px solid #f2f4f7;
+}
+
+.publicar-options button,
+.publicar-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 11px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #667085;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.publicar-options button:hover,
+.publicar-option:hover {
+    background: #f2fdf7;
+    color: #009b5a;
+}
+
+.publicar-option input {
+    display: none;
+}
+
+.publicar-options .btn-publicar {
+    margin-left: auto;
+    padding: 9px 16px;
+    background: linear-gradient(135deg, #18d27f, #00b86b);
+    color: white;
+}
+
+.publicar-options .btn-publicar:hover {
+    background: linear-gradient(135deg, #18d27f, #00a968);
+    color: white;
+}
+
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.feed-filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+}
+
+.feed-filters button {
+    padding: 7px 12px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    color: #667085;
+    white-space: nowrap;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.feed-filters button:hover {
+    background: #f2fdf7;
+    color: #009b5a;
+}
+
+.feed-filters button.active {
+    background: #e9fbf2;
+    color: #009b5a;
+}
+
+.feed-filters select {
+    margin-left: auto;
+    padding: 8px 10px;
+    border: 1px solid #eaecf0;
+    border-radius: 9px;
+    background: white;
+    color: #667085;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   POSTS
+   ========================================================= */
+
+.post-card {
+    margin-bottom: 16px;
+    padding: 18px;
+    background: white;
+    border: 1px solid #eaecf0;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(16,24,40,.04);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.post-avatar {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #e8f8f0;
+    color: #009b5a;
+    font-weight: 800;
+}
+
+.post-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.post-author strong {
+    font-size: 14px;
+}
+
+.post-author strong a {
+    color: #101828;
+    text-decoration: none;
+}
+
+.post-author strong a:hover {
+    color: #00a968;
+}
+
+.post-type {
+    color: #667085;
+    font-size: 11px;
+}
+
+.post-author small {
+    color: #98a2b3;
+    font-size: 11px;
+}
+
+.post-menu {
+    border: 0;
+    background: transparent;
+    color: #98a2b3;
+    cursor: pointer;
+}
+
+.post-menu:hover {
+    color: #e11d48;
+}
+
+.post-content {
+    margin-top: 17px;
+}
+
+.post-content p {
+    margin: 0 0 10px;
+    color: #344054;
+    font-size: 14px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+}
+
+.post-content p:last-child {
+    margin-bottom: 0;
+}
+
+.post-image {
+    margin-top: 15px;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.post-image img {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+}
+
+.post-actions {
+    display: flex;
+    gap: 5px;
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #f2f4f7;
+}
+
+.post-actions button {
+    padding: 8px 11px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #667085;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.post-actions button:hover {
+    background: #f2fdf7;
+    color: #009b5a;
+}
+
+
+/* =========================================================
+   CARDS LATERAIS
+   ========================================================= */
+
+.side-card {
+    margin-bottom: 16px;
+    padding: 17px;
+    background: white;
+    border: 1px solid #eaecf0;
+    border-radius: 17px;
+    box-shadow: 0 5px 18px rgba(16,24,40,.04);
+}
+
+.side-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.side-card-header h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.side-card-header a {
+    color: #00a968;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ONLINE
+   ========================================================= */
+
+.online-list {
+    display: flex;
+    align-items: center;
+}
+
+.online-avatar,
+.online-more {
+    width: 36px;
+    height: 36px;
+    margin-right: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: #e8f8f0;
+    color: #009b5a;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.online-more {
+    background: #f2f4f7;
+    color: #667085;
+}
+
+
+/* =========================================================
+   DISCUSSÕES
+   ========================================================= */
+
+.discussion-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.discussion-item + .discussion-item {
+    border-top: 1px solid #f2f4f7;
+}
+
+.discussion-item > i {
+    color: #18b875;
+}
+
+.discussion-item strong {
+    display: block;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.discussion-item small {
+    display: block;
+    margin-top: 3px;
+    color: #98a2b3;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   OPORTUNIDADES
+   ========================================================= */
+
+.opportunity-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.opportunity-item + .opportunity-item {
+    border-top: 1px solid #f2f4f7;
+}
+
+.opportunity-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #f2fdf7;
+    color: #009b5a;
+}
+
+.opportunity-item small,
+.opportunity-item strong,
+.opportunity-item span {
+    display: block;
+}
+
+.opportunity-item small {
+    color: #98a2b3;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.opportunity-item strong {
+    margin-top: 2px;
+    font-size: 12px;
+}
+
+.opportunity-item span {
+    margin-top: 2px;
+    color: #667085;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   GRUPOS
+   ========================================================= */
+
+.group-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 0;
+}
+
+.group-item + .group-item {
+    border-top: 1px solid #f2f4f7;
+}
+
+.group-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #f2fdf7;
+    color: #009b5a;
+}
+
+.group-item > div:nth-child(2) {
+    flex: 1;
+}
+
+.group-item strong,
+.group-item small {
+    display: block;
+}
+
+.group-item strong {
+    font-size: 11px;
+}
+
+.group-item small {
+    margin-top: 2px;
+    color: #98a2b3;
+    font-size: 9px;
+}
+
+.group-item button {
+    border: 1px solid #b7ebd2;
+    border-radius: 7px;
+    background: white;
+    color: #009b5a;
+    padding: 5px 8px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   EVENTOS
+   ========================================================= */
+
+.event-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.event-item + .event-item {
+    border-top: 1px solid #f2f4f7;
+}
+
+.event-date {
+    width: 38px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #f2fdf7;
+    color: #009b5a;
+}
+
+.event-date strong {
+    font-size: 14px;
+}
+
+.event-date small {
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.event-item > div:last-child strong {
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.event-item > div:last-child small {
+    display: block;
+    margin-top: 3px;
+    color: #98a2b3;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   CHAT
+   ========================================================= */
+
+.conecta-chat {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    width: 54px;
+    height: 54px;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #18d27f, #00b86b);
+    color: white;
+    font-size: 19px;
+    box-shadow: 0 12px 30px rgba(0,184,107,.3);
+    cursor: pointer;
+    z-index: 100;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .conecta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .conecta-right {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .side-card {
+        margin-bottom: 0;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .conecta-top {
+        align-items: flex-start;
+    }
+
+    .conecta-title h1 {
+        font-size: 24px;
+    }
+
+    .conecta-actions {
+        display: none;
+    }
+
+    .conecta-tabs {
+        margin-bottom: 16px;
+    }
+
+    .publicar-options {
+        flex-wrap: wrap;
+    }
+
+    .publicar-options .btn-publicar {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .conecta-right {
+        display: block;
+    }
+
+    .side-card {
+        margin-bottom: 14px;
+    }
+
+    .feed-filters select {
+        display: none;
+    }
+
+    .post-actions {
+        justify-content: space-between;
+    }
+
+    .post-actions button {
+        padding: 8px 5px;
+        font-size: 11px;
+    }
+
+    .conecta-chat {
+        right: 18px;
+        bottom: 18px;
+    }
 }

@@ -4,18 +4,792 @@
 Conecta - CotaFarma
 {% endblock %}
 
+
 {% block css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/conecta.css') }}">
+
 {% endblock %}
+
 
 {% block page_content %}
 
-<h1>Conecta</h1>
+<div class="conecta-page">
 
-<p>
-    A comunidade profissional do mercado farmacêutico.
-</p>
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <header class="conecta-top">
+
+        <div class="conecta-title">
+
+            <div class="conecta-title-icon">
+                <i class="bi bi-people"></i>
+            </div>
+
+            <div>
+
+                <h1>Conecta</h1>
+
+                <p>
+                    A comunidade profissional do mercado farmacêutico.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="conecta-actions">
+
+            <button class="conecta-icon-button">
+                <i class="bi bi-bell"></i>
+            </button>
+
+            <button class="conecta-icon-button">
+                <i class="bi bi-chat-left-text"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         PESQUISA
+    ========================================== -->
+
+    <div class="conecta-search">
+
+        <i class="bi bi-search"></i>
+
+        <input
+            type="text"
+            placeholder="Buscar pessoas, empresas, grupos, posts..."
+        >
+
+    </div>
+
+
+    <!-- =========================================
+         NAVEGAÇÃO
+    ========================================== -->
+
+    <nav class="conecta-tabs">
+
+        <a href="#" class="active">
+            <i class="bi bi-house"></i>
+            Início
+        </a>
+
+        <a href="#">
+            <i class="bi bi-chat"></i>
+            Discussões
+        </a>
+
+        <a href="#">
+            <i class="bi bi-megaphone"></i>
+            Oportunidades
+        </a>
+
+        <a href="#">
+            <i class="bi bi-calendar-event"></i>
+            Eventos
+        </a>
+
+        <a href="#">
+            <i class="bi bi-person"></i>
+            Pessoas
+        </a>
+
+        <a href="#">
+            <i class="bi bi-people"></i>
+            Grupos
+        </a>
+
+    </nav>
+
+
+    <!-- =========================================
+         GRID PRINCIPAL
+    ========================================== -->
+
+    <div class="conecta-grid">
+
+        <!-- =====================================
+             COLUNA PRINCIPAL
+        ====================================== -->
+
+        <section class="conecta-main">
+
+            <!-- PUBLICAR -->
+            <div class="publicar-card">
+
+                <form
+                    action="{{ url_for('conecta.publicar') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+
+                    <div class="publicar-top">
+
+                        <div class="publicar-avatar">
+
+                            {% set nome = session.get('usuario_nome') %}
+
+                            {% if nome %}
+                                {{ nome[0].upper() }}
+                            {% else %}
+                                U
+                            {% endif %}
+
+                        </div>
+
+                        <textarea
+                            name="texto"
+                            class="publicar-input"
+                            placeholder="O que você está pensando?"
+                            required
+                        ></textarea>
+
+                    </div>
+
+                    <div class="publicar-options">
+
+                        <label class="publicar-option">
+                            <i class="bi bi-image"></i>
+                            Foto
+                            <input
+                                type="file"
+                                name="foto"
+                                accept="image/*"
+                                hidden
+                            >
+                        </label>
+
+                        <button type="button">
+                            <i class="bi bi-question-circle"></i>
+                            Pergunta
+                        </button>
+
+                        <button type="button">
+                            <i class="bi bi-briefcase"></i>
+                            Oportunidade
+                        </button>
+
+                        <button type="button">
+                            <i class="bi bi-bar-chart"></i>
+                            Enquete
+                        </button>
+
+                        <button type="submit" class="btn-publicar">
+                            <i class="bi bi-send"></i>
+                            Publicar
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- FILTROS -->
+            <div class="feed-filters">
+
+                <button class="active">
+                    Todos
+                </button>
+
+                <button>
+                    Seguindo
+                </button>
+
+                <button>
+                    Discussões
+                </button>
+
+                <button>
+                    Oportunidades
+                </button>
+
+                <button>
+                    Anúncios
+                </button>
+
+                <select>
+                    <option>Mais recentes</option>
+                    <option>Mais comentados</option>
+                    <option>Mais relevantes</option>
+                </select>
+
+            </div>
+
+
+            <!-- =================================
+                 PUBLICAÇÕES REAIS DO BANCO
+            ================================== -->
+
+            {% for post in posts %}
+
+            <article class="post-card">
+
+                <div class="post-header">
+
+                    <div class="post-avatar">
+
+                        {% if post[6] %}
+
+                            <img
+                                src="{{ post[6] }}"
+                                alt="Foto de {{ post[1] }}"
+                            >
+
+                        {% elif post[1] %}
+
+                            {{ post[1][0].upper() }}
+
+                        {% else %}
+
+                            U
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="post-author">
+
+                        <strong>
+                            <a
+                                href="{{ url_for(
+                                    'conecta.perfil_usuario',
+                                    cnpj=post[5]
+                                ) }}"
+                            >
+                                {{ post[1] }}
+                            </a>
+                        </strong>
+
+                        <span class="post-type">
+                            Usuário CotaFarma
+                        </span>
+
+                        <small>
+                            • {{ post[4] }}
+                        </small>
+
+                    </div>
+
+
+                    {% if session.get('usuario_cnpj') == post[5] %}
+
+                    <form
+                        method="POST"
+                        action="{{ url_for(
+                            'conecta.excluir',
+                            id_post=post[0]
+                        ) }}"
+                        style="margin-left:auto;"
+                        onsubmit="return confirm('Deseja realmente excluir esta publicação?')"
+                    >
+
+                        <button
+                            type="submit"
+                            class="post-menu"
+                            title="Excluir publicação"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                </div>
+
+
+                {% if post[2] %}
+
+                <div class="post-content">
+
+                    <p>
+                        {{ post[2] }}
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if post[3] %}
+
+                <div class="post-image">
+
+                    <img
+                        src="{{ post[3] }}"
+                        alt="Imagem da publicação"
+                    >
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="post-actions">
+
+                    <button type="button">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        Curtir
+                    </button>
+
+                    <button type="button">
+                        <i class="bi bi-chat"></i>
+                        Comentar
+                    </button>
+
+                    <button type="button">
+                        <i class="bi bi-share"></i>
+                        Compartilhar
+                    </button>
+
+                </div>
+
+            </article>
+
+            {% else %}
+
+            <div class="post-card">
+
+                <div style="text-align:center; padding:40px 20px;">
+
+                    <i
+                        class="bi bi-chat-square-text"
+                        style="font-size:40px; color:#18d27f;"
+                    ></i>
+
+                    <h3>
+                        Ainda não há publicações
+                    </h3>
+
+                    <p style="color:#667085;">
+                        Seja o primeiro a compartilhar algo com a comunidade.
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+
+        <!-- =====================================
+             COLUNA LATERAL
+        ====================================== -->
+
+        <aside class="conecta-right">
+
+
+            <!-- PESSOAS ONLINE -->
+
+            <div class="side-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        Pessoas online
+                    </h3>
+
+                    <a href="#">
+                        Ver todas
+                    </a>
+
+                </div>
+
+
+                <div class="online-list">
+
+                    <div class="online-avatar">JS</div>
+                    <div class="online-avatar">MA</div>
+                    <div class="online-avatar">FV</div>
+                    <div class="online-avatar">RC</div>
+                    <div class="online-avatar">DS</div>
+
+                    <div class="online-more">
+                        +23
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DISCUSSÕES -->
+
+            <div class="side-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        Discussões em alta
+                    </h3>
+
+                    <a href="#">
+                        Ver todas
+                    </a>
+
+                </div>
+
+
+                <div class="discussion-list">
+
+                    <div class="discussion-item">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                        <div>
+
+                            <strong>
+                                Qual distribuidora está com melhor condição?
+                            </strong>
+
+                            <small>
+                                23 respostas
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discussion-item">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                        <div>
+
+                            <strong>
+                                Falta de medicamento na região Sul
+                            </strong>
+
+                            <small>
+                                18 respostas
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="discussion-item">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                        <div>
+
+                            <strong>
+                                Como reduzir custos na farmácia?
+                            </strong>
+
+                            <small>
+                                15 respostas
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OPORTUNIDADES -->
+
+            <div class="side-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        Oportunidades
+                    </h3>
+
+                    <a href="#">
+                        Ver todas
+                    </a>
+
+                </div>
+
+
+                <div class="opportunity-item">
+
+                    <span class="opportunity-icon">
+                        <i class="bi bi-bag"></i>
+                    </span>
+
+                    <div>
+
+                        <small>COMPRA</small>
+
+                        <strong>
+                            Paracetamol 750mg
+                        </strong>
+
+                        <span>
+                            Região: Nordeste
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="opportunity-item">
+
+                    <span class="opportunity-icon">
+                        <i class="bi bi-building"></i>
+                    </span>
+
+                    <div>
+
+                        <small>FORNECEDOR</small>
+
+                        <strong>
+                            Distribuidora Saúde Plus
+                        </strong>
+
+                        <span>
+                            Medicamentos éticos e genéricos
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="opportunity-item">
+
+                    <span class="opportunity-icon">
+                        <i class="bi bi-person-badge"></i>
+                    </span>
+
+                    <div>
+
+                        <small>REPRESENTAÇÃO</small>
+
+                        <strong>
+                            Representante comercial
+                        </strong>
+
+                        <span>
+                            Sul / SC / PR / RS
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRUPOS -->
+
+            <div class="side-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        Grupos sugeridos
+                    </h3>
+
+                    <a href="#">
+                        Ver todos
+                    </a>
+
+                </div>
+
+
+                <div class="group-item">
+
+                    <div class="group-icon">
+                        <i class="bi bi-shop"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Gestão de Farmácias
+                        </strong>
+
+                        <small>
+                            1.234 membros
+                        </small>
+
+                    </div>
+
+                    <button>
+                        Entrar
+                    </button>
+
+                </div>
+
+
+                <div class="group-item">
+
+                    <div class="group-icon">
+                        <i class="bi bi-basket"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Compras Coletivas
+                        </strong>
+
+                        <small>
+                            856 membros
+                        </small>
+
+                    </div>
+
+                    <button>
+                        Entrar
+                    </button>
+
+                </div>
+
+
+                <div class="group-item">
+
+                    <div class="group-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Representantes do Brasil
+                        </strong>
+
+                        <small>
+                            2.145 membros
+                        </small>
+
+                    </div>
+
+                    <button>
+                        Entrar
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EVENTOS -->
+
+            <div class="side-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        Próximos eventos
+                    </h3>
+
+                    <a href="#">
+                        Ver todos
+                    </a>
+
+                </div>
+
+
+                <div class="event-item">
+
+                    <div class="event-date">
+
+                        <strong>
+                            15
+                        </strong>
+
+                        <small>
+                            MAI
+                        </small>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Workshop: Tendências do Mercado
+                        </strong>
+
+                        <small>
+                            <i class="bi bi-camera-video"></i>
+                            Online • 14:00
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event-item">
+
+                    <div class="event-date">
+
+                        <strong>
+                            22
+                        </strong>
+
+                        <small>
+                            MAI
+                        </small>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Gestão Financeira para Farmácias
+                        </strong>
+
+                        <small>
+                            <i class="bi bi-camera-video"></i>
+                            Online • 19:00
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </aside>
+
+    </div>
+
+
+    <!-- CHAT -->
+
+    <button class="conecta-chat">
+
+        <i class="bi bi-chat"></i>
+
+    </button>
+
+
+</div>
 
 {% endblock %}
 
+
 {% block scripts %}
+
+<script src="{{ url_for('static', filename='js/conecta.js') }}"></script>
+
 {% endblock %}
