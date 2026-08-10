@@ -1593,65 +1593,71 @@ console.log("Whats:", whatsappPedido);
 
 `;
 
-    pedido.itens.forEach((item, i)=>{
+const linhas = card.querySelectorAll("tbody tr");
 
-        const preco = Number(
-            item.oferta
-                ? item.preco_oferta
-                : item.preco
+linhas.forEach(linha => {
+
+    const medicamento =
+        linha.querySelector(
+            ".col-medicamento strong"
+        )?.innerText.trim();
+
+    if (!medicamento) {
+        return;
+    }
+
+
+    const precoTexto =
+        linha.querySelector(
+            ".col-preco"
+        )?.innerText
+            .replace("R$", "")
+            .replace(",", ".")
+            .trim();
+
+    const preco = Number(precoTexto);
+
+
+    if (!Number.isFinite(preco)) {
+        return;
+    }
+
+
+    const inputQuantidade =
+        linha.querySelector(
+            ".campo-quantidade"
         );
 
-        // PEGA A QUANTIDADE DIGITADA NA TELA
-        const inputQuantidade =
-    Array.from(
-        card.querySelectorAll(".campo-quantidade")
-    ).find(input => {
-
-        const linha =
-            input.closest("tr");
-
-        const nomeMedicamento =
-            linha
-                ?.querySelector(
-                    ".col-medicamento strong"
-                )
-                ?.innerText
-                .trim();
-
-        return (
-            nomeMedicamento
-            === item.medicamento
-        );
-
-    });
+    const quantidade =
+        Number(inputQuantidade?.value || 1);
 
 
-const quantidade =
-    Number(
-        inputQuantidade?.value || 1
-    );
+    const subtotal =
+        preco * quantidade;
 
-        const subtotal = preco * quantidade;
 
-        mensagem +=
-`💊 *${item.medicamento}*
+    total += subtotal;
+
+
+    mensagem +=
+`💊 *${medicamento}*
 📦 Quantidade: ${quantidade}
 💰 Preço: R$ ${preco.toFixed(2)}
 💵 Subtotal: R$ ${subtotal.toFixed(2)}
 
 `;
 
-        total += subtotal;
 
-        html += `
-            <tr>
-                <td>${item.medicamento}</td>
-                <td>R$ ${preco.toFixed(2)}</td>
-                <td style="text-align:center">${quantidade}</td>
-                <td>R$ ${subtotal.toFixed(2)}</td>
-            </tr>
-        `;
-    });
+    html += `
+        <tr>
+            <td>${medicamento}</td>
+            <td>R$ ${preco.toFixed(2)}</td>
+            <td style="text-align:center">${quantidade}</td>
+            <td>R$ ${subtotal.toFixed(2)}</td>
+        </tr>
+    `;
+
+});
 
 mensagem +=
 `────────────────────────
