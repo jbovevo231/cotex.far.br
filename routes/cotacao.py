@@ -486,6 +486,342 @@ def criar_cotacao():
         url_for("dashboard.dashboard")
     )
 
+# =========================================================
+# PRÓXIMO MELHOR PREÇO
+# =========================================================
+
+@cotacao_bp.route(
+    "/cotacoes/<int:cotacao_id>/proximo-melhor-preco",
+    methods=["POST"]
+)
+def proximo_melhor_preco(cotacao_id):
+
+    medicamento = request.form.get(
+        "medicamento",
+        ""
+    ).strip()
+
+    representante_atual = request.form.get(
+        "representante_atual",
+        ""
+    ).strip()
+
+    distribuidora_atual = request.form.get(
+        "distribuidora_atual",
+        ""
+    ).strip()
+
+
+    if not medicamento:
+
+        return jsonify({
+            "sucesso": False,
+            "erro": "Medicamento não informado."
+        }), 400
+
+
+    db = get_db()
+
+
+    # =====================================================
+    # FUNÇÃO PARA CONVERTER PREÇO COM SEGURANÇA
+    # =====================================================
+
+    def converter_preco(valor):
+
+        if valor is None:
+            return None
+
+        try:
+
+            texto = str(valor).strip()
+
+            if not texto:
+                return None
+
+            texto = (
+                texto
+                .replace("R$", "")
+                .replace(" ", "")
+            )
+
+            # Exemplo:
+            # 2,15 -> 2.15
+            # 1.234,56 -> 1234.56
+
+            if "," in texto:
+
+                texto = (
+                    texto
+                    .replace(".", "")
+                    .replace(",", ".")
+                )
+
+            return float(texto)
+
+        except (ValueError, TypeError):
+
+            return None
+
+
+    try:
+
+        # =================================================
+        # BUSCA TODOS OS PREÇOS VÁLIDOS
+        # =================================================
+
+        respostas = db.execute(
+            """
+            SELECT
+                id,
+                medicamento,
+                representante,
+                distribuidora,
+                status,
+                preco,
+                preco_oferta,
+                quantidade_oferta,
+                whatsapp
+
+            FROM respostas_cotacao
+
+            WHERE cotacao_id = ?
+
+            AND LOWER(TRIM(medicamento))
+                = LOWER(TRIM(?))
+
+            ORDER BY id ASC
+            """,
+            (
+                cotacao_id,
+                medicamento
+            )
+        ).fetchall()
+
+
+        if not respostas:
+
+            return jsonify({
+                "sucesso": False,
+                "erro":
+                    "Nenhum preço disponível para este medicamento."
+            })
+
+
+        # =================================================
+        # FILTRA SOMENTE PREÇOS VÁLIDOS
+        # =================================================
+
+        candidatos = []
+
+
+        for resposta in respostas:
+
+            resposta_id = resposta[0]
+
+            nome = str(
+                resposta[2] or ""
+            ).strip()
+
+            distribuidora = str(
+                resposta[3] or ""
+            ).strip()
+
+            status = str(
+                resposta[4] or ""
+            ).strip().upper()
+
+
+            preco = converter_preco(
+                resposta[5]
+            )
+
+            preco_oferta = converter_preco(
+                resposta[6]
+            )
+
+
+            # ---------------------------------------------
+            # DEFINE O PREÇO QUE REALMENTE SERÁ COMPARADO
+            # ---------------------------------------------
+
+            if status == "OFERTA":
+
+                preco_final = preco_oferta
+
+            elif status == "TENHO":
+
+                preco_final = preco
+
+            else:
+
+                continue
+
+
+            # ---------------------------------------------
+            # IGNORA PREÇO INVÁLIDO
+            # ---------------------------------------------
+
+            if (
+                preco_final is None
+                or preco_final <= 0
+            ):
+                continue
+
+
+            # ---------------------------------------------
+            # NÃO REPETE O REPRESENTANTE ATUAL
+            # ---------------------------------------------
+
+            mesmo_representante = (
+                nome.lower()
+                == representante_atual.lower()
+                and
+                distribuidora.lower()
+                == distribuidora_atual.lower()
+            )
+
+
+            if mesmo_representante:
+
+                continue
+
+
+            candidatos.append({
+                "id": resposta_id,
+                "medicamento": resposta[1],
+                "representante": nome,
+                "distribuidora": distribuidora,
+                "status": status,
+                "preco": preco,
+                "preco_oferta": preco_oferta,
+                "preco_final": preco_final,
+                "quantidade_oferta": resposta[7],
+                "whatsapp": resposta[8]
+            })
+
+
+        # =================================================
+        # NENHUM OUTRO PREÇO
+        # =================================================
+
+        if not candidatos:
+
+            return jsonify({
+                "sucesso": False,
+                "erro":
+                    "Não existe outro preço disponível para este medicamento."
+            })
+
+
+        # =================================================
+        # ORDENA DO MENOR PARA O MAIOR
+        # =================================================
+
+        candidatos.sort(
+            key=lambda item: item["preco_final"]
+        )
+
+
+        # =================================================
+        # PEGA O PRÓXIMO MELHOR PREÇO
+        # =================================================
+
+        proximo = candidatos[0]
+
+
+        # =================================================
+        # BUSCA A QUANTIDADE ORIGINAL
+        # =================================================
+
+        item = db.execute(
+            """
+            SELECT quantidade
+            FROM cotacao_itens
+
+            WHERE cotacao_id = ?
+
+            AND LOWER(TRIM(medicamento))
+                = LOWER(TRIM(?))
+
+            LIMIT 1
+            """,
+            (
+                cotacao_id,
+                medicamento
+            )
+        ).fetchone()
+
+
+        quantidade = (
+            item[0]
+            if item
+            else 1
+        )
+
+
+        # =================================================
+        # RETORNA PARA O JAVASCRIPT
+        # =================================================
+
+        return jsonify({
+
+            "sucesso": True,
+
+            "representante_id":
+                proximo["id"],
+
+            "medicamento":
+                proximo["medicamento"],
+
+            "representante":
+                proximo["representante"],
+
+            "distribuidora":
+                proximo["distribuidora"],
+
+            "status":
+                proximo["status"],
+
+            "preco":
+                proximo["preco"],
+
+            "preco_oferta":
+                proximo["preco_oferta"],
+
+            "preco_final":
+                proximo["preco_final"],
+
+            "oferta":
+                proximo["status"] == "OFERTA",
+
+            "quantidade":
+                quantidade,
+
+            "quantidade_oferta":
+                proximo["quantidade_oferta"],
+
+            "whatsapp":
+                proximo["whatsapp"]
+        })
+
+
+    except Exception as e:
+
+        import traceback
+
+        traceback.print_exc()
+
+        return jsonify({
+            "sucesso": False,
+            "erro":
+                f"{type(e).__name__}: {str(e)}"
+        }), 500
+
+
+    finally:
+
+        db.close()
 
 # =========================================================
 # ENVIAR MEDICAMENTO PARA A PRÓXIMA COTAÇÃO

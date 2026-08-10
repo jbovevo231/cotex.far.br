@@ -635,19 +635,23 @@ html += `
 
     </div>
 
-    <table class="resultado-tabela">
+<table class="resultado-tabela">
 
-        <thead>
+    <thead>
 
-    <tr>
+        <tr>
 
-        <th>Produto</th>
+            <th>Medicamento</th>
 
-        <th style="width:140px;">Quantidade</th>
+            <th>Ação</th>
 
-    </tr>
+            <th>Preço</th>
 
-</thead>
+            <th>Quantidade</th>
+
+        </tr>
+
+    </thead>
 
         <tbody>
 
@@ -686,15 +690,28 @@ rep.itens.forEach(item=>{
 
     </td>
 
-    <td class="col-condicao">
+<td class="col-acoes">
 
-        ${
-            status=="OFERTA"
-            ? `Oferta a partir de ${quantidade} un.`
-            : "Preço Unitário"
-        }
+    <select
+        class="acao-medicamento"
+        data-medicamento="${medicamento}"
+    >
 
-    </td>
+        <option value="">
+            Selecionar ação
+        </option>
+
+        <option value="proximo">
+            Próximo melhor preço
+        </option>
+
+        <option value="proxima_cotacao">
+            Próxima cotação
+        </option>
+
+    </select>
+
+</td>
 
     <td class="col-preco">
 
@@ -753,27 +770,14 @@ html+=`
 
         </div>
 
-        <button
+<button
     class="btn-gerar-pedido"
-    onclick="enviarWhatsappPedido()">
-
-    <i class="bi bi-whatsapp"></i>
-
-    Enviar WhatsApp
-
-</button>
-
-        <button
-    class="btn-gerar-pedido"
-    onclick="abrirPedido(${id}, '${rep.representante}')">
-
+    onclick="abrirPedido(this, '${id}', '${rep.representante}')"
+>
     <i class="bi bi-cart3"></i>
-
     GERAR PEDIDO
-
 </button>
 
-    </div>
 
 </div>
 
