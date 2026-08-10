@@ -8,6 +8,8 @@ from flask import (
     jsonify
 )
 
+from database.connection import get_db
+
 from services.dashboard_service import (
     carregar_indicadores,
     carregar_ultimas_cotacoes
@@ -51,13 +53,55 @@ print(">>> ROTA PENDÊNCIAS CARREGADA <<<")
 @dashboard_bp.route("/dashboard/pendencias")
 def dashboard_pendencias():
 
-    from models.cotacao import buscar_pendencias
+    if "usuario_cnpj" not in session:
+        return jsonify([])
 
-    resultado = buscar_pendencias(session["usuario_cnpj"])
+    cnpj = session["usuario_cnpj"]
 
-    print(resultado)
+    conn = get_db()
 
-    return jsonify(resultado)
+    try:
+
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT
+                p.medicamento,
+                p.laboratorio,
+                p.quantidade
+            FROM itens_pendentes p
+            INNER JOIN cotacoes c
+                ON c.id = p.cotacao_origem
+            WHERE c.cnpj_usuario = ?
+            ORDER BY p.data_registro DESC
+        """, (cnpj,))
+
+        pendencias = cursor.fetchall()
+
+        resultado = []
+
+        for item in pendencias:
+
+            resultado.append([
+                item[0],
+                item[1],
+                item[2]
+            ])
+
+        return jsonify(resultado)
+
+    except Exception as e:
+
+        import traceback
+        traceback.print_exc()
+
+        return jsonify({
+            "erro": str(e)
+        }), 500
+
+    finally:
+
+        conn.close()
 
 @dashboard_bp.route("/dashboard/historico")
 def dashboard_historico():

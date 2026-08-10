@@ -178,6 +178,8 @@ def encerrar(id):
         "sucesso": True
     })
 
+
+
 @cotacao_bp.route("/cotacoes/<int:id>/excluir", methods=["POST"])
 def excluir(id):
 
@@ -217,3 +219,121 @@ def criar_cotacao():
     )
 
     return redirect(url_for("dashboard.dashboard"))
+
+
+
+# =========================================================
+# ENVIAR MEDICAMENTO PARA A PRÓXIMA COTAÇÃO
+# =========================================================
+
+@cotacao_bp.route(
+    "/cotacoes/<int:id>/enviar-proxima-cotacao",
+    methods=["POST"]
+)
+def enviar_proxima_cotacao(id):
+
+    try:
+
+        medicamento = request.form.get("medicamento")
+
+        if not medicamento:
+
+            return jsonify({
+                "sucesso": False,
+                "erro": "Medicamento não informado."
+            }), 400
+
+
+        db = get_db()
+
+
+        # =================================================
+        # BUSCA O MEDICAMENTO NA COTAÇÃO ATUAL
+        # =================================================
+
+        item = db.execute(
+            """
+            SELECT
+                medicamento,
+                laboratorio,
+                quantidade
+            FROM cotacao_itens
+            WHERE cotacao_id = ?
+            AND medicamento = ?
+            """,
+            (
+                id,
+                medicamento
+            )
+        ).fetchone()
+
+
+        if not item:
+
+            return jsonify({
+                "sucesso": False,
+                "erro": "Medicamento não encontrado na cotação."
+            }), 404
+
+
+        # =================================================
+        # COLOCA EM RECUPERAR PENDÊNCIA
+        # =================================================
+
+        db.execute(
+            """
+            INSERT INTO itens_pendentes
+            (
+                medicamento,
+                laboratorio,
+                quantidade,
+                cotacao_origem
+            )
+            VALUES (?, ?, ?, ?)
+            """,
+            (
+                item[0],
+                item[1],
+                item[2],
+                id
+            )
+        )
+
+
+        # =================================================
+        # REMOVE DA COTAÇÃO ATUAL
+        # =================================================
+
+        db.execute(
+            """
+            DELETE FROM cotacao_itens
+            WHERE cotacao_id = ?
+            AND medicamento = ?
+            """,
+            (
+                id,
+                medicamento
+            )
+        )
+
+
+        db.commit()
+
+
+        return jsonify({
+            "sucesso": True,
+            "mensagem":
+                "Medicamento enviado para a próxima cotação."
+        })
+
+
+    except Exception as e:
+
+        import traceback
+
+        traceback.print_exc()
+
+        return jsonify({
+            "sucesso": False,
+            "erro": str(e)
+        }), 500

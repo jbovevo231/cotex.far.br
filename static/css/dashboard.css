@@ -4931,3 +4931,98 @@ PAINEL DE VISUALIZAÇÃO DA COTAÇÃO
     color:#ffffff !important;
 
 }
+
+/* =====================================================
+   AÇÕES DO MEDICAMENTO
+===================================================== */
+
+.col-acoes{
+    width:190px;
+    min-width:190px;
+}
+
+.acao-medicamento{
+
+    width:100%;
+
+    height:42px;
+
+    padding:0 36px 0 12px;
+
+    border:1px solid #d9e2ec;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    color:#172033;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    outline:none;
+
+    appearance:auto;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.acao-medicamento:hover{
+
+    border-color:#3b82f6;
+
+}
+
+.acao-medicamento:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,99,235,.12);
+
+}
+
+
+/* QUANDO UMA AÇÃO ESTIVER SELECIONADA */
+
+.acao-medicamento.acao-selecionada{
+
+    background:#eff6ff;
+
+    border-color:#3b82f6;
+
+    color:#1d4ed8;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .col-acoes{
+
+        width:160px;
+
+        min-width:160px;
+
+    }
+
+    .acao-medicamento{
+
+        font-size:12px;
+
+        height:40px;
+
+    }
+
+}

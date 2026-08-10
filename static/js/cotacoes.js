@@ -375,6 +375,8 @@ async function abrirResultado(id){
 
     const div = document.getElementById("resultado-" + id);
 
+        div.dataset.cotacaoId = id;
+
     const aberto = div.style.display === "block";
 
     fecharTodosOsPaineis(id);
@@ -463,7 +465,7 @@ html += `
 
                 <th>Medicamento</th>
 
-                <th>Condição</th>
+                <th style="width:190px;">Ação</th>
 
                 <th>Preço</th>
 
@@ -510,15 +512,28 @@ rep.itens.forEach(item=>{
 
     </td>
 
-    <td class="col-condicao">
+<td class="col-acoes">
 
-        ${
-            status=="OFERTA"
-            ? `Oferta a partir de ${quantidade} un.`
-            : "Preço Unitário"
-        }
+    <select
+        class="acao-medicamento"
+        data-medicamento="${medicamento}"
+    >
 
-    </td>
+        <option value="">
+            Selecionar ação
+        </option>
+
+        <option value="proximo">
+            Próximo melhor preço
+        </option>
+
+        <option value="proxima_cotacao">
+            Próxima cotação
+        </option>
+
+    </select>
+
+</td>
 
     <td class="col-preco">
 
@@ -602,6 +617,182 @@ html+=`
 `;
 
 div.innerHTML = html;
+
+/* =====================================================
+   AÇÕES DOS MEDICAMENTOS
+===================================================== */
+
+div.querySelectorAll(".acao-medicamento").forEach(select => {
+
+    select.addEventListener("change", async function () {
+
+        const acao = this.value;
+
+        const medicamento =
+            this.dataset.medicamento;
+
+        console.log(
+            "AÇÃO:",
+            acao,
+            "MEDICAMENTO:",
+            medicamento
+        );
+
+
+        if (!acao) {
+
+            this.classList.remove(
+                "acao-selecionada"
+            );
+
+            return;
+
+        }
+
+
+        this.classList.add(
+            "acao-selecionada"
+        );
+
+
+        /* =============================================
+           ENVIAR PARA O PRÓXIMO
+        ============================================= */
+
+        if (acao === "proximo") {
+
+            console.log(
+                "Enviar para o próximo:",
+                medicamento
+            );
+
+        }
+
+
+/* =============================================
+   ENVIAR PARA A PRÓXIMA COTAÇÃO
+============================================= */
+
+if (acao === "proxima_cotacao") {
+
+    console.log(
+        "Enviar para próxima cotação:",
+        medicamento
+    );
+
+    const confirmar = confirm(
+    "Deseja remover este item e guardá-lo em Recuperar pendências para a próxima cotação?"
+);
+
+if (!confirmar) {
+
+    // Volta o select para "Selecionar ação"
+    this.value = "";
+
+    this.classList.remove(
+        "acao-selecionada"
+    );
+
+    return;
+}
+
+    const cotacaoId =
+        div.dataset.cotacaoId;
+
+
+    if (!cotacaoId) {
+
+        console.error(
+            "ID DA COTAÇÃO NÃO ENCONTRADO"
+        );
+
+        alert(
+            "Não foi possível identificar a cotação."
+        );
+
+        return;
+
+    }
+
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "medicamento",
+        medicamento
+    );
+
+
+    try {
+
+        const resposta =
+            await fetch(
+                `/cotacoes/${cotacaoId}/enviar-proxima-cotacao`,
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const resultado =
+            await resposta.json();
+
+
+        console.log(
+            "RESPOSTA:",
+            resultado
+        );
+
+
+        if (!resultado.sucesso) {
+
+            alert(
+                resultado.erro ||
+                "Erro ao enviar o medicamento."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+    "Medicamento enviado para a próxima cotação."
+);
+
+/* =========================================
+   REMOVE SOMENTE A LINHA DO MEDICAMENTO
+   E MANTÉM O RESULTADO ABERTO
+========================================= */
+
+const linha = this.closest("tr");
+
+if (linha) {
+    linha.remove();
+}
+
+
+
+    } catch (erro) {
+
+        console.error(
+            "ERRO AO ENVIAR MEDICAMENTO:",
+            erro
+        );
+
+        alert(
+            "Erro ao enviar o medicamento para a próxima cotação."
+        );
+
+    }
+
+}
+
+    });
+
+});
 
 div.querySelectorAll(".resultado-representante").forEach(card=>{
 
