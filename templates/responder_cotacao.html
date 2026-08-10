@@ -119,191 +119,257 @@
 
                 </section>
 
-                <!-- ========================= -->
-                <!-- MEDICAMENTOS -->
-                <!-- ========================= -->
+<!-- ========================= -->
+<!-- MEDICAMENTOS -->
+<!-- ========================= -->
 
-                <section class="card-box">
+<section class="card-box">
 
-                    <h2 class="card-title">
+    <h2 class="card-title">
 
-    <span class="icon-title">
+        <span class="icon-title">
 
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 
-            <path d="M10 14L14 10"/>
+                <path d="M10 14L14 10"/>
 
-            <path d="M7 17a4 4 0 0 1 0-6l4-4a4 4 0 1 1 6 6l-4 4a4 4 0 0 1-6 0z"/>
+                <path d="M7 17a4 4 0 0 1 0-6l4-4a4 4 0 1 1 6 6l-4 4a4 4 0 0 1-6 0z"/>
 
-        </svg>
+            </svg>
 
-    </span>
+        </span>
 
-    Medicamentos
+        Medicamentos
 
-</h2>
+    </h2>
 
-                    {% for item in itens %}
 
-                    <div class="medicine-card status-disponivel" id="card{{ loop.index }}">
+    {% for item in itens %}
 
-                        <div class="medicine-header">
+    <div
+        class="medicine-card status-disponivel"
+        id="card{{ loop.index }}"
+    >
 
-                            <div class="medicine-left">
+        <div class="medicine-header">
 
-                                <h3>
+            <div class="medicine-left">
 
-    <span class="icon-medicine">
+                <h3>
 
-        <input
-    type="hidden"
-    name="medicamento[]"
-    value="{{ item[0] }}">
+                    <span class="icon-medicine">
 
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <input
+                            type="hidden"
+                            name="medicamento[]"
+                            value="{{ item[0] }}"
+                        >
 
-            <path d="M10 14L14 10"/>
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
 
-            <path d="M7 17a4 4 0 0 1 0-6l4-4a4 4 0 1 1 6 6l-4 4a4 4 0 0 1-6 0z"/>
+                            <path d="M10 14L14 10"/>
 
-        </svg>
+                            <path d="M7 17a4 4 0 0 1 0-6l4-4a4 4 0 1 1 6 6l-4 4a4 4 0 0 1-6 0z"/>
 
-    </span>
+                        </svg>
 
-    {{ item[0] }}
+                    </span>
 
-</h3>
+                    {{ item[0] }}
 
-                                <div class="medicine-info">
+                </h3>
 
-                                    <span>{{ item[1] }}</span>
 
-                                    <span>{{ item[2] }} unidades</span>
+                <div class="medicine-info">
 
-                                </div>
+                    <span>
+                        {{ item[1] }}
+                    </span>
 
-                            </div>
-
-                            <div class="medicine-status">
-
-                                <label class="status-button success">
-
-                                    <input
-                                        type="radio"
-                                        name="status{{ loop.index }}"
-                                        value="TENHO"
-                                        checked
-                                        onclick="statusTenho({{ loop.index }})">
-
-                                    <span>Tenho</span>
-
-                                </label>
-
-                                <label class="status-button warning">
-
-                                    <input
-                                        type="radio"
-                                        name="status{{ loop.index }}"
-                                        value="OFERTA"
-                                        onclick="statusOferta({{ loop.index }})">
-
-                                    <span>Tenho Oferta</span>
-
-                                </label>
-
-                                <label class="status-button danger">
-
-                                    <input
-                                type="radio"
-                                name="status{{ loop.index }}"
-                                value="NAO_TENHO"
-                                onclick="statusNaoTenho({{ loop.index }})">
-
-                                    <span>Não Tenho</span>
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                        <div class="medicine-body">
-
-                            <div class="normal-price" id="normal{{ loop.index }}">
-
-                                <label>Valor Unitário</label>
-
-                                <input
-
-    type="text"
-    name="preco[]"
-    class="form-control preco"
-    placeholder="R$ 0,00"
-    inputmode="decimal">
-
-                            </div>
-                                                        <div class="offer-price d-none" id="offer{{ loop.index }}">
-
-                                <div class="row">
-
-                                    <div class="col-md-6">
-
-                                        <label>Preço Oferta</label>
-
-                                        <input
-    type="text"
-    name="preco_oferta[]"
-    class="form-control preco"
-    placeholder="R$ 0,00"
-    inputmode="decimal">
-
-                                    </div>
-
-                                    <div class="col-md-6">
-
-                                        <label>A partir de</label>
-
-                                        <input
-                                    type="number"
-                                    name="quantidade_oferta[]"
-                                    class="form-control"
-                                    placeholder="Quantidade">
-
-                                    </div>
-
-                                </div>
-
-                                <div class="offer-message">
-
-                                    🔥 Será enviado apenas o valor promocional.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    {% endfor %}
-
-                </section>
-
-                <div class="footer-actions">
-
-                    
-
-                    <button
-                        type="submit"
-                        class="btn btn-primary btn-lg">
-
-                        Enviar Cotação
-
-                    </button>
+                    <span>
+                        {{ item[2] }} unidades
+                    </span>
 
                 </div>
 
-            </form>
+            </div>
+
+
+            <div class="medicine-status">
+
+                <!-- ========================= -->
+                <!-- TENHO -->
+                <!-- ========================= -->
+
+                <label class="status-button success">
+
+                    <input
+                        type="radio"
+                        name="status{{ loop.index }}"
+                        value="TENHO"
+                        checked
+                        onclick="statusTenho({{ loop.index }})"
+                    >
+
+                    <span>
+                        Tenho
+                    </span>
+
+                </label>
+
+
+                <!-- ========================= -->
+                <!-- TENHO OFERTA -->
+                <!-- ========================= -->
+
+                <label class="status-button warning">
+
+                    <input
+                        type="radio"
+                        name="status{{ loop.index }}"
+                        value="OFERTA"
+                        onclick="statusOferta({{ loop.index }})"
+                    >
+
+                    <span>
+                        Tenho Oferta
+                    </span>
+
+                </label>
+
+
+                <!-- ========================= -->
+                <!-- NÃO TENHO -->
+                <!-- ========================= -->
+
+                <label class="status-button danger">
+
+                    <input
+                        type="radio"
+                        name="status{{ loop.index }}"
+                        value="NAO_TENHO"
+                        onclick="statusNaoTenho({{ loop.index }})"
+                    >
+
+                    <span>
+                        Não Tenho
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="medicine-body">
+
+            <!-- ========================= -->
+            <!-- PREÇO NORMAL -->
+            <!-- ========================= -->
+
+            <div
+                class="normal-price"
+                id="normal{{ loop.index }}"
+            >
+
+                <label>
+                    Valor Unitário
+                </label>
+
+                <input
+                    type="text"
+                    name="preco{{ loop.index }}"
+                    class="form-control preco"
+                    placeholder="R$ 0,00"
+                    inputmode="decimal"
+                >
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- PREÇO OFERTA -->
+            <!-- ========================= -->
+
+            <div
+                class="offer-price d-none"
+                id="offer{{ loop.index }}"
+            >
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <label>
+                            Preço Oferta
+                        </label>
+
+                        <input
+                            type="text"
+                            name="preco_oferta{{ loop.index }}"
+                            class="form-control preco"
+                            placeholder="R$ 0,00"
+                            inputmode="decimal"
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label>
+                            A partir de
+                        </label>
+
+                        <input
+                            type="number"
+                            name="quantidade_oferta{{ loop.index }}"
+                            class="form-control"
+                            placeholder="Quantidade"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="offer-message">
+
+                    🔥 Será enviado apenas o valor promocional.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+
+<div class="footer-actions">
+
+    <button
+        type="submit"
+        class="btn btn-primary btn-lg"
+    >
+
+        Enviar Cotação
+
+    </button>
+
+</div>
+
+</form>
 
     <div id="loadingOverlay" class="loading-overlay d-none">
 
@@ -385,27 +451,41 @@
 
     }
 
-        function statusNaoTenho(id){
+function statusNaoTenho(id){
 
-        const card = document.getElementById("card" + id);
+    const card =
+        document.getElementById("card" + id);
 
-        card.className = "medicine-card status-indisponivel";
+    card.className =
+        "medicine-card status-indisponivel";
 
-        document.getElementById("normal" + id).classList.add("d-none");
+    document
+        .getElementById("normal" + id)
+        .classList.add("d-none");
 
-        document.getElementById("offer" + id).classList.add("d-none");
+    document
+        .getElementById("offer" + id)
+        .classList.add("d-none");
 
-        document
-            .querySelectorAll("#card" + id + " input[type=number]")
-            .forEach(i => {
 
-                i.disabled = true;
+    /*
+     * Desabilita todos os campos de preço
+     * deste medicamento.
+     */
 
-                i.value = "";
+    card
+        .querySelectorAll(
+            "#normal" + id + " input, " +
+            "#offer" + id + " input"
+        )
+        .forEach(input => {
 
-            });
+            input.disabled = true;
+            input.value = "";
 
-    }
+        });
+
+}
 
     document.addEventListener("DOMContentLoaded", () => {
 
@@ -524,50 +604,64 @@ overlay.classList.remove("d-none");
         `input[name="status${id}"]:checked`
     ).value;
 
-    if (status === "TENHO") {
+if (status === "TENHO") {
 
-        const preco = card.querySelector('input[name="preco[]"]').value.trim();
+    const preco = card.querySelector(
+        `input[name="preco${id}"]`
+    ).value.trim();
 
-        if (preco === "") {
+    if (preco === "") {
 
-    alert("Preencha o valor do medicamento ou marque 'Não Tenho'.");
+        alert(
+            "Preencha o valor do medicamento ou marque 'Não Tenho'."
+        );
 
-    e.preventDefault();
+        e.preventDefault();
 
-    overlay.classList.add("d-none");
+        overlay.classList.add("d-none");
 
-    irParaCampo(
-        card.querySelector('input[name="preco[]"]')
-    );
+        irParaCampo(
+            card.querySelector(
+                `input[name="preco${id}"]`
+            )
+        );
 
-    throw "erro";
+        throw "erro";
+    }
 
 }
 
+if (status === "OFERTA") {
+
+    const precoOferta = card.querySelector(
+        `input[name="preco_oferta${id}"]`
+    ).value.trim();
+
+    const quantidade = card.querySelector(
+        `input[name="quantidade_oferta${id}"]`
+    ).value.trim();
+
+
+    if (precoOferta === "" || quantidade === "") {
+
+        alert(
+            "Preencha o preço e a quantidade da oferta."
+        );
+
+        e.preventDefault();
+
+        overlay.classList.add("d-none");
+
+        irParaCampo(
+            card.querySelector(
+                `input[name="preco_oferta${id}"]`
+            )
+        );
+
+        throw "erro";
     }
-
-    if (status === "OFERTA") {
-
-        const precoOferta = card.querySelector('input[name="preco_oferta[]"]').value.trim();
-        const quantidade = card.querySelector('input[name="quantidade_oferta[]"]').value.trim();
-
-        if (precoOferta === "" || quantidade === "") {
-
-    alert("Preencha o preço e a quantidade da oferta.");
-
-    e.preventDefault();
-
-    overlay.classList.add("d-none");
-
-    irParaCampo(
-        card.querySelector('input[name="preco_oferta[]"]')
-    );
-
-    throw "erro";
 
 }
-
-    }
 
 });
 

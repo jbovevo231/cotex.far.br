@@ -433,7 +433,10 @@ dados.forEach(rep=>{
 
 html += `
 
-<div class="resultado-representante">
+<div
+    class="resultado-representante"
+    data-representante-id="${rep.representante_id}"
+>
 
     <div class="resultado-topo">
 
@@ -659,14 +662,398 @@ div.querySelectorAll(".acao-medicamento").forEach(select => {
            ENVIAR PARA O PRÓXIMO
         ============================================= */
 
-        if (acao === "proximo") {
+if (acao === "proximo") {
 
-            console.log(
-                "Enviar para o próximo:",
-                medicamento
+    const cotacaoId = div.dataset.cotacaoId;
+
+    if (!cotacaoId) {
+        alert("Não foi possível identificar a cotação.");
+        this.value = "";
+        return;
+    }
+
+    const linhaAtual = this.closest("tr");
+    const cardAtual = this.closest(".resultado-representante");
+
+    if (!linhaAtual || !cardAtual) {
+        alert("Não foi possível identificar o medicamento.");
+        this.value = "";
+        return;
+    }
+
+    // Evita clicar novamente enquanto processa
+    this.disabled = true;
+
+    try {
+
+        const formData = new FormData();
+
+        formData.append("medicamento", medicamento);
+
+        /*
+         * ID do representante atual.
+         * O card recebe esse ID através do atributo
+         * data-representante-id.
+         */
+        const representanteAtual =
+            cardAtual.dataset.representanteId;
+
+        formData.append(
+            "representante_atual",
+            representanteAtual || ""
+        );
+
+        const resposta = await fetch(
+            `/cotacoes/${cotacaoId}/proximo-melhor-preco`,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const resultado = await resposta.json();
+
+        console.log(
+            "PRÓXIMO MELHOR PREÇO:",
+            resultado
+        );
+
+        if (!resultado.sucesso) {
+
+            alert(
+                resultado.erro ||
+                "Não existe outro preço disponível para este medicamento."
             );
 
+            this.value = "";
+            this.disabled = false;
+
+            return;
         }
+
+        /*
+         * Remove o medicamento do representante atual
+         */
+        linhaAtual.remove();
+
+        /*
+         * Localiza se o representante já possui
+         * um card na tela.
+         */
+        let cardDestino =
+            div.querySelector(
+                `.resultado-representante[data-representante-id="${resultado.representante_id}"]`
+            );
+
+        /*
+         * Se o representante ainda não aparece
+         * no resultado, cria um novo card.
+         */
+        if (!cardDestino) {
+
+            const resultadoCard =
+                div.querySelector(".resultado-card");
+
+            const novoCard =
+                document.createElement("div");
+
+            novoCard.className =
+                "resultado-representante";
+
+            novoCard.dataset.representanteId =
+                resultado.representante_id;
+
+            novoCard.innerHTML = `
+                <div class="resultado-topo">
+
+                    <div class="resultado-usuario">
+
+                        <div class="resultado-avatar">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                ${resultado.representante}
+                            </h2>
+
+                            <span>
+                                ${resultado.distribuidora}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <table class="resultado-tabela">
+
+                    <thead>
+                        <tr>
+                            <th>Medicamento</th>
+                            <th>Ação</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+
+                <div class="resultado-rodape">
+
+                    <div class="resultado-total">
+
+                        <small>TOTAL</small>
+
+                        <h2 class="total-representante">
+                            R$ 0,00
+                        </h2>
+
+                    </div>
+
+                    <button
+                        class="btn-gerar-pedido"
+                        onclick="abrirPedido(
+                            this,
+                            ${cotacaoId ? `'${cotacaoId}'` : "''"},
+                            '${resultado.representante}'
+                        )"
+                    >
+                        <i class="bi bi-cart3"></i>
+                        GERAR PEDIDO
+                    </button>
+
+                </div>
+            `;
+
+            resultadoCard.appendChild(novoCard);
+
+            cardDestino = novoCard;
+        }
+
+        /*
+         * Adiciona o medicamento ao novo representante
+         */
+        const tbody =
+            cardDestino.querySelector("tbody");
+
+        const novaLinha =
+            document.createElement("tr");
+
+        const preco =
+            Number(resultado.preco);
+
+        const quantidade =
+            resultado.quantidade || 1;
+
+        novaLinha.innerHTML = `
+            <td class="col-medicamento">
+
+                <strong>
+                    ${resultado.medicamento}
+                </strong>
+
+                <small class="condicao-mobile">
+                    Preço Unitário
+                </small>
+
+            </td>
+
+            <td class="col-acoes">
+
+                <select
+                    class="acao-medicamento"
+                    data-medicamento="${resultado.medicamento}"
+                >
+
+                    <option value="">
+                        Selecionar ação
+                    </option>
+
+                    <option value="proximo">
+                        Próximo melhor preço
+                    </option>
+
+                    <option value="proxima_cotacao">
+                        Próxima cotação
+                    </option>
+
+                </select>
+
+            </td>
+
+            <td class="col-preco">
+                R$ ${preco.toFixed(2).replace(".", ",")}
+            </td>
+
+            <td class="col-qtd">
+
+                <input
+                    type="number"
+                    value="${quantidade}"
+                    min="1"
+                    class="campo-quantidade"
+                >
+
+            </td>
+        `;
+
+        tbody.appendChild(novaLinha);
+
+        /*
+         * Atualiza o total do representante destino
+         */
+        const atualizarTotalDestino = () => {
+
+            let total = 0;
+
+            cardDestino
+                .querySelectorAll("tbody tr")
+                .forEach(linha => {
+
+                    const texto =
+                        linha.cells[2].innerText
+                            .replace("R$", "")
+                            .replace(/\./g, "")
+                            .replace(",", ".")
+                            .trim();
+
+                    const precoLinha =
+                        Number(texto);
+
+                    const qtd =
+                        Number(
+                            linha.querySelector(
+                                ".campo-quantidade"
+                            ).value
+                        );
+
+                    total +=
+                        precoLinha * qtd;
+
+                });
+
+            const totalElemento =
+                cardDestino.querySelector(
+                    ".total-representante"
+                );
+
+            if (totalElemento) {
+
+                totalElemento.innerText =
+                    "R$ " +
+                    total
+                        .toFixed(2)
+                        .replace(".", ",");
+
+            }
+
+        };
+
+        const inputQuantidade =
+            novaLinha.querySelector(
+                ".campo-quantidade"
+            );
+
+        inputQuantidade.addEventListener(
+            "input",
+            atualizarTotalDestino
+        );
+
+        inputQuantidade.addEventListener(
+            "change",
+            atualizarTotalDestino
+        );
+
+        /*
+         * Faz a nova linha aceitar novamente
+         * "Próximo melhor preço".
+         */
+        const novoSelect =
+            novaLinha.querySelector(
+                ".acao-medicamento"
+            );
+
+        novoSelect.addEventListener(
+            "change",
+            async function () {
+
+                const acaoNova =
+                    this.value;
+
+                if (acaoNova !== "proximo") {
+                    return;
+                }
+
+                /*
+                 * Reaproveita a lógica da ação
+                 * disparando novamente o mesmo
+                 * comportamento.
+                 */
+                this.dispatchEvent(
+                    new Event("change", {
+                        bubbles: true
+                    })
+                );
+
+            }
+        );
+
+        atualizarTotalDestino();
+
+        /*
+         * Se o representante atual ficou sem itens,
+         * remove o card inteiro.
+         */
+        const tbodyAtual =
+            cardAtual.querySelector("tbody");
+
+        if (
+            tbodyAtual &&
+            tbodyAtual.children.length === 0
+        ) {
+            cardAtual.remove();
+        }
+
+        /*
+         * Atualiza o estado usado pelo
+         * modal de pedido.
+         */
+        const novoResultado =
+            await fetch(
+                `/resultado/${cotacaoId}`
+            );
+
+        if (novoResultado.ok) {
+
+            resultadoAtual =
+                await novoResultado.json();
+
+        }
+
+    } catch (erro) {
+
+        console.error(
+            "ERRO AO PASSAR PARA O PRÓXIMO:",
+            erro
+        );
+
+        alert(
+            "Erro ao passar para o próximo melhor preço."
+        );
+
+    } finally {
+
+        this.disabled = false;
+        this.value = "";
+
+    }
+
+}
 
 
 /* =============================================

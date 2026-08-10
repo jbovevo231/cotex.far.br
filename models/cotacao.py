@@ -217,22 +217,6 @@ def gerar_link_cotacao(cotacao_id):
 
     return token
 
-def salvar_resposta_cotacao(
-    cotacao_id,
-    representante,
-    distribuidora,
-    whatsapp,
-    medicamentos,
-    status,
-    precos,
-    precos_oferta,
-    quantidades_oferta
-):
-
-    db = get_db()
-
-    indice_preco = 0
-    indice_oferta = 0
 
 def salvar_resposta_cotacao(
     cotacao_id,
@@ -248,77 +232,188 @@ def salvar_resposta_cotacao(
 
     db = get_db()
 
-    indice_preco = 0
-    indice_oferta = 0
+    try:
 
-    for i in range(len(medicamentos)):
+        for i in range(len(medicamentos)):
 
-        preco = None
-        preco_oferta = None
-        quantidade_oferta = None
+            medicamento = medicamentos[i]
 
-        if status[i] == "TENHO":
+            status_item = status[i]
 
-            if indice_preco < len(precos):
 
-                if precos[indice_preco]:
+            # =========================================
+            # VALORES PADRÃO
+            # =========================================
 
-                    preco = precos[indice_preco].replace(",", ".")
+            preco = None
+            preco_oferta = None
+            quantidade_oferta = None
 
-            indice_preco += 1
 
-        elif status[i] == "OFERTA":
+            # =========================================
+            # TENHO
+            # =========================================
 
-            if indice_oferta < len(precos_oferta):
+            if status_item == "TENHO":
 
-                if precos_oferta[indice_oferta]:
+                valor = (
+                    precos[i]
+                    if i < len(precos)
+                    else ""
+                )
 
-                    preco_oferta = precos_oferta[indice_oferta].replace(",", ".")
+                valor = str(valor).strip()
 
-                if indice_oferta < len(quantidades_oferta):
 
-                    quantidade_oferta = quantidades_oferta[indice_oferta]
+                if not valor:
 
-            indice_oferta += 1
+                    raise ValueError(
+                        f"Preço não informado para: {medicamento}"
+                    )
 
-        print(
-            medicamentos[i],
-            status[i],
-            preco,
-            preco_oferta,
-            quantidade_oferta
-        )
 
-        db.execute(
-            """
-            INSERT INTO respostas_cotacao (
-                cotacao_id,
+                preco = valor.replace(",", ".")
+
+
+            # =========================================
+            # TENHO OFERTA
+            # =========================================
+
+            elif status_item == "OFERTA":
+
+                valor_oferta = (
+                    precos_oferta[i]
+                    if i < len(precos_oferta)
+                    else ""
+                )
+
+                quantidade = (
+                    quantidades_oferta[i]
+                    if i < len(quantidades_oferta)
+                    else ""
+                )
+
+
+                valor_oferta = str(
+                    valor_oferta
+                ).strip()
+
+                quantidade = str(
+                    quantidade
+                ).strip()
+
+
+                if not valor_oferta:
+
+                    raise ValueError(
+                        f"Preço da oferta não informado para: "
+                        f"{medicamento}"
+                    )
+
+
+                if not quantidade:
+
+                    raise ValueError(
+                        f"Quantidade da oferta não informada para: "
+                        f"{medicamento}"
+                    )
+
+
+                preco_oferta = (
+                    valor_oferta
+                    .replace(",", ".")
+                )
+
+                quantidade_oferta = quantidade
+
+
+            # =========================================
+            # NÃO TENHO
+            # =========================================
+
+            elif status_item == "NAO_TENHO":
+
+                preco = None
+                preco_oferta = None
+                quantidade_oferta = None
+
+
+            # =========================================
+            # STATUS INVÁLIDO
+            # =========================================
+
+            else:
+
+                raise ValueError(
+                    f"Status inválido para "
+                    f"{medicamento}: {status_item}"
+                )
+
+
+            # =========================================
+            # DEBUG
+            # =========================================
+
+            print(
+                "SALVANDO:",
                 medicamento,
-                representante,
-                distribuidora,
-                whatsapp,
-                status,
+                "| STATUS:",
+                status_item,
+                "| PREÇO:",
                 preco,
+                "| OFERTA:",
                 preco_oferta,
+                "| QTD OFERTA:",
                 quantidade_oferta
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                cotacao_id,
-                medicamentos[i],
-                representante,
-                distribuidora,
-                whatsapp,
-                status[i],
-                preco,
-                preco_oferta,
-                quantidade_oferta
-            )
-        )
 
-    db.commit()
-    db.close()
+
+            # =========================================
+            # SALVA NO BANCO
+            # =========================================
+
+            db.execute(
+                """
+                INSERT INTO respostas_cotacao (
+                    cotacao_id,
+                    medicamento,
+                    representante,
+                    distribuidora,
+                    whatsapp,
+                    status,
+                    preco,
+                    preco_oferta,
+                    quantidade_oferta
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    cotacao_id,
+                    medicamento,
+                    representante,
+                    distribuidora,
+                    whatsapp,
+                    status_item,
+                    preco,
+                    preco_oferta,
+                    quantidade_oferta
+                )
+            )
+
+
+        db.commit()
+
+
+    except Exception:
+
+        db.rollback()
+
+        raise
+
+
+    finally:
+
+        db.close()
 
 
 def encerrar_cotacao(cotacao_id):
