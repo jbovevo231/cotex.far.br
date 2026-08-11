@@ -1,0 +1,751 @@
+/* =========================================================
+   COTAFARMA — COMPARATIVO DE PREÇOS
+   ========================================================= */
+
+
+/* =========================================================
+   CARD PRINCIPAL
+   ========================================================= */
+
+.comparativo-card {
+    width: 100% !important;
+
+    margin: 16px 0 0 !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e1e7ed !important;
+
+    border-radius: 18px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 3px 14px rgba(15, 23, 42, 0.035) !important;
+}
+
+
+/* =========================================================
+   CABEÇALHO "COMPARATIVO DE PREÇOS"
+   ========================================================= */
+
+.comparativo-header {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    padding: 20px 22px 16px !important;
+
+    background: #ffffff !important;
+
+    border-bottom: 1px solid #edf0f4 !important;
+}
+
+
+.comparativo-header h3 {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 9px !important;
+
+    margin: 0 !important;
+
+    color: #111827 !important;
+
+    font-size: 17px !important;
+
+    font-weight: 750 !important;
+
+    letter-spacing: -0.25px !important;
+}
+
+
+.comparativo-header h3 i {
+    color: #10b981 !important;
+
+    font-size: 17px !important;
+}
+
+
+.comparativo-header small {
+    display: block !important;
+
+    margin-top: 5px !important;
+
+    color: #64748b !important;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   CABEÇALHO DO MEDICAMENTO
+   TODOS OS MEDICAMENTOS — AZUL VIBRANTE
+   ========================================================= */
+
+.comparativo-card .comparativo-topo {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    padding: 15px 22px !important;
+
+    background: #0066FF !important;
+
+    border-bottom: 1px solid #1d4ed8 !important;
+
+    color: #ffffff !important;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease !important;
+}
+
+
+/* =========================================================
+   INFORMAÇÃO DO MEDICAMENTO
+   ========================================================= */
+
+.medicamento-info {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 11px !important;
+}
+
+
+/* =========================================================
+   ÍCONE DO MEDICAMENTO
+   ========================================================= */
+
+.comparativo-card .medicamento-icone {
+    width: 38px !important;
+
+    height: 38px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    flex-shrink: 0 !important;
+
+    border-radius: 11px !important;
+
+    background: rgba(255, 255, 255, 0.16) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+
+    font-size: 17px !important;
+}
+
+
+/* =========================================================
+   NOME DO MEDICAMENTO
+   ========================================================= */
+
+.comparativo-card .medicamento-info h2 {
+    margin: 0 !important;
+
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+
+    font-weight: 750 !important;
+
+    letter-spacing: -0.1px !important;
+}
+
+
+.comparativo-card .medicamento-info span {
+    display: block !important;
+
+    margin-top: 3px !important;
+
+    color: rgba(255, 255, 255, 0.78) !important;
+
+    font-size: 10px !important;
+}
+
+
+/* =========================================================
+   QUANTIDADE DE RESULTADOS
+   ========================================================= */
+
+.comparativo-card .resultado-badge {
+    padding: 6px 9px !important;
+
+    background: rgba(255, 255, 255, 0.16) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+
+    border-radius: 7px !important;
+
+    font-size: 10px !important;
+
+    font-weight: 700 !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   RANKING
+   ========================================================= */
+
+.ranking-lista {
+    position: relative !important;
+
+    width: 100% !important;
+
+    padding: 0 !important;
+
+    background: #ffffff !important;
+}
+
+
+/* =========================================================
+   CABEÇALHO DAS COLUNAS
+   ========================================================= */
+
+.ranking-lista::before {
+    content:
+        "POSIÇÃO              REPRESENTANTE / DISTRIBUIDORA                                      PREÇO UNITÁRIO";
+
+    display: block !important;
+
+    height: 38px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 13px 22px 0 22px !important;
+
+    background: #f8fafc !important;
+
+    border-bottom: 1px solid #e7ecf1 !important;
+
+    color: #64748b !important;
+
+    font-size: 9px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 0.35px !important;
+
+    white-space: pre !important;
+}
+
+
+/* =========================================================
+   LINHAS DO RANKING
+   ========================================================= */
+
+.ranking-card {
+    position: relative !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    width: 100% !important;
+
+    min-height: 70px !important;
+
+    margin: 0 !important;
+
+    padding: 0 22px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    border: 0 !important;
+
+    border-bottom: 1px solid #edf0f4 !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    transition:
+        background 0.15s ease !important;
+}
+
+
+.ranking-card:last-child {
+    border-bottom: none !important;
+}
+
+
+.ranking-card:hover {
+    transform: none !important;
+
+    background: #fafcfb !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   PRIMEIRO COLOCADO
+   SEMPRE VERDE
+   ========================================================= */
+
+.ranking-card.primeiro {
+    margin: 0 !important;
+
+    background: #f0fdf5 !important;
+
+    border-bottom: 1px solid #d9f2e3 !important;
+
+    border-radius: 0 !important;
+}
+
+
+.ranking-card.primeiro:hover {
+    background: #ecfdf3 !important;
+}
+
+
+/* =========================================================
+   POSIÇÃO
+   ========================================================= */
+
+.ranking-posicao {
+    width: 48px !important;
+
+    min-width: 48px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    flex-shrink: 0 !important;
+}
+
+
+/* =========================================================
+   MEDALHAS
+   ========================================================= */
+
+.medalha {
+    position: relative !important;
+
+    width: 38px !important;
+
+    height: 38px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    background: transparent !important;
+
+    border: none !important;
+}
+
+
+.medalha-circulo {
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    width: 30px !important;
+
+    height: 30px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    font-size: 11px !important;
+
+    font-weight: 800 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   🥇 OURO
+   ========================================================= */
+
+.medalha.ouro .medalha-circulo {
+    background: #fff8dc !important;
+
+    color: #d49a00 !important;
+
+    border: 2px solid #f2c94c !important;
+
+    box-shadow:
+        0 1px 3px rgba(212, 154, 0, 0.20) !important;
+}
+
+
+/* =========================================================
+   🥈 PRATA
+   ========================================================= */
+
+.medalha.prata .medalha-circulo {
+    background: #f5f7f9 !important;
+
+    color: #7b8794 !important;
+
+    border: 2px solid #b8c1cc !important;
+
+    box-shadow:
+        0 1px 3px rgba(100, 116, 139, 0.15) !important;
+}
+
+
+/* =========================================================
+   🥉 BRONZE
+   ========================================================= */
+
+.medalha.bronze .medalha-circulo {
+    background: #fff3e8 !important;
+
+    color: #c97832 !important;
+
+    border: 2px solid #e59a5c !important;
+
+    box-shadow:
+        0 1px 3px rgba(194, 120, 50, 0.18) !important;
+}
+
+
+/* =========================================================
+   4º EM DIANTE
+   ========================================================= */
+
+.medalha.normal .medalha-circulo {
+    background: #f8fafc !important;
+
+    color: #64748b !important;
+
+    border: 1px solid #dbe2ea !important;
+}
+
+
+/* =========================================================
+   FITAS
+   ========================================================= */
+
+.medalha-fitas {
+    display: none !important;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES DO REPRESENTANTE
+   ========================================================= */
+
+.ranking-info {
+    flex: 1 !important;
+
+    min-width: 0 !important;
+
+    padding: 0 16px !important;
+}
+
+
+.ranking-nome {
+    overflow: hidden !important;
+
+    color: #111827 !important;
+
+    font-size: 13px !important;
+
+    font-weight: 750 !important;
+
+    line-height: 1.25 !important;
+
+    white-space: nowrap !important;
+
+    text-overflow: ellipsis !important;
+}
+
+
+.ranking-laboratorio {
+    display: block !important;
+
+    margin-top: 3px !important;
+
+    color: #64748b !important;
+
+    font-size: 10px !important;
+
+    font-weight: 500 !important;
+
+    white-space: nowrap !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+}
+
+
+/* =========================================================
+   OFERTA
+   ========================================================= */
+
+.oferta-linha {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 5px !important;
+
+    margin-top: 4px !important;
+}
+
+
+.offer-badge {
+    padding: 2px 6px !important;
+
+    border-radius: 5px !important;
+
+    background: #dcfce7 !important;
+
+    color: #15803d !important;
+
+    font-size: 8px !important;
+
+    font-weight: 800 !important;
+}
+
+
+.offer-texto {
+    color: #94a3b8 !important;
+
+    font-size: 9px !important;
+}
+
+
+/* =========================================================
+   PREÇO
+   ========================================================= */
+
+.ranking-preco {
+    width: 125px !important;
+
+    min-width: 125px !important;
+
+    padding: 0 !important;
+
+    text-align: right !important;
+
+    flex-shrink: 0 !important;
+}
+
+
+.ranking-preco .valor {
+    color: #111827 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 800 !important;
+
+    line-height: 1.15 !important;
+}
+
+
+/* =========================================================
+   PRIMEIRO PREÇO — SEMPRE VERDE
+   ========================================================= */
+
+.ranking-card.primeiro .ranking-preco .valor {
+    color: #059669 !important;
+}
+
+
+.ranking-preco small {
+    display: block !important;
+
+    margin-top: 3px !important;
+
+    color: #94a3b8 !important;
+
+    font-size: 8px !important;
+}
+
+
+/* =========================================================
+   MENOR PREÇO — SEMPRE VERDE
+   ========================================================= */
+
+.ranking-card.primeiro .ranking-preco::after {
+    content: "MENOR PREÇO";
+
+    display: inline-block;
+
+    margin-top: 4px;
+
+    padding: 3px 6px;
+
+    border-radius: 5px;
+
+    background: #bbf7d0;
+
+    color: #15803d;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.15px;
+}
+
+
+/* =========================================================
+   PAGINAÇÃO
+   ========================================================= */
+
+.comparativo-card .paginacao,
+.comparativo-card .pagination {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 7px !important;
+
+    padding: 16px 20px !important;
+
+    border-top: 1px solid #edf0f4 !important;
+
+    background: #ffffff !important;
+}
+
+
+.comparativo-card .paginacao button,
+.comparativo-card .pagination button {
+    height: 34px !important;
+
+    min-width: 36px !important;
+
+    padding: 0 11px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e2e8f0 !important;
+
+    border-radius: 8px !important;
+
+    color: #64748b !important;
+
+    font-size: 11px !important;
+
+    font-weight: 700 !important;
+
+    cursor: pointer !important;
+
+    transition: 0.15s ease !important;
+}
+
+
+.comparativo-card .paginacao button:hover,
+.comparativo-card .pagination button:hover {
+    border-color: #2563eb !important;
+
+    color: #2563eb !important;
+}
+
+
+.comparativo-card .paginacao .ativo,
+.comparativo-card .pagination .ativo,
+.comparativo-card .pagination .active {
+    background: #2563eb !important;
+
+    border-color: #2563eb !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .comparativo-header {
+        padding: 17px 15px 14px !important;
+    }
+
+
+    .comparativo-topo {
+        padding: 14px 15px !important;
+    }
+
+
+    .ranking-lista::before {
+        content:
+            "POSIÇÃO                         REPRESENTANTE                              PREÇO";
+
+        padding-left: 15px !important;
+
+        font-size: 8px !important;
+    }
+
+
+    .ranking-card {
+        min-height: 66px !important;
+
+        padding: 0 14px !important;
+    }
+
+
+    .ranking-posicao {
+        width: 38px !important;
+
+        min-width: 38px !important;
+    }
+
+
+    .ranking-info {
+        padding: 0 8px !important;
+    }
+
+
+    .ranking-nome {
+        font-size: 12px !important;
+    }
+
+
+    .ranking-laboratorio {
+        font-size: 9px !important;
+    }
+
+
+    .ranking-preco {
+        width: 90px !important;
+
+        min-width: 90px !important;
+    }
+
+
+    .ranking-preco .valor {
+        font-size: 13px !important;
+    }
+}

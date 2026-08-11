@@ -1,86 +1,129 @@
-.modal-acoes{
+/* ================================
+   MODAL DE AÇÕES
+================================ */
 
-    display:none;
+.modal-acoes {
+    display: none;
+    position: fixed;
+    inset: 0;
 
-    position:fixed;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
 
-    inset:0;
+    justify-content: center;
+    align-items: center;
 
-    background:rgba(0,0,0,.45);
+    padding: 20px;
 
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:99999;
-
+    z-index: 99999;
 }
 
-.modal-acoes-box{
+.modal-acoes-box {
+    width: 420px;
+    max-width: 92%;
 
-    width:420px;
+    background: #ffffff;
 
-    max-width:92%;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
 
-    background:#fff;
+    padding: 28px;
 
-    border-radius:18px;
+    box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.18);
 
-    padding:28px;
-
-    box-shadow:0 20px 50px rgba(0,0,0,.20);
-
+    animation: modalAcoesEntrada 0.2s ease-out;
 }
 
-.modal-acoes-box h3{
+.modal-acoes-box h3 {
+    margin: 0 0 22px;
 
-    margin-bottom:22px;
+    color: #111827;
 
-    font-size:22px;
-
-    font-weight:700;
-
+    font-size: 21px;
+    font-weight: 750;
+    letter-spacing: -0.3px;
 }
 
-.modal-acoes-box button{
+/* Botões */
 
-    width:100%;
+.modal-acoes-box button {
+    width: 100%;
+    height: 52px;
 
-    height:52px;
+    margin-top: 10px;
 
-    margin-top:12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
 
-    border:none;
+    font-size: 14px;
+    font-weight: 700;
 
-    border-radius:12px;
+    cursor: pointer;
 
-    font-weight:700;
-
-    cursor:pointer;
-
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
 }
 
-.btn-remanejar{
-
-    background:#2563eb;
-
-    color:#fff;
-
+.modal-acoes-box button:hover {
+    transform: translateY(-1px);
 }
 
-.btn-pendencia{
-
-    background:#f59e0b;
-
-    color:#fff;
-
+.modal-acoes-box button:active {
+    transform: translateY(0);
 }
 
-.btn-cancelar{
+/* Remanejar */
 
-    background:#e5e7eb;
+.btn-remanejar {
+    background: #2563eb;
+    color: #ffffff;
 
-    color:#111827;
-
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.18);
 }
 
+.btn-remanejar:hover {
+    background: #1d4ed8;
+}
+
+/* Pendência */
+
+.btn-pendencia {
+    background: #f59e0b;
+    color: #ffffff;
+
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.16);
+}
+
+.btn-pendencia:hover {
+    background: #d97706;
+}
+
+/* Cancelar */
+
+.btn-cancelar {
+    background: #f3f4f6;
+    color: #374151;
+
+    border-color: #e5e7eb !important;
+}
+
+.btn-cancelar:hover {
+    background: #e5e7eb;
+}
+
+/* Entrada do modal */
+
+@keyframes modalAcoesEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
