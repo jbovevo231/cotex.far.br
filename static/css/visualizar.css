@@ -1,0 +1,686 @@
+/* =========================================================
+   COTAFARMA — VISUALIZAR COTAÇÃO
+   ========================================================= */
+
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+   ========================================================= */
+
+.itens-cotacao {
+
+    display: none;
+
+    width: 100%;
+    max-width: 100%;
+
+    margin: 16px 0 20px;
+
+    box-sizing: border-box;
+
+    animation: visualizarEntrada .22s ease-out;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+   ========================================================= */
+
+@keyframes visualizarEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(-7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.visualizar-box {
+
+    width: 100%;
+    max-width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 8px 28px rgba(15, 23, 42, .06);
+}
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.visualizar-titulo {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 54px;
+
+    padding: 14px 20px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #0878ff 55%,
+            #00a8ff 100%
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: -.2px;
+
+    overflow: hidden;
+}
+
+
+/* brilho */
+
+.visualizar-titulo::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    right: -70px;
+    top: -125px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.10);
+
+    pointer-events: none;
+}
+
+
+/* ícone */
+
+.visualizar-titulo i {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,.17);
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    flex-shrink: 0;
+}
+
+
+/* texto */
+
+.visualizar-titulo span {
+
+    position: relative;
+
+    z-index: 2;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   WRAPPER DA TABELA
+   ========================================================= */
+
+.visualizar-tabela-wrapper {
+
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    box-sizing: border-box;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.visualizar-tabela {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
+
+    table-layout: fixed;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA TABELA
+   ========================================================= */
+
+.visualizar-tabela thead {
+
+    background: #f5f8fc;
+}
+
+
+.visualizar-tabela thead tr {
+
+    background: #f5f8fc;
+}
+
+
+.visualizar-tabela th {
+
+    height: 45px;
+
+    padding: 0 18px;
+
+    box-sizing: border-box;
+
+    background: #f5f8fc;
+
+    color: #64748b;
+
+    border: none;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .4px;
+
+    line-height: 1;
+
+    vertical-align: middle;
+}
+
+
+/* medicamento */
+
+.visualizar-tabela th:first-child {
+
+    width: 75%;
+
+    text-align: left;
+}
+
+
+/* quantidade */
+
+.visualizar-tabela th:nth-child(2) {
+
+    width: 25%;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   CORPO
+   ========================================================= */
+
+.visualizar-tabela tbody {
+
+    background: #ffffff;
+}
+
+
+.visualizar-tabela tbody tr {
+
+    background: #ffffff;
+
+    transition:
+        background .15s ease;
+}
+
+
+.visualizar-tabela tbody tr:nth-child(even) {
+
+    background: #fafcff;
+}
+
+
+.visualizar-tabela tbody tr:hover {
+
+    background: #f0f7ff;
+}
+
+
+/* =========================================================
+   CÉLULAS
+   ========================================================= */
+
+.visualizar-tabela td {
+
+    padding: 14px 18px;
+
+    box-sizing: border-box;
+
+    background: transparent;
+
+    color: #334155;
+
+    border: none;
+
+    border-bottom: 1px solid #edf1f5;
+
+    font-size: 13px;
+
+    line-height: 1.35;
+
+    vertical-align: middle;
+}
+
+
+/* medicamento */
+
+.visualizar-tabela td:first-child {
+
+    color: #111827;
+
+    font-weight: 650;
+
+    text-align: left;
+
+    white-space: normal;
+
+    word-break: break-word;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* quantidade */
+
+.visualizar-tabela td:nth-child(2) {
+
+    color: #2563eb;
+
+    font-weight: 800;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* última linha */
+
+.visualizar-tabela tbody tr:last-child td {
+
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   HOVER MAIS REFINADO
+   ========================================================= */
+
+.visualizar-tabela tbody tr:hover td:first-child {
+
+    color: #0f172a;
+}
+
+
+.visualizar-tabela tbody tr:hover td:nth-child(2) {
+
+    color: #0878ff;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 769px) {
+
+    .visualizar-box {
+
+        border-radius: 16px;
+    }
+
+
+    .visualizar-tabela th {
+
+        padding-left: 18px;
+
+        padding-right: 18px;
+    }
+
+
+    .visualizar-tabela td {
+
+        padding-left: 18px;
+
+        padding-right: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .itens-cotacao {
+
+        width: 100%;
+
+        margin: 13px 0 18px;
+    }
+
+
+    .visualizar-box {
+
+        width: 100%;
+
+        border-radius: 14px;
+    }
+
+
+    .visualizar-titulo {
+
+        min-height: 49px;
+
+        padding: 11px 15px;
+
+        font-size: 13px;
+    }
+
+
+    .visualizar-titulo i {
+
+        width: 30px;
+        height: 30px;
+
+        font-size: 14px;
+    }
+
+
+    .visualizar-tabela th {
+
+        height: 40px;
+
+        padding: 0 11px;
+
+        font-size: 9px;
+    }
+
+
+    .visualizar-tabela td {
+
+        padding: 11px;
+
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .itens-cotacao {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        margin: 10px 0 16px;
+    }
+
+
+    .visualizar-box {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        border-radius: 12px;
+
+        box-shadow:
+            0 5px 18px rgba(15, 23, 42, .05);
+    }
+
+
+    /* cabeçalho */
+
+    .visualizar-titulo {
+
+        min-height: 45px;
+
+        padding: 9px 12px;
+
+        gap: 8px;
+
+        font-size: 12px;
+    }
+
+
+    .visualizar-titulo i {
+
+        width: 28px;
+        height: 28px;
+
+        border-radius: 8px;
+
+        font-size: 13px;
+    }
+
+
+    /* tabela */
+
+    .visualizar-tabela {
+
+        width: 100%;
+
+        table-layout: fixed;
+    }
+
+
+    .visualizar-tabela th {
+
+        height: 37px;
+
+        padding: 0 8px;
+
+        font-size: 8px;
+
+        letter-spacing: .25px;
+    }
+
+
+    .visualizar-tabela th:first-child {
+
+        width: 72%;
+    }
+
+
+    .visualizar-tabela th:nth-child(2) {
+
+        width: 28%;
+    }
+
+
+    .visualizar-tabela td {
+
+        padding: 10px 8px;
+
+        font-size: 11px;
+
+        line-height: 1.3;
+    }
+
+
+    .visualizar-tabela td:first-child {
+
+        font-weight: 600;
+
+        word-break: break-word;
+    }
+
+
+    .visualizar-tabela td:nth-child(2) {
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .visualizar-titulo {
+
+        min-height: 42px;
+
+        padding: 8px 10px;
+
+        font-size: 11px;
+    }
+
+
+    .visualizar-titulo i {
+
+        width: 26px;
+        height: 26px;
+
+        font-size: 12px;
+    }
+
+
+    .visualizar-tabela th {
+
+        height: 34px;
+
+        padding: 0 6px;
+
+        font-size: 7px;
+    }
+
+
+    .visualizar-tabela td {
+
+        padding: 8px 6px;
+
+        font-size: 10px;
+    }
+
+
+    .visualizar-tabela td:nth-child(2) {
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   PROTEÇÃO CONTRA ESTOURO
+   ========================================================= */
+
+.itens-cotacao,
+.visualizar-box,
+.visualizar-tabela-wrapper,
+.visualizar-tabela {
+
+    box-sizing: border-box;
+
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   EVITAR ESTOURO DE TEXTO
+   ========================================================= */
+
+.visualizar-tabela th,
+.visualizar-tabela td {
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+.visualizar-tabela tbody tr:focus-within {
+
+    background: #eff6ff;
+}

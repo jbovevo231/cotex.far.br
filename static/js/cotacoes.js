@@ -55,57 +55,27 @@ function abrirCotacao(id){
         .then(response => response.json())
         .then(itens => {
 
-            let html = `
-                <div style="
-                    margin-top:15px;
-                    background:#f8f9fa;
-                    border:1px solid #dcdcdc;
-                    border-radius:10px;
-                    overflow:hidden;
-                ">
+let html = `
+    <div class="visualizar-box">
 
-                    <div style="
-                        padding:12px 18px;
-                        background:#198754;
-                        color:white;
-                        font-weight:600;
-                    ">
-                        ▼ Medicamentos da Cotação #${id}
-                    </div>
+        <div class="visualizar-titulo">
+            <i class="bi bi-capsule"></i>
+            <span>Medicamentos da Cotação #${id}</span>
+        </div>
 
-                    <table style="
-                        width:100%;
-                        border-collapse:collapse;
-                    ">
+        <div class="visualizar-tabela-wrapper">
 
-                        <thead>
+            <table class="visualizar-tabela">
 
-    <tr style="background:#f5f7fb;">
+                <thead>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
 
-    <th style="
-        padding:12px 16px;
-        text-align:left;
-        color:#1f2937;
-        font-weight:700;
-    ">
-        Medicamento
-    </th>
-
-    <th style="
-        padding:12px 16px;
-        text-align:center;
-        color:#1f2937;
-        font-weight:700;
-    ">
-        Quantidade
-    </th>
-
-</tr>
-
-                        </thead>
-
-                        <tbody>
-            `;
+                <tbody>
+`;
 
             itens.forEach(item => {
 

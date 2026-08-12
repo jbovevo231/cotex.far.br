@@ -1,0 +1,1060 @@
+/* =========================================================
+   COTAFARMA — RESULTADO DA COTAÇÃO
+   ========================================================= */
+
+
+/* =========================================================
+   CARD PRINCIPAL
+   ========================================================= */
+
+.resultado-card {
+    width: 100% !important;
+    margin-top: 15px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 18px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+
+/* =========================================================
+   CABEÇALHO DO RESULTADO
+   ========================================================= */
+
+.resultado-card > .comparativo-header {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    padding: 20px 22px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #0878ff 55%,
+            #00a8ff 100%
+        ) !important;
+
+    border-bottom: none !important;
+
+    color: #ffffff !important;
+
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+
+.resultado-card > .comparativo-header::after {
+    content: "" !important;
+
+    position: absolute !important;
+
+    width: 260px !important;
+    height: 260px !important;
+
+    right: -80px !important;
+    top: -140px !important;
+
+    border-radius: 50% !important;
+
+    background: rgba(255,255,255,.10) !important;
+
+    pointer-events: none !important;
+}
+
+
+.resultado-card > .comparativo-header h3 {
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 10px !important;
+
+    margin: 0 !important;
+
+    color: #ffffff !important;
+
+    font-size: 18px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -.3px !important;
+}
+
+
+.resultado-card > .comparativo-header h3 i {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 34px !important;
+    height: 34px !important;
+
+    border-radius: 10px !important;
+
+    background: rgba(255,255,255,.18) !important;
+
+    color: #ffffff !important;
+
+    font-size: 17px !important;
+}
+
+
+.resultado-card > .comparativo-header small {
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    display: block !important;
+
+    margin-top: 4px !important;
+
+    color: rgba(255,255,255,.82) !important;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   REPRESENTANTE
+   ========================================================= */
+
+.resultado-card .resultado-representante {
+    margin: 20px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e2e8f0 !important;
+
+    border-radius: 16px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 5px 20px rgba(15,23,42,.045) !important;
+}
+
+
+/* =========================================================
+   CABEÇALHO DO REPRESENTANTE
+   ========================================================= */
+
+.resultado-card .resultado-topo {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    min-height: 100px !important;
+
+    padding: 22px 25px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f6faff
+        ) !important;
+
+    border-bottom: 1px solid #e7edf4 !important;
+}
+
+
+/* =========================================================
+   USUÁRIO
+   ========================================================= */
+
+.resultado-card .resultado-usuario {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 15px !important;
+}
+
+
+/* =========================================================
+   AVATAR
+   ========================================================= */
+
+.resultado-card .resultado-avatar {
+    width: 56px !important;
+    height: 56px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    flex-shrink: 0 !important;
+
+    border-radius: 50% !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e0f2fe,
+            #dbeafe
+        ) !important;
+
+    border: 1px solid #bfdbfe !important;
+
+    color: #2563eb !important;
+
+    font-size: 24px !important;
+
+    box-shadow:
+        0 4px 12px rgba(37,99,235,.10) !important;
+}
+
+
+/* =========================================================
+   NOME
+   ========================================================= */
+
+.resultado-card .resultado-usuario h2 {
+    margin: 0 !important;
+
+    color: #0f172a !important;
+
+    font-size: 19px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -.3px !important;
+}
+
+
+/* =========================================================
+   DISTRIBUIDORA
+   ========================================================= */
+
+.resultado-card .resultado-usuario span {
+    display: block !important;
+
+    margin-top: 5px !important;
+
+    color: #64748b !important;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.resultado-card .resultado-tabela {
+    width: 100% !important;
+
+    border-collapse: separate !important;
+
+    border-spacing: 0 !important;
+
+    background: #ffffff !important;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA TABELA
+   ========================================================= */
+
+.resultado-card .resultado-tabela thead {
+    background: #f4f7fb !important;
+}
+
+
+.resultado-card .resultado-tabela th {
+    height: 48px !important;
+
+    padding: 0 20px !important;
+
+    text-align: left !important;
+
+    color: #64748b !important;
+
+    font-size: 10px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: .35px !important;
+
+    text-transform: uppercase !important;
+
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+
+.resultado-card .resultado-tabela th:nth-child(2) {
+    text-align: center !important;
+}
+
+
+.resultado-card .resultado-tabela th:nth-child(3) {
+    text-align: right !important;
+}
+
+
+.resultado-card .resultado-tabela th:nth-child(4) {
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   LINHAS
+   ========================================================= */
+
+.resultado-card .resultado-tabela tbody tr {
+    transition: background .15s ease !important;
+}
+
+
+.resultado-card .resultado-tabela tbody tr:hover {
+    background: #f8fbff !important;
+}
+
+
+.resultado-card .resultado-tabela td {
+    padding: 16px 20px !important;
+
+    color: #0f172a !important;
+
+    font-size: 13px !important;
+
+    border-bottom: 1px solid #edf1f5 !important;
+
+    vertical-align: middle !important;
+}
+
+
+.resultado-card .resultado-tabela tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+
+/* =========================================================
+   MEDICAMENTO
+   ========================================================= */
+
+.resultado-card .resultado-tabela .col-medicamento {
+    min-width: 260px !important;
+}
+
+
+.resultado-card .resultado-tabela .col-medicamento strong {
+    display: block !important;
+
+    color: #111827 !important;
+
+    font-size: 13px !important;
+
+    font-weight: 750 !important;
+
+    line-height: 1.35 !important;
+}
+
+
+/* =========================================================
+   AÇÃO
+   ========================================================= */
+
+.resultado-card .resultado-tabela .col-acoes {
+    text-align: center !important;
+}
+
+
+.resultado-card .acao-medicamento {
+    width: 190px !important;
+
+    height: 40px !important;
+
+    padding: 0 12px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dbe3ed !important;
+
+    border-radius: 9px !important;
+
+    color: #334155 !important;
+
+    font-family: inherit !important;
+
+    font-size: 11px !important;
+
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    outline: none !important;
+
+    transition:
+        border-color .15s ease,
+        background .15s ease,
+        box-shadow .15s ease !important;
+}
+
+
+.resultado-card .acao-medicamento:hover {
+    background: #f0f7ff !important;
+
+    border-color: #60a5fa !important;
+
+    color: #2563eb !important;
+}
+
+
+.resultado-card .acao-medicamento:focus {
+    border-color: #2563eb !important;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.12) !important;
+}
+
+
+/* =========================================================
+   PREÇO
+   ========================================================= */
+
+.resultado-card .resultado-tabela .col-preco {
+    min-width: 120px !important;
+
+    text-align: right !important;
+
+    color: #2563eb !important;
+
+    font-size: 15px !important;
+
+    font-weight: 800 !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   QUANTIDADE
+   ========================================================= */
+
+.resultado-card .resultado-tabela .col-qtd {
+    text-align: center !important;
+}
+
+
+.resultado-card .campo-quantidade {
+    width: 70px !important;
+
+    height: 40px !important;
+
+    padding: 0 8px !important;
+
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dbe3ed !important;
+
+    border-radius: 9px !important;
+
+    color: #111827 !important;
+
+    text-align: center !important;
+
+    font-family: inherit !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+
+    outline: none !important;
+
+    transition:
+        border-color .15s ease,
+        box-shadow .15s ease !important;
+}
+
+
+.resultado-card .campo-quantidade:hover {
+    border-color: #93c5fd !important;
+}
+
+
+.resultado-card .campo-quantidade:focus {
+    border-color: #2563eb !important;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.12) !important;
+}
+
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+.resultado-card .resultado-rodape {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: flex-end !important;
+
+    gap: 20px !important;
+
+    padding: 20px 24px !important;
+
+    background: #f8fafc !important;
+
+    border-top: 1px solid #e8edf3 !important;
+}
+
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
+.resultado-card .resultado-total {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-end !important;
+
+    justify-content: center !important;
+
+    min-width: 150px !important;
+}
+
+
+.resultado-card .resultado-total small {
+    margin-bottom: 4px !important;
+
+    color: #64748b !important;
+
+    font-size: 9px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: .5px !important;
+}
+
+
+.resultado-card .total-representante {
+    margin: 0 !important;
+
+    color: #2563eb !important;
+
+    font-size: 26px !important;
+
+    font-weight: 850 !important;
+
+    letter-spacing: -.8px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* =========================================================
+   BOTÃO GERAR PEDIDO
+   ========================================================= */
+
+.resultado-card .resultado-rodape .btn-gerar-pedido {
+    min-width: 205px !important;
+
+    height: 48px !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 9px !important;
+
+    padding: 0 22px !important;
+
+    border: none !important;
+
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #008cff
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-family: inherit !important;
+
+    font-size: 13px !important;
+
+    font-weight: 800 !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 8px 20px rgba(37,99,235,.22) !important;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        filter .15s ease !important;
+}
+
+
+.resultado-card .resultado-rodape .btn-gerar-pedido:hover {
+    transform: translateY(-1px) !important;
+
+    filter: brightness(1.06) !important;
+
+    box-shadow:
+        0 12px 25px rgba(37,99,235,.28) !important;
+}
+
+
+.resultado-card .resultado-rodape .btn-gerar-pedido:active {
+    transform: translateY(0) !important;
+}
+
+
+/* =========================================================
+   RESULTADO VAZIO
+   ========================================================= */
+
+.resultado-cotacao > h4 {
+    margin: 20px !important;
+
+    padding: 20px !important;
+
+    color: #64748b !important;
+
+    background: #f8fafc !important;
+
+    border: 1px solid #e2e8f0 !important;
+
+    border-radius: 12px !important;
+
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   MOBILE — RESULTADO RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .resultado-card {
+        width: 100% !important;
+
+        margin-top: 12px !important;
+
+        border-radius: 14px !important;
+    }
+
+
+    /* ==============================================
+       CABEÇALHO
+       ============================================== */
+
+    .resultado-card > .comparativo-header {
+        padding: 16px !important;
+
+        min-height: 60px !important;
+    }
+
+
+    .resultado-card > .comparativo-header h3 {
+        font-size: 15px !important;
+
+        gap: 8px !important;
+    }
+
+
+    .resultado-card > .comparativo-header h3 i {
+        width: 30px !important;
+        height: 30px !important;
+
+        font-size: 14px !important;
+    }
+
+
+    .resultado-card > .comparativo-header small {
+        font-size: 10px !important;
+    }
+
+
+    /* ==============================================
+       REPRESENTANTE
+       ============================================== */
+
+    .resultado-card .resultado-representante {
+        width: calc(100% - 20px) !important;
+
+        margin: 10px !important;
+
+        border-radius: 12px !important;
+
+        overflow: hidden !important;
+    }
+
+
+    /* ==============================================
+       CABEÇALHO DO REPRESENTANTE
+       ============================================== */
+
+    .resultado-card .resultado-topo {
+        min-height: 75px !important;
+
+        padding: 14px !important;
+    }
+
+
+    .resultado-card .resultado-usuario {
+        gap: 10px !important;
+
+        min-width: 0 !important;
+    }
+
+
+    .resultado-card .resultado-avatar {
+        width: 42px !important;
+        height: 42px !important;
+
+        font-size: 17px !important;
+    }
+
+
+    .resultado-card .resultado-usuario h2 {
+        max-width: 220px !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+
+        white-space: nowrap !important;
+
+        font-size: 14px !important;
+    }
+
+
+    .resultado-card .resultado-usuario span {
+        margin-top: 3px !important;
+
+        font-size: 10px !important;
+    }
+
+
+    /* ==============================================
+       TABELA
+       ============================================== */
+
+    .resultado-card .resultado-tabela {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        table-layout: fixed !important;
+    }
+
+
+    /* ==============================================
+       CABEÇALHO DA TABELA
+       ============================================== */
+
+    .resultado-card .resultado-tabela th {
+        height: 38px !important;
+
+        padding: 0 8px !important;
+
+        font-size: 8px !important;
+
+        letter-spacing: 0 !important;
+
+        white-space: nowrap !important;
+    }
+
+
+    /* ==============================================
+       LARGURA DAS COLUNAS
+       ============================================== */
+
+    .resultado-card .resultado-tabela th:nth-child(1),
+    .resultado-card .resultado-tabela td:nth-child(1) {
+        width: 39% !important;
+    }
+
+
+    .resultado-card .resultado-tabela th:nth-child(2),
+    .resultado-card .resultado-tabela td:nth-child(2) {
+        width: 27% !important;
+    }
+
+
+    .resultado-card .resultado-tabela th:nth-child(3),
+    .resultado-card .resultado-tabela td:nth-child(3) {
+        width: 18% !important;
+    }
+
+
+    .resultado-card .resultado-tabela th:nth-child(4),
+    .resultado-card .resultado-tabela td:nth-child(4) {
+        width: 16% !important;
+    }
+
+
+    /* ==============================================
+       CÉLULAS
+       ============================================== */
+
+    .resultado-card .resultado-tabela td {
+        padding: 12px 7px !important;
+
+        font-size: 10px !important;
+
+        vertical-align: middle !important;
+
+        overflow: hidden !important;
+    }
+
+
+    /* ==============================================
+       MEDICAMENTO
+       ============================================== */
+
+    .resultado-card .resultado-tabela .col-medicamento {
+        min-width: 0 !important;
+    }
+
+
+    .resultado-card .resultado-tabela .col-medicamento strong {
+        display: block !important;
+
+        max-width: 100% !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+
+        white-space: nowrap !important;
+
+        font-size: 10px !important;
+    }
+
+
+    .resultado-card .resultado-tabela .condicao-mobile {
+        display: block !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+
+        white-space: nowrap !important;
+
+        font-size: 8px !important;
+    }
+
+
+    /* ==============================================
+       SELECT DE AÇÃO
+       ============================================== */
+
+    .resultado-card .acao-medicamento {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        height: 34px !important;
+
+        padding: 0 5px !important;
+
+        border-radius: 7px !important;
+
+        font-size: 9px !important;
+
+        overflow: hidden !important;
+    }
+
+
+    /* ==============================================
+       PREÇO
+       ============================================== */
+
+    .resultado-card .resultado-tabela .col-preco {
+        min-width: 0 !important;
+
+        padding-left: 3px !important;
+
+        padding-right: 3px !important;
+
+        font-size: 10px !important;
+
+        text-align: right !important;
+    }
+
+
+    /* ==============================================
+       QUANTIDADE
+       ============================================== */
+
+    .resultado-card .resultado-tabela .col-qtd {
+        padding-left: 3px !important;
+
+        padding-right: 3px !important;
+
+        text-align: center !important;
+    }
+
+
+    .resultado-card .campo-quantidade {
+        width: 42px !important;
+
+        max-width: 100% !important;
+
+        height: 34px !important;
+
+        padding: 0 3px !important;
+
+        border-radius: 7px !important;
+
+        font-size: 11px !important;
+    }
+
+
+    /* ==============================================
+       RODAPÉ
+       ============================================== */
+
+    .resultado-card .resultado-rodape {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        box-sizing: border-box !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        justify-content: space-between !important;
+
+        gap: 10px !important;
+
+        padding: 14px !important;
+    }
+
+
+    /* ==============================================
+       TOTAL
+       ============================================== */
+
+    .resultado-card .resultado-total {
+        min-width: 0 !important;
+
+        align-items: flex-start !important;
+    }
+
+
+    .resultado-card .resultado-total small {
+        font-size: 8px !important;
+    }
+
+
+    .resultado-card .total-representante {
+        font-size: 20px !important;
+
+        letter-spacing: -.5px !important;
+    }
+
+
+    /* ==============================================
+       BOTÃO
+       ============================================== */
+
+    .resultado-card .resultado-rodape .btn-gerar-pedido {
+        min-width: 0 !important;
+
+        width: auto !important;
+
+        height: 40px !important;
+
+        padding: 0 12px !important;
+
+        border-radius: 9px !important;
+
+        font-size: 10px !important;
+
+        white-space: nowrap !important;
+    }
+
+
+    .resultado-card .resultado-rodape .btn-gerar-pedido i {
+        font-size: 13px !important;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .resultado-card .resultado-tabela th {
+        font-size: 7px !important;
+
+        padding: 0 5px !important;
+    }
+
+
+    .resultado-card .resultado-tabela td {
+        padding: 10px 5px !important;
+    }
+
+
+    .resultado-card .resultado-tabela .col-medicamento strong {
+        font-size: 9px !important;
+    }
+
+
+    .resultado-card .acao-medicamento {
+        font-size: 8px !important;
+
+        height: 32px !important;
+    }
+
+
+    .resultado-card .campo-quantidade {
+        width: 38px !important;
+
+        height: 32px !important;
+    }
+
+
+    .resultado-card .total-representante {
+        font-size: 18px !important;
+    }
+
+
+    .resultado-card .resultado-rodape .btn-gerar-pedido {
+        padding: 0 9px !important;
+
+        font-size: 9px !important;
+    }
+}
