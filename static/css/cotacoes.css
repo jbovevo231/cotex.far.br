@@ -127,3 +127,861 @@
         transform: translateY(0) scale(1);
     }
 }
+
+/* =========================================================
+   COTAFARMA • TABELA DE PRODUTOS
+========================================================= */
+
+.medicine-table {
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e7edf3;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(15,23,42,.045);
+
+}
+
+
+/* =========================================================
+   CABEÇALHO DA ENTRADA
+========================================================= */
+
+.entrada-header {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        150px;
+
+    gap: 16px;
+
+    padding: 18px 22px 9px;
+
+    color: #718096;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   ÁREA DE ENTRADA
+========================================================= */
+
+.entrada-row {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        150px;
+
+    gap: 16px;
+
+    padding: 0 22px;
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.entrada-row input {
+
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #dfe6ed;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #fbfcfd;
+
+    color: #25344a;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.entrada-row input::placeholder {
+
+    color: #a0acba;
+
+}
+
+
+.entrada-row input:hover {
+
+    background: #ffffff;
+
+    border-color: #cbd6e2;
+
+}
+
+
+.entrada-row input:focus {
+
+    background: #ffffff;
+
+    border-color: #12c979;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(18,201,121,.09);
+
+}
+
+
+/* =========================================================
+   AÇÕES DA ENTRADA
+========================================================= */
+
+.entrada-acoes {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 22px 20px;
+
+}
+
+
+/* =========================================================
+   BOTÃO ADICIONAR
+========================================================= */
+
+.btn-adicionar {
+
+    height: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 17px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18d982,
+            #00b86b
+        );
+
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px
+        rgba(18,201,121,.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.btn-adicionar:hover {
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 10px 22px
+        rgba(18,201,121,.25);
+
+}
+
+
+.btn-adicionar:active {
+
+    transform:
+        scale(.98);
+
+}
+
+
+/* =========================================================
+   BOTÃO PENDÊNCIAS
+========================================================= */
+
+.btn-pendencias {
+
+    height: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 15px;
+
+    border: 1px solid #e0e7ee;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #64748b;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        color .2s ease;
+
+}
+
+
+.btn-pendencias:hover {
+
+    background: #f7faf9;
+
+    border-color: #bfe8d5;
+
+    color: #0daa65;
+
+}
+
+
+/* =========================================================
+   TÍTULO DA LISTA
+========================================================= */
+
+.lista-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    min-height: 58px;
+
+    padding: 0 22px;
+
+    border-top: 1px solid #edf1f5;
+
+    border-bottom: 1px solid #edf1f5;
+
+    background: #fbfcfd;
+
+    color: #18263a;
+
+    font-size: 13px;
+
+    font-weight: 750;
+
+}
+
+
+/* =========================================================
+   TABELA
+========================================================= */
+
+.lista-produtos {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+}
+
+
+.tabela-produtos {
+
+    width: 100%;
+
+    min-width: 650px;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+}
+
+
+/* =========================================================
+   CABEÇALHO DA TABELA
+========================================================= */
+
+.tabela-produtos thead {
+
+    background: #ffffff;
+
+}
+
+
+.tabela-produtos th {
+
+    height: 42px;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #edf1f5;
+
+    color: #8a98aa;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: .8px;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+}
+
+
+.tabela-produtos th.th-item {
+
+    width: 55px;
+
+    text-align: center;
+
+}
+
+
+.tabela-produtos th.th-quantidade {
+
+    width: 130px;
+
+    text-align: center;
+
+}
+
+
+.tabela-produtos th.th-acoes {
+
+    width: 80px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   LINHAS
+========================================================= */
+
+.tabela-produtos tbody tr {
+
+    background: #ffffff;
+
+    transition:
+        background .18s ease;
+
+}
+
+
+.tabela-produtos tbody tr:hover {
+
+    background: #f9fcfb;
+
+}
+
+
+.tabela-produtos td {
+
+    height: 70px;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #f0f3f6;
+
+    color: #46566a;
+
+    font-size: 12px;
+
+}
+
+
+.tabela-produtos tbody tr:last-child td {
+
+    border-bottom: 0;
+
+}
+
+
+/* =========================================================
+   NÚMERO DO ITEM
+========================================================= */
+
+.col-item {
+
+    width: 55px;
+
+    text-align: center;
+
+}
+
+
+.numero-item {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 9px;
+
+    background: #f1faf6;
+
+    color: #0cad67;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+/* =========================================================
+   PRODUTO
+========================================================= */
+
+.col-produto {
+
+    min-width: 280px;
+
+}
+
+
+.produto-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.produto-icone {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eefbf5,
+            #e2f8ed
+        );
+
+    color: #0db76d;
+
+    font-size: 15px;
+
+}
+
+
+.produto-texto {
+
+    min-width: 0;
+
+}
+
+
+.produto-texto strong {
+
+    display: block;
+
+    max-width: 420px;
+
+    overflow: hidden;
+
+    color: #1c2a3d;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+.produto-texto small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #98a4b2;
+
+    font-size: 9px;
+
+    font-weight: 500;
+
+}
+
+
+/* =========================================================
+   QUANTIDADE
+========================================================= */
+
+.col-quantidade {
+
+    text-align: center;
+
+}
+
+
+.quantidade-badge {
+
+    display: inline-flex;
+
+    align-items: baseline;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    min-width: 62px;
+
+    height: 30px;
+
+    padding: 0 10px;
+
+    border-radius: 9px;
+
+    background: #f5f7fa;
+
+    color: #26364b;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+.quantidade-badge small {
+
+    color: #8d99a8;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.col-acoes {
+
+    text-align: center;
+
+}
+
+
+.btn-remover-lista {
+
+    width: 32px;
+
+    height: 32px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #edf0f3;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #9aa5b3;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+
+}
+
+
+.btn-remover-lista:hover {
+
+    color: #e45555;
+
+    background: #fff4f4;
+
+    border-color: #ffdada;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+   ESTADO VAZIO
+========================================================= */
+
+.tabela-produtos tbody:empty::after {
+
+    content:
+        "Nenhum medicamento adicionado ainda";
+
+    display: table-cell;
+
+    height: 100px;
+
+    padding: 35px;
+
+    color: #9aa6b4;
+
+    font-size: 11px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   AUTOCOMPLETE
+========================================================= */
+
+#listaSugestoes {
+
+    position: absolute;
+
+    z-index: 100;
+
+    width: 100%;
+
+    max-height: 220px;
+
+    overflow-y: auto;
+
+    margin-top: 5px;
+
+    border: 1px solid #e3e9ef;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 30px
+        rgba(15,23,42,.10);
+
+}
+
+
+.item-sugestao {
+
+    padding: 11px 14px;
+
+    border-bottom: 1px solid #f1f3f6;
+
+    color: #26364a;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        background .15s ease;
+
+}
+
+
+.item-sugestao:hover {
+
+    background: #f2faf6;
+
+    color: #0baa64;
+
+}
+
+
+.item-sugestao:last-child {
+
+    border-bottom: 0;
+
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .medicine-table {
+
+        border-radius: 16px;
+
+    }
+
+    .entrada-header {
+
+        grid-template-columns: 1fr;
+
+        gap: 6px;
+
+        padding:
+            16px 16px 8px;
+
+    }
+
+    .entrada-header div:nth-child(2) {
+
+        display: none;
+
+    }
+
+    .entrada-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        padding:
+            0 16px;
+
+    }
+
+    .entrada-acoes {
+
+        flex-wrap: wrap;
+
+        padding:
+            12px 16px 16px;
+
+    }
+
+    .lista-header {
+
+        padding: 0 16px;
+
+    }
+
+    .tabela-produtos th,
+    .tabela-produtos td {
+
+        padding:
+            0 12px;
+
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .entrada-acoes {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+    .btn-adicionar,
+    .btn-pendencias {
+
+        width: 100%;
+
+    }
+
+}

@@ -29,23 +29,43 @@ def dashboard():
 
     cnpj = session.get("usuario_cnpj")
 
+    from models.usuario import buscar_usuario_por_id
+
+    usuario = buscar_usuario_por_id(
+        session["usuario_id"]
+    )
+
+    print("===================================")
+    print("USUARIO LOGADO:", usuario)
+    print("CNPJ:", cnpj)
+    print("===================================")
+
+    nome_farmacia = "Farmácia"
+
+    if usuario:
+
+        try:
+            nome_farmacia = usuario["nome"]
+        except (TypeError, KeyError, IndexError):
+
+            try:
+                nome_farmacia = usuario[0]
+            except:
+                pass
 
     indicadores = carregar_indicadores(cnpj)
-
 
     print("===================================")
     print(indicadores)
     print("===================================")
 
-
     ultimas_cotacoes = carregar_ultimas_cotacoes(cnpj)
-
-
 
     return render_template(
         "dashboard.html",
         indicadores=indicadores,
-        ultimas_cotacoes=ultimas_cotacoes
+        ultimas_cotacoes=ultimas_cotacoes,
+        nome_farmacia=nome_farmacia
     )
 
 print(">>> ROTA PENDÊNCIAS CARREGADA <<<")

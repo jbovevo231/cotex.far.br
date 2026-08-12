@@ -5026,3 +5026,111 @@ PAINEL DE VISUALIZAÇÃO DA COTAÇÃO
     }
 
 }
+
+/* =========================================================
+   SAUDAÇÃO DO DASHBOARD
+========================================================= */
+
+.dashboard-welcome {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.dashboard-welcome-icon {
+
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #18d982,
+            #00b86b
+        );
+
+    color: #fff;
+
+    font-size: 19px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(18,217,130,.25);
+
+}
+
+
+.dashboard-welcome-text h1 {
+
+    margin: 0;
+
+    color: #111c30;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 29px;
+
+    font-weight: 800;
+
+    line-height: 1.15;
+
+    letter-spacing: -.8px;
+
+}
+
+
+.dashboard-welcome-text p {
+
+    margin: 5px 0 0;
+
+    color: #718096;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+}
+
+
+@media (max-width: 768px) {
+
+    .dashboard-welcome-icon {
+
+        width: 45px;
+        height: 45px;
+
+        border-radius: 14px;
+
+        font-size: 17px;
+
+    }
+
+    .dashboard-welcome-text h1 {
+
+        font-size: 23px;
+
+    }
+
+    .dashboard-welcome-text p {
+
+        font-size: 12px;
+
+    }
+
+}

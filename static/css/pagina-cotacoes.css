@@ -1,0 +1,1104 @@
+/* ============================================================
+   COTAFARMA
+   PÁGINA DE COTAÇÕES — VISUAL MODERNO
+   ============================================================ */
+
+
+/* ============================================================
+   1. PÁGINA
+   ============================================================ */
+
+.content .page-wrapper {
+    min-height: 100vh !important;
+
+    background:
+        radial-gradient(
+            circle at 85% 0%,
+            rgba(99, 102, 241, .045),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(16, 185, 129, .035),
+            transparent 25%
+        ),
+        #f7f9fc !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   2. TOPO DA PÁGINA
+   ESTILO CONECTA
+   ============================================================ */
+
+.topbar {
+    width: 100% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    gap: 28px !important;
+
+    margin: 0 0 28px !important;
+
+    padding: 4px 2px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   BLOCO DO TÍTULO
+   ============================================================ */
+
+.topbar > div:first-child {
+    position: relative !important;
+
+    min-width: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-start !important;
+
+    justify-content: center !important;
+
+    padding-left: 58px !important;
+}
+
+
+/* ============================================================
+   ÍCONE VERDE AO LADO DO TÍTULO
+   ============================================================ */
+
+.topbar > div:first-child::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 0 !important;
+
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
+    width: 44px !important;
+
+    height: 44px !important;
+
+    border-radius: 13px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10b981 0%,
+            #05a86f 100%
+        ) !important;
+
+    box-shadow:
+        0 8px 20px rgba(16,185,129,.18) !important;
+}
+
+
+/* símbolo dentro do quadrado */
+
+.topbar > div:first-child::after {
+    content: "▣" !important;
+
+    position: absolute !important;
+
+    left: 0 !important;
+
+    top: 50% !important;
+
+    transform: translateY(-52%) !important;
+
+    width: 44px !important;
+
+    text-align: center !important;
+
+    color: #ffffff !important;
+
+    font-size: 20px !important;
+
+    font-weight: 800 !important;
+
+    line-height: 1 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* ============================================================
+   TÍTULO PRINCIPAL
+   ============================================================ */
+
+.topbar h1 {
+    position: static !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    color: #101828 !important;
+
+    font-size: 32px !important;
+
+    line-height: 1.1 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -1.25px !important;
+}
+
+
+/* remove decorações antigas */
+
+.topbar h1::before,
+.topbar h1::after {
+    display: none !important;
+
+    content: none !important;
+}
+
+
+/* ============================================================
+   SUBTÍTULO
+   ============================================================ */
+
+.topbar p {
+    margin: 6px 0 0 !important;
+
+    padding: 0 !important;
+
+    color: #667085 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.45 !important;
+
+    font-weight: 500 !important;
+
+    letter-spacing: 0 !important;
+}
+
+
+/* ============================================================
+   BOTÃO NOVA COTAÇÃO
+   ============================================================ */
+
+.topbar .new-btn {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 8px !important;
+
+    min-width: 150px !important;
+
+    height: 47px !important;
+
+    padding: 0 19px !important;
+
+    border: none !important;
+
+    border-radius: 13px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10b981 0%,
+            #059669 100%
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-family: inherit !important;
+
+    font-size: 12px !important;
+
+    font-weight: 800 !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 9px 24px rgba(16,185,129,.20) !important;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease !important;
+}
+
+
+.topbar .new-btn:hover {
+    transform: translateY(-2px) !important;
+
+    box-shadow:
+        0 13px 28px rgba(16,185,129,.28) !important;
+}
+
+
+.topbar .new-btn:active {
+    transform: translateY(0) !important;
+}
+
+
+.topbar .new-btn i {
+    font-size: 15px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* ============================================================
+   3. CONTAINER DA LISTA
+   ============================================================ */
+
+.card {
+    width: 100% !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e6eaf0 !important;
+
+    border-radius: 24px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 12px 40px rgba(15,23,42,.055) !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   4. CABEÇALHO DA LISTA
+   ============================================================ */
+
+.card .card-header {
+    position: relative !important;
+
+    min-height: 92px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    padding: 0 30px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #fbfcfe 100%
+        ) !important;
+
+    border-bottom: 1px solid #edf0f4 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* linha verde */
+
+.card .card-header::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 30px !important;
+
+    bottom: 0 !important;
+
+    width: 48px !important;
+
+    height: 3px !important;
+
+    border-radius: 5px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            #10b981,
+            #34d399
+        ) !important;
+}
+
+
+/* ============================================================
+   TÍTULO LISTA DE COTAÇÕES
+   ============================================================ */
+
+.card .card-header h2 {
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    color: #182230 !important;
+
+    font-size: 20px !important;
+
+    line-height: 1.2 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -.55px !important;
+}
+
+
+/* ============================================================
+   5. LISTA
+   ============================================================ */
+
+.card .cotacoes-lista {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 16px !important;
+
+    padding: 22px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc 0%,
+            #f6f8fb 100%
+        ) !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   6. CARD INDIVIDUAL DA COTAÇÃO
+   ============================================================ */
+
+.card .cotacao-card {
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e3e8ef !important;
+
+    border-radius: 18px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 4px 15px rgba(15,23,42,.035) !important;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease !important;
+}
+
+
+.card .cotacao-card:hover {
+    transform: translateY(-2px) !important;
+
+    border-color: #d4dce6 !important;
+
+    box-shadow:
+        0 12px 28px rgba(15,23,42,.075) !important;
+}
+
+
+/* ============================================================
+   7. CABEÇALHO DE CADA COTAÇÃO
+   ============================================================ */
+
+.card .cotacao-card .lado-direito.centralizado {
+    width: 100% !important;
+
+    min-height: 108px !important;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    gap: 20px !important;
+
+    padding: 22px 25px !important;
+
+    background: #ffffff !important;
+
+    box-sizing: border-box !important;
+
+    text-align: left !important;
+}
+
+
+/* ============================================================
+   8. INFORMAÇÕES
+   ============================================================ */
+
+.card .cotacao-card .cotacao-info {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-start !important;
+
+    justify-content: center !important;
+
+    gap: 8px !important;
+
+    min-width: 0 !important;
+}
+
+
+/* ============================================================
+   9. NOME DA FARMÁCIA
+   ============================================================ */
+
+.card .cotacao-card .cotacao-nome {
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    color: #172033 !important;
+
+    font-size: 18px !important;
+
+    line-height: 1.25 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -.45px !important;
+}
+
+
+/* ============================================================
+   10. STATUS
+   ============================================================ */
+
+.card .cotacao-card .status {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    width: fit-content !important;
+
+    margin: 0 !important;
+
+    padding: 5px 11px !important;
+
+    border-radius: 999px !important;
+
+    font-size: 9px !important;
+
+    line-height: 1 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: .3px !important;
+}
+
+
+/* ABERTA */
+
+.card .cotacao-card .status.aberta {
+    color: #087f5b !important;
+
+    background: #e9faf3 !important;
+
+    border: 1px solid #ccefe0 !important;
+}
+
+
+/* ENCERRADA */
+
+.card .cotacao-card .status.encerrada {
+    color: #dc2626 !important;
+
+    background: #fff1f1 !important;
+
+    border: 1px solid #ffd8d8 !important;
+}
+
+
+/* ============================================================
+   11. ÁREA DOS BOTÕES
+   ============================================================ */
+
+.card .cotacao-card .cotacao-acoes {
+    width: 100% !important;
+
+    min-height: 82px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 12px !important;
+
+    padding: 15px 20px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc 0%,
+            #f5f8fb 100%
+        ) !important;
+
+    border-top: 1px solid #edf1f5 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   12. BOTÃO BASE
+   ============================================================ */
+
+.card .cotacao-card .acao-btn {
+    position: relative !important;
+
+    width: 50px !important;
+
+    height: 50px !important;
+
+    min-width: 50px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    border-radius: 14px !important;
+
+    font-size: 18px !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 4px 12px rgba(15,23,42,.05) !important;
+
+    transition:
+        transform .18s ease,
+        background .18s ease,
+        border-color .18s ease,
+        color .18s ease,
+        box-shadow .18s ease !important;
+}
+
+
+/* ============================================================
+   13. VISUALIZAR — LILÁS
+   ============================================================ */
+
+.card .cotacao-card .acao-btn:nth-child(1) {
+    color: #8b5cf6 !important;
+
+    background: #f4efff !important;
+
+    border: 1px solid #e5d9ff !important;
+}
+
+
+.card .cotacao-card .acao-btn:nth-child(1):hover {
+    color: #ffffff !important;
+
+    background: #8b5cf6 !important;
+
+    border-color: #8b5cf6 !important;
+
+    box-shadow:
+        0 10px 24px rgba(139,92,246,.25) !important;
+}
+
+
+/* ============================================================
+   14. ENVIAR — VERDE
+   ============================================================ */
+
+.card .cotacao-card .acao-btn:nth-child(2) {
+    color: #059669 !important;
+
+    background: #ecfdf5 !important;
+
+    border: 1px solid #c9f2df !important;
+}
+
+
+.card .cotacao-card .acao-btn:nth-child(2):hover {
+    color: #ffffff !important;
+
+    background: #10b981 !important;
+
+    border-color: #10b981 !important;
+
+    box-shadow:
+        0 10px 24px rgba(16,185,129,.25) !important;
+}
+
+
+/* ============================================================
+   15. COMPARATIVO — DOURADO
+   ============================================================ */
+
+.card .cotacao-card .acao-btn:nth-child(3) {
+    color: #d97706 !important;
+
+    background: #fff8e8 !important;
+
+    border: 1px solid #ffe8b4 !important;
+}
+
+
+.card .cotacao-card .acao-btn:nth-child(3):hover {
+    color: #ffffff !important;
+
+    background: #f59e0b !important;
+
+    border-color: #f59e0b !important;
+
+    box-shadow:
+        0 10px 24px rgba(245,158,11,.24) !important;
+}
+
+
+/* ============================================================
+   16. RESULTADO — AZUL
+   ============================================================ */
+
+.card .cotacao-card .acao-btn:nth-child(4) {
+    color: #2563eb !important;
+
+    background: #eff6ff !important;
+
+    border: 1px solid #d9e8ff !important;
+}
+
+
+.card .cotacao-card .acao-btn:nth-child(4):hover {
+    color: #ffffff !important;
+
+    background: #3b82f6 !important;
+
+    border-color: #3b82f6 !important;
+
+    box-shadow:
+        0 10px 24px rgba(59,130,246,.23) !important;
+}
+
+
+/* ============================================================
+   17. CANCELAR — VERMELHO CLARO
+   ============================================================ */
+
+.card .cotacao-card .acao-btn:nth-child(5) {
+    color: #ef4444 !important;
+
+    background: #fff3f3 !important;
+
+    border: 1px solid #ffdede !important;
+}
+
+
+.card .cotacao-card .acao-btn:nth-child(5):hover {
+    color: #ffffff !important;
+
+    background: #ef4444 !important;
+
+    border-color: #ef4444 !important;
+
+    box-shadow:
+        0 10px 24px rgba(239,68,68,.23) !important;
+}
+
+
+/* ============================================================
+   18. APAGAR — VERMELHO
+   ============================================================ */
+
+.card .cotacao-card .acao-btn:nth-child(6) {
+    color: #dc2626 !important;
+
+    background: #fff0f0 !important;
+
+    border: 1px solid #ffd7d7 !important;
+}
+
+
+.card .cotacao-card .acao-btn:nth-child(6):hover {
+    color: #ffffff !important;
+
+    background: #dc2626 !important;
+
+    border-color: #dc2626 !important;
+
+    box-shadow:
+        0 10px 24px rgba(220,38,38,.23) !important;
+}
+
+
+/* ============================================================
+   19. EFEITO DOS BOTÕES
+   ============================================================ */
+
+.card .cotacao-card .acao-btn:hover {
+    transform: translateY(-3px) !important;
+}
+
+
+.card .cotacao-card .acao-btn:active {
+    transform: translateY(0) !important;
+}
+
+
+.card .cotacao-card .acao-btn i {
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    font-size: 19px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* ============================================================
+   20. TOOLTIP
+   ============================================================ */
+
+.card .cotacao-card .acao-btn::after {
+    content: attr(data-tooltip) !important;
+
+    position: absolute !important;
+
+    left: 50% !important;
+
+    bottom: calc(100% + 9px) !important;
+
+    transform:
+        translateX(-50%)
+        translateY(4px) !important;
+
+    padding: 6px 9px !important;
+
+    border-radius: 7px !important;
+
+    background: #111827 !important;
+
+    color: #ffffff !important;
+
+    font-size: 9px !important;
+
+    font-weight: 700 !important;
+
+    white-space: nowrap !important;
+
+    opacity: 0 !important;
+
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+
+    z-index: 9999 !important;
+
+    transition:
+        opacity .15s ease,
+        transform .15s ease !important;
+}
+
+
+.card .cotacao-card .acao-btn:hover::after {
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    transform:
+        translateX(-50%)
+        translateY(0) !important;
+}
+
+
+/* ============================================================
+   21. PAINÉIS INTERNOS
+   ============================================================ */
+
+.card .cotacao-card .itens-cotacao,
+.card .cotacao-card .comparativo-cotacao,
+.card .cotacao-card .resultado-cotacao {
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ============================================================
+   22. TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .topbar h1 {
+        font-size: 30px !important;
+    }
+
+
+    .topbar > div:first-child {
+        padding-left: 53px !important;
+    }
+
+
+    .topbar > div:first-child::before,
+    .topbar > div:first-child::after {
+        width: 41px !important;
+    }
+
+
+    .topbar .new-btn {
+        min-width: 145px !important;
+    }
+
+}
+
+
+/* ============================================================
+   23. CELULAR
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .content .page-wrapper {
+        padding-left: 12px !important;
+
+        padding-right: 12px !important;
+    }
+
+
+    .topbar {
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 16px !important;
+
+        margin-bottom: 20px !important;
+
+        padding: 0 !important;
+    }
+
+
+    .topbar > div:first-child {
+        padding-left: 52px !important;
+
+        min-height: 46px !important;
+    }
+
+
+    .topbar > div:first-child::before,
+    .topbar > div:first-child::after {
+        width: 40px !important;
+
+        height: 40px !important;
+    }
+
+
+    .topbar > div:first-child::after {
+        font-size: 18px !important;
+    }
+
+
+    .topbar h1 {
+        font-size: 29px !important;
+
+        letter-spacing: -1.1px !important;
+    }
+
+
+    .topbar p {
+        margin-top: 5px !important;
+
+        font-size: 12px !important;
+    }
+
+
+    .topbar .new-btn {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        height: 47px !important;
+    }
+
+
+    .card {
+        border-radius: 19px !important;
+    }
+
+
+    .card .card-header {
+        min-height: 76px !important;
+
+        padding: 0 19px !important;
+    }
+
+
+    .card .card-header::before {
+        left: 19px !important;
+
+        width: 38px !important;
+
+        height: 3px !important;
+    }
+
+
+    .card .card-header h2 {
+        font-size: 18px !important;
+    }
+
+
+    .card .cotacoes-lista {
+        padding: 12px !important;
+
+        gap: 12px !important;
+    }
+
+
+    .card .cotacao-card .lado-direito.centralizado {
+        min-height: 94px !important;
+
+        flex-direction: column !important;
+
+        align-items: center !important;
+
+        justify-content: center !important;
+
+        padding: 17px !important;
+
+        gap: 8px !important;
+
+        text-align: center !important;
+    }
+
+
+    .card .cotacao-card .cotacao-info {
+        align-items: center !important;
+
+        text-align: center !important;
+    }
+
+
+    .card .cotacao-card .cotacao-nome {
+        font-size: 16px !important;
+    }
+
+
+    .card .cotacao-card .cotacao-acoes {
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+
+        gap: 8px !important;
+
+        min-height: 0 !important;
+
+        padding: 11px !important;
+    }
+
+
+    .card .cotacao-card .acao-btn {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        height: 49px !important;
+
+        border-radius: 12px !important;
+    }
+
+
+    .card .cotacao-card .acao-btn::after {
+        display: none !important;
+    }
+
+}
+
+
+/* ============================================================
+   24. CELULAR PEQUENO
+   ============================================================ */
+
+@media (max-width: 390px) {
+
+    .content .page-wrapper {
+        padding-left: 8px !important;
+
+        padding-right: 8px !important;
+    }
+
+
+    .topbar > div:first-child {
+        padding-left: 48px !important;
+    }
+
+
+    .topbar > div:first-child::before,
+    .topbar > div:first-child::after {
+        width: 37px !important;
+
+        height: 37px !important;
+    }
+
+
+    .topbar h1 {
+        font-size: 26px !important;
+    }
+
+
+    .topbar p {
+        font-size: 11px !important;
+    }
+
+
+    .card .cotacoes-lista {
+        padding: 9px !important;
+    }
+
+
+    .card .cotacao-card .acao-btn {
+        height: 46px !important;
+    }
+
+
+    .card .cotacao-card .acao-btn i {
+        font-size: 17px !important;
+    }
+
+}

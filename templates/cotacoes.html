@@ -26,9 +26,15 @@ Cotações - CotaFarma
 
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/visualizar.css', v='2') }}">
+    
+    
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/pagina-cotacoes.css', v='2') }}">
+    
       {% endblock %}
 
 {% block page_content %}
+
 
 
 <header class="topbar">
@@ -262,74 +268,63 @@ function abrirCotacao(id){
         .then(itens => {
 
             let html = `
-                <div style="
-                    margin-top:15px;
-                    background:#f8f9fa;
-                    border:1px solid #dcdcdc;
-                    border-radius:10px;
-                    overflow:hidden;
-                ">
+    <div class="visualizar-box">
 
-                    <div style="
-                        padding:12px 18px;
-                        background:#198754;
-                        color:white;
-                        font-weight:600;
-                    ">
-                        ▼ Medicamentos da Cotação #${id}
-                    </div>
+        <div class="visualizar-titulo">
+            <i class="bi bi-capsule"></i>
+            <span>Medicamentos da Cotação #${id}</span>
+        </div>
 
-                    <table style="
-                        width:100%;
-                        border-collapse:collapse;
-                    ">
+        <div class="visualizar-tabela-wrapper">
 
-                        <thead>
+            <table class="visualizar-tabela">
 
-                            <tr style="background:#efefef">
+                <thead>
 
-                                <th style="padding:10px;text-align:left;">
-    Medicamento
-</th>
+                    <tr>
 
-<th style="padding:10px;text-align:center;">
-    Quantidade
-</th>
+                        <th>
+                            Medicamento
+                        </th>
 
-                            </tr>
+                        <th>
+                            Quantidade
+                        </th>
 
-                        </thead>
+                    </tr>
 
-                        <tbody>
-            `;
+                </thead>
+
+                <tbody>
+`;
 
             itens.forEach(item => {
 
     html += `
+    <tr>
 
-        <tr>
+        <td>
+            ${item.medicamento}
+        </td>
 
-            <td style="padding:10px;border-top:1px solid #eee;">
-                ${item.medicamento}
-            </td>
+        <td>
+            ${item.quantidade}
+        </td>
 
-            <td style="padding:10px;border-top:1px solid #eee;text-align:center;">
-                ${item.quantidade}
-            </td>
-
-        </tr>
-
-    `;
+    </tr>
+`;
 
 });
 
-            html += `
-                        </tbody>
+           html += `
+                </tbody>
 
-                    </table>
+            </table>
 
-                </div>
-            `;
+        </div>
+
+    </div>
+`;
 
             div.innerHTML = html;
             div.style.display = "block";
