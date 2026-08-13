@@ -1,28 +1,45 @@
 console.log("analytics.js carregou");
 
+
+// =========================================================
+// COTAÇÕES REALIZADAS
+// =========================================================
+
 async function carregarGraficoCotacoes(){
 
-    const response = await fetch("/analytics/cotacoes-realizadas");
+    try {
 
-    const dados = await response.json();
+        const response =
+            await fetch("/analytics/cotacoes-realizadas");
 
-    const labels = dados.map(item => item.dia);
+        const dados =
+            await response.json();
 
-    const valores = dados.map(item => item.total);
+        const labels =
+            dados.map(item => item.dia);
 
-    const canvas = document.getElementById("graficoCotacoes");
+        const valores =
+            dados.map(item => item.total);
 
-    new Chart(canvas, {
+        const canvas =
+            document.getElementById("graficoCotacoes");
 
-        type: "line",
+        if(!canvas){
+            console.error(
+                "Canvas graficoCotacoes não encontrado."
+            );
+            return;
+        }
 
-        data: {
+        new Chart(canvas, {
 
-            labels: labels,
+            type: "line",
 
-            datasets: [
+            data: {
 
-                {
+                labels: labels,
+
+                datasets: [{
 
                     label: "Cotações realizadas",
 
@@ -30,7 +47,8 @@ async function carregarGraficoCotacoes(){
 
                     borderColor: "#2563eb",
 
-                    backgroundColor: "rgba(37,99,235,0.15)",
+                    backgroundColor:
+                        "rgba(37,99,235,0.15)",
 
                     fill: true,
 
@@ -42,37 +60,41 @@ async function carregarGraficoCotacoes(){
 
                     pointHoverRadius: 6
 
-                }
-
-            ]
-
-        },
-
-        options: {
-
-            responsive: true,
-
-            maintainAspectRatio: false,
-
-            plugins: {
-
-                legend: {
-
-                    display: false
-
-                }
+                }]
 
             },
 
-            scales: {
+            options: {
 
-                y: {
+                responsive: true,
 
-                    beginAtZero: true,
+                maintainAspectRatio: false,
 
-                    ticks: {
+                plugins: {
 
-                        precision: 0
+                    legend: {
+                        display: false
+                    }
+
+                },
+
+                scales: {
+
+                    x: {
+
+                        grid: {
+                            display: false
+                        }
+
+                    },
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        ticks: {
+                            precision: 0
+                        }
 
                     }
 
@@ -80,194 +102,548 @@ async function carregarGraficoCotacoes(){
 
             }
 
-        }
+        });
 
-    });
+    } catch(error) {
+
+        console.error(
+            "Erro no gráfico de cotações:",
+            error
+        );
+
+    }
 
 }
 
-console.log(document.getElementById("graficoCotacoes"));
-console.log(typeof Chart);
 
-
+// =========================================================
+// ECONOMIA GERADA
+// =========================================================
 
 async function carregarGraficoEconomia(){
 
-    const response =
-        await fetch("/analytics/economia-gerada");
+    try {
 
-    const dados =
-        await response.json();
+        const response =
+            await fetch("/analytics/economia-gerada");
 
-    const labels =
-        dados.map(i=>i.dia);
+        const dados =
+            await response.json();
 
-    const valores =
-        dados.map(i=>i.total);
+        const labels =
+            dados.map(i => i.dia);
 
-    new Chart(
+        const valores =
+            dados.map(i => i.total);
 
-        document.getElementById("graficoEconomia"),
+        const canvas =
+            document.getElementById(
+                "graficoEconomia"
+            );
 
-        {
+        if(!canvas){
+            console.error(
+                "Canvas graficoEconomia não encontrado."
+            );
+            return;
+        }
 
-            type:"line",
+        new Chart(canvas, {
 
-            data:{
+            type: "line",
 
-                labels,
+            data: {
 
-                datasets:[{
+                labels: labels,
 
-                    data:valores,
+                datasets: [{
 
-                    borderColor:"#16a34a",
+                    data: valores,
 
-                    backgroundColor:"rgba(22,163,74,.12)",
+                    borderColor: "#16a34a",
 
-                    fill:true,
+                    backgroundColor:
+                        "rgba(22,163,74,.12)",
 
-                    tension:.4,
+                    fill: true,
 
-                    borderWidth:3,
+                    tension: .4,
 
-                    pointRadius:6,
-pointHoverRadius:8,
-pointBackgroundColor:"#16a34a",
-pointBorderColor:"#16a34a",
+                    borderWidth: 3,
+
+                    pointRadius: 6,
+
+                    pointHoverRadius: 8,
+
+                    pointBackgroundColor:
+                        "#16a34a",
+
+                    pointBorderColor:
+                        "#16a34a"
 
                 }]
 
             },
 
-            options:{
+            options: {
 
-                responsive:true,
+                responsive: true,
 
-                maintainAspectRatio:false,
+                maintainAspectRatio: false,
 
-                plugins:{
-                    legend:{
-                        display:false
+                plugins: {
+
+                    legend: {
+                        display: false
                     }
+
                 },
 
-                scales:{
+                scales: {
 
-                    x:{
-                        grid:{
-                            display:false
+                    x: {
+
+                        grid: {
+                            display: false
                         }
+
                     },
 
-                    y:{
-                        beginAtZero:true
+                    y: {
+
+                        beginAtZero: true
+
                     }
 
                 }
 
             }
 
-        }
+        });
 
-    );
+    } catch(error) {
+
+        console.error(
+            "Erro no gráfico de economia:",
+            error
+        );
+
+    }
 
 }
+
+
+// =========================================================
+// TAXA DE RESPOSTA
+// =========================================================
+
+async function carregarGraficoResposta(){
+
+    try {
+
+        const response =
+            await fetch("/analytics/taxa-resposta");
+
+        const dados =
+            await response.json();
+
+        console.log(
+            "Taxa:",
+            dados
+        );
+
+        const labels =
+            dados.map(i => i.dia);
+
+        const valores =
+            dados.map(i => i.total);
+
+        const canvas =
+            document.getElementById(
+                "graficoResposta"
+            );
+
+        if(!canvas){
+            console.error(
+                "Canvas graficoResposta não encontrado."
+            );
+            return;
+        }
+
+        new Chart(canvas, {
+
+            type: "line",
+
+            data: {
+
+                labels: labels,
+
+                datasets: [{
+
+                    data: valores,
+
+                    borderColor: "#8b5cf6",
+
+                    backgroundColor:
+                        "rgba(139,92,246,.15)",
+
+                    fill: true,
+
+                    tension: .4,
+
+                    borderWidth: 3,
+
+                    pointRadius: 5,
+
+                    pointHoverRadius: 7
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+
+                },
+
+                scales: {
+
+                    x: {
+
+                        grid: {
+                            display: false
+                        }
+
+                    },
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        max: 100,
+
+                        ticks: {
+
+                            callback: (v) =>
+                                v + "%"
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    } catch(error) {
+
+        console.error(
+            "Erro no gráfico de resposta:",
+            error
+        );
+
+    }
+
+}
+
+
+// =========================================================
+// MEDICAMENTOS MAIS COTADOS
+// =========================================================
+
+async function carregarGraficoMedicamentos(){
+
+    try {
+
+        console.log(
+            "Carregando medicamentos mais cotados..."
+        );
+
+
+        const response =
+            await fetch(
+                "/analytics/medicamentos-mais-cotados"
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Erro HTTP: " +
+                response.status
+            );
+
+        }
+
+
+        const dados =
+            await response.json();
+
+
+        console.log(
+            "Medicamentos mais cotados:",
+            dados
+        );
+
+
+        // -------------------------------------------------
+        // Nomes dos medicamentos
+        // -------------------------------------------------
+
+        const labels =
+            dados.map(
+                item => item.medicamento
+            );
+
+
+        // -------------------------------------------------
+        // QUANTIDADE DE VEZES COTADO
+        //
+        // IMPORTANTE:
+        // O Python retorna "quantidade",
+        // não "total".
+        // -------------------------------------------------
+
+        const valores =
+            dados.map(
+                item => item.quantidade
+            );
+
+
+        console.log(
+            "Labels:",
+            labels
+        );
+
+        console.log(
+            "Valores:",
+            valores
+        );
+
+
+        const canvas =
+            document.getElementById(
+                "graficoMedicamentos"
+            );
+
+
+        if(!canvas){
+
+            console.error(
+                "Canvas graficoMedicamentos não encontrado."
+            );
+
+            return;
+
+        }
+
+
+        new Chart(canvas, {
+
+            type: "bar",
+
+
+            data: {
+
+                labels: labels,
+
+
+                datasets: [{
+
+                    label:
+                        "Quantidade de cotações",
+
+                    data: valores,
+
+
+                    backgroundColor:
+                        "#2563eb",
+
+
+                    hoverBackgroundColor:
+                        "#1d4ed8",
+
+
+                    borderRadius: 8,
+
+
+                    borderSkipped: false,
+
+
+                    barThickness: 16,
+
+
+                    maxBarThickness: 20
+
+                }]
+
+            },
+
+
+            options: {
+
+                indexAxis: "y",
+
+
+                responsive: true,
+
+
+                maintainAspectRatio: false,
+
+
+                animation: {
+
+                    duration: 700
+
+                },
+
+
+                plugins: {
+
+                    legend: {
+
+                        display: false
+
+                    },
+
+
+                    tooltip: {
+
+                        displayColors: false,
+
+
+                        callbacks: {
+
+                            title: function(context){
+
+                                return context[0]
+                                    .label;
+
+                            },
+
+
+                            label: function(context){
+
+                                const quantidade =
+                                    context.raw;
+
+                                return (
+                                    quantidade +
+                                    (
+                                        quantidade === 1
+                                            ? " cotação"
+                                            : " cotações"
+                                    )
+                                );
+
+                            }
+
+                        }
+
+                    }
+
+                },
+
+
+                scales: {
+
+                    x: {
+
+                        beginAtZero: true,
+
+
+                        ticks: {
+
+                            precision: 0,
+
+
+                            color: "#64748b",
+
+
+                            font: {
+
+                                size: 11
+
+                            }
+
+                        },
+
+
+                        grid: {
+
+                            color:
+                                "#edf1f5"
+
+                        }
+
+                    },
+
+
+                    y: {
+
+                        grid: {
+
+                            display: false
+
+                        },
+
+
+                        ticks: {
+
+                            color:
+                                "#1e293b",
+
+
+                            font: {
+
+                                size: 11,
+
+                                weight: "600"
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+
+    } catch(error) {
+
+        console.error(
+            "Erro no gráfico de medicamentos:",
+            error
+        );
+
+    }
+
+}
+
+
+// =========================================================
+// INICIALIZAÇÃO
+// =========================================================
 
 carregarGraficoCotacoes();
 
 carregarGraficoEconomia();
 
-async function carregarGraficoResposta(){
-
-    const response =
-        await fetch("/analytics/taxa-resposta");
-
-    const dados =
-        await response.json();
-
-    console.log("Taxa:", dados);
-
-    const labels =
-        dados.map(i => i.dia);
-
-    const valores =
-        dados.map(i => i.total);
-
-    new Chart(
-
-        document.getElementById("graficoResposta"),
-
-        {
-
-            type:"line",
-
-            data:{
-
-                labels,
-
-                datasets:[{
-
-                    data:valores,
-
-                    borderColor:"#8b5cf6",
-
-                    backgroundColor:"rgba(139,92,246,.15)",
-
-                    fill:true,
-
-                    tension:.4,
-
-                    borderWidth:3,
-
-                    pointRadius:5,
-
-                    pointHoverRadius:7
-
-                }]
-
-            },
-
-            options:{
-
-                responsive:true,
-
-                maintainAspectRatio:false,
-
-                plugins:{
-                    legend:{
-                        display:false
-                    }
-                },
-
-                scales:{
-
-                    x:{
-                        grid:{
-                            display:false
-                        }
-                    },
-
-                    y:{
-
-                        beginAtZero:true,
-
-                        max:100,
-
-                        ticks:{
-                            callback:(v)=>v+"%"
-                        }
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    );
-
-}
-
 carregarGraficoResposta();
+
+carregarGraficoMedicamentos();

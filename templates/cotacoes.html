@@ -951,76 +951,176 @@ if(response.ok && dados.sucesso){
         
 </script>
 
-<div id="modalPedido" class="modal-acoes" style="display:none;">
+<!-- =====================================================
+     MODAL GERAR PEDIDO
+===================================================== -->
 
-    <div class="modal-conteudo">
+<div
+    id="modalPedido"
+    class="modal-pedido"
+    style="display:none;"
+>
 
-        <h2>Pedido</h2>
+    <div class="modal-pedido-box">
 
-        <p>
-            Representante:
-            <strong id="pedidoRepresentante"></strong>
-        </p>
+        <!-- CABEÇALHO -->
+        <div class="modal-pedido-header">
 
-        <table class="resultado-tabela">
+            <div class="modal-pedido-titulo">
 
-            <thead>
+                <div class="modal-pedido-icone">
+                    <i class="bi bi-cart-check-fill"></i>
+                </div>
 
-                <tr>
+                <div>
 
-                    <th>Medicamento</th>
+                    <span class="modal-pedido-label">
+                        PEDIDO
+                    </span>
 
-                    <th>Preço</th>
+                    <h2>
+                        Confirmar pedido
+                    </h2>
 
-                    <th>Qtd.</th>
+                </div>
 
-                    <th>Subtotal</th>
+            </div>
 
-                </tr>
 
-            </thead>
+            <button
+                type="button"
+                class="modal-pedido-fechar"
+                onclick="fecharPedido()"
+                aria-label="Fechar"
+            >
 
-            <tbody id="pedidoItens">
+                <i class="bi bi-x-lg"></i>
 
-            </tbody>
+            </button>
 
-        </table>
-
-        <div
-            id="pedidoTotal"
-            style="
-                margin-top:20px;
-                text-align:right;
-                font-size:32px;
-                font-weight:bold;
-            ">
         </div>
 
-<div class="pedido-acoes">
 
-    <button
-        type="button"
-        class="btn-gerar-pedido"
-        onclick="enviarWhatsappPedido()">
+        <!-- REPRESENTANTE -->
+        <div class="modal-pedido-representante">
 
-        <i class="bi bi-whatsapp"></i>
+            <div class="representante-avatar">
 
-        Enviar WhatsApp
+                <i class="bi bi-person-fill"></i>
 
-    </button>
+            </div>
 
-    <button
-        type="button"
-        class="btn-gerar-pedido"
-        onclick="fecharPedido()">
+            <div>
 
-        <i class="bi bi-x-circle"></i>
+                <span>
+                    REPRESENTANTE
+                </span>
 
-        Fechar
+                <strong id="pedidoRepresentante">
+                    —
+                </strong>
 
-    </button>
+            </div>
 
-</div>
+        </div>
+
+
+        <!-- CONTEÚDO -->
+        <div class="modal-pedido-conteudo">
+
+
+            <!-- LISTA DE MEDICAMENTOS -->
+            <div class="modal-pedido-lista">
+
+                <div class="modal-pedido-lista-header">
+
+                    <span>
+                        Medicamento
+                    </span>
+
+                    <span>
+                        Preço
+                    </span>
+
+                    <span>
+                        Qtd.
+                    </span>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                </div>
+
+
+                <table class="tabela-pedido">
+
+                    <tbody id="pedidoItens">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- TOTAL -->
+            <div class="modal-pedido-total">
+
+                <div>
+
+                    <span>
+                        TOTAL DO PEDIDO
+                    </span>
+
+                    <small>
+                        Valor calculado conforme as quantidades selecionadas
+                    </small>
+
+                </div>
+
+
+                <strong id="pedidoTotal">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- RODAPÉ -->
+        <div class="modal-pedido-footer">
+
+
+            <button
+                type="button"
+                class="btn-pedido-cancelar"
+                onclick="fecharPedido()"
+            >
+
+                <i class="bi bi-arrow-left"></i>
+
+                Voltar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn-pedido-whatsapp"
+                onclick="enviarWhatsappPedido()"
+            >
+
+                <i class="bi bi-whatsapp"></i>
+
+                Enviar pelo WhatsApp
+
+            </button>
+
+
+        </div>
 
     </div>
 
@@ -1029,3 +1129,4 @@ if(response.ok && dados.sucesso){
 <script src="{{ url_for('static', filename='js/cotacoes.js') }}"></script>
 
 {% endblock %}
+
