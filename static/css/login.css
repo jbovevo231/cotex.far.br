@@ -1,4120 +1,6553 @@
-/*=========================================================
-    PARTE 1 - TOPO (LOGO, DOCK, COR DE FUNDO E EFEITO AZUL, COR DAS LETRAS E BOTÕES
-==========================================================*/
+quarta-feira 17:51
+me dê um sidebar mais moderno! e lindo
+Editar
+Editar
+quero mais moderno a tabela nomes e gráficos
+essa tabela de nova cotação está estranha... me dê algoo que combine com o meu site
+Editar
+eu quero o que vc fez pra dizer olá e chamar o nome do usuário.. me diga ache isso e faça isso
+Texto colado(5).txt
+Documento
+onde aqui? 
+agora só quero uma tabela de cotação mais bonita e intuitiva.. me dê em foto
+Editar
+Editar
+Código colado(20260812-212427).js
+JavaScript
+esse?
+Código colado(20260812-212515).html
+Arquivo
+Código colado(20260812-212544).js
+JavaScript
+Código colado(20260812-212622).js
+JavaScript
+nao mudou
+quarta-feira 20:11
+Em resultado após mudar o CSS o moldal não ta aparecendo após eu clicar em gerar pedido
+ficou lindo mas quero na cor azul
+embaixo de Cotações Realizadas quero o gráfico de Medicamentos mais cotados.. me diga ache isso e faça isso
+mudou para isso mas na web ainda não aprece
+Ele ta no lugar errado... é pra ele ficar depois do gráfic taxa de resposta... me dê corrigido: {% extends "base.html" %}
 
-:root{
+{% block title %}
+Analytics
+{% endblock %}
 
-    --primary:#3B82F6;
-    --primary-dark:#2563EB;
-    --primary-light:#60A5FA;
+{% block css %}
 
-    --navy:#041320;
-    --navy-2:#081d31;
-    --navy-3:#0b2744;
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/analytics.css') }}">
 
-    --white:#ffffff;
+{% endblock %}
 
-    --text:#f8fbff;
-    --text-soft:#d7e4ef;
-    --text-muted:#8ba1b7;
 
-    --glass:rgba(255,255,255,.06);
-    --glass-2:rgba(255,255,255,.08);
+{% block page_content %}
 
-    --border:rgba(255,255,255,.09);
+<div class="analytics-container">
 
-    --shadow:
-        0 35px 80px rgba(0,0,0,.35);
 
-    --radius:24px;
+    <!-- =====================================================
+         COTAÇÕES REALIZADAS
+    ====================================================== -->
+
+    <div class="analytics-card">
+
+        <div class="analytics-header">
+
+            <h2>
+                Cotações realizadas
+            </h2>
+
+            <select id="tipoGraficoCotacoes">
+
+                <option value="dia">
+                    Por dia
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="grafico-wrapper">
+
+            <canvas id="graficoCotacoes"></canvas>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MEDICAMENTOS MAIS COTADOS
+    ====================================================== -->
+
+    <div class="analytics-card medicamentos-card">
+
+        <div class="analytics-header">
+
+            <div class="analytics-title">
+
+                <div class="analytics-icon medicamentos-icon">
+
+                    <i class="bi bi-capsule"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        Medicamentos mais cotados
+                    </h2>
+
+                    <p>
+                        Produtos mais solicitados no período
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <select id="tipoGraficoMedicamentos">
+
+                <option value="quantidade">
+                    Quantidade
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="grafico-medicamentos-wrapper">
+
+            <canvas
+                id="graficoMedicamentos">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ECONOMIA GERADA
+    ====================================================== -->
+
+    <div class="analytics-card">
+
+        <div class="analytics-header">
+
+            <h2>
+                Economia gerada (R$)
+            </h2>
+
+
+            <select id="tipoGraficoEconomia">
+
+                <option value="dia">
+                    Por dia
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="grafico-wrapper">
+
+            <canvas
+                id="graficoEconomia">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TAXA DE RESPOSTA
+    ====================================================== -->
+
+    <div class="analytics-card">
+
+        <div class="analytics-header">
+
+            <h2>
+                Taxa de resposta (%)
+            </h2>
+
+
+            <select id="tipoGraficoResposta">
+
+                <option value="dia">
+                    Por dia
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="grafico-wrapper">
+
+            <canvas
+                id="graficoResposta">
+            </canvas>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<!-- CHART.JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- ANALYTICS -->
+
+<script
+    src="{{ url_for('static', filename='js/analytics.js') }}">
+</script>
+
+
+{% endblock %}
+eu quero os dados funcionando...
+Código colado(20260812-235158).html
+Arquivo
+Código colado(4).py
+Python
+remova isso: Produtos mais solicitados no período e faça com que não fiquem espremidos
+Editar
+Código colado(20260812-235955).css
+Arquivo
+perfeito quero igual o seu pq o meu ta espremido... é o css? 
+perceba que no celular nomes grandes cortam... me de o css
+hoje 18:47
+Código colado(20260814-214716).css
+Arquivo
+Código colado (2)(3).html
+Arquivo
+quero que a minha primeira pagina de loging seja assim... desse jeito com essa mesma imagem o máximo possivel...
+
+
+me diga ache isso e faça isso
+
+Sim. Achei exatamente onde fazer: é no seu login.html/template público + login.css. O HTML já possui o hero, hero-dashboard e o login-card, então não precisamos mexer no Flask nem no backend.
+
+E achei também o principal problema do seu CSS atual: o .login-card está com margin-top:-620px e depois é escondido por visibility:hidden, além de o dashboard estar sendo deslocado artificialmente com transform:translateX(350px). Isso é justamente o tipo de coisa que deixa o layout difícil de controlar.
+
+O que eu fiz
+
+Preparei:
+
+Um recorte do dashboard da imagem que você enviou, para usar exatamente o visual da referência.
+Um CSS de sobreposição completo, para deixar sua primeira página muito mais próxima da imagem:
+fundo azul-marinho premium;
+logo no canto esquerdo;
+menu no topo;
+Login + Comprar agora;
+Cote. Conecte. Economize.;
+descrição sem aquela caixa de vidro;
+dashboard grande à direita;
+brilho azul ao redor;
+botões no estilo da referência;
+responsivo para celular;
+login continua funcionando ao clicar em Login.
+Arquivos prontos
+
+Dashboard recortado da imagem de referência:
+
+Baixar dashboard-hero.png
+
+CSS pronto para colocar no FINAL do seu login.css:
+
+Baixar login-visual-override.css
+
+HTML com o caminho da imagem já ajustado:
+
+Baixar analytics-login-target.html
+
+Só falta uma coisa no seu projeto
+
+Coloque:
+
+dashboard-hero.png
+
+dentro de:
+
+static/img/
+
+E no seu HTML, a imagem que hoje está assim:
+
+<img
+    src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/SEU_CAMINHO/dashboard.png"
+    alt="Dashboard CotaX">
+
+passa a ser:
+
+<img
+    src="{{ url_for('static', filename='img/dashboard-hero.png') }}"
+    alt="Dashboard CotaX">
+
+Eu já deixei essa alteração feita no arquivo HTML preparado.
+
+Importante: não substitua seu login.css inteiro. Cole o conteúdo do login-visual-override.css no final dele. Isso preserva todas as suas seções de Recursos, Como funciona e Planos. Seu CSS atual já possui essas outras partes e vários responsivos.
+
+O resultado vai ficar muito mais próximo da imagem que você mandou, principalmente no primeiro viewport/hero. 
+
+{% extends "base_public.html" %}
+
+
+{% block css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login-mobile.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="landing">
+
+    <!-- ================= HEADER ================= -->
+
+<div class="header-wrapper">
+
+    <div class="logo">
+
+        <img src="{{ url_for('static', filename='img/logo.png') }}"
+             class="logo-img">
+
+    </div>
+
+    <header class="topbar">
+
+        <!-- BOTÃO MOBILE -->
+
+        <div class="mobile-menu-btn">
+
+            <span class="menu-icon">☰</span>
+
+            <span class="menu-text">EXPLORAR</span>
+
+        </div>
+
+        <!-- MENU -->
+
+<nav class="top-nav">
+
+    <a href="#recursos">Recursos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#planos">Planos</a>
+    <a href="#">Contato</a>
+
+    <div class="top-actions">
+
+        <button
+    class="btn-login"
+    onclick="toggleLoginCard()">
+
+    Login
+
+</button>
+
+        <button class="btn-buy">
+
+            Comprar agora
+
+        </button>
+
+    </div>
+
+</nav>
+</header>
+
+</div>
+
+
+<!-- ================= HERO ================= -->
+
+<div class="hero">
+
+    <div class="hero-left">
+
+        <div class="badge">
+
+    <span class="badge-icon">
+
+        <span class="node center"></span>
+        <span class="node top"></span>
+        <span class="node right"></span>
+
+        <span class="line l1"></span>
+        <span class="line l2"></span>
+
+    </span>
+
+    <span>A maior rede de negócios do mercado farmacêutico</span>
+
+</div>
+
+<h1 class="hero-title">
+
+    <span class="linha linha1">Cote.</span>
+
+    <span class="linha linha2">Conecte.</span>
+
+    <span class="linha linha3">Economize.</span>
+
+</h1>
+
+<p class="hero-description">
+
+    Uma plataforma para negociar, conectar pessoas e compartilhar conhecimento.
+    Porque os melhores resultados surgem quando o mercado farmacêutico trabalha
+    em rede.
+
+</p>
+
+            <div class="hero-buttons">
+
+                <button class="btn-primary btn-lg"
+                        onclick="abrirCadastro()">
+
+                    Começar agora
+
+                </button>
+
+                <button
+    class="btn-outline btn-lg"
+    onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">
+
+    Ver como funciona
+
+</button>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="hero-right">
+
+    <div class="hero-dashboard">
+
+        <img
+    src="{{ url_for('static', filename='img/dashboard-hero.png') }}"
+    alt="Dashboard CotaX">
+
+    </div>
+
+<div
+    class="login-card"
+    id="loginCard">
+
+    <button
+        type="button"
+        class="login-close"
+        onclick="toggleLoginCard()"
+        aria-label="Fechar">
+        ×
+    </button>
+
+    <h2>Entrar</h2>
+
+                <p>
+                    Acesse sua conta
+                </p>
+
+                <form method="POST"
+                      action="/login">
+
+                    <input
+    type="text"
+    name="login"
+    placeholder="CNPJ, e-mail ou WhatsApp"
+    autocomplete="username"
+    required>
+
+                    
+
+                    <input
+                        type="password"
+                        name="senha"
+                        placeholder="Senha"
+                        required>
+
+                    <button
+                        class="btn-primary full"
+                        type="submit">
+
+                        Entrar
+
+                    </button>
+
+                </form>
+<div>
+
+    <button
+        class="btn-link"
+        onclick="abrirCadastro()">
+
+        Não possui conta?
+        Criar agora
+
+    </button>
+
+</div>
+
+
+<div class="esqueci-senha">
+
+    <button
+        class="btn-link"
+        onclick="abrirRecuperarSenha()">
+
+        Esqueci minha senha
+
+    </button>
+
+</div>
+
+</div>
+
+
+
+
+<div class="modal"
+     id="cadastroModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="fecharCadastro()">
+
+            ×
+
+        </button>
+
+        <h2>
+
+            Criar conta
+
+        </h2>
+
+        <p>
+
+            Cadastre sua empresa
+
+        </p>
+
+        <div id="erroCadastro" class="erro-cadastro"></div>
+
+        <form id="formCadastro">
+
+
+            <input
+                name="nome"
+                placeholder="Nome completo"
+                required>
+
+            <input
+                name="cpf"
+                placeholder="CPF"
+                required>
+
+            <input
+                name="cnpj"
+                placeholder="CNPJ"
+                required>
+
+
+            <input
+                name="telefone"
+                placeholder="WhatsApp com DDD"
+                required>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                required>
+
+            <input
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                required>
+
+            <input
+                type="password"
+                name="confirmar"
+                placeholder="Confirmar senha"
+                required>
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Criar Cadastro
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL RECUPERAR SENHA ================= -->
+
+
+<div class="modal"
+     id="modalRecuperarSenha">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="fecharRecuperarSenha()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+
+            Recuperar senha
+
+        </h2>
+
+
+        <p>
+
+            Informe seus dados para recuperar o acesso.
+
+        </p>
+
+
+        <form
+            method="POST"
+            action="/recuperar-senha">
+
+
+            <input
+                name="identificacao"
+                placeholder="CNPJ ou E-mail Cadastrado"
+                required>
+
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Recuperar senha
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<section id="recursos" class="landing-recursos">
+
+    <div class="container">
+
+        <div class="recursos-topo">
+
+            <span>PLATAFORMA COMPLETA</span>
+
+            <h2>
+                Tudo o que sua farmácia precisa.
+                <br>
+                Em um único lugar.
+            </h2>
+
+            <p>
+                Simplifique negociações, reduza custos e conecte sua empresa
+                ao mercado farmacêutico através de uma plataforma inteligente.
+            </p>
+
+        </div>
+
+        <div class="recursos-layout">
+
+            <!-- CARD GIGANTE -->
+
+            <div class="card-xl verde">
+
+                <div class="texto">
+
+                    <small>NOVA COTAÇÃO</small>
+
+                    <h3>Crie uma cotação em segundos.</h3>
+
+                    <p>
+                        Envie sua lista para diversas distribuidoras de uma
+                        única vez e acompanhe tudo em tempo real.
+                    </p>
+
+                </div>
+
+                <div class="mockup"></div>
+
+            </div>
+
+            
+            <!-- ================= ECONOMIA ================= -->
+
+<div class="card">
+
+    <div class="icone azul">
+
+        <div class="money-icon">
+
+            <span class="coin coin1"></span>
+            <span class="coin coin2"></span>
+            <span class="coin coin3"></span>
+
+            <span class="arrow"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Economia Inteligente</h3>
+
+    <p>
+        Compare automaticamente todas as propostas recebidas e encontre a melhor oportunidade de compra.
+    </p>
+
+</div>
+
+
+<!-- ================= ANALYTICS ================= -->
+
+<div class="card">
+
+    <div class="icone roxo">
+
+        <div class="analytics-icon">
+
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+            <span class="bar b4"></span>
+
+            <span class="trend"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Analytics</h3>
+
+    <p>
+        Dashboards modernos com indicadores, histórico de compras e desempenho da empresa.
+    </p>
+
+</div>
+
+
+<!-- ================= CONECTA ================= -->
+
+<div class="card">
+
+    <div class="icone laranja">
+
+        <div class="connect-icon">
+
+            <span class="person p1"></span>
+            <span class="person p2"></span>
+            <span class="person p3"></span>
+
+            <span class="line l1"></span>
+            <span class="line l2"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Conecta</h3>
+
+    <p>
+        Uma rede exclusiva para conectar farmácias, distribuidores e representantes comerciais.
+    </p>
+
+</div>
+
+
+<!-- ================= PERFIL ================= -->
+
+<div class="card">
+
+    <div class="icone ciano">
+
+        <div class="building-icon">
+
+            <span class="roof"></span>
+
+            <span class="window w1"></span>
+            <span class="window w2"></span>
+            <span class="window w3"></span>
+            <span class="window w4"></span>
+
+            <span class="door"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Perfil da Empresa</h3>
+
+    <p>
+        Apresente sua empresa de forma profissional e fortaleça sua presença dentro da plataforma.
+    </p>
+
+</div>
+
+
+<!-- ================= IA ================= -->
+
+<div class="card-xl rosa">
+
+    <div class="texto">
+
+        <small>INTELIGÊNCIA ARTIFICIAL</small>
+
+        <h3>CotaFarma IA</h3>
+
+        <p>
+
+            Analise preços, receba recomendações inteligentes e descubra novas oportunidades usando IA.
+
+        </p>
+
+    </div>
+
+    <div class="mockup ia">
+
+        <div class="brain">
+
+            <span class="core"></span>
+
+            <span class="node n1"></span>
+            <span class="node n2"></span>
+            <span class="node n3"></span>
+            <span class="node n4"></span>
+
+            <span class="wire w1"></span>
+            <span class="wire w2"></span>
+            <span class="wire w3"></span>
+            <span class="wire w4"></span>
+
+        </div>
+
+            </div>
+
+    </div>
+
+</section>
+
+<!--==================================================
+                COMO FUNCIONA
+===================================================-->
+
+<section id="como-funciona" class="como-funciona">
+
+    <div class="container">
+
+        <div class="funciona-topo">
+
+            <span>COMO FUNCIONA</span>
+
+            <h2>
+
+                Negociar nunca foi tão simples.
+
+            </h2>
+
+            <p>
+
+                Em poucos minutos sua farmácia envia uma cotação,
+                recebe propostas e fecha o melhor negócio.
+
+            </p>
+
+        </div>
+
+        <div class="timeline"></div>
+
+        <div class="funciona-grid">
+
+            <!-- PASSO 1 -->
+
+            <div class="passo">
+
+                <div class="circulo verde">
+
+                    <div class="icone-funcao cotacao">
+
+                        <span class="folha"></span>
+
+                        <span class="mais-h"></span>
+
+                        <span class="mais-v"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    01
+
+                </div>
+
+                <h3>
+
+                    Crie sua cotação
+
+                </h3>
+
+                <p>
+
+                    Informe os medicamentos e envie sua lista para
+                    diversos distribuidores simultaneamente.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 2 -->
+
+            <div class="passo">
+
+                <div class="circulo azul">
+
+                    <div class="icone-funcao proposta">
+
+                        <span class="envelope"></span>
+
+                        <span class="seta"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    02
+
+                </div>
+
+                <h3>
+
+                    Receba propostas
+
+                </h3>
+
+                <p>
+
+                    Os fornecedores respondem diretamente pela
+                    plataforma em tempo real.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 3 -->
+
+            <div class="passo">
+
+                <div class="circulo roxo">
+
+                    <div class="icone-funcao grafico">
+
+                        <span class="barra b1"></span>
+
+                        <span class="barra b2"></span>
+
+                        <span class="barra b3"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    03
+
+                </div>
+
+                <h3>
+
+                    Compare preços
+
+                </h3>
+
+                <p>
+
+                    Visualize automaticamente quem oferece
+                    o menor preço e a melhor condição.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 4 -->
+
+            <div class="passo">
+
+                <div class="circulo amarelo">
+
+                    <div class="icone-funcao check">
+
+                        <span class="c1"></span>
+
+                        <span class="c2"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    04
+
+                </div>
+
+                <h3>
+
+                    Feche o negócio
+
+                </h3>
+
+                <p>
+
+                    Escolha a melhor proposta e finalize
+                    sua compra com segurança.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="planos" class="planos-section">
+
+    <div class="container">
+
+        <span class="tag-planos">
+            PLANOS
+        </span>
+
+        <h2>
+            Escolha o plano ideal para sua farmácia
+        </h2>
+
+        <p>
+            Comece gratuitamente e evolua quando precisar de mais recursos.
+        </p>
+
+        <div class="planos-grid">
+
+    <!-- Gratuito -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">Gratuito</span>
+
+        <h3>R$ 0</h3>
+
+        <small>Para conhecer a plataforma</small>
+
+        <ul>
+
+            <li>✅ 14 dias Premium grátis</li>
+            <li>✅ Até 2 cotações por mês</li>
+            <li>✅ Histórico</li>
+            <li>❌ Conecta</li>
+            <li>❌ Analytics</li>
+            <li>❌ CotaFarma IA</li>
+            <li>❌ Relatórios</li>
+            <li>❌ Exportação</li>
+
+        </ul>
+
+        <button
+    type="button"
+    class="btn-plano"
+    onclick="ativarTesteGratis()">
+
+    Começar grátis
+
+</button>
+
+    </div>
+
+    <!-- Mensal -->
+
+    <div class="plano-card destaque">
+
+        <span class="badge-plano">
+            Mais escolhido
+        </span>
+
+        <span class="plano-titulo">Mensal</span>
+
+        <h3>R$ 49,90</h3>
+
+        <small>por mês</small>
+
+        <ul>
+
+            <li>✅ Cotações ilimitadas</li>
+            <li>✅ Conecta</li>
+            <li>✅ Analytics</li>
+            <li>✅ CotaFarma IA</li>
+            <li>✅ Relatórios</li>
+            <li>✅ Exportação</li>
+            <li>✅ Suporte prioritário</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Semestral -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">6 Meses</span>
+
+        <h3>R$ 269,90</h3>
+
+        <small>R$ 44,98/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 10%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Anual -->
+
+    <div class="plano-card">
+
+        <span class="badge-plano verde">
+            Melhor custo-benefício
+        </span>
+
+        <span class="plano-titulo">Anual</span>
+
+        <h3>R$ 479,90</h3>
+
+        <small>R$ 39,99/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 20%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+<script>
+
+function abrirCadastro(){
+
+    document.getElementById("erroCadastro").style.display = "none";
+    document.getElementById("erroCadastro").innerHTML = "";
+
+    document.getElementById("cadastroModal").style.display = "flex";
 
 }
 
-*{
+function fecharCadastro(){
 
-    margin:0;
-    padding:0;
+    document.getElementById("cadastroModal").style.display = "none";
 
-    box-sizing:border-box;
+}
 
+function abrirRecuperarSenha(){
+
+    document.getElementById("modalRecuperarSenha").style.display = "flex";
+
+}
+
+function fecharRecuperarSenha(){
+
+    document.getElementById("modalRecuperarSenha").style.display = "none";
+
+}
+
+window.onclick = function(e){
+
+    const cadastro = document.getElementById("cadastroModal");
+
+    const recuperar = document.getElementById("modalRecuperarSenha");
+
+    if(e.target === cadastro){
+
+        fecharCadastro();
+
+    }
+
+    if(e.target === recuperar){
+
+        fecharRecuperarSenha();
+
+    }
+
+}
+
+</script>
+
+
+
+<script>
+
+    console.log("JS DO CADASTRO CARREGOU");
+
+function irLogin(){
+
+    const login=document.getElementById("login");
+
+    login.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+    });
+
+    login.querySelector("input").focus();
+
+}
+
+
+document.getElementById("formCadastro").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+
+    let formulario = new FormData(this);
+
+
+    let resposta = await fetch(
+        "{{ url_for('auth.cadastro') }}",
+        {
+            method:"POST",
+            body:formulario
+        }
+    );
+
+
+    let dados = await resposta.json();
+
+
+    let erro = document.getElementById("erroCadastro");
+
+
+    if(dados.erro){
+
+        erro.innerHTML = "🔴 " + dados.erro;
+
+        erro.style.display = "block";
+
+        return;
+
+    }
+
+
+    window.location.href = "/";
+
+});
+
+const menuBtn = document.querySelector(".mobile-menu-btn");
+const nav = document.querySelector(".topbar nav");
+
+menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("active");
+});
+
+function toggleLoginCard(){
+
+    document
+        .getElementById("loginCard")
+        .classList.toggle("show");
+
+}
+
+async function ativarTesteGratis(){
+
+    const resposta = await fetch("/ativar-teste",{
+        method:"POST"
+    });
+
+    if(resposta.status === 401){
+        abrirCadastro();
+        return;
+    }
+
+    const dados = await resposta.json();
+
+    if(dados.erro === "JA_UTILIZADO"){
+        alert("Você já utilizou os 14 dias gratuitos.");
+        return;
+    }
+
+    if(dados.ok){
+        alert("Parabéns! Seu Premium foi ativado por 14 dias.");
+        window.location.href="/dashboard";
+    }
+
+}
+
+
+
+</script>
+
+
+
+
+
+{% endblock %}
+dashboard-hero.png
+imagem
+login-visual-override.css
+Código
+analytics-login-target.html
+HTML
+Código colado(20260814-215559).html
+Arquivo
+nao mudou nada: me dê completo 
+
+Sim. Agora entendi o problema: você não queria apenas um CSS separado; queria o arquivo inteiro já pronto para substituir o seu.
+
+Peguei o HTML que você acabou de enviar, mantive toda a estrutura de cadastro, recuperação de senha, recursos, como funciona, planos e JavaScript, e coloquei o novo visual diretamente dentro do próprio login.html, para não depender de você acertar a ordem dos CSS. O seu arquivo atual realmente já possui toda essa estrutura.
+
+1. SUBSTITUA SEU login.html INTEIRO POR ESTE
+
+Baixar o login.html completo já reformulado
+
+Ele já contém:
+
+header no estilo da imagem;
+logo à esquerda;
+Recursos / Como funciona / Planos / Contato;
+botão Login;
+botão Comprar agora;
+hero Cote. / Conecte. / Economize.;
+verde exatamente no destaque de "Conecte";
+descrição;
+botões Começar agora e Ver como funciona;
+dashboard grande à direita;
+brilho azul;
+efeito de profundidade;
+animação sutil do dashboard;
+login funcionando como antes;
+cadastro funcionando como antes;
+recuperação de senha funcionando como antes;
+seção Recursos;
+Como funciona;
+Planos;
+responsividade mobile.
+2. VOCÊ TAMBÉM PRECISA COLOCAR A IMAGEM
+
+Baixe esta:
+
+dashboard-hero.png
+
+Coloque exatamente em:
+
+static/
+└── img/
+    ├── logo.png
+    └── dashboard-hero.png
+
+Eu já alterei o HTML para procurar:
+
+{{ url_for('static', filename='img/dashboard-hero.png') }}
+
+em vez daquele endereço Cloudinary de exemplo que estava no seu arquivo:
+
+https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/SEU_CAMINHO/dashboard.png
+
+Esse endereço antigo era literalmente um placeholder, então ele não poderia mostrar o dashboard real.
+
+3. NÃO PRECISA APAGAR SEU login.css
+
+O novo login.html ainda carrega:
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login-mobile.css') }}">
+
+mas o novo design vem depois deles, dentro do próprio HTML, usando regras que sobrescrevem o visual antigo.
+
+Isso é importante porque seu CSS anterior tinha, por exemplo, o login sendo deslocado com margin-top:-620px, o que estava complicando bastante a composição do hero.
+
+Então faça só estas duas coisas:
+
+1️⃣ substituir login.html pelo arquivo que te passei
+2️⃣ colocar dashboard-hero.png dentro de static/img/
+
+Depois atualize a página com Ctrl + Shift + R.
+
+Aí sim você vai estar vendo o novo primeiro viewport, e não apenas pequenas alterações no CSS antigo. 
+
+{% extends "base_public.html" %}
+
+
+{% block css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login-mobile.css') }}">
+
+
+<style id="cotex-login-reference-design">
+/* =========================================================
+   COTEX — PRIMEIRA PÁGINA / HERO
+   Substitui visualmente o hero atual sem alterar o backend.
+   ========================================================= */
+
+:root{
+    --cx-bg:#020b1f;
+    --cx-bg2:#041331;
+    --cx-blue:#1677ff;
+    --cx-blue2:#2d9cff;
+    --cx-green:#42e6a0;
+    --cx-text:#f8fbff;
+    --cx-muted:#b7c7dc;
 }
 
 html{
-
     scroll-behavior:smooth;
-
 }
 
 body{
-
-    font-family:"Inter",sans-serif;
-
-    color:var(--text);
-
-    background:
-        radial-gradient(
-            circle at 8% 12%,
-            rgba(37,99,235,.20),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 92% 18%,
-            rgba(14,165,233,.13),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 50% 85%,
-            rgba(16,185,129,.07),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #020817 0%,
-            #061426 45%,
-            #071a2e 100%
-        );
-
-    overflow-x:hidden;
-
-}
-
-body::before{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-
-        radial-gradient(
-            circle at 20% 40%,
-            rgba(59,130,246,.10),
-            transparent 24%
-        ),
-
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(96,165,250,.08),
-            transparent 22%
-        );
-
-    z-index:-3;
-
-}
-
-body::after{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background-image:
-
-        linear-gradient(
-            rgba(255,255,255,.018) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.018) 1px,
-            transparent 1px
-        );
-
-    background-size:90px 90px;
-
-    opacity:.45;
-
-    z-index:-2;
-
+    margin:0 !important;
+    background:#020b1f !important;
+    color:#fff !important;
+    overflow-x:hidden !important;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
 }
 
 .landing{
-
-    position:relative;
-
-    min-height:100vh;
-
-    overflow:hidden;
-
+    position:relative !important;
+    min-height:100vh !important;
+    overflow:hidden !important;
+    background:
+        radial-gradient(circle at 72% 34%, rgba(0,105,255,.20), transparent 27%),
+        radial-gradient(circle at 18% 52%, rgba(0,70,180,.13), transparent 30%),
+        linear-gradient(135deg,#020817 0%,#03102b 48%,#020a1d 100%) !important;
 }
 
 .landing::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:900px;
-    height:900px;
-
-    left:-320px;
-    top:-320px;
-
-    border-radius:50%;
-
+    content:"" !important;
+    position:absolute !important;
+    inset:0 !important;
+    pointer-events:none !important;
+    z-index:0 !important;
     background:
-
-        radial-gradient(
-
-            rgba(59,130,246,.18),
-
-            transparent 70%
-
-        );
-
-    filter:blur(120px);
-
+        linear-gradient(rgba(77,148,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(77,148,255,.035) 1px,transparent 1px) !important;
+    background-size:90px 90px !important;
+    mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.75) 45%,transparent 100%) !important;
 }
 
 .landing::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:900px;
-
-    height:900px;
-
-    right:-250px;
-
-    bottom:-350px;
-
-    border-radius:50%;
-
-    background:
-
-        radial-gradient(
-
-            rgba(42,140,255,.20),
-
-            transparent 70%
-
-        );
-
-    filter:blur(120px);
-
+    content:"" !important;
+    position:absolute !important;
+    width:720px !important;
+    height:720px !important;
+    right:-260px !important;
+    top:180px !important;
+    border-radius:50% !important;
+    background:rgba(0,103,255,.18) !important;
+    filter:blur(130px) !important;
+    pointer-events:none !important;
+    z-index:0 !important;
 }
 
-/*=========================================================
-    HEADER
-==========================================================*/
+/* ================= HEADER ================= */
 
 .header-wrapper{
-
-    width:min(1450px,94%);
-
-    margin:30px auto 70px;
-
-    display:grid;
-
-    grid-template-columns:220px 1fr;
-
-    align-items:center;
-
-    gap:36px;
-
+    position:relative !important;
+    z-index:50 !important;
+    width:calc(100% - 120px) !important;
+    max-width:1450px !important;
+    height:92px !important;
+    margin:0 auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:40px !important;
 }
-
-.topbar{
-
-    position:relative;
-
-    z-index:20;
-
-    width:100%;
-
-    margin:0;
-
-    padding:18px 30px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    border-radius:24px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.06),
-            rgba(255,255,255,.04)
-        );
-
-    backdrop-filter:blur(30px);
-
-    -webkit-backdrop-filter:blur(30px);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-
-        0 30px 70px rgba(0,0,0,.28);
-
-}
-
-/*=========================================================
-    LOGO
-==========================================================*/
 
 .logo{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    flex:0 0 auto !important;
 }
 
 .logo-img{
-
-    width:190px;
-
-    height:auto;
-
-    display:block;
-
-    transition:.35s;
-
-    filter:
-
-        drop-shadow(0 15px 30px rgba(0,0,0,.35));
-
+    width:208px !important;
+    max-width:208px !important;
+    height:auto !important;
+    display:block !important;
+    filter:drop-shadow(0 8px 22px rgba(0,0,0,.35)) !important;
 }
 
-.logo:hover .logo-img{
-
-    transform:scale(1.04);
-
-    filter:
-
-        drop-shadow(0 18px 40px rgba(59,130,246,.30));
-
+.topbar{
+    position:relative !important;
+    z-index:50 !important;
+    width:auto !important;
+    flex:1 1 auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    background:transparent !important;
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
 }
 
-.topbar nav{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:34px;
-
+.top-nav{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:48px !important;
+    width:100% !important;
 }
 
-.topbar nav a{
-
-    color:#dce8f2;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    transition:.25s;
-
-    position:relative;
-
+.top-nav > a{
+    position:relative !important;
+    color:#edf4ff !important;
+    text-decoration:none !important;
+    font-size:16px !important;
+    font-weight:500 !important;
+    white-space:nowrap !important;
+    transition:.25s ease !important;
 }
 
-.topbar nav a:hover{
-
-    color:white;
-
+.top-nav > a::after{
+    content:"" !important;
+    position:absolute !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:-9px !important;
+    width:0 !important;
+    height:2px !important;
+    margin:auto !important;
+    border-radius:99px !important;
+    background:#2d9cff !important;
+    transition:.25s ease !important;
 }
 
-.topbar nav a::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    bottom:-8px;
-
-    width:0;
-
-    height:2px;
-
-    border-radius:99px;
-
-    background:#19c37d;
-
-    transition:.25s;
-
+.top-nav > a:hover{
+    color:#fff !important;
 }
 
-.topbar nav a:hover::after{
-
-    width:100%;
-
+.top-nav > a:hover::after{
+    width:100% !important;
 }
-
 
 .top-actions{
-
-    display:flex;
-
-    gap:16px;
-
-}
-
-.btn-outline{
-
-    height:50px;
-
-    padding:0 24px;
-
-    border-radius:16px;
-
-    background:transparent;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    color:white;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-.btn-outline:hover{
-
-    background:rgba(255,255,255,.08);
-
-}
-
-.btn-primary{
-
-    height:50px;
-
-    padding:0 26px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary-dark)
-        );
-
-    color:#fff;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-    box-shadow:
-
-        0 18px 40px rgba(59,130,246,.30);
-
-}
-
-.btn-primary:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-
-        0 28px 55px rgba(59,130,246,.45);
-
-}
-
-/*=========================================================
-   FIM DA PARTE 1 - TOPO (LOGO, DOCK, COR DE FUNDO E EFEITO AZUL, COR DAS LETRAS E BOTÕES
-==========================================================*/
-
-/*=========================================================
-    ANIMAÇÃO DO TÍTULO
-=========================================================*/
-
-.hero-title{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
-
-    line-height:1;
-
-    margin-left:60px;
-
-}
-
-.hero-title .linha{
-
-    position:relative;
-
-    display:inline-block;
-
-    width:max-content;
-
-    font-weight:900;
-
-    opacity:0;
-
-    transform:translateY(30px);
-
-    background-size:300% 100%;
-
-    background-position:-250% 0;
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-    animation-fill-mode:forwards;
-
-}
-
-/*-----------------------------------
-    COTE
-------------------------------------*/
-
-.hero-title .linha1{
-
-    background-image:linear-gradient(
-
-        90deg,
-
-        #ffffff 0%,
-
-        #4EA7FF 45%,
-
-        #ffffff 90%
-
-    );
-
-    animation:
-
-        aparecer .7s ease forwards,
-
-        brilho 1.2s ease forwards;
-
-}
-
-/*-----------------------------------
-    CONECTE
-------------------------------------*/
-
-.hero-title .linha2{
-
-    background-image:linear-gradient(
-
-        90deg,
-
-        #ffffff 0%,
-
-        #22C55E 45%,
-
-        #ffffff 90%
-
-    );
-
-    animation:
-
-        aparecer .7s ease .45s forwards,
-
-        brilho 1.2s ease .45s forwards;
-
-}
-
-/*-----------------------------------
-    ECONOMIZE
-------------------------------------*/
-
-.hero-title .linha3{
-
-    background-image:linear-gradient(
-
-        90deg,
-
-        #ffffff 0%,
-
-        #F59E0B 45%,
-
-        #ffffff 90%
-
-    );
-
-    animation:
-
-        aparecer .7s ease .9s forwards,
-
-        brilho 1.2s ease .9s forwards;
-
-}
-
-/*-----------------------------------
-    ENTRADA
-------------------------------------*/
-
-@keyframes aparecer{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-/*-----------------------------------
-    BRILHO
-------------------------------------*/
-
-@keyframes brilho{
-
-    from{
-
-        background-position:-250% 0;
-
-    }
-
-    to{
-
-        background-position:250% 0;
-
-    }
-
-}
-
-/*=========================================================
-    TÍTULO - SOMENTE DESKTOP
-=========================================================*/
-
-@media (min-width: 769px){
-
-    .hero-title{
-
-        font-size: 4.8rem;
-
-    }
-
-}
-
-/*=========================================================
-    BOTÕES DO MENU
-=========================================================*/
-
-.top-actions{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    margin-left:28px;
-
+    display:flex !important;
+    align-items:center !important;
+    gap:18px !important;
+    margin-left:14px !important;
 }
 
 .btn-login{
-
-    height:46px;
-
-    padding:0 24px;
-
-    border-radius:14px;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    background:transparent;
-
-    color:#ffffff;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.30s;
-
+    height:52px !important;
+    min-width:108px !important;
+    padding:0 28px !important;
+    border:1px solid rgba(255,255,255,.28) !important;
+    border-radius:14px !important;
+    background:rgba(4,14,36,.35) !important;
+    color:#fff !important;
+    font-size:16px !important;
+    font-weight:600 !important;
+    cursor:pointer !important;
+    transition:.25s ease !important;
 }
 
 .btn-login:hover{
-
-    background:rgba(255,255,255,.08);
-
+    background:rgba(255,255,255,.08) !important;
+    border-color:rgba(255,255,255,.5) !important;
+    transform:translateY(-1px) !important;
 }
 
 .btn-buy{
-
-    height:46px;
-
-    padding:0 28px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:linear-gradient(
-        135deg,
-        #3B82F6,
-        #2563EB
-    );
-
-    color:#fff;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-    box-shadow:
-        0 15px 35px rgba(37,99,235,.35);
-
+    height:52px !important;
+    padding:0 30px !important;
+    border:0 !important;
+    border-radius:14px !important;
+    background:linear-gradient(135deg,#1668ee,#087eff) !important;
+    color:#fff !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+    cursor:pointer !important;
+    box-shadow:0 14px 35px rgba(0,103,255,.28) !important;
+    transition:.25s ease !important;
 }
 
 .btn-buy:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 20px 45px rgba(37,99,235,.45);
-
+    transform:translateY(-2px) !important;
+    box-shadow:0 20px 45px rgba(0,103,255,.40) !important;
 }
 
-/*=========================================================
-    LOGIN CARD PREMIUM
-=========================================================*/
-
-.login-card{
-
-    width:100%;
-
-    margin-top:-620px;
-
-    max-width:380px;
-
-    padding:42px;
-
-    border-radius:28px;
-
-    background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.08),
-        rgba(255,255,255,.04)
-    );
-
-    border:1px solid rgba(255,255,255,.10);
-
-    backdrop-filter:blur(28px);
-
-    -webkit-backdrop-filter:blur(28px);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.35);
-
-}
-
-.login-card h2{
-
-    font-size:38px;
-
-    font-weight:800;
-
-    color:#fff;
-
-    margin-bottom:10px;
-
-}
-
-.login-card p{
-
-    color:#9fb4c8;
-
-    font-size:16px;
-
-    margin-bottom:34px;
-
-}
-
-.login-card input{
-
-    width:100%;
-
-    height:58px;
-
-    margin-bottom:18px;
-
-    padding:0 20px;
-
-    border-radius:16px;
-
-    border:1px solid rgba(255,255,255,.10);
-
-    background:rgba(255,255,255,.05);
-
-    color:#fff;
-
-    font-size:16px;
-
-    outline:none;
-
-    transition:.30s;
-
-}
-
-.login-card input::placeholder{
-
-    color:#8fa6bb;
-
-}
-
-.login-card input:focus{
-
-    border-color:#3B82F6;
-
-    background:rgba(59,130,246,.08);
-
-    box-shadow:
-        0 0 0 4px rgba(59,130,246,.12);
-
-}
-
-.login-card .btn-primary{
-
-    width:100%;
-
-    height:58px;
-
-    margin-top:10px;
-
-    border-radius:16px;
-
-    font-size:17px;
-
-    font-weight:700;
-
-}
-
-.btn-link{
-
-    margin-top:18px;
-
-    background:none;
-
-    border:none;
-
-    color:#60A5FA;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-.btn-link:hover{
-
-    color:#ffffff;
-
-}
-
-.esqueci-senha{
-
-    margin-top:10px;
-
-    text-align:center;
-
-}
-
-.login-card form{
-
-    margin-bottom:18px;
-
-}
-
-/*=========================================================
-    LOGIN MOLDAL
-=========================================================*/
-
-
-.modal{
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.55);
-
-    backdrop-filter:blur(8px);
-
-    z-index:9999;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-.modal.show{
-
-    display:flex;
-
-}
-
-/*=========================================================
-    LOGIN ESCONDIDO
-=========================================================*/
-
-.login-card{
-
-    visibility:hidden;
-
-    opacity:0;
-
-    transform:
-        translateX(120px)
-        scale(.92);
-
-    filter:blur(12px);
-
-    pointer-events:none;
-
-    transition:
-        opacity .7s ease,
-        transform .7s cubic-bezier(.22,1,.36,1),
-        filter .7s,
-        visibility .7s;
-
-}
-
-.login-card.show{
-
-    visibility:visible;
-
-    opacity:1;
-
-    transform:
-        translateX(0)
-        scale(1);
-
-    filter:blur(0);
-
-    pointer-events:auto;
-
-}
-
-/*=========================================================
-    HERO LAYOUT
-=========================================================*/
+/* ================= HERO ================= */
 
 .hero{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:30px;
-
-    max-width:1400px;
-
-    margin:80px auto;
-
+    position:relative !important;
+    z-index:2 !important;
+    width:calc(100% - 120px) !important;
+    max-width:1450px !important;
+    min-height:700px !important;
+    margin:0 auto !important;
+    padding:64px 0 60px !important;
+    display:grid !important;
+    grid-template-columns:43% 57% !important;
+    align-items:center !important;
+    gap:0 !important;
 }
 
 .hero-left{
-
-    flex:0 0 40%;
-
-    max-width:40%;
-
+    position:relative !important;
+    z-index:4 !important;
+    padding-left:0 !important;
 }
-
-.hero-right{
-
-    flex:0 0 60%;
-    max-width:60%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:flex-start;
-
-    padding-top:150px;
-
-    transform:translateX(-320px);
-
-}
-
-/*=========================================================
-    BADGE HERO
-=========================================================*/
 
 .badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    padding:12px 22px;
-
-    margin:20px 0 35px 60px;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.10);
-
-    backdrop-filter:blur(18px);
-
-    -webkit-backdrop-filter:blur(18px);
-
-    color:#dbeafe;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    letter-spacing:.3px;
-
-    box-shadow:
-        0 10px 35px rgba(37,99,235,.10);
-
-    transition:.35s;
-
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:12px !important;
+    min-height:44px !important;
+    padding:0 18px !important;
+    border:1px solid rgba(104,170,255,.25) !important;
+    border-radius:999px !important;
+    background:rgba(5,20,48,.62) !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 35px rgba(0,0,0,.16) !important;
+    color:#edf5ff !important;
+    font-size:14px !important;
+    font-weight:600 !important;
 }
 
-.badge:hover{
-
-    transform:translateY(-2px);
-
-    border-color:rgba(59,130,246,.30);
-
-    box-shadow:
-        0 18px 45px rgba(37,99,235,.18);
-
+.badge-icon{
+    position:relative !important;
+    width:22px !important;
+    height:22px !important;
+    display:block !important;
 }
 
-/*=========================================================
-    HERO DESCRIPTION PREMIUM
-=========================================================*/
+.badge-icon .node{
+    position:absolute !important;
+    width:5px !important;
+    height:5px !important;
+    border-radius:50% !important;
+    background:#20a4ff !important;
+    box-shadow:0 0 9px rgba(32,164,255,.9) !important;
+}
+
+.badge-icon .center{left:8px;top:9px;}
+.badge-icon .top{left:5px;top:2px;}
+.badge-icon .right{right:1px;top:7px;}
+
+.badge-icon .line{
+    position:absolute !important;
+    height:1px !important;
+    background:#20a4ff !important;
+    transform-origin:left center !important;
+    opacity:.75 !important;
+}
+
+.badge-icon .l1{
+    width:8px !important;
+    left:8px !important;
+    top:10px !important;
+    transform:rotate(-110deg) !important;
+}
+
+.badge-icon .l2{
+    width:9px !important;
+    left:11px !important;
+    top:10px !important;
+    transform:rotate(-18deg) !important;
+}
+
+.hero-title{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:4px !important;
+    margin:34px 0 0 !important;
+    padding:0 !important;
+    line-height:.93 !important;
+}
+
+.hero-title .linha{
+    display:block !important;
+    width:max-content !important;
+    max-width:100% !important;
+    font-size:clamp(58px,5.4vw,86px) !important;
+    line-height:.93 !important;
+    letter-spacing:-4px !important;
+    font-weight:900 !important;
+    opacity:1 !important;
+    transform:none !important;
+    background:none !important;
+    -webkit-background-clip:initial !important;
+    -webkit-text-fill-color:initial !important;
+    color:#fff !important;
+    animation:none !important;
+}
+
+.hero-title .linha2{
+    color:#50dfac !important;
+    text-shadow:0 0 30px rgba(80,223,172,.10) !important;
+}
+
+.hero-title .linha1,
+.hero-title .linha3{
+    color:#fff !important;
+}
 
 .hero-description{
-
-    position:relative;
-
-    max-width:720px;
-
-    margin:45px 0 0;
-
-    padding:30px 38px;
-
-    text-align:left;
-
-    font-size:1.38rem;
-
-    line-height:1.9;
-
-    font-weight:500;
-
-    color:#f8fafc;
-
-    letter-spacing:.3px;
-
-    border-radius:28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.08),
-            rgba(255,255,255,.02)
-        );
-
-    border:1px solid rgba(255,255,255,.12);
-
-    backdrop-filter:blur(24px);
-
-    -webkit-backdrop-filter:blur(24px);
-
-    box-shadow:
-        0 20px 70px rgba(37,99,235,.18),
-        inset 0 1px 0 rgba(255,255,255,.10);
-
-    overflow:hidden;
-
-    opacity:0;
-
-    transform:translateY(120px) scale(.92);
-
-    animation:
-        heroDescription 2.8s cubic-bezier(.16,1,.3,1) .8s forwards,
-        floating 8s ease-in-out 4s infinite;
-
+    position:relative !important;
+    max-width:570px !important;
+    margin:30px 0 0 !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:none !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    color:#d0dced !important;
+    font-size:18px !important;
+    line-height:1.7 !important;
+    font-weight:400 !important;
+    letter-spacing:0 !important;
+    opacity:1 !important;
+    transform:none !important;
+    animation:none !important;
 }
 
-.hero-description::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-2px;
-
-    border-radius:38px;
-
-    padding:1px;
-
-    background:linear-gradient(
-        90deg,
-        #2563eb,
-        #3b82f6,
-        #60a5fa,
-        #2563eb
-    );
-
-    background-size:300%;
-
-    animation:borderMove 8s linear infinite;
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite:xor;
-
-    mask-composite:exclude;
-
-    pointer-events:none;
-
+.hero-description::before,
+.hero-description::after{
+    display:none !important;
 }
 
-.hero-description strong{
-
-    font-weight:800;
-
-    background:linear-gradient(
-        90deg,
-        #ffffff,
-        #93c5fd,
-        #60a5fa
-    );
-
-    background-size:200%;
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
+.hero-buttons{
+    display:flex !important;
+    align-items:center !important;
+    gap:22px !important;
+    margin-top:32px !important;
 }
 
-/*=========================================================
-    ANIMAÇÕES
-=========================================================*/
-
-@keyframes borderMove{
-
-    from{
-
-        background-position:0%;
-
-    }
-
-    to{
-
-        background-position:300%;
-
-    }
-
+.btn-lg{
+    min-height:64px !important;
+    padding:0 34px !important;
+    border-radius:14px !important;
+    font-size:16px !important;
+    font-weight:700 !important;
 }
 
-@keyframes heroDescription{
-
-    0%{
-
-        opacity:0;
-
-        transform:
-            translateY(120px)
-            scale(.92);
-
-        filter:blur(18px);
-
-    }
-
-    35%{
-
-        opacity:.25;
-
-    }
-
-    70%{
-
-        opacity:1;
-
-        transform:
-            translateY(-8px)
-            scale(1.01);
-
-        filter:blur(0);
-
-    }
-
-    100%{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-        filter:blur(0);
-
-    }
-
+.hero-buttons .btn-primary{
+    min-width:242px !important;
+    border:0 !important;
+    background:linear-gradient(135deg,#1765ef,#087cff) !important;
+    color:#fff !important;
+    box-shadow:0 18px 42px rgba(0,105,255,.30) !important;
 }
 
-@keyframes floating{
-
-    0%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-8px);
-
-    }
-
-    100%{
-
-        transform:translateY(0);
-
-    }
-
+.hero-buttons .btn-primary:hover{
+    transform:translateY(-2px) !important;
+    box-shadow:0 24px 50px rgba(0,105,255,.42) !important;
 }
 
-/*=========================================================
-    DASHBOARD HERO
-=========================================================*/
+.hero-buttons .btn-outline{
+    min-width:250px !important;
+    border:1px solid rgba(255,255,255,.30) !important;
+    background:rgba(255,255,255,.015) !important;
+    color:#fff !important;
+}
+
+.hero-buttons .btn-outline:hover{
+    background:rgba(255,255,255,.07) !important;
+    border-color:rgba(255,255,255,.5) !important;
+    transform:translateY(-2px) !important;
+}
+
+/* ================= DASHBOARD ================= */
 
 .hero-right{
+    position:relative !important;
+    z-index:3 !important;
+    min-width:0 !important;
+    height:650px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+}
 
-    flex:0 0 60%;
+.hero-right::before{
+    content:"" !important;
+    position:absolute !important;
+    width:600px !important;
+    height:600px !important;
+    right:-80px !important;
+    top:30px !important;
+    border-radius:50% !important;
+    background:rgba(0,107,255,.23) !important;
+    filter:blur(105px) !important;
+    z-index:-1 !important;
+}
 
-    max-width:60%;
-
-    display:flex;
-
-    justify-content:flex-end;
-
-    align-items:center;
-
-    position:relative;
-
+.hero-right::after{
+    content:"" !important;
+    position:absolute !important;
+    width:90% !important;
+    height:20px !important;
+    right:2% !important;
+    bottom:45px !important;
+    border-radius:50% !important;
+    background:rgba(0,125,255,.55) !important;
+    filter:blur(35px) !important;
+    z-index:-1 !important;
 }
 
 .hero-dashboard{
-
-    width:900px;
-
-    max-width:950px;
-
-    margin-left:0;
-
-    transform:translateX(350px);
-
+    position:relative !important;
+    z-index:2 !important;
+    width:min(850px,100%) !important;
+    margin-right:-75px !important;
+    transform:perspective(1800px) rotateY(-1.5deg) rotateX(1deg) !important;
+    filter:drop-shadow(0 28px 55px rgba(0,0,0,.52)) drop-shadow(0 0 30px rgba(0,119,255,.32)) !important;
+    animation:cxFloat 7s ease-in-out infinite !important;
 }
-.hero-dashboard img{
 
-    width:100%;
-
-    display:block;
-
-    border-radius:24px;
-
+.hero-dashboard::before{
+    content:"" !important;
+    position:absolute !important;
+    inset:-3px !important;
+    border-radius:36px !important;
     box-shadow:
-        0 45px 100px rgba(15,23,42,.28);
-
+        0 0 0 1px rgba(56,171,255,.60),
+        0 0 22px rgba(23,151,255,.75),
+        0 0 65px rgba(0,105,255,.38) !important;
+    pointer-events:none !important;
+    z-index:3 !important;
 }
 
-.hero-dashboard img:hover{
-
-    transform:scale(1.02);
-
+.hero-dashboard img{
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    border-radius:34px !important;
+    object-fit:contain !important;
 }
 
-@keyframes dashboardFloat{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateX(80px)
-            translateY(30px)
-            scale(.92);
-
-        filter:blur(10px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateX(0)
-            translateY(0)
-            scale(1);
-
-        filter:blur(0);
-
-    }
-
+@keyframes cxFloat{
+    0%,100%{transform:perspective(1800px) rotateY(-1.5deg) rotateX(1deg) translateY(0);}
+    50%{transform:perspective(1800px) rotateY(-1.5deg) rotateX(1deg) translateY(-9px);}
 }
 
-/*==================================
-RECURSOS
-==================================*/
+/* ================= LOGIN ================= */
+
+.login-card{
+    position:absolute !important;
+    z-index:9999 !important;
+    right:40px !important;
+    top:115px !important;
+    width:380px !important;
+    margin:0 !important;
+    padding:34px !important;
+    box-sizing:border-box !important;
+    border:1px solid rgba(119,180,255,.20) !important;
+    border-radius:24px !important;
+    background:linear-gradient(145deg,rgba(7,24,55,.97),rgba(3,13,32,.98)) !important;
+    box-shadow:0 35px 100px rgba(0,0,0,.55),0 0 45px rgba(0,105,255,.20) !important;
+    backdrop-filter:blur(28px) !important;
+    -webkit-backdrop-filter:blur(28px) !important;
+    visibility:hidden !important;
+    opacity:0 !important;
+    transform:translateY(14px) scale(.98) !important;
+    pointer-events:none !important;
+    transition:.25s ease !important;
+}
+
+.login-card.show{
+    visibility:visible !important;
+    opacity:1 !important;
+    transform:translateY(0) scale(1) !important;
+    pointer-events:auto !important;
+}
+
+.login-card h2{
+    margin:0 0 7px !important;
+    color:#fff !important;
+    font-size:34px !important;
+    font-weight:800 !important;
+}
+
+.login-card p{
+    margin:0 0 26px !important;
+    color:#9fb3cc !important;
+}
+
+.login-card input{
+    width:100% !important;
+    height:54px !important;
+    box-sizing:border-box !important;
+    margin-bottom:13px !important;
+    padding:0 17px !important;
+    border:1px solid rgba(255,255,255,.11) !important;
+    border-radius:13px !important;
+    outline:none !important;
+    background:rgba(255,255,255,.045) !important;
+    color:#fff !important;
+    font-size:15px !important;
+}
+
+.login-card input::placeholder{
+    color:#8095af !important;
+}
+
+.login-card input:focus{
+    border-color:#268cff !important;
+    background:rgba(38,140,255,.08) !important;
+    box-shadow:0 0 0 4px rgba(38,140,255,.11) !important;
+}
+
+.login-card .btn-primary.full{
+    width:100% !important;
+    height:55px !important;
+    border:0 !important;
+    border-radius:13px !important;
+    background:linear-gradient(135deg,#1765ef,#087cff) !important;
+    color:#fff !important;
+    font-weight:700 !important;
+    cursor:pointer !important;
+}
+
+.login-close{
+    position:absolute !important;
+    top:16px !important;
+    right:17px !important;
+    width:34px !important;
+    height:34px !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    border-radius:50% !important;
+    background:rgba(255,255,255,.04) !important;
+    color:#fff !important;
+    font-size:23px !important;
+    cursor:pointer !important;
+}
+
+.btn-link{
+    border:0 !important;
+    background:none !important;
+    color:#53a7ff !important;
+    cursor:pointer !important;
+}
+
+.login-card > div{
+    color:#94a8bf !important;
+}
+
+.esqueci-senha{
+    margin-top:13px !important;
+}
+
+/* ================= EMPRESAS / FAIXA ================= */
+
+.landing > .hero::after{
+    content:"" !important;
+    position:absolute !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    height:1px !important;
+    background:linear-gradient(90deg,transparent,rgba(65,150,255,.25),transparent) !important;
+}
+
+/* ================= SEÇÕES ABAIXO ================= */
+
+.landing-recursos,
+.como-funciona,
+.planos-section{
+    position:relative !important;
+    z-index:5 !important;
+}
 
 .landing-recursos{
+    margin-top:0 !important;
+}
 
-    background:#fff;
+/* ================= MOBILE ================= */
 
-    padding:120px 0;
+.mobile-menu-btn{
+    display:none !important;
+}
+
+@media(max-width:1200px){
+    .header-wrapper,
+    .hero{
+        width:calc(100% - 60px) !important;
+    }
+
+    .top-nav{
+        gap:28px !important;
+    }
+
+    .hero{
+        grid-template-columns:46% 54% !important;
+    }
+
+    .hero-dashboard{
+        margin-right:-35px !important;
+    }
+
+    .hero-title .linha{
+        font-size:clamp(52px,6vw,72px) !important;
+    }
+}
+
+@media(max-width:900px){
+    .header-wrapper{
+        height:82px !important;
+        width:calc(100% - 36px) !important;
+    }
+
+    .logo-img{
+        width:170px !important;
+    }
+
+    .top-nav{
+        gap:17px !important;
+    }
+
+    .top-nav > a{
+        font-size:14px !important;
+    }
+
+    .top-actions{
+        gap:8px !important;
+        margin-left:0 !important;
+    }
+
+    .btn-login,
+    .btn-buy{
+        height:46px !important;
+        padding:0 18px !important;
+    }
+
+    .hero{
+        width:calc(100% - 36px) !important;
+        grid-template-columns:1fr !important;
+        padding-top:40px !important;
+    }
+
+    .hero-left{
+        text-align:center !important;
+    }
+
+    .badge,
+    .hero-buttons{
+        justify-content:center !important;
+    }
+
+    .hero-title{
+        align-items:center !important;
+    }
+
+    .hero-title .linha{
+        font-size:64px !important;
+    }
+
+    .hero-description{
+        margin-left:auto !important;
+        margin-right:auto !important;
+    }
+
+    .hero-right{
+        height:auto !important;
+        min-height:420px !important;
+        margin-top:25px !important;
+    }
+
+    .hero-dashboard{
+        width:100% !important;
+        margin-right:0 !important;
+    }
+
+    .login-card{
+        position:fixed !important;
+        left:50% !important;
+        right:auto !important;
+        top:50% !important;
+        width:min(390px,calc(100vw - 32px)) !important;
+        transform:translate(-50%,-46%) scale(.98) !important;
+    }
+
+    .login-card.show{
+        transform:translate(-50%,-50%) scale(1) !important;
+    }
+}
+
+@media(max-width:680px){
+    .header-wrapper{
+        height:74px !important;
+    }
+
+    .logo-img{
+        width:155px !important;
+    }
+
+    .top-nav{
+        position:absolute !important;
+        top:68px !important;
+        left:0 !important;
+        right:0 !important;
+        width:100% !important;
+        padding:18px !important;
+        box-sizing:border-box !important;
+        display:none !important;
+        flex-direction:column !important;
+        align-items:stretch !important;
+        gap:8px !important;
+        border:1px solid rgba(255,255,255,.10) !important;
+        border-radius:18px !important;
+        background:rgba(3,13,32,.97) !important;
+        box-shadow:0 25px 60px rgba(0,0,0,.45) !important;
+    }
+
+    .top-nav.active{
+        display:flex !important;
+    }
+
+    .top-nav > a{
+        padding:12px 10px !important;
+    }
+
+    .top-actions{
+        width:100% !important;
+        margin-top:7px !important;
+    }
+
+    .top-actions button{
+        flex:1 !important;
+    }
+
+    .mobile-menu-btn{
+        display:flex !important;
+        align-items:center !important;
+        gap:7px !important;
+        color:#fff !important;
+        cursor:pointer !important;
+        margin-left:auto !important;
+    }
+
+    .mobile-menu-btn .menu-text{
+        font-size:11px !important;
+        letter-spacing:1px !important;
+        font-weight:700 !important;
+    }
+
+    .hero{
+        width:calc(100% - 28px) !important;
+        padding-top:35px !important;
+        min-height:auto !important;
+    }
+
+    .badge{
+        font-size:12px !important;
+        padding:0 13px !important;
+    }
+
+    .hero-title{
+        margin-top:25px !important;
+    }
+
+    .hero-title .linha{
+        font-size:48px !important;
+        letter-spacing:-2.5px !important;
+    }
+
+    .hero-description{
+        font-size:16px !important;
+        line-height:1.65 !important;
+    }
+
+    .hero-buttons{
+        flex-direction:column !important;
+        gap:12px !important;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-outline{
+        width:100% !important;
+        min-width:0 !important;
+    }
+
+    .hero-right{
+        min-height:260px !important;
+        margin-top:8px !important;
+    }
+
+    .hero-dashboard{
+        width:115% !important;
+        margin-left:-7.5% !important;
+    }
+
+    .login-card{
+        padding:28px 22px !important;
+    }
+}
+</style>
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="landing">
+
+    <!-- ================= HEADER ================= -->
+
+<div class="header-wrapper">
+
+    <div class="logo">
+
+        <img src="{{ url_for('static', filename='img/logo.png') }}"
+             class="logo-img">
+
+    </div>
+
+    <header class="topbar">
+
+        <!-- BOTÃO MOBILE -->
+
+        <div class="mobile-menu-btn">
+
+            <span class="menu-icon">☰</span>
+
+            <span class="menu-text">EXPLORAR</span>
+
+        </div>
+
+        <!-- MENU -->
+
+<nav class="top-nav">
+
+    <a href="#recursos">Recursos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#planos">Planos</a>
+    <a href="#">Contato</a>
+
+    <div class="top-actions">
+
+        <button
+    class="btn-login"
+    onclick="toggleLoginCard()">
+
+    Login
+
+</button>
+
+        <button class="btn-buy">
+
+            Comprar agora
+
+        </button>
+
+    </div>
+
+</nav>
+</header>
+
+</div>
+
+
+<!-- ================= HERO ================= -->
+
+<div class="hero">
+
+    <div class="hero-left">
+
+        <div class="badge">
+
+    <span class="badge-icon">
+
+        <span class="node center"></span>
+        <span class="node top"></span>
+        <span class="node right"></span>
+
+        <span class="line l1"></span>
+        <span class="line l2"></span>
+
+    </span>
+
+    <span>A maior rede de negócios do mercado farmacêutico</span>
+
+</div>
+
+<h1 class="hero-title">
+
+    <span class="linha linha1">Cote.</span>
+
+    <span class="linha linha2">Conecte.</span>
+
+    <span class="linha linha3">Economize.</span>
+
+</h1>
+
+<p class="hero-description">
+
+    Uma plataforma para negociar, conectar pessoas e compartilhar conhecimento.
+    Porque os melhores resultados surgem quando o mercado farmacêutico trabalha
+    em rede.
+
+</p>
+
+            <div class="hero-buttons">
+
+                <button class="btn-primary btn-lg"
+                        onclick="abrirCadastro()">
+
+                    Começar agora
+
+                </button>
+
+                <button
+    class="btn-outline btn-lg"
+    onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">
+
+    Ver como funciona
+
+</button>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="hero-right">
+
+    <div class="hero-dashboard">
+
+        <img
+    src="{{ url_for('static', filename='img/dashboard-hero.png') }}"
+    alt="Dashboard CotaX">
+
+    </div>
+
+<div
+    class="login-card"
+    id="loginCard">
+
+    <button
+        type="button"
+        class="login-close"
+        onclick="toggleLoginCard()"
+        aria-label="Fechar">
+        ×
+    </button>
+
+    <h2>Entrar</h2>
+
+                <p>
+                    Acesse sua conta
+                </p>
+
+                <form method="POST"
+                      action="/login">
+
+                    <input
+    type="text"
+    name="login"
+    placeholder="CNPJ, e-mail ou WhatsApp"
+    autocomplete="username"
+    required>
+
+                    
+
+                    <input
+                        type="password"
+                        name="senha"
+                        placeholder="Senha"
+                        required>
+
+                    <button
+                        class="btn-primary full"
+                        type="submit">
+
+                        Entrar
+
+                    </button>
+
+                </form>
+<div>
+
+    <button
+        class="btn-link"
+        onclick="abrirCadastro()">
+
+        Não possui conta?
+        Criar agora
+
+    </button>
+
+</div>
+
+
+<div class="esqueci-senha">
+
+    <button
+        class="btn-link"
+        onclick="abrirRecuperarSenha()">
+
+        Esqueci minha senha
+
+    </button>
+
+</div>
+
+</div>
+
+
+
+
+<div class="modal"
+     id="cadastroModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="fecharCadastro()">
+
+            ×
+
+        </button>
+
+        <h2>
+
+            Criar conta
+
+        </h2>
+
+        <p>
+
+            Cadastre sua empresa
+
+        </p>
+
+        <div id="erroCadastro" class="erro-cadastro"></div>
+
+        <form id="formCadastro">
+
+
+            <input
+                name="nome"
+                placeholder="Nome completo"
+                required>
+
+            <input
+                name="cpf"
+                placeholder="CPF"
+                required>
+
+            <input
+                name="cnpj"
+                placeholder="CNPJ"
+                required>
+
+
+            <input
+                name="telefone"
+                placeholder="WhatsApp com DDD"
+                required>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                required>
+
+            <input
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                required>
+
+            <input
+                type="password"
+                name="confirmar"
+                placeholder="Confirmar senha"
+                required>
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Criar Cadastro
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL RECUPERAR SENHA ================= -->
+
+
+<div class="modal"
+     id="modalRecuperarSenha">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="fecharRecuperarSenha()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+
+            Recuperar senha
+
+        </h2>
+
+
+        <p>
+
+            Informe seus dados para recuperar o acesso.
+
+        </p>
+
+
+        <form
+            method="POST"
+            action="/recuperar-senha">
+
+
+            <input
+                name="identificacao"
+                placeholder="CNPJ ou E-mail Cadastrado"
+                required>
+
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Recuperar senha
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<section id="recursos" class="landing-recursos">
+
+    <div class="container">
+
+        <div class="recursos-topo">
+
+            <span>PLATAFORMA COMPLETA</span>
+
+            <h2>
+                Tudo o que sua farmácia precisa.
+                <br>
+                Em um único lugar.
+            </h2>
+
+            <p>
+                Simplifique negociações, reduza custos e conecte sua empresa
+                ao mercado farmacêutico através de uma plataforma inteligente.
+            </p>
+
+        </div>
+
+        <div class="recursos-layout">
+
+            <!-- CARD GIGANTE -->
+
+            <div class="card-xl verde">
+
+                <div class="texto">
+
+                    <small>NOVA COTAÇÃO</small>
+
+                    <h3>Crie uma cotação em segundos.</h3>
+
+                    <p>
+                        Envie sua lista para diversas distribuidoras de uma
+                        única vez e acompanhe tudo em tempo real.
+                    </p>
+
+                </div>
+
+                <div class="mockup"></div>
+
+            </div>
+
+            
+            <!-- ================= ECONOMIA ================= -->
+
+<div class="card">
+
+    <div class="icone azul">
+
+        <div class="money-icon">
+
+            <span class="coin coin1"></span>
+            <span class="coin coin2"></span>
+            <span class="coin coin3"></span>
+
+            <span class="arrow"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Economia Inteligente</h3>
+
+    <p>
+        Compare automaticamente todas as propostas recebidas e encontre a melhor oportunidade de compra.
+    </p>
+
+</div>
+
+
+<!-- ================= ANALYTICS ================= -->
+
+<div class="card">
+
+    <div class="icone roxo">
+
+        <div class="analytics-icon">
+
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+            <span class="bar b4"></span>
+
+            <span class="trend"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Analytics</h3>
+
+    <p>
+        Dashboards modernos com indicadores, histórico de compras e desempenho da empresa.
+    </p>
+
+</div>
+
+
+<!-- ================= CONECTA ================= -->
+
+<div class="card">
+
+    <div class="icone laranja">
+
+        <div class="connect-icon">
+
+            <span class="person p1"></span>
+            <span class="person p2"></span>
+            <span class="person p3"></span>
+
+            <span class="line l1"></span>
+            <span class="line l2"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Conecta</h3>
+
+    <p>
+        Uma rede exclusiva para conectar farmácias, distribuidores e representantes comerciais.
+    </p>
+
+</div>
+
+
+<!-- ================= PERFIL ================= -->
+
+<div class="card">
+
+    <div class="icone ciano">
+
+        <div class="building-icon">
+
+            <span class="roof"></span>
+
+            <span class="window w1"></span>
+            <span class="window w2"></span>
+            <span class="window w3"></span>
+            <span class="window w4"></span>
+
+            <span class="door"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Perfil da Empresa</h3>
+
+    <p>
+        Apresente sua empresa de forma profissional e fortaleça sua presença dentro da plataforma.
+    </p>
+
+</div>
+
+
+<!-- ================= IA ================= -->
+
+<div class="card-xl rosa">
+
+    <div class="texto">
+
+        <small>INTELIGÊNCIA ARTIFICIAL</small>
+
+        <h3>CotaFarma IA</h3>
+
+        <p>
+
+            Analise preços, receba recomendações inteligentes e descubra novas oportunidades usando IA.
+
+        </p>
+
+    </div>
+
+    <div class="mockup ia">
+
+        <div class="brain">
+
+            <span class="core"></span>
+
+            <span class="node n1"></span>
+            <span class="node n2"></span>
+            <span class="node n3"></span>
+            <span class="node n4"></span>
+
+            <span class="wire w1"></span>
+            <span class="wire w2"></span>
+            <span class="wire w3"></span>
+            <span class="wire w4"></span>
+
+        </div>
+
+            </div>
+
+    </div>
+
+</section>
+
+<!--==================================================
+                COMO FUNCIONA
+===================================================-->
+
+<section id="como-funciona" class="como-funciona">
+
+    <div class="container">
+
+        <div class="funciona-topo">
+
+            <span>COMO FUNCIONA</span>
+
+            <h2>
+
+                Negociar nunca foi tão simples.
+
+            </h2>
+
+            <p>
+
+                Em poucos minutos sua farmácia envia uma cotação,
+                recebe propostas e fecha o melhor negócio.
+
+            </p>
+
+        </div>
+
+        <div class="timeline"></div>
+
+        <div class="funciona-grid">
+
+            <!-- PASSO 1 -->
+
+            <div class="passo">
+
+                <div class="circulo verde">
+
+                    <div class="icone-funcao cotacao">
+
+                        <span class="folha"></span>
+
+                        <span class="mais-h"></span>
+
+                        <span class="mais-v"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    01
+
+                </div>
+
+                <h3>
+
+                    Crie sua cotação
+
+                </h3>
+
+                <p>
+
+                    Informe os medicamentos e envie sua lista para
+                    diversos distribuidores simultaneamente.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 2 -->
+
+            <div class="passo">
+
+                <div class="circulo azul">
+
+                    <div class="icone-funcao proposta">
+
+                        <span class="envelope"></span>
+
+                        <span class="seta"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    02
+
+                </div>
+
+                <h3>
+
+                    Receba propostas
+
+                </h3>
+
+                <p>
+
+                    Os fornecedores respondem diretamente pela
+                    plataforma em tempo real.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 3 -->
+
+            <div class="passo">
+
+                <div class="circulo roxo">
+
+                    <div class="icone-funcao grafico">
+
+                        <span class="barra b1"></span>
+
+                        <span class="barra b2"></span>
+
+                        <span class="barra b3"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    03
+
+                </div>
+
+                <h3>
+
+                    Compare preços
+
+                </h3>
+
+                <p>
+
+                    Visualize automaticamente quem oferece
+                    o menor preço e a melhor condição.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 4 -->
+
+            <div class="passo">
+
+                <div class="circulo amarelo">
+
+                    <div class="icone-funcao check">
+
+                        <span class="c1"></span>
+
+                        <span class="c2"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    04
+
+                </div>
+
+                <h3>
+
+                    Feche o negócio
+
+                </h3>
+
+                <p>
+
+                    Escolha a melhor proposta e finalize
+                    sua compra com segurança.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="planos" class="planos-section">
+
+    <div class="container">
+
+        <span class="tag-planos">
+            PLANOS
+        </span>
+
+        <h2>
+            Escolha o plano ideal para sua farmácia
+        </h2>
+
+        <p>
+            Comece gratuitamente e evolua quando precisar de mais recursos.
+        </p>
+
+        <div class="planos-grid">
+
+    <!-- Gratuito -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">Gratuito</span>
+
+        <h3>R$ 0</h3>
+
+        <small>Para conhecer a plataforma</small>
+
+        <ul>
+
+            <li>✅ 14 dias Premium grátis</li>
+            <li>✅ Até 2 cotações por mês</li>
+            <li>✅ Histórico</li>
+            <li>❌ Conecta</li>
+            <li>❌ Analytics</li>
+            <li>❌ CotaFarma IA</li>
+            <li>❌ Relatórios</li>
+            <li>❌ Exportação</li>
+
+        </ul>
+
+        <button
+    type="button"
+    class="btn-plano"
+    onclick="ativarTesteGratis()">
+
+    Começar grátis
+
+</button>
+
+    </div>
+
+    <!-- Mensal -->
+
+    <div class="plano-card destaque">
+
+        <span class="badge-plano">
+            Mais escolhido
+        </span>
+
+        <span class="plano-titulo">Mensal</span>
+
+        <h3>R$ 49,90</h3>
+
+        <small>por mês</small>
+
+        <ul>
+
+            <li>✅ Cotações ilimitadas</li>
+            <li>✅ Conecta</li>
+            <li>✅ Analytics</li>
+            <li>✅ CotaFarma IA</li>
+            <li>✅ Relatórios</li>
+            <li>✅ Exportação</li>
+            <li>✅ Suporte prioritário</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Semestral -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">6 Meses</span>
+
+        <h3>R$ 269,90</h3>
+
+        <small>R$ 44,98/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 10%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Anual -->
+
+    <div class="plano-card">
+
+        <span class="badge-plano verde">
+            Melhor custo-benefício
+        </span>
+
+        <span class="plano-titulo">Anual</span>
+
+        <h3>R$ 479,90</h3>
+
+        <small>R$ 39,99/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 20%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+<script>
+
+function abrirCadastro(){
+
+    document.getElementById("erroCadastro").style.display = "none";
+    document.getElementById("erroCadastro").innerHTML = "";
+
+    document.getElementById("cadastroModal").style.display = "flex";
 
 }
 
-.landing-recursos .container{
+function fecharCadastro(){
 
-    width:min(1350px,92%);
-
-    margin:auto;
+    document.getElementById("cadastroModal").style.display = "none";
 
 }
 
-.recursos-topo{
+function abrirRecuperarSenha(){
 
-    text-align:center;
-
-    margin-bottom:70px;
+    document.getElementById("modalRecuperarSenha").style.display = "flex";
 
 }
 
-.recursos-grid{
+function fecharRecuperarSenha(){
 
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:28px;
+    document.getElementById("modalRecuperarSenha").style.display = "none";
 
 }
 
-.recurso-card{
+window.onclick = function(e){
 
-    background:#fff;
+    const cadastro = document.getElementById("cadastroModal");
 
-    border:1px solid #e5e7eb;
+    const recuperar = document.getElementById("modalRecuperarSenha");
 
-    border-radius:24px;
+    if(e.target === cadastro){
 
-    padding:35px;
+        fecharCadastro();
 
-    box-shadow:0 15px 40px rgba(0,0,0,.05);
+    }
+
+    if(e.target === recuperar){
+
+        fecharRecuperarSenha();
+
+    }
+
+}
+
+</script>
+
+
+
+<script>
+
+    console.log("JS DO CADASTRO CARREGOU");
+
+function irLogin(){
+
+    const login=document.getElementById("login");
+
+    login.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+    });
+
+    login.querySelector("input").focus();
+
+}
+
+
+document.getElementById("formCadastro").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+
+    let formulario = new FormData(this);
+
+
+    let resposta = await fetch(
+        "{{ url_for('auth.cadastro') }}",
+        {
+            method:"POST",
+            body:formulario
+        }
+    );
+
+
+    let dados = await resposta.json();
+
+
+    let erro = document.getElementById("erroCadastro");
+
+
+    if(dados.erro){
+
+        erro.innerHTML = "🔴 " + dados.erro;
+
+        erro.style.display = "block";
+
+        return;
+
+    }
+
+
+    window.location.href = "/";
+
+});
+
+const menuBtn = document.querySelector(".mobile-menu-btn");
+const nav = document.querySelector(".topbar nav");
+
+menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("active");
+});
+
+function toggleLoginCard(){
+
+    document
+        .getElementById("loginCard")
+        .classList.toggle("show");
+
+}
+
+async function ativarTesteGratis(){
+
+    const resposta = await fetch("/ativar-teste",{
+        method:"POST"
+    });
+
+    if(resposta.status === 401){
+        abrirCadastro();
+        return;
+    }
+
+    const dados = await resposta.json();
+
+    if(dados.erro === "JA_UTILIZADO"){
+        alert("Você já utilizou os 14 dias gratuitos.");
+        return;
+    }
+
+    if(dados.ok){
+        alert("Parabéns! Seu Premium foi ativado por 14 dias.");
+        window.location.href="/dashboard";
+    }
 
 }
 
 
 
-/*=========================================
-FUNDO
-=========================================*/
+</script>
 
 
 
-.landing-recursos::after{
 
-    content:"";
 
-    position:absolute;
+{% endblock %}
+login.html
+HTML
+dashboard-hero.png
+imagem
+Código colado(20260814-215740).html
+Arquivo
+eu quero o html completo e depois vc me da o CSS completo: 
 
-    inset:0;
+Sim. Agora deixei separado exatamente como você pediu:
 
-    background-image:
+1. login.html completo
 
-        linear-gradient(rgba(15,23,42,.03) 1px,transparent 1px),
+Mantive a estrutura e as funções que já estavam no seu arquivo — login, cadastro, recuperação de senha, Recursos, Como funciona, Planos e os JavaScripts. O arquivo original tinha essa estrutura completa.
 
-        linear-gradient(90deg,rgba(15,23,42,.03) 1px,transparent 1px);
+Substitua seu templates/login.html por este:
 
-    background-size:80px 80px;
+Baixar login.html completo
 
-    opacity:.45;
+2. login.css completo
+
+Criei um CSS completo e independente, sem depender do seu login-mobile.css antigo, justamente para evitar que regras antigas desfaçam o novo design.
+
+Substitua seu static/css/login.css por este:
+
+Baixar login.css completo
+
+3. Importante: imagem do dashboard
+
+O HTML agora procura a imagem aqui:
+
+static/img/dashboard-hero.png
+
+E usa:
+
+<img
+    src="{{ url_for('static', filename='img/dashboard-hero.png') }}"
+    alt="Dashboard CotaX"
+    loading="eager">
+
+Coloque a imagem que preparei anteriormente nesse local:
+
+Baixar dashboard-hero.png
+
+Sua estrutura deve ficar:
+
+CotaFarma_v2/
+│
+├── templates/
+│   └── login.html
+│
+└── static/
+    ├── css/
+    │   └── login.css
+    │
+    └── img/
+        ├── logo.png
+        └── dashboard-hero.png
+4. Não use o login-mobile.css antigo
+
+No novo login.html deixei somente:
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}">
+
+Ou seja, o novo login.css já contém desktop + tablet + celular.
+
+Isso é proposital. Se você continuar carregando o CSS mobile antigo, ele pode sobrescrever partes do novo layout.
+
+Depois de substituir os arquivos, faça:
+
+Chrome → ⌘ + Shift + R
+
+para forçar a atualização.
+
+O resultado deve ficar muito mais próximo daquela referência que você mostrou: hero escuro azul, Cote/Conecte/Economize à esquerda, dashboard grande e luminoso à direita, header premium e responsividade, sem depender das regras antigas. 
+
+{% extends "base_public.html" %}
+
+
+{% block css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="landing">
+
+    <!-- ================= HEADER ================= -->
+
+<div class="header-wrapper">
+
+    <div class="logo">
+
+        <img src="{{ url_for('static', filename='img/logo.png') }}"
+             class="logo-img">
+
+    </div>
+
+    <header class="topbar">
+
+        <!-- BOTÃO MOBILE -->
+
+        <div class="mobile-menu-btn">
+
+            <span class="menu-icon">☰</span>
+
+            <span class="menu-text">EXPLORAR</span>
+
+        </div>
+
+        <!-- MENU -->
+
+<nav class="top-nav">
+
+    <a href="#recursos">Recursos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#planos">Planos</a>
+    <a href="#">Contato</a>
+
+    <div class="top-actions">
+
+        <button
+    class="btn-login"
+    onclick="toggleLoginCard()">
+
+    Login
+
+</button>
+
+        <button class="btn-buy">
+
+            Comprar agora
+
+        </button>
+
+    </div>
+
+</nav>
+</header>
+
+</div>
+
+
+<!-- ================= HERO ================= -->
+
+<div class="hero">
+
+    <div class="hero-left">
+
+        <div class="badge">
+
+    <span class="badge-icon">
+
+        <span class="node center"></span>
+        <span class="node top"></span>
+        <span class="node right"></span>
+
+        <span class="line l1"></span>
+        <span class="line l2"></span>
+
+    </span>
+
+    <span>A maior rede de negócios do mercado farmacêutico</span>
+
+</div>
+
+<h1 class="hero-title">
+
+    <span class="linha linha1">Cote.</span>
+
+    <span class="linha linha2">Conecte.</span>
+
+    <span class="linha linha3">Economize.</span>
+
+</h1>
+
+<p class="hero-description">
+
+    Uma plataforma para negociar, conectar pessoas e compartilhar conhecimento.
+    Porque os melhores resultados surgem quando o mercado farmacêutico trabalha
+    em rede.
+
+</p>
+
+            <div class="hero-buttons">
+
+                <button class="btn-primary btn-lg"
+                        onclick="abrirCadastro()">
+
+                    Começar agora
+
+                </button>
+
+                <button
+    class="btn-outline btn-lg"
+    onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">
+
+    Ver como funciona
+
+</button>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="hero-right">
+
+    <div class="hero-dashboard">
+
+        <img
+    src="{{ url_for('static', filename='img/dashboard-hero.png') }}"
+    alt="Dashboard CotaX" loading="eager">
+
+    </div>
+
+<div
+    class="login-card"
+    id="loginCard">
+
+    <button
+        type="button"
+        class="login-close"
+        onclick="toggleLoginCard()"
+        aria-label="Fechar">
+        ×
+    </button>
+
+    <h2>Entrar</h2>
+
+                <p>
+                    Acesse sua conta
+                </p>
+
+                <form method="POST"
+                      action="/login">
+
+                    <input
+    type="text"
+    name="login"
+    placeholder="CNPJ, e-mail ou WhatsApp"
+    autocomplete="username"
+    required>
+
+                    
+
+                    <input
+                        type="password"
+                        name="senha"
+                        placeholder="Senha"
+                        required>
+
+                    <button
+                        class="btn-primary full"
+                        type="submit">
+
+                        Entrar
+
+                    </button>
+
+                </form>
+<div>
+
+    <button
+        class="btn-link"
+        onclick="abrirCadastro()">
+
+        Não possui conta?
+        Criar agora
+
+    </button>
+
+</div>
+
+
+<div class="esqueci-senha">
+
+    <button
+        class="btn-link"
+        onclick="abrirRecuperarSenha()">
+
+        Esqueci minha senha
+
+    </button>
+
+</div>
+
+</div>
+
+
+
+
+<div class="modal"
+     id="cadastroModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="fecharCadastro()">
+
+            ×
+
+        </button>
+
+        <h2>
+
+            Criar conta
+
+        </h2>
+
+        <p>
+
+            Cadastre sua empresa
+
+        </p>
+
+        <div id="erroCadastro" class="erro-cadastro"></div>
+
+        <form id="formCadastro">
+
+
+            <input
+                name="nome"
+                placeholder="Nome completo"
+                required>
+
+            <input
+                name="cpf"
+                placeholder="CPF"
+                required>
+
+            <input
+                name="cnpj"
+                placeholder="CNPJ"
+                required>
+
+
+            <input
+                name="telefone"
+                placeholder="WhatsApp com DDD"
+                required>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                required>
+
+            <input
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                required>
+
+            <input
+                type="password"
+                name="confirmar"
+                placeholder="Confirmar senha"
+                required>
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Criar Cadastro
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL RECUPERAR SENHA ================= -->
+
+
+<div class="modal"
+     id="modalRecuperarSenha">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="fecharRecuperarSenha()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+
+            Recuperar senha
+
+        </h2>
+
+
+        <p>
+
+            Informe seus dados para recuperar o acesso.
+
+        </p>
+
+
+        <form
+            method="POST"
+            action="/recuperar-senha">
+
+
+            <input
+                name="identificacao"
+                placeholder="CNPJ ou E-mail Cadastrado"
+                required>
+
+
+            <button
+                class="btn-primary full"
+                type="submit">
+
+                Recuperar senha
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<section id="recursos" class="landing-recursos">
+
+    <div class="container">
+
+        <div class="recursos-topo">
+
+            <span>PLATAFORMA COMPLETA</span>
+
+            <h2>
+                Tudo o que sua farmácia precisa.
+                <br>
+                Em um único lugar.
+            </h2>
+
+            <p>
+                Simplifique negociações, reduza custos e conecte sua empresa
+                ao mercado farmacêutico através de uma plataforma inteligente.
+            </p>
+
+        </div>
+
+        <div class="recursos-layout">
+
+            <!-- CARD GIGANTE -->
+
+            <div class="card-xl verde">
+
+                <div class="texto">
+
+                    <small>NOVA COTAÇÃO</small>
+
+                    <h3>Crie uma cotação em segundos.</h3>
+
+                    <p>
+                        Envie sua lista para diversas distribuidoras de uma
+                        única vez e acompanhe tudo em tempo real.
+                    </p>
+
+                </div>
+
+                <div class="mockup"></div>
+
+            </div>
+
+            
+            <!-- ================= ECONOMIA ================= -->
+
+<div class="card">
+
+    <div class="icone azul">
+
+        <div class="money-icon">
+
+            <span class="coin coin1"></span>
+            <span class="coin coin2"></span>
+            <span class="coin coin3"></span>
+
+            <span class="arrow"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Economia Inteligente</h3>
+
+    <p>
+        Compare automaticamente todas as propostas recebidas e encontre a melhor oportunidade de compra.
+    </p>
+
+</div>
+
+
+<!-- ================= ANALYTICS ================= -->
+
+<div class="card">
+
+    <div class="icone roxo">
+
+        <div class="analytics-icon">
+
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+            <span class="bar b4"></span>
+
+            <span class="trend"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Analytics</h3>
+
+    <p>
+        Dashboards modernos com indicadores, histórico de compras e desempenho da empresa.
+    </p>
+
+</div>
+
+
+<!-- ================= CONECTA ================= -->
+
+<div class="card">
+
+    <div class="icone laranja">
+
+        <div class="connect-icon">
+
+            <span class="person p1"></span>
+            <span class="person p2"></span>
+            <span class="person p3"></span>
+
+            <span class="line l1"></span>
+            <span class="line l2"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Conecta</h3>
+
+    <p>
+        Uma rede exclusiva para conectar farmácias, distribuidores e representantes comerciais.
+    </p>
+
+</div>
+
+
+<!-- ================= PERFIL ================= -->
+
+<div class="card">
+
+    <div class="icone ciano">
+
+        <div class="building-icon">
+
+            <span class="roof"></span>
+
+            <span class="window w1"></span>
+            <span class="window w2"></span>
+            <span class="window w3"></span>
+            <span class="window w4"></span>
+
+            <span class="door"></span>
+
+        </div>
+
+    </div>
+
+    <h3>Perfil da Empresa</h3>
+
+    <p>
+        Apresente sua empresa de forma profissional e fortaleça sua presença dentro da plataforma.
+    </p>
+
+</div>
+
+
+<!-- ================= IA ================= -->
+
+<div class="card-xl rosa">
+
+    <div class="texto">
+
+        <small>INTELIGÊNCIA ARTIFICIAL</small>
+
+        <h3>CotaFarma IA</h3>
+
+        <p>
+
+            Analise preços, receba recomendações inteligentes e descubra novas oportunidades usando IA.
+
+        </p>
+
+    </div>
+
+    <div class="mockup ia">
+
+        <div class="brain">
+
+            <span class="core"></span>
+
+            <span class="node n1"></span>
+            <span class="node n2"></span>
+            <span class="node n3"></span>
+            <span class="node n4"></span>
+
+            <span class="wire w1"></span>
+            <span class="wire w2"></span>
+            <span class="wire w3"></span>
+            <span class="wire w4"></span>
+
+        </div>
+
+            </div>
+
+    </div>
+
+</section>
+
+<!--==================================================
+                COMO FUNCIONA
+===================================================-->
+
+<section id="como-funciona" class="como-funciona">
+
+    <div class="container">
+
+        <div class="funciona-topo">
+
+            <span>COMO FUNCIONA</span>
+
+            <h2>
+
+                Negociar nunca foi tão simples.
+
+            </h2>
+
+            <p>
+
+                Em poucos minutos sua farmácia envia uma cotação,
+                recebe propostas e fecha o melhor negócio.
+
+            </p>
+
+        </div>
+
+        <div class="timeline"></div>
+
+        <div class="funciona-grid">
+
+            <!-- PASSO 1 -->
+
+            <div class="passo">
+
+                <div class="circulo verde">
+
+                    <div class="icone-funcao cotacao">
+
+                        <span class="folha"></span>
+
+                        <span class="mais-h"></span>
+
+                        <span class="mais-v"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    01
+
+                </div>
+
+                <h3>
+
+                    Crie sua cotação
+
+                </h3>
+
+                <p>
+
+                    Informe os medicamentos e envie sua lista para
+                    diversos distribuidores simultaneamente.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 2 -->
+
+            <div class="passo">
+
+                <div class="circulo azul">
+
+                    <div class="icone-funcao proposta">
+
+                        <span class="envelope"></span>
+
+                        <span class="seta"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    02
+
+                </div>
+
+                <h3>
+
+                    Receba propostas
+
+                </h3>
+
+                <p>
+
+                    Os fornecedores respondem diretamente pela
+                    plataforma em tempo real.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 3 -->
+
+            <div class="passo">
+
+                <div class="circulo roxo">
+
+                    <div class="icone-funcao grafico">
+
+                        <span class="barra b1"></span>
+
+                        <span class="barra b2"></span>
+
+                        <span class="barra b3"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    03
+
+                </div>
+
+                <h3>
+
+                    Compare preços
+
+                </h3>
+
+                <p>
+
+                    Visualize automaticamente quem oferece
+                    o menor preço e a melhor condição.
+
+                </p>
+
+            </div>
+
+            <!-- PASSO 4 -->
+
+            <div class="passo">
+
+                <div class="circulo amarelo">
+
+                    <div class="icone-funcao check">
+
+                        <span class="c1"></span>
+
+                        <span class="c2"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="numero">
+
+                    04
+
+                </div>
+
+                <h3>
+
+                    Feche o negócio
+
+                </h3>
+
+                <p>
+
+                    Escolha a melhor proposta e finalize
+                    sua compra com segurança.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="planos" class="planos-section">
+
+    <div class="container">
+
+        <span class="tag-planos">
+            PLANOS
+        </span>
+
+        <h2>
+            Escolha o plano ideal para sua farmácia
+        </h2>
+
+        <p>
+            Comece gratuitamente e evolua quando precisar de mais recursos.
+        </p>
+
+        <div class="planos-grid">
+
+    <!-- Gratuito -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">Gratuito</span>
+
+        <h3>R$ 0</h3>
+
+        <small>Para conhecer a plataforma</small>
+
+        <ul>
+
+            <li>✅ 14 dias Premium grátis</li>
+            <li>✅ Até 2 cotações por mês</li>
+            <li>✅ Histórico</li>
+            <li>❌ Conecta</li>
+            <li>❌ Analytics</li>
+            <li>❌ CotaFarma IA</li>
+            <li>❌ Relatórios</li>
+            <li>❌ Exportação</li>
+
+        </ul>
+
+        <button
+    type="button"
+    class="btn-plano"
+    onclick="ativarTesteGratis()">
+
+    Começar grátis
+
+</button>
+
+    </div>
+
+    <!-- Mensal -->
+
+    <div class="plano-card destaque">
+
+        <span class="badge-plano">
+            Mais escolhido
+        </span>
+
+        <span class="plano-titulo">Mensal</span>
+
+        <h3>R$ 49,90</h3>
+
+        <small>por mês</small>
+
+        <ul>
+
+            <li>✅ Cotações ilimitadas</li>
+            <li>✅ Conecta</li>
+            <li>✅ Analytics</li>
+            <li>✅ CotaFarma IA</li>
+            <li>✅ Relatórios</li>
+            <li>✅ Exportação</li>
+            <li>✅ Suporte prioritário</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Semestral -->
+
+    <div class="plano-card">
+
+        <span class="plano-titulo">6 Meses</span>
+
+        <h3>R$ 269,90</h3>
+
+        <small>R$ 44,98/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 10%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+    <!-- Anual -->
+
+    <div class="plano-card">
+
+        <span class="badge-plano verde">
+            Melhor custo-benefício
+        </span>
+
+        <span class="plano-titulo">Anual</span>
+
+        <h3>R$ 479,90</h3>
+
+        <small>R$ 39,99/mês</small>
+
+        <ul>
+
+            <li>✅ Tudo do Premium</li>
+            <li>💰 Economia de 20%</li>
+
+        </ul>
+
+        <button class="btn-plano">
+            Assinar
+        </button>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+<script>
+
+function abrirCadastro(){
+
+    document.getElementById("erroCadastro").style.display = "none";
+    document.getElementById("erroCadastro").innerHTML = "";
+
+    document.getElementById("cadastroModal").style.display = "flex";
 
 }
 
-/*=========================================
-CONTAINER
-=========================================*/
+function fecharCadastro(){
 
-.landing-recursos .container{
+    document.getElementById("cadastroModal").style.display = "none";
 
-    width:min(1450px,92%);
+}
 
-    margin:auto;
+function abrirRecuperarSenha(){
 
+    document.getElementById("modalRecuperarSenha").style.display = "flex";
+
+}
+
+function fecharRecuperarSenha(){
+
+    document.getElementById("modalRecuperarSenha").style.display = "none";
+
+}
+
+window.onclick = function(e){
+
+    const cadastro = document.getElementById("cadastroModal");
+
+    const recuperar = document.getElementById("modalRecuperarSenha");
+
+    if(e.target === cadastro){
+
+        fecharCadastro();
+
+    }
+
+    if(e.target === recuperar){
+
+        fecharRecuperarSenha();
+
+    }
+
+}
+
+</script>
+
+
+
+<script>
+
+    console.log("JS DO CADASTRO CARREGOU");
+
+function irLogin(){
+
+    const login=document.getElementById("login");
+
+    login.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+    });
+
+    login.querySelector("input").focus();
+
+}
+
+
+document.getElementById("formCadastro").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+
+    let formulario = new FormData(this);
+
+
+    let resposta = await fetch(
+        "{{ url_for('auth.cadastro') }}",
+        {
+            method:"POST",
+            body:formulario
+        }
+    );
+
+
+    let dados = await resposta.json();
+
+
+    let erro = document.getElementById("erroCadastro");
+
+
+    if(dados.erro){
+
+        erro.innerHTML = "🔴 " + dados.erro;
+
+        erro.style.display = "block";
+
+        return;
+
+    }
+
+
+    window.location.href = "/";
+
+});
+
+const menuBtn = document.querySelector(".mobile-menu-btn");
+const nav = document.querySelector(".topbar nav");
+
+menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("active");
+});
+
+function toggleLoginCard(){
+
+    document
+        .getElementById("loginCard")
+        .classList.toggle("show");
+
+}
+
+async function ativarTesteGratis(){
+
+    const resposta = await fetch("/ativar-teste",{
+        method:"POST"
+    });
+
+    if(resposta.status === 401){
+        abrirCadastro();
+        return;
+    }
+
+    const dados = await resposta.json();
+
+    if(dados.erro === "JA_UTILIZADO"){
+        alert("Você já utilizou os 14 dias gratuitos.");
+        return;
+    }
+
+    if(dados.ok){
+        alert("Parabéns! Seu Premium foi ativado por 14 dias.");
+        window.location.href="/dashboard";
+    }
+
+}
+
+
+
+</script>
+
+
+
+
+
+{% endblock %}
+login.html
+HTML
+login.css
+Código
+dashboard-hero.png
+imagem
+agora o CSS comppelto
+
+Claro. Este é o login.css completo, já com desktop, tablet e celular no mesmo arquivo:
+
+Baixar login.css completo
+
+Ele já inclui:
+
+visual azul escuro premium da referência;
+header com logo, Recursos, Como funciona, Planos, Contato, Login e Comprar agora;
+hero Cote. Conecte. Economize.;
+dashboard grande à direita;
+brilho/glow azul;
+botões;
+card de login;
+modal de cadastro;
+modal de recuperação;
+seção Recursos;
+Como funciona;
+Planos;
+responsividade para celular;
+menu mobile;
+ajustes para telas pequenas.
+
+Substitua todo o conteúdo do seu static/css/login.css pelo arquivo acima.
+
+E deixe o login.html carregando somente esse CSS, como no arquivo que te passei.
+
+login.css
+Código
+
+login.css
+/* =========================================================
+   COTEX CONECTA — LOGIN / LANDING PAGE
+   CSS COMPLETO
+   ========================================================= */
+
+:root{
+    --cx-bg:#020817;
+    --cx-bg-deep:#010612;
+    --cx-bg-blue:#03142f;
+    --cx-blue:#1769f5;
+    --cx-blue-bright:#1688ff;
+    --cx-blue-glow:rgba(0,120,255,.35);
+    --cx-green:#50dfac;
+    --cx-text:#f7faff;
+    --cx-muted:#c2d0e2;
+    --cx-line:rgba(129,181,255,.17);
+    --cx-card:rgba(7,22,48,.72);
+}
+
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+
+html{
+    scroll-behavior:smooth;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    min-width:320px;
+    overflow-x:hidden;
+    background:var(--cx-bg);
+    color:var(--cx-text);
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    -webkit-tap-highlight-color:transparent;
+}
+
+img{
+    max-width:100%;
+}
+
+.landing{
     position:relative;
-
-    z-index:2;
-
+    min-height:100vh;
+    overflow:hidden;
+    isolation:isolate;
+    background:
+        radial-gradient(circle at 76% 35%,rgba(0,103,255,.20),transparent 25%),
+        radial-gradient(circle at 15% 54%,rgba(0,82,190,.13),transparent 30%),
+        linear-gradient(125deg,#010817 0%,#03122d 48%,#010817 100%);
 }
 
-/*=========================================
-TOPO
-=========================================*/
-
-.recursos-topo{
-
-    max-width:900px;
-
-    margin:auto;
-
-    text-align:center;
-
-    margin-bottom:90px;
-
+.landing::before{
+    content:"";
+    position:absolute;
+    z-index:-3;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(79,151,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(79,151,255,.045) 1px,transparent 1px);
+    background-size:90px 90px;
+    mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.78) 48%,transparent 100%);
 }
 
-.recursos-topo span{
+.landing::after{
+    content:"";
+    position:absolute;
+    z-index:-2;
+    width:720px;
+    height:720px;
+    right:-300px;
+    top:130px;
+    border-radius:50%;
+    background:rgba(0,104,255,.18);
+    filter:blur(135px);
+    pointer-events:none;
+}
 
-    display:inline-flex;
+/* =========================================================
+   HEADER
+   ========================================================= */
 
+.header-wrapper{
+    position:relative;
+    z-index:100;
+    width:min(1450px,calc(100% - 120px));
+    min-height:92px;
+    margin:0 auto;
+    display:flex;
     align-items:center;
+    justify-content:space-between;
+    gap:40px;
+}
 
-    justify-content:center;
+.logo{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+}
 
-    padding:10px 22px;
+.logo-img{
+    display:block;
+    width:208px;
+    height:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 8px 22px rgba(0,0,0,.35));
+}
 
+.topbar{
+    flex:1 1 auto;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding:0;
+    margin:0;
+    background:transparent;
+    border:0;
+    box-shadow:none;
+}
+
+.top-nav{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:46px;
+}
+
+.top-nav > a{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    color:#eef5ff;
+    text-decoration:none;
+    font-size:16px;
+    line-height:1;
+    font-weight:500;
+    white-space:nowrap;
+    transition:color .22s ease;
+}
+
+.top-nav > a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-10px;
+    width:0;
+    height:2px;
     border-radius:999px;
-
-    background:#eef4ff;
-
-    color:#2563eb;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-
+    transform:translateX(-50%);
+    background:var(--cx-blue-bright);
+    transition:width .22s ease;
 }
 
-.recursos-topo h2{
+.top-nav > a:hover{
+    color:#fff;
+}
 
-    margin:28px 0;
+.top-nav > a:hover::after{
+    width:100%;
+}
 
-    font-size:64px;
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-left:8px;
+}
 
-    line-height:1.05;
+.btn-login,
+.btn-buy{
+    height:52px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease,
+        background .22s ease;
+}
 
-    letter-spacing:-2px;
+.btn-login{
+    min-width:108px;
+    padding:0 28px;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.29);
+    background:rgba(3,13,32,.35);
+}
 
-    color:#08111f;
+.btn-login:hover{
+    transform:translateY(-2px);
+    border-color:rgba(255,255,255,.52);
+    background:rgba(255,255,255,.07);
+}
 
+.btn-buy{
+    min-width:178px;
+    padding:0 28px;
+    color:#fff;
+    border:0;
+    font-weight:700;
+    background:linear-gradient(135deg,#1767ef,#087eff);
+    box-shadow:0 15px 35px rgba(0,105,255,.27);
+}
+
+.btn-buy:hover{
+    transform:translateY(-2px);
+    box-shadow:0 20px 45px rgba(0,105,255,.40);
+}
+
+.mobile-menu-btn{
+    display:none;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+    position:relative;
+    z-index:2;
+    width:min(1450px,calc(100% - 120px));
+    min-height:700px;
+    margin:0 auto;
+    padding:62px 0 68px;
+    display:grid;
+    grid-template-columns:43% 57%;
+    align-items:center;
+}
+
+.hero-left{
+    position:relative;
+    z-index:5;
+    min-width:0;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:11px;
+    min-height:44px;
+    padding:0 18px;
+    border:1px solid rgba(103,171,255,.25);
+    border-radius:999px;
+    color:#edf5ff;
+    background:rgba(5,20,48,.58);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.05),
+        0 14px 35px rgba(0,0,0,.15);
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.badge-icon{
+    position:relative;
+    display:block;
+    width:22px;
+    height:22px;
+    flex:0 0 22px;
+}
+
+.badge-icon .node{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#1fa4ff;
+    box-shadow:0 0 9px rgba(31,164,255,.9);
+}
+
+.badge-icon .center{left:8px;top:9px;}
+.badge-icon .top{left:5px;top:2px;}
+.badge-icon .right{right:1px;top:7px;}
+
+.badge-icon .line{
+    position:absolute;
+    left:8px;
+    top:10px;
+    width:9px;
+    height:1px;
+    transform-origin:left center;
+    background:#1fa4ff;
+    opacity:.75;
+}
+
+.badge-icon .l1{
+    transform:rotate(-110deg);
+}
+
+.badge-icon .l2{
+    transform:rotate(-18deg);
+}
+
+.hero-title{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    margin:34px 0 0;
+    padding:0;
+    line-height:.92;
+}
+
+.hero-title .linha{
+    display:block;
+    width:max-content;
+    max-width:100%;
+    margin:0;
+    padding:0;
+    color:#fff;
+    font-size:clamp(58px,5.35vw,86px);
+    line-height:.92;
+    letter-spacing:-4.5px;
     font-weight:900;
-
 }
 
-.recursos-topo p{
-
-    font-size:20px;
-
-    color:#64748b;
-
-    line-height:1.9;
-
+.hero-title .linha1,
+.hero-title .linha3{
+    color:#fff;
 }
 
-/*=========================================
-GRID
-=========================================*/
+.hero-title .linha2{
+    color:var(--cx-green);
+    text-shadow:0 0 32px rgba(80,223,172,.09);
+}
+
+.hero-description{
+    max-width:570px;
+    margin:30px 0 0;
+    padding:0;
+    color:#ccd9e9;
+    font-size:18px;
+    line-height:1.68;
+    font-weight:400;
+}
+
+.hero-buttons{
+    display:flex;
+    align-items:center;
+    gap:21px;
+    margin-top:31px;
+}
+
+.btn-lg{
+    min-height:64px;
+    padding:0 34px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+}
+
+.hero-buttons .btn-primary{
+    min-width:242px;
+    color:#fff;
+    border:0;
+    background:linear-gradient(135deg,#1765ef,#087cff);
+    box-shadow:0 18px 42px rgba(0,105,255,.30);
+}
+
+.hero-buttons .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 24px 50px rgba(0,105,255,.42);
+}
+
+.hero-buttons .btn-outline{
+    min-width:250px;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.30);
+    background:rgba(255,255,255,.015);
+}
+
+.hero-buttons .btn-outline:hover{
+    transform:translateY(-2px);
+    border-color:rgba(255,255,255,.50);
+    background:rgba(255,255,255,.07);
+}
+
+/* =========================================================
+   DASHBOARD HERO
+   ========================================================= */
+
+.hero-right{
+    position:relative;
+    z-index:3;
+    min-width:0;
+    height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+}
+
+.hero-right::before{
+    content:"";
+    position:absolute;
+    z-index:-2;
+    width:610px;
+    height:610px;
+    right:-80px;
+    top:25px;
+    border-radius:50%;
+    background:rgba(0,107,255,.23);
+    filter:blur(110px);
+}
+
+.hero-right::after{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    width:86%;
+    height:22px;
+    right:3%;
+    bottom:42px;
+    border-radius:50%;
+    background:rgba(0,128,255,.56);
+    filter:blur(36px);
+}
+
+.hero-dashboard{
+    position:relative;
+    z-index:3;
+    width:min(850px,100%);
+    margin-right:-76px;
+    transform:perspective(1800px) rotateY(-1.5deg) rotateX(1deg);
+    filter:
+        drop-shadow(0 30px 55px rgba(0,0,0,.52))
+        drop-shadow(0 0 32px rgba(0,119,255,.34));
+    animation:cx-dashboard-float 7s ease-in-out infinite;
+}
+
+.hero-dashboard::before{
+    content:"";
+    position:absolute;
+    z-index:4;
+    inset:-3px;
+    border-radius:36px;
+    pointer-events:none;
+    box-shadow:
+        0 0 0 1px rgba(56,171,255,.62),
+        0 0 23px rgba(23,151,255,.78),
+        0 0 68px rgba(0,105,255,.40);
+}
+
+.hero-dashboard img{
+    position:relative;
+    z-index:2;
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:34px;
+    object-fit:contain;
+}
+
+@keyframes cx-dashboard-float{
+    0%,100%{
+        transform:perspective(1800px) rotateY(-1.5deg) rotateX(1deg) translateY(0);
+    }
+    50%{
+        transform:perspective(1800px) rotateY(-1.5deg) rotateX(1deg) translateY(-9px);
+    }
+}
+
+/* =========================================================
+   LOGIN CARD
+   ========================================================= */
+
+.login-card{
+    position:absolute;
+    z-index:999;
+    top:112px;
+    right:35px;
+    width:380px;
+    padding:34px;
+    border:1px solid rgba(119,180,255,.21);
+    border-radius:24px;
+    background:
+        linear-gradient(145deg,rgba(7,24,55,.98),rgba(3,13,32,.99));
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.55),
+        0 0 45px rgba(0,105,255,.20);
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
+    visibility:hidden;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(14px) scale(.98);
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s ease;
+}
+
+.login-card.show{
+    visibility:visible;
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0) scale(1);
+}
+
+.login-card h2{
+    margin:0 0 7px;
+    color:#fff;
+    font-size:34px;
+    line-height:1.1;
+    font-weight:800;
+}
+
+.login-card p{
+    margin:0 0 25px;
+    color:#9fb3cc;
+}
+
+.login-card form{
+    margin:0;
+}
+
+.login-card input{
+    display:block;
+    width:100%;
+    height:54px;
+    margin:0 0 13px;
+    padding:0 17px;
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:13px;
+    outline:none;
+    background:rgba(255,255,255,.045);
+    color:#fff;
+    font-size:15px;
+    transition:.2s ease;
+}
+
+.login-card input::placeholder{
+    color:#8095af;
+}
+
+.login-card input:focus{
+    border-color:#268cff;
+    background:rgba(38,140,255,.08);
+    box-shadow:0 0 0 4px rgba(38,140,255,.11);
+}
+
+.login-card .btn-primary.full{
+    display:block;
+    width:100%;
+    height:55px;
+    border:0;
+    border-radius:13px;
+    color:#fff;
+    background:linear-gradient(135deg,#1765ef,#087cff);
+    font-weight:700;
+    cursor:pointer;
+}
+
+.login-close{
+    position:absolute;
+    top:16px;
+    right:17px;
+    width:34px;
+    height:34px;
+    padding:0;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:50%;
+    color:#fff;
+    background:rgba(255,255,255,.04);
+    font-size:23px;
+    line-height:30px;
+    cursor:pointer;
+}
+
+.login-card .btn-link{
+    padding:0;
+    border:0;
+    color:#53a7ff;
+    background:none;
+    cursor:pointer;
+}
+
+.login-card > div{
+    color:#94a8bf;
+}
+
+.esqueci-senha{
+    margin-top:13px;
+}
+
+/* =========================================================
+   MODAIS
+   Mantém a funcionalidade existente, mas harmoniza o visual.
+   ========================================================= */
+
+.modal{
+    position:fixed;
+    z-index:10000;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(0,6,18,.78);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+}
+
+.modal-box{
+    position:relative;
+    width:min(500px,100%);
+    max-height:90vh;
+    overflow:auto;
+    padding:34px;
+    border:1px solid rgba(116,178,255,.22);
+    border-radius:24px;
+    background:linear-gradient(145deg,#071a3a,#031026);
+    box-shadow:0 35px 100px rgba(0,0,0,.58);
+    color:#fff;
+}
+
+.modal-box h2{
+    margin:0 0 8px;
+    font-size:30px;
+}
+
+.modal-box p{
+    color:#9fb3cc;
+}
+
+.modal-box input{
+    display:block;
+    width:100%;
+    height:52px;
+    margin:0 0 12px;
+    padding:0 15px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;
+    outline:none;
+    background:rgba(255,255,255,.045);
+    color:#fff;
+}
+
+.modal-box input:focus{
+    border-color:#268cff;
+    box-shadow:0 0 0 4px rgba(38,140,255,.10);
+}
+
+.modal-box .full{
+    width:100%;
+}
+
+.close{
+    position:absolute;
+    top:14px;
+    right:15px;
+    width:36px;
+    height:36px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:50%;
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.erro-cadastro{
+    display:none;
+    margin:0 0 15px;
+    padding:12px 14px;
+    border:1px solid rgba(255,77,77,.25);
+    border-radius:10px;
+    color:#ff8d8d;
+    background:rgba(255,50,50,.08);
+}
+
+/* =========================================================
+   SEÇÕES ABAIXO DO HERO
+   ========================================================= */
+
+.landing-recursos,
+.como-funciona,
+.planos-section{
+    position:relative;
+    z-index:5;
+}
+
+.landing-recursos{
+    background:
+        radial-gradient(circle at 15% 30%,rgba(0,115,255,.09),transparent 25%),
+        #030d20;
+}
+
+.como-funciona{
+    background:#020a1b;
+}
+
+.planos-section{
+    background:#030d20;
+}
+
+.landing-recursos .container,
+.como-funciona .container,
+.planos-section .container{
+    width:min(1280px,calc(100% - 48px));
+    margin:0 auto;
+}
+
+/* =========================================================
+   RECURSOS
+   ========================================================= */
+
+.recursos-topo,
+.funciona-topo{
+    text-align:center;
+    padding-top:100px;
+    margin-bottom:55px;
+}
+
+.recursos-topo > span,
+.funciona-topo > span,
+.tag-planos{
+    color:#4aa7ff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.recursos-topo h2,
+.funciona-topo h2,
+.planos-section h2{
+    margin:15px 0 16px;
+    color:#fff;
+    font-size:clamp(34px,4vw,52px);
+    line-height:1.08;
+    letter-spacing:-1.5px;
+}
+
+.recursos-topo p,
+.funciona-topo p,
+.planos-section > .container > p{
+    max-width:680px;
+    margin:0 auto;
+    color:#9fb3cc;
+    font-size:17px;
+    line-height:1.7;
+}
 
 .recursos-layout{
-
     display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:32px;
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:20px;
+    padding-bottom:100px;
 }
-
-/*=========================================
-CARDS
-=========================================*/
 
 .card,
 .card-xl{
-
-    position:relative;
-
-    min-height:360px;
-
-    padding:42px;
-
-    border-radius:34px;
-
-    background:#ffffff;
-
-    border:1px solid #e8edf5;
-
-    overflow:hidden;
-
-    transition:.45s cubic-bezier(.2,.8,.2,1);
-
-    box-shadow:
-
-        0 15px 40px rgba(15,23,42,.04),
-
-        0 35px 70px rgba(15,23,42,.04);
-
+    min-height:300px;
+    padding:30px;
+    border:1px solid rgba(112,173,255,.13);
+    border-radius:24px;
+    background:linear-gradient(145deg,rgba(8,28,60,.82),rgba(4,16,38,.86));
+    box-shadow:0 20px 60px rgba(0,0,0,.18);
 }
-
-/* card-xl ficará igual aos outros */
 
 .card-xl{
-
-    grid-column:auto;
-
+    min-height:390px;
 }
 
-/*=========================================
-HOVER
-=========================================*/
-
-.card:hover,
-.card-xl:hover{
-
-    transform:
-
-        translateY(-12px);
-
-    box-shadow:
-
-        0 35px 80px rgba(15,23,42,.10);
-
-}
-
-/* brilho passando */
-
-
-.card::before,
-.card-xl::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
+.card-xl.verde{
     background:
-
-        radial-gradient(
-
-            circle at top left,
-
-            rgba(59,130,246,.05),
-
-            transparent 55%
-
-        );
-
-    pointer-events:none;
-
+        radial-gradient(circle at 80% 30%,rgba(48,222,164,.17),transparent 32%),
+        linear-gradient(145deg,#06352f,#041a2d);
 }
 
-.card:hover::before,
-.card-xl:hover::before{
-
-    left:120%;
-
-}
-
-/*==================================================
-            CONTEÚDO DOS CARDS
-==================================================*/
-
-.card,
-.card-xl{
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-start;
-
-}
-
-/*=========================================
-ÍCONE
-=========================================*/
-
-.icone{
-
-    position:relative;
-
-    width:88px;
-
-    height:88px;
-
-    border-radius:26px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    overflow:hidden;
-
-    margin-bottom:32px;
-
-    transition:.45s cubic-bezier(.2,.8,.2,1);
-
-    box-shadow:
-
-        inset 0 1px 1px rgba(255,255,255,.45),
-
-        0 12px 25px rgba(15,23,42,.12);
-
-}
-
-/* brilho superior */
-
-.icone::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
+.card-xl.rosa{
     background:
-
-        linear-gradient(
-
-            180deg,
-
-            rgba(255,255,255,.45),
-
-            rgba(255,255,255,0) 55%
-
-        );
-
+        radial-gradient(circle at 80% 30%,rgba(170,94,255,.15),transparent 32%),
+        linear-gradient(145deg,#17133c,#07152f);
 }
-
-/* brilho lateral */
-
-.icone::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:160%;
-
-    height:40px;
-
-    background:rgba(255,255,255,.22);
-
-    transform:
-
-        rotate(-35deg)
-
-        translateY(-120px);
-
-    transition:.8s;
-
-}
-
-.card:hover .icone::after,
-.card-xl:hover .icone::after{
-
-    transform:
-
-        rotate(-35deg)
-
-        translateY(140px);
-
-}
-
-/*=========================================
-CORES DOS ÍCONES
-=========================================*/
-
-.icone.verde{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #34d399,
-
-            #10b981
-
-        );
-
-}
-
-.icone.azul{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #60a5fa,
-
-            #2563eb
-
-        );
-
-}
-
-.icone.roxo{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #c084fc,
-
-            #8b5cf6
-
-        );
-
-}
-
-.icone.laranja{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #fb923c,
-
-            #f97316
-
-        );
-
-}
-
-.icone.ciano{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #67e8f9,
-
-            #06b6d4
-
-        );
-
-}
-
-.icone.rosa{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #fb7185,
-
-            #ec4899
-
-        );
-
-}
-
-/*=========================================
-TEXTOS
-=========================================*/
 
 .card h3,
 .card-xl h3{
-
-    margin:0 0 18px;
-
-    font-size:31px;
-
-    line-height:1.1;
-
-    font-weight:800;
-
-    letter-spacing:-1px;
-
-    color:#0f172a;
-
-    transition:.35s;
-
+    margin:18px 0 10px;
+    color:#fff;
+    font-size:24px;
 }
 
 .card p,
 .card-xl p{
-
-    margin:0;
-
-    font-size:17px;
-
-    line-height:1.9;
-
-    color:#64748b;
-
-    transition:.35s;
-
+    color:#aebfd4;
+    line-height:1.65;
 }
 
-.card small,
-.card-xl small{
-
-    display:inline-block;
-
-    margin-bottom:18px;
-
-    font-size:12px;
-
+.card-xl .texto small{
+    color:#55dfb0;
     font-weight:800;
-
-    letter-spacing:2px;
-
-    color:#2563eb;
-
+    letter-spacing:1.5px;
 }
 
-/*=========================================
-HOVER
-=========================================*/
-
-.card:hover,
-.card-xl:hover{
-
-    transform:
-
-        translateY(-10px);
-
-    border-color:#dbe4ef;
-
-}
-
-.card:hover h3,
-.card-xl:hover h3{
-
-    color:#2563eb;
-
-}
-
-.card:hover p,
-.card-xl:hover p{
-
-    color:#475569;
-
-}
-
-.card:hover .icone,
-.card-xl:hover .icone{
-
-    transform:
-
-        translateY(-8px)
-
-        rotate(-5deg)
-
-        scale(1.06);
-
-}
-
-/*==================================================
-            ILUSTRAÇÕES DOS CARDS
-==================================================*/
-
-/*=========================================
-BASE
-=========================================*/
-
-.money-icon,
-.analytics-icon,
-.connect-icon,
-.building-icon,
-.brain{
-
-    position:relative;
-
-    width:60px;
-
-    height:60px;
-
-}
-
-/*==================================================
-            ECONOMIA
-==================================================*/
-
-.coin{
-
-    position:absolute;
-
-    border-radius:50%;
-
-    background:linear-gradient(180deg,#ffffff,#edf4ff);
-
-    box-shadow:
-
-        inset 0 -3px 6px rgba(0,0,0,.08),
-
-        0 6px 10px rgba(0,0,0,.10);
-
-}
-
-.coin1{
-
-    width:30px;
-    height:30px;
-
-    left:4px;
-    bottom:6px;
-
-}
-
-.coin2{
-
-    width:24px;
-    height:24px;
-
-    right:2px;
-    top:10px;
-
-}
-
-.coin3{
-
-    width:18px;
-    height:18px;
-
-    left:34px;
-    bottom:2px;
-
-}
-
-.coin::after{
-
-    content:"$";
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    color:#2563eb;
-
-    font-size:11px;
-
-    font-weight:900;
-
-}
-
-.arrow{
-
-    position:absolute;
-
-    width:28px;
-
-    height:3px;
-
-    background:#fff;
-
-    border-radius:20px;
-
-    right:-2px;
-
-    top:30px;
-
-    transform:rotate(-35deg);
-
-}
-
-.arrow::after{
-
-    content:"";
-
-    position:absolute;
-
-    right:-1px;
-
-    top:-4px;
-
-    width:10px;
-
-    height:10px;
-
-    border-right:3px solid #fff;
-
-    border-top:3px solid #fff;
-
-    transform:rotate(45deg);
-
-}
-
-/*==================================================
-            ANALYTICS
-==================================================*/
-
-.bar{
-
-    position:absolute;
-
-    bottom:0;
-
-    width:10px;
-
-    border-radius:20px;
-
-    background:#fff;
-
-}
-
-.b1{
-
-    left:4px;
-    height:16px;
-
-}
-
-.b2{
-
-    left:18px;
-    height:28px;
-
-}
-
-.b3{
-
-    left:32px;
-    height:40px;
-
-}
-
-.b4{
-
-    left:46px;
+.icone{
+    width:52px;
     height:52px;
-
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.07);
 }
 
-.trend{
+.icone.azul{box-shadow:inset 0 0 0 1px rgba(35,145,255,.16);}
+.icone.roxo{box-shadow:inset 0 0 0 1px rgba(155,95,255,.16);}
+.icone.laranja{box-shadow:inset 0 0 0 1px rgba(255,145,70,.16);}
+.icone.ciano{box-shadow:inset 0 0 0 1px rgba(45,220,255,.16);}
 
-    position:absolute;
+/* =========================================================
+   COMO FUNCIONA
+   ========================================================= */
 
-    left:2px;
-
-    top:18px;
-
-    width:48px;
-
-    height:24px;
-
-    border-top:3px solid #fff;
-
-    border-right:3px solid #fff;
-
-    transform:skewY(-26deg);
-
+.funciona-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:28px;
+    padding-bottom:100px;
 }
 
-/*==================================================
-            CONECTA
-==================================================*/
+.timeline{
+    display:none;
+}
 
-.person{
+.passo{
+    position:relative;
+    padding:28px 10px;
+    text-align:center;
+}
 
-    position:absolute;
-
-    width:12px;
-
-    height:12px;
-
+.circulo{
+    width:92px;
+    height:92px;
+    margin:0 auto 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     border-radius:50%;
-
-    background:#fff;
-
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
 }
 
-.p1{
-
-    left:6px;
-    top:30px;
-
+.numero{
+    color:#4ba6ff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
 }
 
-.p2{
-
-    right:6px;
-    top:10px;
-
+.passo h3{
+    margin:10px 0 8px;
+    color:#fff;
+    font-size:19px;
 }
 
-.p3{
-
-    right:12px;
-    bottom:4px;
-
+.passo p{
+    margin:0;
+    color:#9eb1c8;
+    line-height:1.6;
 }
 
-.line{
+/* =========================================================
+   PLANOS
+   ========================================================= */
 
-    position:absolute;
-
-    height:2px;
-
-    background:#fff;
-
-    transform-origin:left center;
-
+.planos-section{
+    padding:100px 0;
+    text-align:center;
 }
 
-.l1{
-
-    left:18px;
-
-    top:33px;
-
-    width:26px;
-
-    transform:rotate(-25deg);
-
+.planos-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:20px;
+    text-align:left;
 }
 
-.l2{
-
-    left:18px;
-
-    top:36px;
-
-    width:22px;
-
-    transform:rotate(25deg);
-
+.plano-card{
+    position:relative;
+    padding:30px;
+    border:1px solid rgba(112,173,255,.15);
+    border-radius:22px;
+    background:linear-gradient(145deg,#071b3b,#041128);
 }
 
-/*==================================================
-            PERFIL
-==================================================*/
-
-.roof{
-
-    position:absolute;
-
-    left:18px;
-
-    top:2px;
-
-    width:24px;
-
-    height:5px;
-
-    border-radius:10px;
-
-    background:#fff;
-
+.plano-card.destaque{
+    border-color:rgba(54,151,255,.55);
+    box-shadow:0 20px 60px rgba(0,105,255,.13);
 }
 
-.window{
-
-    position:absolute;
-
-    width:8px;
-
-    height:8px;
-
-    border-radius:2px;
-
-    background:#fff;
-
+.plano-titulo{
+    display:block;
+    color:#9eb3cc;
+    font-weight:700;
 }
 
-.w1{
-
-    left:16px;
-    top:16px;
-
+.plano-card h3{
+    margin:10px 0 2px;
+    color:#fff;
+    font-size:34px;
 }
 
-.w2{
-
-    left:36px;
-    top:16px;
-
+.plano-card small{
+    color:#849bb5;
 }
 
-.w3{
-
-    left:16px;
-    top:32px;
-
+.plano-card ul{
+    margin:25px 0;
+    padding:0;
+    list-style:none;
 }
 
-.w4{
-
-    left:36px;
-    top:32px;
-
+.plano-card li{
+    padding:8px 0;
+    color:#c1d0e2;
+    font-size:14px;
 }
 
-.door{
-
-    position:absolute;
-
-    width:12px;
-
-    height:18px;
-
-    left:26px;
-
-    bottom:2px;
-
-    border-radius:4px 4px 0 0;
-
-    background:#fff;
-
+.btn-plano{
+    width:100%;
+    min-height:48px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:12px;
+    color:#fff;
+    background:rgba(255,255,255,.04);
+    cursor:pointer;
 }
 
-/*==================================================
-            IA
-==================================================*/
-
-.core{
-
-    position:absolute;
-
-    width:24px;
-
-    height:24px;
-
-    left:18px;
-
-    top:18px;
-
-    border-radius:50%;
-
-    background:#fff;
-
+.plano-card.destaque .btn-plano{
+    border:0;
+    background:linear-gradient(135deg,#1765ef,#087cff);
 }
 
-.node{
-
-    position:absolute;
-
-    width:8px;
-
-    height:8px;
-
-    border-radius:50%;
-
-    background:#fff;
-
+.badge-plano{
+    display:inline-flex;
+    padding:6px 10px;
+    margin-bottom:12px;
+    border-radius:999px;
+    color:#fff;
+    background:#1765ef;
+    font-size:11px;
+    font-weight:800;
 }
 
-.n1{
-
-    top:2px;
-
-    left:26px;
-
+.badge-plano.verde{
+    background:#0e9f70;
 }
 
-.n2{
-
-    left:2px;
-
-    top:28px;
-
-}
-
-.n3{
-
-    right:2px;
-
-    top:28px;
-
-}
-
-.n4{
-
-    left:26px;
-
-    bottom:2px;
-
-}
-
-.wire{
-
-    position:absolute;
-
-    background:#fff;
-
-}
-
-.w1{
-
-    width:2px;
-
-    height:16px;
-
-    left:29px;
-
-    top:8px;
-
-}
-
-.w2{
-
-    width:16px;
-
-    height:2px;
-
-    left:10px;
-
-    top:31px;
-
-}
-
-.w3{
-
-    width:16px;
-
-    height:2px;
-
-    right:10px;
-
-    top:31px;
-
-}
-
-.w4{
-
-    width:2px;
-
-    height:16px;
-
-    left:29px;
-
-    bottom:8px;
-
-}
-
-/*==================================================
-            PARTE 4
-            ANIMAÇÕES + ACABAMENTO PREMIUM
-==================================================*/
-
-/*====================================
-HOVER DO CARD
-====================================*/
-
-.card,
-.card-xl{
-
-    transition:
-
-        transform .45s cubic-bezier(.19,1,.22,1),
-
-        box-shadow .45s,
-
-        border-color .45s;
-
-}
-
-.card:hover,
-.card-xl:hover{
-
-    transform:
-
-        translateY(-12px);
-
-    border-color:#d8e3f2;
-
-    box-shadow:
-
-        0 25px 60px rgba(15,23,42,.08),
-
-        0 50px 90px rgba(15,23,42,.08);
-
-}
-
-/*====================================
-BRILHO PASSANDO
-====================================*/
-
-.card::after,
-.card-xl::after{
-
-    content:"";
-
-    position:absolute;
-
-    top:-160%;
-
-    left:-160%;
-
-    width:220%;
-
-    height:220%;
-
-    background:
-
-        linear-gradient(
-
-            120deg,
-
-            transparent,
-
-            rgba(255,255,255,.65),
-
-            transparent
-
-        );
-
-    transform:rotate(20deg);
-
-    transition:1.1s;
-
-}
-
-.card:hover::after,
-.card-xl:hover::after{
-
-    left:140%;
-
-}
-
-/*====================================
-ÍCONE
-====================================*/
-
-.icone{
-
-    transition:
-
-        transform .45s,
-
-        box-shadow .45s;
-
-}
-
-.card:hover .icone,
-.card-xl:hover .icone{
-
-    transform:
-
-        translateY(-8px)
-
-        rotate(-6deg)
-
-        scale(1.07);
-
-    box-shadow:
-
-        0 20px 45px rgba(0,0,0,.18);
-
-}
-
-/*====================================
-TEXTOS
-====================================*/
-
-.card h3,
-.card-xl h3{
-
-    transition:.35s;
-
-}
-
-.card p,
-.card-xl p{
-
-    transition:.35s;
-
-}
-
-.card:hover h3,
-.card-xl:hover h3{
-
-    color:#2563eb;
-
-}
-
-.card:hover p,
-.card-xl:hover p{
-
-    color:#475569;
-
-}
-
-/*====================================
-ECONOMIA
-====================================*/
-
-.coin{
-
-    transition:.4s;
-
-}
-
-.card:hover .coin1{
-
-    transform:translateY(-6px);
-
-}
-
-.card:hover .coin2{
-
-    transform:translateY(-10px);
-
-}
-
-.card:hover .coin3{
-
-    transform:translateY(-4px);
-
-}
-
-.arrow{
-
-    transition:.4s;
-
-}
-
-.card:hover .arrow{
-
-    transform:
-
-        rotate(-35deg)
-
-        translate(5px,-3px);
-
-}
-
-/*====================================
-ANALYTICS
-====================================*/
-
-.bar{
-
-    transition:.4s;
-
-}
-
-.card:hover .b1{
-
-    height:22px;
-
-}
-
-.card:hover .b2{
-
-    height:36px;
-
-}
-
-.card:hover .b3{
-
-    height:48px;
-
-}
-
-.card:hover .b4{
-
-    height:60px;
-
-}
-
-.trend{
-
-    transition:.4s;
-
-}
-
-.card:hover .trend{
-
-    transform:
-
-        skewY(-26deg)
-
-        translateY(-4px);
-
-}
-
-/*====================================
-CONECTA
-====================================*/
-
-.person{
-
-    transition:.35s;
-
-}
-
-.line{
-
-    transition:.35s;
-
-}
-
-.card:hover .person{
-
-    transform:scale(1.18);
-
-}
-
-.card:hover .l1{
-
-    width:34px;
-
-}
-
-.card:hover .l2{
-
-    width:30px;
-
-}
-
-/*====================================
-PRÉDIO
-====================================*/
-
-.window{
-
-    transition:.35s;
-
-}
-
-.card:hover .window{
-
-    background:#fff8a8;
-
-    box-shadow:
-
-        0 0 10px rgba(255,248,168,.9);
-
-}
-
-/*====================================
-IA
-====================================*/
-
-.core{
-
-    transition:.4s;
-
-}
-
-.card-xl:hover .core{
-
-    transform:scale(1.12);
-
-}
-
-.node{
-
-    transition:.35s;
-
-}
-
-.card-xl:hover .node{
-
-    animation:pulseNode .8s infinite alternate;
-
-}
-
-@keyframes pulseNode{
-
-    from{
-
-        transform:scale(1);
-
-        opacity:.7;
-
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media(max-width:1200px){
+
+    .header-wrapper,
+    .hero{
+        width:calc(100% - 60px);
     }
 
-    to{
-
-        transform:scale(1.45);
-
-        opacity:1;
-
+    .top-nav{
+        gap:26px;
     }
 
-}
-
-/*====================================
-RESPONSIVO
-====================================*/
-
-@media(max-width:1100px){
-
-    .recursos-layout{
-
-        grid-template-columns:repeat(2,1fr);
-
+    .hero{
+        grid-template-columns:46% 54%;
     }
 
+    .hero-title .linha{
+        font-size:clamp(52px,6vw,74px);
+    }
+
+    .hero-dashboard{
+        margin-right:-35px;
+    }
+
+    .hero-description{
+        max-width:520px;
+    }
+
+    .planos-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
 }
 
-@media(max-width:768px){
+/* =========================================================
+   TABLET PEQUENO
+   ========================================================= */
 
-    .recursos-layout{
+@media(max-width:900px){
 
+    .header-wrapper{
+        width:calc(100% - 36px);
+        min-height:82px;
+    }
+
+    .logo-img{
+        width:170px;
+    }
+
+    .top-nav{
+        gap:16px;
+    }
+
+    .top-nav > a{
+        font-size:13px;
+    }
+
+    .top-actions{
+        gap:8px;
+    }
+
+    .btn-login,
+    .btn-buy{
+        height:46px;
+        padding:0 17px;
+        min-width:auto;
+        font-size:14px;
+    }
+
+    .hero{
+        width:calc(100% - 36px);
         grid-template-columns:1fr;
+        min-height:auto;
+        padding-top:45px;
+    }
 
+    .hero-left{
+        text-align:center;
+    }
+
+    .badge{
+        justify-content:center;
+    }
+
+    .hero-title{
+        align-items:center;
+    }
+
+    .hero-title .linha{
+        font-size:64px;
+    }
+
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-right{
+        height:auto;
+        min-height:440px;
+        margin-top:20px;
+    }
+
+    .hero-dashboard{
+        width:100%;
+        margin-right:0;
+    }
+
+    .login-card{
+        position:fixed;
+        top:50%;
+        left:50%;
+        right:auto;
+        width:min(390px,calc(100vw - 32px));
+        transform:translate(-50%,-46%) scale(.98);
+    }
+
+    .login-card.show{
+        transform:translate(-50%,-50%) scale(1);
+    }
+
+    .recursos-layout{
+        grid-template-columns:1fr;
+    }
+
+    .funciona-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:680px){
+
+    .landing{
+        background:
+            radial-gradient(circle at 75% 25%,rgba(0,103,255,.16),transparent 30%),
+            linear-gradient(145deg,#020817,#03122a 60%,#020817);
+    }
+
+    .header-wrapper{
+        width:calc(100% - 28px);
+        min-height:74px;
+    }
+
+    .logo-img{
+        width:154px;
+    }
+
+    .topbar{
+        position:static;
+    }
+
+    .mobile-menu-btn{
+        display:flex;
+        align-items:center;
+        gap:7px;
+        margin-left:auto;
+        color:#fff;
+        cursor:pointer;
+    }
+
+    .mobile-menu-btn .menu-icon{
+        font-size:21px;
+        line-height:1;
+    }
+
+    .mobile-menu-btn .menu-text{
+        font-size:10px;
+        letter-spacing:1.2px;
+        font-weight:800;
+    }
+
+    .top-nav{
+        position:absolute;
+        top:70px;
+        left:0;
+        right:0;
+        width:100%;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:3px;
+        padding:15px;
+        border:1px solid rgba(255,255,255,.11);
+        border-radius:18px;
+        background:rgba(3,13,32,.98);
+        box-shadow:0 25px 60px rgba(0,0,0,.48);
+    }
+
+    .top-nav.active{
+        display:flex;
+    }
+
+    .top-nav > a{
+        padding:12px 10px;
+        font-size:14px;
+    }
+
+    .top-nav > a::after{
+        display:none;
+    }
+
+    .top-actions{
+        width:100%;
+        display:flex;
+        margin:7px 0 0;
+    }
+
+    .top-actions button{
+        flex:1;
+    }
+
+    .hero{
+        width:calc(100% - 28px);
+        padding:38px 0 40px;
+    }
+
+    .badge{
+        max-width:100%;
+        min-height:40px;
+        padding:0 12px;
+        font-size:11px;
+        white-space:normal;
+        line-height:1.25;
+    }
+
+    .hero-title{
+        margin-top:24px;
+        gap:5px;
+    }
+
+    .hero-title .linha{
+        font-size:48px;
+        letter-spacing:-2.7px;
+        line-height:.94;
+    }
+
+    .hero-description{
+        max-width:100%;
+        margin-top:24px;
+        font-size:15px;
+        line-height:1.65;
+    }
+
+    .hero-buttons{
+        width:100%;
+        flex-direction:column;
+        gap:11px;
+        margin-top:26px;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-outline{
+        width:100%;
+        min-width:0;
+    }
+
+    .hero-right{
+        min-height:255px;
+        margin-top:8px;
+    }
+
+    .hero-dashboard{
+        width:116%;
+        margin-left:-8%;
+    }
+
+    .hero-dashboard img{
+        border-radius:22px;
+    }
+
+    .hero-dashboard::before{
+        border-radius:24px;
+    }
+
+    .hero-right::before{
+        width:420px;
+        height:420px;
+        right:-160px;
+        top:0;
+        filter:blur(90px);
+    }
+
+    .login-card{
+        width:calc(100vw - 28px);
+        padding:27px 20px;
+        border-radius:21px;
+    }
+
+    .login-card h2{
+        font-size:29px;
+    }
+
+    .modal{
+        padding:14px;
+    }
+
+    .modal-box{
+        padding:28px 20px;
+        border-radius:20px;
+    }
+
+    .landing-recursos .container,
+    .como-funciona .container,
+    .planos-section .container{
+        width:calc(100% - 28px);
+    }
+
+    .recursos-topo,
+    .funciona-topo{
+        padding-top:70px;
+        margin-bottom:35px;
+    }
+
+    .recursos-topo h2,
+    .funciona-topo h2,
+    .planos-section h2{
+        font-size:34px;
+        letter-spacing:-1px;
+    }
+
+    .recursos-topo p,
+    .funciona-topo p,
+    .planos-section > .container > p{
+        font-size:15px;
     }
 
     .card,
     .card-xl{
-
-        min-height:auto;
-
-        padding:30px;
-
+        padding:23px;
+        border-radius:20px;
     }
 
-    .recursos-topo h2{
-
-        font-size:40px;
-
-    }
-
-}
-
-/*==================================================
-                COMO FUNCIONA
-==================================================*/
-
-.como-funciona{
-
-    position:relative;
-
-    padding:150px 0;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            #081526 0%,
-            #0b1f35 100%
-        );
-
-}
-
-/*==================================
-LUZES DO FUNDO
-==================================*/
-
-.como-funciona::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:700px;
-
-    height:700px;
-
-    border-radius:50%;
-
-    left:-220px;
-
-    top:-250px;
-
-    background:
-
-        radial-gradient(
-
-            rgba(37,99,235,.22),
-
-            transparent 72%
-
-        );
-
-}
-
-.como-funciona::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:650px;
-
-    height:650px;
-
-    border-radius:50%;
-
-    right:-180px;
-
-    bottom:-260px;
-
-    background:
-
-        radial-gradient(
-
-            rgba(16,185,129,.18),
-
-            transparent 72%
-
-        );
-
-}
-
-/*==================================
-CONTAINER
-==================================*/
-
-.como-funciona .container{
-
-    width:min(1380px,92%);
-
-    margin:auto;
-
-    position:relative;
-
-    z-index:5;
-
-}
-
-/*==================================
-TOPO
-==================================*/
-
-.funciona-topo{
-
-    text-align:center;
-
-    max-width:760px;
-
-    margin:auto;
-
-    margin-bottom:100px;
-
-}
-
-.funciona-topo span{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:10px 24px;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    color:#6ee7ff;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-
-}
-
-.funciona-topo h2{
-
-    margin:28px 0 24px;
-
-    color:#ffffff;
-
-    font-size:60px;
-
-    line-height:1.05;
-
-    font-weight:900;
-
-    letter-spacing:-2px;
-
-}
-
-.funciona-topo p{
-
-    color:#9fb3c8;
-
-    font-size:20px;
-
-    line-height:1.9;
-
-}
-
-/*==================================
-LINHA
-==================================*/
-
-.timeline{
-
-    position:absolute;
-
-    top:80px;
-
-    left:12%;
-
-    width:76%;
-
-    height:3px;
-
-    background:linear-gradient(
-        90deg,
-        #22c55e,
-        #3b82f6,
-        #8b5cf6,
-        #f59e0b
-    );
-
-    border-radius:999px;
-
-    opacity:.35;
-
-    z-index:0;
-
-}
-
-.funciona-grid{
-
-    position:relative;
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:50px;
-
-}
-
-.timeline{
-
-    position:absolute;
-
-    left:12%;
-
-    right:12%;
-
-    top:78px;
-
-    height:3px;
-
-    background:linear-gradient(
-        90deg,
-        #22c55e,
-        #3b82f6,
-        #8b5cf6,
-        #f59e0b
-    );
-
-    border-radius:999px;
-
-    opacity:.35;
-
-    z-index:0;
-
-}
-
-.passo{
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-/*==================================
-GRID
-==================================*/
-
-.funciona-grid{
-
-    position:relative;
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:40px;
-
-}
-
-/*==================================================
-                PASSOS
-==================================================*/
-
-.passo{
-
-    position:relative;
-
-    text-align:center;
-
-    z-index:5;
-
-}
-
-/*====================================
-CÍRCULO
-====================================*/
-
-.circulo{
-
-    position:relative;
-
-    width:160px;
-
-    height:160px;
-
-    margin:0 auto;
-
-    border-radius:50%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    transition:.45s;
-
-    box-shadow:
-
-        inset 0 1px 0 rgba(255,255,255,.20),
-
-        0 20px 50px rgba(0,0,0,.25);
-
-}
-
-/* brilho */
-
-.circulo::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:8px;
-
-    border-radius:50%;
-
-    background:
-
-        linear-gradient(
-
-            180deg,
-
-            rgba(255,255,255,.18),
-
-            rgba(255,255,255,.03)
-
-        );
-
-}
-
-/*====================================
-CORES
-====================================*/
-
-.circulo.verde{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #22c55e,
-
-            #16a34a
-
-        );
-
-}
-
-.circulo.azul{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #4f9cff,
-
-            #2563eb
-
-        );
-
-}
-
-.circulo.roxo{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #b56dff,
-
-            #7c3aed
-
-        );
-
-}
-
-.circulo.amarelo{
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #fbbf24,
-
-            #f59e0b
-
-        );
-
-}
-
-/*====================================
-GLOW
-====================================*/
-
-.circulo::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-
-    height:180px;
-
-    border-radius:50%;
-
-    background:inherit;
-
-    filter:blur(45px);
-
-    opacity:.25;
-
-    z-index:-1;
-
-}
-
-/*====================================
-NÚMERO
-====================================*/
-
-.step-number{
-
-    width:48px;
-
-    height:48px;
-
-    margin:-24px auto 26px;
-
-    border-radius:50%;
-
-    background:#fff;
-
-    color:#0f172a;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-weight:800;
-
-    font-size:16px;
-
-    box-shadow:
-
-        0 12px 30px rgba(0,0,0,.20);
-
-}
-
-/*====================================
-TÍTULO
-====================================*/
-
-.passo h3{
-
-    margin-bottom:16px;
-
-    color:#fff;
-
-    font-size:28px;
-
-    font-weight:800;
-
-}
-
-/*====================================
-DESCRIÇÃO
-====================================*/
-
-.passo p{
-
-    color:#9fb3c8;
-
-    line-height:1.8;
-
-    font-size:17px;
-
-}
-
-/*====================================
-HOVER
-====================================*/
-
-.passo:hover .circulo{
-
-    transform:
-
-        translateY(-12px)
-
-        scale(1.05);
-
-}
-
-.passo:hover .step-number{
-
-    transform:scale(1.1);
-
-    transition:.35s;
-
-}
-
-.passo:hover h3{
-
-    color:#6ee7ff;
-
-    transition:.35s;
-
-}
-
-/*==================================================
-                ÍCONES
-==================================================*/
-
-.icone-funcao{
-
-    position:relative;
-
-    width:72px;
-
-    height:72px;
-
-}
-
-/*==================================================
-COTAÇÃO
-==================================================*/
-
-.folha{
-
-    position:absolute;
-
-    left:18px;
-
-    top:10px;
-
-    width:36px;
-
-    height:48px;
-
-    border-radius:8px;
-
-    background:#fff;
-
-}
-
-.folha::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:8px;
-
-    top:12px;
-
-    width:20px;
-
-    height:3px;
-
-    background:#22c55e;
-
-    box-shadow:
-
-        0 10px #22c55e,
-
-        0 20px #22c55e;
-
-}
-
-.mais-h{
-
-    position:absolute;
-
-    right:6px;
-
-    bottom:14px;
-
-    width:20px;
-
-    height:4px;
-
-    border-radius:20px;
-
-    background:#fff;
-
-}
-
-.mais-v{
-
-    position:absolute;
-
-    right:14px;
-
-    bottom:6px;
-
-    width:4px;
-
-    height:20px;
-
-    border-radius:20px;
-
-    background:#fff;
-
-}
-
-/*==================================================
-PROPOSTA
-==================================================*/
-
-.envelope{
-
-    position:absolute;
-
-    left:10px;
-
-    top:18px;
-
-    width:52px;
-
-    height:34px;
-
-    border:4px solid #fff;
-
-    border-radius:8px;
-
-}
-
-.envelope::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:6px;
-
-    top:-2px;
-
-    width:34px;
-
-    height:34px;
-
-    border-left:4px solid #fff;
-
-    border-bottom:4px solid #fff;
-
-    transform:rotate(-45deg);
-
-}
-
-.seta{
-
-    position:absolute;
-
-    right:-2px;
-
-    top:4px;
-
-    width:18px;
-
-    height:4px;
-
-    border-radius:20px;
-
-    background:#fff;
-
-    transform:rotate(-35deg);
-
-}
-
-.seta::after{
-
-    content:"";
-
-    position:absolute;
-
-    right:-2px;
-
-    top:-4px;
-
-    width:10px;
-
-    height:10px;
-
-    border-right:4px solid #fff;
-
-    border-top:4px solid #fff;
-
-    transform:rotate(45deg);
-
-}
-
-/*==================================================
-GRÁFICO
-==================================================*/
-
-.barra{
-
-    position:absolute;
-
-    bottom:6px;
-
-    width:10px;
-
-    border-radius:30px;
-
-    background:#fff;
-
-}
-
-.b1{
-
-    left:12px;
-
-    height:18px;
-
-}
-
-.b2{
-
-    left:28px;
-
-    height:34px;
-
-}
-
-.b3{
-
-    left:44px;
-
-    height:48px;
-
-}
-
-.grafico::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:10px;
-
-    top:18px;
-
-    width:42px;
-
-    height:20px;
-
-    border-top:4px solid #fff;
-
-    border-right:4px solid #fff;
-
-    transform:skewY(-25deg);
-
-}
-
-/*==================================================
-CHECK
-==================================================*/
-
-.c1{
-
-    position:absolute;
-
-    left:18px;
-
-    top:34px;
-
-    width:14px;
-
-    height:4px;
-
-    border-radius:20px;
-
-    background:#fff;
-
-    transform:rotate(45deg);
-
-}
-
-.c2{
-
-    position:absolute;
-
-    left:28px;
-
-    top:28px;
-
-    width:28px;
-
-    height:4px;
-
-    border-radius:20px;
-
-    background:#fff;
-
-    transform:rotate(-45deg);
-
-}
-
-/*==================================================
-            ANIMAÇÕES PREMIUM
-==================================================*/
-
-/*==================================
-LINHA
-==================================*/
-
-
-
-
-
-
-/*==================================
-HOVER
-==================================*/
-
-.passo{
-
-    transition:.45s;
-
-}
-
-.passo:hover{
-
-    transform:translateY(-10px);
-
-}
-
-/*==================================
-CÍRCULO
-==================================*/
-
-.circulo{
-
-    transition:
-
-        transform .45s,
-
-        box-shadow .45s;
-
-}
-
-.passo:hover .circulo{
-
-    transform:
-
-        scale(1.08)
-
-        rotate(-5deg);
-
-    box-shadow:
-
-        0 25px 60px rgba(0,0,0,.35);
-
-}
-
-/*==================================
-BRILHO
-==================================*/
-
-.circulo::after{
-
-    animation:glow 3s infinite ease-in-out;
-
-}
-
-@keyframes glow{
-
-    0%{
-
-        opacity:.20;
-
-        transform:scale(.9);
-
-    }
-
-    50%{
-
-        opacity:.45;
-
-        transform:scale(1.1);
-
-    }
-
-    100%{
-
-        opacity:.20;
-
-        transform:scale(.9);
-
-    }
-
-}
-
-/*==================================
-NÚMERO
-==================================*/
-
-.step-number{
-
-    transition:.35s;
-
-}
-
-.passo:hover .step-number{
-
-    transform:scale(1.12);
-
-}
-
-/*==================================
-ÍCONE
-==================================*/
-
-.icone-funcao{
-
-    transition:.45s;
-
-}
-
-.passo:hover .icone-funcao{
-
-    transform:
-
-        translateY(-5px)
-
-        scale(1.08);
-
-}
-
-/*==================================
-TEXTOS
-==================================*/
-
-.passo h3{
-
-    transition:.35s;
-
-}
-
-.passo p{
-
-    transition:.35s;
-
-}
-
-.passo:hover h3{
-
-    color:#ffffff;
-
-}
-
-.passo:hover p{
-
-    color:#d7e5f4;
-
-}
-
-/*==================================
-RESPONSIVO
-==================================*/
-
-@media(max-width:1100px){
-
-    .timeline{
-
-        display:none;
-
+    .card-xl{
+        min-height:330px;
     }
 
     .funciona-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-        gap:60px 40px;
-
-    }
-
-}
-
-@media(max-width:768px){
-
-    .funciona-grid{
-
         grid-template-columns:1fr;
-
-    }
-
-    .funciona-topo h2{
-
-        font-size:42px;
-
-    }
-
-    .circulo{
-
-        width:130px;
-
-        height:130px;
-
-    }
-
-}
-
-.hero{
-
-    position:relative;
-    z-index:1;
-
-}
-
-.hero-right{
-
-    position:relative;
-
-}
-
-.login-card{
-
-    position:absolute;
-
-    z-index:9999;
-
-    pointer-events:auto;
-
-}
-
-.hero-dashboard{
-
-    position:relative;
-
-    z-index:1;
-
-}
-
-/*====================================================
-PLANOS
-====================================================*/
-
-.planos-section{
-
-    background:#ffffff;
-
-    padding:120px 0;
-
-}
-
-.tag-planos{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:10px 24px;
-
-    border-radius:999px;
-
-    background:#eef4ff;
-
-    color:#2563eb;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-
-    margin:0 auto 22px;
-
-}
-
-.planos-section h2{
-
-    font-size:52px;
-
-    font-weight:800;
-
-    color:#0f172a;
-
-    text-align:center;
-
-    margin-bottom:18px;
-
-}
-
-.planos-section p{
-
-    max-width:720px;
-
-    margin:0 auto 70px;
-
-    text-align:center;
-
-    color:#64748b;
-
-    font-size:18px;
-
-    line-height:1.7;
-
-}
-
-.planos-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:30px;
-
-    align-items:stretch;
-
-}
-
-.plano-card{
-
-    position:relative;
-
-    background:#fff;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:28px;
-
-    padding:34px;
-
-    transition:.35s;
-
-    box-shadow:
-
-        0 12px 35px rgba(15,23,42,.05);
-
-}
-
-.plano-card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:
-
-        0 25px 60px rgba(37,99,235,.15);
-
-}
-
-.plano-titulo{
-
-    display:block;
-
-    font-size:15px;
-
-    font-weight:700;
-
-    color:#2563eb;
-
-    margin-bottom:18px;
-
-    text-transform:uppercase;
-
-}
-
-.plano-card h3{
-
-    font-size:46px;
-
-    font-weight:900;
-
-    color:#111827;
-
-    margin-bottom:8px;
-
-}
-
-.plano-card small{
-
-    display:block;
-
-    color:#64748b;
-
-    margin-bottom:30px;
-
-    font-size:15px;
-
-}
-
-.plano-card ul{
-
-    list-style:none;
-
-    margin:0;
-
-    padding:0;
-
-}
-
-.plano-card li{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:12px 0;
-
-    color:#334155;
-
-    border-bottom:1px solid #edf2f7;
-
-    font-size:15px;
-
-}
-
-.plano-card li:last-child{
-
-    border-bottom:none;
-
-}
-
-.btn-plano{
-
-    width:100%;
-
-    height:52px;
-
-    margin-top:30px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    font-size:15px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-}
-
-.btn-plano:hover{
-
-    background:#1d4ed8;
-
-    transform:translateY(-2px);
-
-}
-
-.destaque{
-
-    border:2px solid #2563eb;
-
-    transform:scale(1.04);
-
-}
-
-.destaque:hover{
-
-    transform:scale(1.06);
-
-}
-
-.badge-plano{
-
-    position:absolute;
-
-    top:-14px;
-
-    right:25px;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    padding:8px 16px;
-
-    border-radius:999px;
-
-    font-size:12px;
-
-    font-weight:700;
-
-}
-
-.badge-plano.verde{
-
-    background:#16a34a;
-
-}
-
-
-/*====================================================
-RESPONSIVO
-====================================================*/
-
-@media(max-width:1200px){
-
-    .planos-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-}
-
-@media(max-width:700px){
-
-    .planos-grid{
-
-        grid-template-columns:1fr;
-
     }
 
     .planos-section{
-
-        padding:80px 20px;
-
+        padding:70px 0;
     }
 
-    .planos-section h2{
-
-        font-size:36px;
-
+    .planos-grid{
+        grid-template-columns:1fr;
+        margin-top:35px;
     }
-
-    .plano-card{
-
-        padding:26px;
-
-    }
-
-    .plano-card h3{
-
-        font-size:38px;
-
-    }
-
 }
 
-.planos-section .container{
+/* =========================================================
+   MOBILE MUITO PEQUENO
+   ========================================================= */
 
-    max-width:1400px;
+@media(max-width:390px){
 
-    margin:0 auto;
+    .logo-img{
+        width:140px;
+    }
 
-    text-align:center;
+    .hero-title .linha{
+        font-size:43px;
+        letter-spacing:-2.2px;
+    }
 
+    .hero-description{
+        font-size:14px;
+    }
+
+    .btn-lg{
+        min-height:58px;
+    }
+
+    .hero-right{
+        min-height:220px;
+    }
+
+    .hero-dashboard{
+        width:120%;
+        margin-left:-10%;
+    }
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
+}
+
+/* =========================================================
+   COTEX — CORREÇÃO DEFINITIVA DOS MODAIS
+   DESKTOP + TABLET + CELULAR
+   ========================================================= */
+
+/*
+   O modal precisa ficar acima de absolutamente toda a landing.
+   O !important aqui é intencional para vencer regras antigas.
+*/
+
+#cadastroModal,
+#modalRecuperarSenha {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+
+    display: none;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 24px !important;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(0, 110, 255, .16),
+            transparent 38%
+        ),
+        rgba(0, 4, 15, .82) !important;
+
+    backdrop-filter: blur(14px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(120%) !important;
+
+    z-index: 2147483647 !important;
+
+    isolation: isolate !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    box-sizing: border-box !important;
 }
 
 
+/*
+   Quando o JavaScript faz:
+
+   style.display = "flex"
+
+   o modal aparece normalmente.
+*/
+
+
+#cadastroModal[style*="display: flex"],
+#modalRecuperarSenha[style*="display: flex"] {
+    display: flex !important;
+}
+
+
+/* =========================================================
+   EFEITO DE LUZ DO MODAL
+   ========================================================= */
+
+#cadastroModal::before,
+#modalRecuperarSenha::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(20, 125, 255, .20),
+            transparent 68%
+        );
+
+    filter: blur(35px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   CAIXA DO MODAL
+   ========================================================= */
+
+#cadastroModal .modal-box,
+#modalRecuperarSenha .modal-box {
+
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    width: min(500px, calc(100vw - 32px)) !important;
+
+    max-width: 500px !important;
+
+    max-height: calc(100vh - 32px) !important;
+
+    margin: auto !important;
+
+    padding: 34px !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    border: 1px solid rgba(95, 171, 255, .35) !important;
+
+    border-radius: 26px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7, 27, 59, .98),
+            rgba(2, 12, 30, .99)
+        ) !important;
+
+    box-shadow:
+
+        0 40px 120px rgba(0, 0, 0, .75),
+
+        0 0 0 1px rgba(255, 255, 255, .035),
+
+        0 0 45px rgba(0, 115, 255, .22),
+
+        inset 0 1px 0 rgba(255, 255, 255, .06) !important;
+
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+
+    color: #fff !important;
+
+    box-sizing: border-box !important;
+
+    animation:
+        cotexModalEntrada .30s cubic-bezier(.16,1,.3,1)
+        both !important;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+   ========================================================= */
+
+@keyframes cotexModalEntrada {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.94);
+
+        filter: blur(5px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+#cadastroModal .modal-box h2,
+#modalRecuperarSenha .modal-box h2 {
+
+    position: relative;
+
+    margin: 0 45px 8px 0 !important;
+
+    color: #fff !important;
+
+    font-size: 30px !important;
+
+    line-height: 1.15 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -.6px !important;
+}
+
+
+/* =========================================================
+   SUBTÍTULO
+   ========================================================= */
+
+#cadastroModal .modal-box p,
+#modalRecuperarSenha .modal-box p {
+
+    margin: 0 0 24px !important;
+
+    color: #9fb4cf !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.55 !important;
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+#cadastroModal .modal-box input,
+#modalRecuperarSenha .modal-box input {
+
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 54px !important;
+
+    min-height: 54px !important;
+
+    margin: 0 0 12px !important;
+
+    padding:
+        0 16px !important;
+
+    border:
+        1px solid rgba(255, 255, 255, .12) !important;
+
+    border-radius: 13px !important;
+
+    outline: none !important;
+
+    background:
+        rgba(255, 255, 255, .055) !important;
+
+    color: #fff !important;
+
+    font-size: 15px !important;
+
+    box-sizing: border-box !important;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease !important;
+}
+
+
+#cadastroModal .modal-box input::placeholder,
+#modalRecuperarSenha .modal-box input::placeholder {
+
+    color: #7f94ae !important;
+
+    opacity: 1 !important;
+}
+
+
+#cadastroModal .modal-box input:focus,
+#modalRecuperarSenha .modal-box input:focus {
+
+    border-color:
+        rgba(31, 139, 255, .85) !important;
+
+    background:
+        rgba(31, 139, 255, .08) !important;
+
+    box-shadow:
+        0 0 0 4px rgba(31, 139, 255, .12),
+
+        0 0 25px rgba(31, 139, 255, .08) !important;
+}
+
+
+/* =========================================================
+   BOTÃO PRINCIPAL
+   ========================================================= */
+
+#cadastroModal .modal-box .btn-primary.full,
+#modalRecuperarSenha .modal-box .btn-primary.full {
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+
+    min-height: 55px !important;
+
+    margin-top: 6px !important;
+
+    border: 0 !important;
+
+    border-radius: 13px !important;
+
+    color: #fff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1765ef,
+            #087cff
+        ) !important;
+
+    box-shadow:
+        0 15px 35px rgba(0, 105, 255, .28) !important;
+
+    font-weight: 700 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease !important;
+}
+
+
+#cadastroModal .modal-box .btn-primary.full:hover,
+#modalRecuperarSenha .modal-box .btn-primary.full:hover {
+
+    transform: translateY(-2px) !important;
+
+    box-shadow:
+        0 20px 45px rgba(0, 105, 255, .42) !important;
+}
+
+
+/* =========================================================
+   BOTÃO X
+   ========================================================= */
+
+#cadastroModal .modal-box .close,
+#modalRecuperarSenha .modal-box .close {
+
+    position: absolute !important;
+
+    top: 15px !important;
+    right: 15px !important;
+
+    z-index: 10 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 38px !important;
+    height: 38px !important;
+
+    padding: 0 !important;
+
+    border:
+        1px solid rgba(255, 255, 255, .12) !important;
+
+    border-radius: 50% !important;
+
+    background:
+        rgba(255, 255, 255, .055) !important;
+
+    color: #fff !important;
+
+    font-size: 23px !important;
+
+    line-height: 1 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        border-color .2s ease !important;
+}
+
+
+#cadastroModal .modal-box .close:hover,
+#modalRecuperarSenha .modal-box .close:hover {
+
+    transform: rotate(90deg) !important;
+
+    background:
+        rgba(255, 255, 255, .11) !important;
+
+    border-color:
+        rgba(255, 255, 255, .25) !important;
+}
+
+
+/* =========================================================
+   ERRO DE CADASTRO
+   ========================================================= */
+
+#cadastroModal .erro-cadastro {
+
+    display: none;
+
+    width: 100%;
+
+    margin: 0 0 14px;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid rgba(255, 80, 80, .30);
+
+    border-radius: 11px;
+
+    background:
+        rgba(255, 55, 55, .09);
+
+    color: #ff9999;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 680px) {
+
+    #cadastroModal,
+    #modalRecuperarSenha {
+
+        padding:
+            max(12px, env(safe-area-inset-top))
+            12px
+            max(12px, env(safe-area-inset-bottom))
+            12px !important;
+
+        align-items: center !important;
+
+        overflow-y: auto !important;
+
+        background:
+            radial-gradient(
+                circle at 50% 30%,
+                rgba(0, 115, 255, .20),
+                transparent 45%
+            ),
+            rgba(0, 4, 15, .88) !important;
+    }
+
+
+    #cadastroModal .modal-box,
+    #modalRecuperarSenha .modal-box {
+
+        width:
+            min(
+                calc(100vw - 24px),
+                500px
+            ) !important;
+
+        max-width:
+            calc(100vw - 24px) !important;
+
+        max-height:
+            calc(
+                100dvh - 24px
+            ) !important;
+
+        padding:
+            26px 18px !important;
+
+        border-radius:
+            22px !important;
+
+        margin:
+            auto !important;
+    }
+
+
+    #cadastroModal .modal-box h2,
+    #modalRecuperarSenha .modal-box h2 {
+
+        margin-right: 42px !important;
+
+        font-size:
+            26px !important;
+    }
+
+
+    #cadastroModal .modal-box p,
+    #modalRecuperarSenha .modal-box p {
+
+        font-size:
+            13px !important;
+
+        margin-bottom:
+            18px !important;
+    }
+
+
+    #cadastroModal .modal-box input,
+    #modalRecuperarSenha .modal-box input {
+
+        height:
+            50px !important;
+
+        min-height:
+            50px !important;
+
+        margin-bottom:
+            10px !important;
+
+        font-size:
+            14px !important;
+    }
+
+
+    #cadastroModal .modal-box .btn-primary.full,
+    #modalRecuperarSenha .modal-box .btn-primary.full {
+
+        min-height:
+            52px !important;
+
+        height:
+            52px !important;
+    }
+
+
+    #cadastroModal .modal-box .close,
+    #modalRecuperarSenha .modal-box .close {
+
+        top:
+            12px !important;
+
+        right:
+            12px !important;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    #cadastroModal .modal-box,
+    #modalRecuperarSenha .modal-box {
+
+        padding:
+            23px 15px !important;
+
+        border-radius:
+            19px !important;
+    }
+
+
+    #cadastroModal .modal-box h2,
+    #modalRecuperarSenha .modal-box h2 {
+
+        font-size:
+            24px !important;
+    }
+
+
+    #cadastroModal .modal-box input,
+    #modalRecuperarSenha .modal-box input {
+
+        height:
+            48px !important;
+
+        min-height:
+            48px !important;
+    }
+}
+
+
+/* =========================================================
+   EVITA QUE O CONTEÚDO DA PÁGINA FIQUE ACIMA DO MODAL
+   ========================================================= */
+
+body:has(#cadastroModal[style*="display: flex"]),
+body:has(#modalRecuperarSenha[style*="display: flex"]) {
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   LOGIN CARD NO CELULAR
+   ========================================================= */
+
+@media (max-width: 680px) {
+
+    .login-card {
+
+        position: fixed !important;
+
+        top: 50% !important;
+        left: 50% !important;
+
+        right: auto !important;
+        bottom: auto !important;
+
+        z-index: 50000 !important;
+
+        width:
+            calc(100vw - 28px) !important;
+
+        max-width:
+            390px !important;
+
+        max-height:
+            calc(100dvh - 28px) !important;
+
+        overflow-y:
+            auto !important;
+
+        transform:
+            translate(-50%, -46%)
+            scale(.96) !important;
+    }
+
+
+    .login-card.show {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1) !important;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP — LOGIN CARD
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    .login-card {
+
+        z-index: 50000 !important;
+    }
+}

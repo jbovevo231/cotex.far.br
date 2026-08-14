@@ -6,9 +6,6 @@
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/login.css') }}">
 
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/login-mobile.css') }}">
-
 {% endblock %}
 
 {% block content %}
@@ -143,8 +140,8 @@
     <div class="hero-dashboard">
 
         <img
-    src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/SEU_CAMINHO/dashboard.png"
-    alt="Dashboard CotaX">
+    src="{{ url_for('static', filename='img/dashboard-hero.png') }}"
+    alt="Dashboard CotaX" loading="eager">
 
     </div>
 
