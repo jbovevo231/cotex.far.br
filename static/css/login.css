@@ -1926,35 +1926,82 @@ body{
     50%{transform:perspective(1800px) rotateY(-1.5deg) rotateX(1deg) translateY(-9px);}
 }
 
-/* ================= LOGIN ================= */
+/* =========================================================
+   LOGIN — MODAL SOBRE TODA A LANDING
+   ========================================================= */
 
 .login-card{
-    position:absolute !important;
-    z-index:9999 !important;
-    right:40px !important;
-    top:115px !important;
+    position:fixed !important;
+
+    top:50% !important;
+    left:50% !important;
+    right:auto !important;
+    bottom:auto !important;
+
     width:380px !important;
+    max-width:calc(100vw - 32px) !important;
+
     margin:0 !important;
     padding:34px !important;
     box-sizing:border-box !important;
-    border:1px solid rgba(119,180,255,.20) !important;
+
+    border:1px solid rgba(119,180,255,.28) !important;
     border-radius:24px !important;
-    background:linear-gradient(145deg,rgba(7,24,55,.97),rgba(3,13,32,.98)) !important;
-    box-shadow:0 35px 100px rgba(0,0,0,.55),0 0 45px rgba(0,105,255,.20) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7,24,55,.98),
+            rgba(3,13,32,.99)
+        ) !important;
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.65),
+        0 0 45px rgba(0,105,255,.25) !important;
+
     backdrop-filter:blur(28px) !important;
     -webkit-backdrop-filter:blur(28px) !important;
+
     visibility:hidden !important;
     opacity:0 !important;
-    transform:translateY(14px) scale(.98) !important;
+
+    transform:
+        translate(-50%, -46%)
+        scale(.96) !important;
+
     pointer-events:none !important;
-    transition:.25s ease !important;
+
+    z-index:2147483647 !important;
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s ease !important;
 }
+
+
+/* LOGIN ABERTO */
 
 .login-card.show{
     visibility:visible !important;
     opacity:1 !important;
-    transform:translateY(0) scale(1) !important;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1) !important;
+
     pointer-events:auto !important;
+
+    z-index:2147483647 !important;
+}
+
+.hero-right{
+    position:relative !important;
+    z-index:3 !important;
+}
+
+.login-card{
+    z-index:2147483647 !important;
 }
 
 .login-card h2{
@@ -2582,7 +2629,6 @@ body{
 
 <!-- ================= MODAL RECUPERAR SENHA ================= -->
 
-
 <div class="modal"
      id="modalRecuperarSenha">
 
@@ -2590,6 +2636,7 @@ body{
 
         <button
             class="close"
+            type="button"
             onclick="fecharRecuperarSenha()">
 
             ×
@@ -2597,51 +2644,354 @@ body{
         </button>
 
 
-        <h2>
+        <!-- =================================================
+             ETAPA 1 — INFORMAR E-MAIL / CNPJ
+             ================================================= -->
 
-            Recuperar senha
+        <div id="recuperacaoEtapaEmail">
 
-        </h2>
-
-
-        <p>
-
-            Informe seus dados para recuperar o acesso.
-
-        </p>
+            <h2>
+                Recuperar senha
+            </h2>
 
 
-        <form
-            method="POST"
-            action="/recuperar-senha">
+            <p>
+                Informe seu e-mail ou CNPJ cadastrado.
+                Enviaremos um código de segurança para
+                seu e-mail.
+            </p>
 
 
-            <input
-                name="identificacao"
-                placeholder="CNPJ ou E-mail Cadastrado"
-                required>
+            <form
+                id="formRecuperarSenha">
+
+
+                <input
+                    type="text"
+                    id="recuperacaoIdentificacao"
+                    name="identificacao"
+                    placeholder="CNPJ ou E-mail Cadastrado"
+                    autocomplete="email"
+                    required>
+
+
+                <div
+                    id="erroRecuperacaoEmail"
+                    style="
+                        display:none;
+                        margin:10px 0;
+                        color:#ff8b8b;
+                        font-size:13px;
+                    ">
+                </div>
+
+
+                <button
+                    class="btn-primary full"
+                    type="submit">
+
+                    Enviar código por e-mail
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             ETAPA 2 — DIGITAR CÓDIGO
+             ================================================= -->
+
+        <div
+            id="recuperacaoEtapaCodigo"
+            style="display:none;">
+
+
+            <h2>
+                Digite o código
+            </h2>
+
+
+            <p>
+                Enviamos um código de 6 dígitos
+                para o seu e-mail.
+            </p>
+
+
+            <form
+                id="formVerificarCodigo">
+
+
+                <input
+                    type="text"
+                    id="codigoRecuperacao"
+                    name="codigo"
+                    placeholder="Digite o código"
+                    inputmode="numeric"
+                    maxlength="6"
+                    autocomplete="one-time-code"
+                    required>
+
+
+                <div
+                    id="erroRecuperacaoCodigo"
+                    style="
+                        display:none;
+                        margin:10px 0;
+                        color:#ff8b8b;
+                        font-size:13px;
+                    ">
+                </div>
+
+
+                <button
+                    class="btn-primary full"
+                    type="submit">
+
+                    Confirmar código
+
+                </button>
+
+
+            </form>
 
 
             <button
-                class="btn-primary full"
-                type="submit">
+                type="button"
+                onclick="voltarRecuperacaoEmail()"
+                style="
+                    width:100%;
+                    margin-top:12px;
+                    background:transparent;
+                    border:0;
+                    color:#8fbfff;
+                    cursor:pointer;
+                ">
 
-                Recuperar senha
+                Usar outro e-mail
 
             </button>
 
 
-        </form>
+        </div>
+
+
+        <!-- =================================================
+             ETAPA 3 — NOVA SENHA
+             ================================================= -->
+
+        <div
+            id="recuperacaoEtapaSenha"
+            style="display:none;">
+
+
+            <h2>
+                Criar nova senha
+            </h2>
+
+
+            <p>
+                Digite sua nova senha para concluir
+                a recuperação da conta.
+            </p>
+
+
+            <form
+                id="formRedefinirSenha">
+
+
+                <input
+                    type="password"
+                    name="senha"
+                    placeholder="Nova senha"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required>
+
+
+                <input
+                    type="password"
+                    name="confirmar"
+                    placeholder="Confirme a nova senha"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required>
+
+
+                <div
+                    id="erroRecuperacaoSenha"
+                    style="
+                        display:none;
+                        margin:10px 0;
+                        color:#ff8b8b;
+                        font-size:13px;
+                    ">
+                </div>
+
+
+                <button
+                    class="btn-primary full"
+                    type="submit">
+
+                    Alterar senha
+
+                </button>
+
+
+            </form>
+
+
+        </div>
 
 
     </div>
 
 </div>
 
-</div>
-</div>
 
-</div>
+<!-- =========================================================
+     A PARTIR DAQUI CONTINUA SEU HTML NORMAL
+     ========================================================= -->
+
+<section id="recursos" class="landing-recursos">
+
+    <div class="container">
+
+        <div class="recursos-topo">
+
+            <span>PLATAFORMA COMPLETA</span>
+
+            <h2>
+                Tudo o que sua farmácia precisa.
+                <br>
+                Em um único lugar.
+            </h2>
+
+            <p>
+                Simplifique negociações, reduza custos e conecte sua empresa
+                ao mercado farmacêutico através de uma plataforma inteligente.
+            </p>
+
+        </div>
+
+        <div class="recursos-layout">
+
+            <!-- CARD GIGANTE -->
+
+            <div class="card-xl verde">
+
+                <div class="texto">
+
+                    <small>NOVA COTAÇÃO</small>
+
+                    <h3>
+                        Crie uma cotação em segundos.
+                    </h3>
+
+                    <p>
+                        Envie sua lista para diversas distribuidoras de uma
+                        única vez e acompanhe tudo em tempo real.
+                    </p>
+
+                </div>
+
+                <div class="mockup"></div>
+
+            </div>
+
+
+            <!-- ================= ECONOMIA ================= -->
+
+            <div class="card">
+
+                <div class="icone azul">
+
+                    <div class="money-icon">
+
+                        <span class="coin coin1"></span>
+                        <span class="coin coin2"></span>
+                        <span class="coin coin3"></span>
+
+                        <span class="arrow"></span>
+
+                    </div>
+
+                </div>
+
+                <h3>
+                    Economia Inteligente
+                </h3>
+
+                <p>
+                    Compare automaticamente todas as propostas recebidas
+                    e encontre a melhor oportunidade de compra.
+                </p>
+
+            </div>
+
+
+            <!-- ================= ANALYTICS ================= -->
+
+            <div class="card">
+
+                <div class="icone roxo">
+
+                    <div class="analytics-icon">
+
+                        <span class="bar b1"></span>
+                        <span class="bar b2"></span>
+                        <span class="bar b3"></span>
+                        <span class="bar b4"></span>
+
+                        <span class="trend"></span>
+
+                    </div>
+
+                </div>
+
+                <h3>
+                    Analytics
+                </h3>
+
+                <p>
+                    Dashboards modernos com indicadores, histórico de
+                    compras e desempenho da empresa.
+                </p>
+
+            </div>
+
+
+            <!-- ================= CONECTA ================= -->
+
+            <div class="card">
+
+                <div class="icone laranja">
+
+                    <div class="connect-icon">
+
+                        <span class="person p1"></span>
+                        <span class="person p2"></span>
+                        <span class="person p3"></span>
+
+                        <span class="line l1"></span>
+                        <span class="line l2"></span>
+
+                    </div>
+
+                </div>
+
+                <h3>
+                    Conecta
+                </h3>
+
+                <p>
+                    Uma rede exclusiva para conectar farmácias,
+                    distribuidores e representantes comerciais.
+                </p>
+
+            </div>
 
 <section id="recursos" class="landing-recursos">
 
@@ -4325,47 +4675,42 @@ function fecharCadastro(){
 
 }
 
+
+/* =====================================================
+   ABRIR RECUPERAÇÃO
+   ===================================================== */
+
 function abrirRecuperarSenha(){
 
-    document.getElementById("modalRecuperarSenha").style.display = "flex";
+    const modal =
+        document.getElementById("modalRecuperarSenha");
+
+    modal.style.display = "flex";
+
+    document.getElementById(
+        "recuperacaoEtapaEmail"
+    ).style.display = "block";
+
+    document.getElementById(
+        "recuperacaoEtapaCodigo"
+    ).style.display = "none";
+
+    document.getElementById(
+        "recuperacaoEtapaSenha"
+    ).style.display = "none";
+
+    document.getElementById(
+        "erroRecuperacaoEmail"
+    ).style.display = "none";
 
 }
-
-function fecharRecuperarSenha(){
-
-    document.getElementById("modalRecuperarSenha").style.display = "none";
-
-}
-
-window.onclick = function(e){
-
-    const cadastro = document.getElementById("cadastroModal");
-
-    const recuperar = document.getElementById("modalRecuperarSenha");
-
-    if(e.target === cadastro){
-
-        fecharCadastro();
-
-    }
-
-    if(e.target === recuperar){
-
-        fecharRecuperarSenha();
-
-    }
-
-}
-
-</script>
-
 
 
 <script>
 
     console.log("JS DO CADASTRO CARREGOU");
 
-function irLogin(){
+    function irLogin(){
 
     const login=document.getElementById("login");
 
@@ -6550,4 +6895,512 @@ body:has(#modalRecuperarSenha[style*="display: flex"]) {
 
         z-index: 50000 !important;
     }
+}
+
+/* =========================================================
+   COTEX — CORREÇÃO DEFINITIVA DOS MODAIS E LOGIN
+   ========================================================= */
+
+
+/* =========================================================
+   LOGIN
+   AGORA O #loginCard ESTÁ FORA DO .hero
+   ========================================================= */
+
+#loginCard.login-card {
+
+    position: fixed !important;
+
+    top: 115px !important;
+    right: 40px !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    width: 380px !important;
+    max-width: calc(100vw - 32px) !important;
+
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+
+    z-index: 2147483646 !important;
+
+    visibility: hidden !important;
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+
+    transform:
+        translateY(14px)
+        scale(.98) !important;
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s ease !important;
+}
+
+
+#loginCard.login-card.show {
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    pointer-events: auto !important;
+
+    transform:
+        translateY(0)
+        scale(1) !important;
+
+    z-index: 2147483646 !important;
+}
+
+
+/* =========================================================
+   FUNDO DOS MODAIS
+   ========================================================= */
+
+#cadastroModal,
+#modalRecuperarSenha {
+
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+
+    display: none !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+
+    padding: 24px !important;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(0,110,255,.18),
+            transparent 38%
+        ),
+        rgba(0,4,15,.88) !important;
+
+    backdrop-filter:
+        blur(14px)
+        saturate(120%) !important;
+
+    -webkit-backdrop-filter:
+        blur(14px)
+        saturate(120%) !important;
+
+    z-index: 2147483647 !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    box-sizing: border-box !important;
+
+    isolation: isolate !important;
+}
+
+
+/* =========================================================
+   QUANDO O JAVASCRIPT ABRIR
+   ========================================================= */
+
+#cadastroModal[style*="display: flex"],
+#modalRecuperarSenha[style*="display: flex"] {
+
+    display: flex !important;
+}
+
+
+/* =========================================================
+   CAIXA DO CADASTRO / RECUPERAÇÃO
+   ========================================================= */
+
+#cadastroModal .modal-box,
+#modalRecuperarSenha .modal-box {
+
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    width: min(500px, calc(100vw - 32px)) !important;
+
+    max-width: 500px !important;
+
+    max-height: calc(100vh - 32px) !important;
+
+    margin: auto !important;
+
+    padding: 34px !important;
+
+    box-sizing: border-box !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    border:
+        1px solid rgba(95,171,255,.35) !important;
+
+    border-radius: 26px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7,27,59,.99),
+            rgba(2,12,30,.99)
+        ) !important;
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.78),
+        0 0 0 1px rgba(255,255,255,.035),
+        0 0 55px rgba(0,115,255,.25),
+        inset 0 1px 0 rgba(255,255,255,.06) !important;
+
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
+
+#cadastroModal .modal-box h2,
+#modalRecuperarSenha .modal-box h2 {
+
+    margin:
+        0 42px 8px 0 !important;
+
+    color: #fff !important;
+
+    font-size: 30px !important;
+
+    line-height: 1.15 !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* =========================================================
+   TEXTOS
+   ========================================================= */
+
+#cadastroModal .modal-box p,
+#modalRecuperarSenha .modal-box p {
+
+    margin:
+        0 0 22px !important;
+
+    color:
+        #9fb3cc !important;
+
+    font-size:
+        14px !important;
+
+    line-height:
+        1.5 !important;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+#cadastroModal .modal-box input,
+#modalRecuperarSenha .modal-box input {
+
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 52px !important;
+
+    min-height: 52px !important;
+
+    margin:
+        0 0 12px !important;
+
+    padding:
+        0 15px !important;
+
+    box-sizing:
+        border-box !important;
+
+    border:
+        1px solid rgba(255,255,255,.12) !important;
+
+    border-radius:
+        12px !important;
+
+    outline:
+        none !important;
+
+    background:
+        rgba(255,255,255,.045) !important;
+
+    color:
+        #fff !important;
+
+    font-size:
+        14px !important;
+}
+
+
+#cadastroModal .modal-box input:focus,
+#modalRecuperarSenha .modal-box input:focus {
+
+    border-color:
+        #268cff !important;
+
+    background:
+        rgba(38,140,255,.08) !important;
+
+    box-shadow:
+        0 0 0 4px rgba(38,140,255,.10) !important;
+}
+
+
+#cadastroModal .modal-box input::placeholder,
+#modalRecuperarSenha .modal-box input::placeholder {
+
+    color:
+        #8095af !important;
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+#cadastroModal .modal-box .btn-primary.full,
+#modalRecuperarSenha .modal-box .btn-primary.full {
+
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 54px !important;
+
+    min-height: 54px !important;
+
+    border: 0 !important;
+
+    border-radius: 13px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1765ef,
+            #087cff
+        ) !important;
+
+    color:
+        #fff !important;
+
+    font-size:
+        15px !important;
+
+    font-weight:
+        700 !important;
+
+    cursor:
+        pointer !important;
+}
+
+
+/* =========================================================
+   BOTÃO X
+   ========================================================= */
+
+#cadastroModal .modal-box .close,
+#modalRecuperarSenha .modal-box .close {
+
+    position: absolute !important;
+
+    top: 15px !important;
+    right: 15px !important;
+
+    z-index: 10 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 38px !important;
+    height: 38px !important;
+
+    padding: 0 !important;
+
+    border:
+        1px solid rgba(255,255,255,.12) !important;
+
+    border-radius:
+        50% !important;
+
+    background:
+        rgba(255,255,255,.05) !important;
+
+    color:
+        #fff !important;
+
+    font-size:
+        23px !important;
+
+    line-height:
+        1 !important;
+
+    cursor:
+        pointer !important;
+}
+
+
+/* =========================================================
+   ERRO DE CADASTRO
+   ========================================================= */
+
+#cadastroModal .erro-cadastro {
+
+    display: none;
+
+    width: 100%;
+
+    margin:
+        0 0 14px;
+
+    padding:
+        12px 14px;
+
+    box-sizing:
+        border-box;
+
+    border:
+        1px solid rgba(255,80,80,.30);
+
+    border-radius:
+        11px;
+
+    background:
+        rgba(255,55,55,.09);
+
+    color:
+        #ff9999;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.45;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 680px) {
+
+    #loginCard.login-card {
+
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+
+        width:
+            calc(100vw - 28px) !important;
+
+        max-width:
+            390px !important;
+
+        max-height:
+            calc(100dvh - 28px) !important;
+
+        overflow-y:
+            auto !important;
+
+        transform:
+            translate(-50%, -46%)
+            scale(.96) !important;
+    }
+
+
+    #loginCard.login-card.show {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1) !important;
+    }
+
+
+    #cadastroModal,
+    #modalRecuperarSenha {
+
+        padding:
+            12px !important;
+    }
+
+
+    #cadastroModal .modal-box,
+    #modalRecuperarSenha .modal-box {
+
+        width:
+            calc(100vw - 24px) !important;
+
+        max-width:
+            calc(100vw - 24px) !important;
+
+        max-height:
+            calc(100dvh - 24px) !important;
+
+        padding:
+            26px 18px !important;
+
+        border-radius:
+            22px !important;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    #cadastroModal .modal-box,
+    #modalRecuperarSenha .modal-box {
+
+        padding:
+            23px 15px !important;
+
+        border-radius:
+            19px !important;
+    }
+
+
+    #cadastroModal .modal-box h2,
+    #modalRecuperarSenha .modal-box h2 {
+
+        font-size:
+            24px !important;
+    }
+}
+
+
+/* =========================================================
+   QUANDO MODAL ESTIVER ABERTO
+   ========================================================= */
+
+body:has(#cadastroModal[style*="display: flex"]),
+body:has(#modalRecuperarSenha[style*="display: flex"]) {
+
+    overflow: hidden !important;
 }
