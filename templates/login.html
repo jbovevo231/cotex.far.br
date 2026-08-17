@@ -319,7 +319,6 @@
 
 <!-- ================= MODAL RECUPERAR SENHA ================= -->
 
-
 <div class="modal"
      id="modalRecuperarSenha">
 
@@ -327,49 +326,195 @@
 
         <button
             class="close"
+            type="button"
             onclick="fecharRecuperarSenha()">
-
             ×
-
         </button>
 
 
-        <h2>
+        <!-- =================================================
+             ETAPA 1 — INFORMAR E-MAIL / CNPJ
+             ================================================= -->
 
-            Recuperar senha
+        <div id="recuperacaoEtapaEmail">
 
-        </h2>
+            <h2>
+                Recuperar senha
+            </h2>
 
-
-        <p>
-
-            Informe seus dados para recuperar o acesso.
-
-        </p>
-
-
-        <form
-            method="POST"
-            action="/recuperar-senha">
+            <p>
+                Informe seu e-mail ou CNPJ para recuperar
+                o acesso à sua conta.
+            </p>
 
 
-            <input
-                name="identificacao"
-                placeholder="CNPJ ou E-mail Cadastrado"
-                required>
+            <form id="formRecuperarSenha">
+
+                <input
+                    type="text"
+                    id="recuperacaoIdentificacao"
+                    name="identificacao"
+                    placeholder="CNPJ ou E-mail Cadastrado"
+                    autocomplete="email"
+                    required>
+
+
+                <div
+                    id="erroRecuperacaoEmail"
+                    style="
+                        display:none;
+                        margin:10px 0;
+                        color:#ff8b8b;
+                        font-size:13px;
+                    ">
+                </div>
+
+
+                <button
+                    class="btn-primary full"
+                    type="submit">
+
+                    Enviar código por e-mail
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             ETAPA 2 — DIGITAR CÓDIGO
+             ================================================= -->
+
+        <div
+            id="recuperacaoEtapaCodigo"
+            style="display:none;">
+
+            <h2>
+                Digite o código
+            </h2>
+
+            <p>
+                Enviamos um código de 6 dígitos
+                para o seu e-mail.
+            </p>
+
+
+            <form id="formVerificarCodigo">
+
+                <input
+                    type="text"
+                    id="codigoRecuperacao"
+                    name="codigo"
+                    placeholder="Digite o código"
+                    inputmode="numeric"
+                    maxlength="6"
+                    autocomplete="one-time-code"
+                    required>
+
+
+                <div
+                    id="erroRecuperacaoCodigo"
+                    style="
+                        display:none;
+                        margin:10px 0;
+                        color:#ff8b8b;
+                        font-size:13px;
+                    ">
+                </div>
+
+
+                <button
+                    class="btn-primary full"
+                    type="submit">
+
+                    Confirmar código
+
+                </button>
+
+            </form>
 
 
             <button
-                class="btn-primary full"
-                type="submit">
+                type="button"
+                onclick="voltarRecuperacaoEmail()"
+                style="
+                    width:100%;
+                    margin-top:12px;
+                    background:transparent;
+                    border:0;
+                    color:#8fbfff;
+                    cursor:pointer;
+                ">
 
-                Recuperar senha
+                Usar outro e-mail
 
             </button>
 
+        </div>
 
-        </form>
 
+        <!-- =================================================
+             ETAPA 3 — NOVA SENHA
+             ================================================= -->
+
+        <div
+            id="recuperacaoEtapaSenha"
+            style="display:none;">
+
+            <h2>
+                Criar nova senha
+            </h2>
+
+            <p>
+                Digite sua nova senha para concluir
+                a recuperação da conta.
+            </p>
+
+
+            <form id="formRedefinirSenha">
+
+                <input
+                    type="password"
+                    name="senha"
+                    placeholder="Nova senha"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required>
+
+
+                <input
+                    type="password"
+                    name="confirmar"
+                    placeholder="Confirme a nova senha"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required>
+
+
+                <div
+                    id="erroRecuperacaoSenha"
+                    style="
+                        display:none;
+                        margin:10px 0;
+                        color:#ff8b8b;
+                        font-size:13px;
+                    ">
+                </div>
+
+
+                <button
+                    class="btn-primary full"
+                    type="submit">
+
+                    Alterar senha
+
+                </button>
+
+            </form>
+
+        </div>
 
     </div>
 
@@ -923,23 +1068,352 @@ function fecharCadastro(){
 
 }
 
+
+/* =====================================================
+   RECUPERAÇÃO DE SENHA
+   ===================================================== */
+
 function abrirRecuperarSenha(){
 
-    document.getElementById("modalRecuperarSenha").style.display = "flex";
+    const modal =
+        document.getElementById("modalRecuperarSenha");
+
+    modal.style.display = "flex";
+
+    document.getElementById(
+        "recuperacaoEtapaEmail"
+    ).style.display = "block";
+
+    document.getElementById(
+        "recuperacaoEtapaCodigo"
+    ).style.display = "none";
+
+    document.getElementById(
+        "recuperacaoEtapaSenha"
+    ).style.display = "none";
 
 }
+
 
 function fecharRecuperarSenha(){
 
-    document.getElementById("modalRecuperarSenha").style.display = "none";
+    document.getElementById(
+        "modalRecuperarSenha"
+    ).style.display = "none";
 
 }
 
+
+function voltarRecuperacaoEmail(){
+
+    document.getElementById(
+        "recuperacaoEtapaEmail"
+    ).style.display = "block";
+
+    document.getElementById(
+        "recuperacaoEtapaCodigo"
+    ).style.display = "none";
+
+    document.getElementById(
+        "recuperacaoEtapaSenha"
+    ).style.display = "none";
+
+}
+
+
+/* =====================================================
+   ETAPA 1 — ENVIAR CÓDIGO
+   ===================================================== */
+
+document.getElementById(
+    "formRecuperarSenha"
+).addEventListener(
+    "submit",
+    async function(e){
+
+        e.preventDefault();
+
+        const erro =
+            document.getElementById(
+                "erroRecuperacaoEmail"
+            );
+
+        erro.style.display = "none";
+        erro.innerHTML = "";
+
+        const dados =
+            new FormData(this);
+
+        try{
+
+            const resposta =
+                await fetch(
+                    "/recuperar-senha",
+                    {
+                        method: "POST",
+                        body: dados
+                    }
+                );
+
+            const resultado =
+                await resposta.json();
+
+            if(!resultado.sucesso){
+
+                erro.innerHTML =
+                    "🔴 " +
+                    (
+                        resultado.erro ||
+                        "Não foi possível enviar o código."
+                    );
+
+                erro.style.display = "block";
+
+                return;
+            }
+
+
+            /* =========================================
+               E-MAIL ENVIADO
+               MOSTRA ETAPA DO CÓDIGO
+               ========================================= */
+
+            document.getElementById(
+                "recuperacaoEtapaEmail"
+            ).style.display = "none";
+
+            document.getElementById(
+                "recuperacaoEtapaCodigo"
+            ).style.display = "block";
+
+            document.getElementById(
+                "recuperacaoEtapaSenha"
+            ).style.display = "none";
+
+            document.getElementById(
+                "codigoRecuperacao"
+            ).focus();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            erro.innerHTML =
+                "🔴 Não foi possível conectar ao servidor.";
+
+            erro.style.display = "block";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ETAPA 2 — CONFIRMAR CÓDIGO
+   ===================================================== */
+
+document.getElementById(
+    "formVerificarCodigo"
+).addEventListener(
+    "submit",
+    async function(e){
+
+        e.preventDefault();
+
+        const erro =
+            document.getElementById(
+                "erroRecuperacaoCodigo"
+            );
+
+        erro.style.display = "none";
+        erro.innerHTML = "";
+
+        const dados =
+            new FormData(this);
+
+        try{
+
+            const resposta =
+                await fetch(
+                    "/verificar-codigo-recuperacao",
+                    {
+                        method: "POST",
+                        body: dados
+                    }
+                );
+
+            const resultado =
+                await resposta.json();
+
+            if(!resultado.sucesso){
+
+                erro.innerHTML =
+                    "🔴 " +
+                    (
+                        resultado.erro ||
+                        "Código incorreto."
+                    );
+
+                erro.style.display = "block";
+
+                return;
+            }
+
+
+            /* =========================================
+               CÓDIGO CORRETO
+               MOSTRA NOVA SENHA
+               ========================================= */
+
+            document.getElementById(
+                "recuperacaoEtapaEmail"
+            ).style.display = "none";
+
+            document.getElementById(
+                "recuperacaoEtapaCodigo"
+            ).style.display = "none";
+
+            document.getElementById(
+                "recuperacaoEtapaSenha"
+            ).style.display = "block";
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            erro.innerHTML =
+                "🔴 Não foi possível conectar ao servidor.";
+
+            erro.style.display = "block";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ETAPA 3 — NOVA SENHA
+   ===================================================== */
+
+document.getElementById(
+    "formRedefinirSenha"
+).addEventListener(
+    "submit",
+    async function(e){
+
+        e.preventDefault();
+
+        const erro =
+            document.getElementById(
+                "erroRecuperacaoSenha"
+            );
+
+        erro.style.display = "none";
+        erro.innerHTML = "";
+
+        const dados =
+            new FormData(this);
+
+        try{
+
+            const resposta =
+                await fetch(
+                    "/redefinir-senha",
+                    {
+                        method: "POST",
+                        body: dados
+                    }
+                );
+
+            const resultado =
+                await resposta.json();
+
+            if(!resultado.sucesso){
+
+                erro.innerHTML =
+                    "🔴 " +
+                    (
+                        resultado.erro ||
+                        "Não foi possível alterar a senha."
+                    );
+
+                erro.style.display = "block";
+
+                return;
+            }
+
+
+            alert(
+                "Senha alterada com sucesso! Agora você pode entrar."
+            );
+
+            fecharRecuperarSenha();
+
+
+            if(
+                typeof toggleLoginCard === "function"
+            ){
+
+                document
+                    .getElementById("loginCard")
+                    .classList.add("show");
+
+            }
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            erro.innerHTML =
+                "🔴 Não foi possível conectar ao servidor.";
+
+            erro.style.display = "block";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ACEITAR SOMENTE NÚMEROS NO CÓDIGO
+   ===================================================== */
+
+document.getElementById(
+    "codigoRecuperacao"
+).addEventListener(
+    "input",
+    function(){
+
+        this.value =
+            this.value
+                .replace(/\D/g, "")
+                .slice(0, 6);
+
+    }
+);
+
+
+/* =====================================================
+   FECHAR MODAIS AO CLICAR FORA
+   ===================================================== */
+
 window.onclick = function(e){
 
-    const cadastro = document.getElementById("cadastroModal");
+    const cadastro =
+        document.getElementById("cadastroModal");
 
-    const recuperar = document.getElementById("modalRecuperarSenha");
+    const recuperar =
+        document.getElementById("modalRecuperarSenha");
+
 
     if(e.target === cadastro){
 
@@ -947,16 +1421,16 @@ window.onclick = function(e){
 
     }
 
+
     if(e.target === recuperar){
 
         fecharRecuperarSenha();
 
     }
 
-}
+};
 
 </script>
-
 
 
 <script>
