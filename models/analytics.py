@@ -1,166 +1,327 @@
+from flask import session
 from database.connection import get_db
 
 
-def buscar_cotacoes_realizadas():
+# =========================================================
+# CNPJ DA FARMÁCIA LOGADA
+# =========================================================
+
+def obter_cnpj_usuario():
+
+    cnpj = session.get("usuario_cnpj")
+
+    if not cnpj:
+        return None
+
+    return cnpj
+
+
+# =========================================================
+# COTAÇÕES REALIZADAS
+# =========================================================
+
+def buscar_cotacoes_realizadas(data_inicio=None, data_fim=None):
+
+    cnpj = obter_cnpj_usuario()
+
+    if not cnpj:
+        return []
 
     db = get_db()
-    cursor = db.cursor()
 
-    cursor.execute("""
-        SELECT
-            DATE(data_criacao) AS dia,
-            COUNT(*) AS total
-        FROM cotacoes
-        GROUP BY DATE(data_criacao)
-        ORDER BY DATE(data_criacao)
-    """)
+    try:
 
-    dados = cursor.fetchall()
+        sql = """
+            SELECT
+                DATE(data_criacao) AS dia,
+                COUNT(*) AS total
 
-    db.close()
+            FROM cotacoes
 
-    resultado = []
+            WHERE cnpj_usuario = ?
+        """
 
-    for item in dados:
-        resultado.append({
-            "dia": item[0],
-            "total": item[1]
-        })
+        parametros = [cnpj]
 
-    return resultado
+        # -----------------------------------------
+        # DATA INICIAL
+        # -----------------------------------------
+
+        if data_inicio:
+
+            sql += """
+                AND DATE(data_criacao) >= DATE(?)
+            """
+
+            parametros.append(data_inicio)
+
+        # -----------------------------------------
+        # DATA FINAL
+        # -----------------------------------------
+
+        if data_fim:
+
+            sql += """
+                AND DATE(data_criacao) <= DATE(?)
+            """
+
+            parametros.append(data_fim)
+
+        sql += """
+            GROUP BY DATE(data_criacao)
+
+            ORDER BY DATE(data_criacao)
+        """
+
+        cursor = db.execute(
+            sql,
+            parametros
+        )
+
+        dados = cursor.fetchall()
+
+        resultado = []
+
+        for item in dados:
+
+            resultado.append({
+                "dia": item[0],
+                "total": int(item[1] or 0)
+            })
+
+        return resultado
+
+    finally:
+
+        db.close()
 
 
-def buscar_economia_gerada():
+# =========================================================
+# ECONOMIA GERADA
+# =========================================================
+
+def buscar_economia_gerada(data_inicio=None, data_fim=None):
+
+    cnpj = obter_cnpj_usuario()
+
+    if not cnpj:
+        return []
 
     db = get_db()
-    cursor = db.cursor()
 
-    cursor.execute("""
+    try:
 
-        SELECT
-
-            DATE(c.data_criacao) AS dia,
-
-            SUM(maior - menor) AS total
-
-        FROM (
-
+        sql = """
             SELECT
 
-                cotacao_id,
+                DATE(c.data_criacao) AS dia,
 
-                medicamento,
+                SUM(
+                    maior - menor
+                ) AS total
 
-                MAX(
-                    CASE
-                        WHEN preco_oferta IS NOT NULL
-                        THEN preco_oferta
-                        ELSE preco
-                    END
-                ) AS maior,
+            FROM (
 
-                MIN(
-                    CASE
-                        WHEN preco_oferta IS NOT NULL
-                        THEN preco_oferta
-                        ELSE preco
-                    END
-                ) AS menor
+                SELECT
 
-            FROM respostas_cotacao
+                    rc.cotacao_id,
 
-            GROUP BY
-                cotacao_id,
-                medicamento
+                    rc.medicamento,
 
-        ) x
+                    MAX(
+                        CASE
+                            WHEN rc.preco_oferta IS NOT NULL
+                            THEN rc.preco_oferta
+                            ELSE rc.preco
+                        END
+                    ) AS maior,
 
-        JOIN cotacoes c
-            ON c.id = x.cotacao_id
+                    MIN(
+                        CASE
+                            WHEN rc.preco_oferta IS NOT NULL
+                            THEN rc.preco_oferta
+                            ELSE rc.preco
+                        END
+                    ) AS menor
 
-        GROUP BY DATE(c.data_criacao)
+                FROM respostas_cotacao rc
 
-        ORDER BY DATE(c.data_criacao)
+                JOIN cotacoes c
 
-    """)
+                    ON c.id = rc.cotacao_id
 
-    dados = cursor.fetchall()
+                WHERE c.cnpj_usuario = ?
 
-    db.close()
+                GROUP BY
 
-    resultado = []
+                    rc.cotacao_id,
+                    rc.medicamento
 
-    for item in dados:
+            ) x
 
-        resultado.append({
+            JOIN cotacoes c
 
-            "dia": item[0],
+                ON c.id = x.cotacao_id
 
-            "total": float(item[1] or 0)
+            WHERE 1=1
+        """
 
-        })
+        parametros = [cnpj]
 
-    return resultado
+        # -----------------------------------------
+        # DATA INICIAL
+        # -----------------------------------------
+
+        if data_inicio:
+
+            sql += """
+                AND DATE(c.data_criacao) >= DATE(?)
+            """
+
+            parametros.append(data_inicio)
+
+        # -----------------------------------------
+        # DATA FINAL
+        # -----------------------------------------
+
+        if data_fim:
+
+            sql += """
+                AND DATE(c.data_criacao) <= DATE(?)
+            """
+
+            parametros.append(data_fim)
+
+        sql += """
+            GROUP BY DATE(c.data_criacao)
+
+            ORDER BY DATE(c.data_criacao)
+        """
+
+        cursor = db.execute(
+            sql,
+            parametros
+        )
+
+        dados = cursor.fetchall()
+
+        resultado = []
+
+        for item in dados:
+
+            resultado.append({
+                "dia": item[0],
+                "total": float(item[1] or 0)
+            })
+
+        return resultado
+
+    finally:
+
+        db.close()
 
 
-def buscar_taxa_resposta():
+# =========================================================
+# TAXA DE RESPOSTA
+# =========================================================
+
+def buscar_taxa_resposta(data_inicio=None, data_fim=None):
+
+    cnpj = obter_cnpj_usuario()
+
+    if not cnpj:
+        return []
 
     db = get_db()
-    cursor = db.cursor()
 
-    cursor.execute("""
+    try:
 
-        SELECT
+        sql = """
+            SELECT
 
-            DATE(c.data_criacao) AS dia,
+                DATE(c.data_criacao) AS dia,
 
-            ROUND(
+                ROUND(
 
-                (
-                    COUNT(DISTINCT rc.representante) * 100.0
-                )
+                    (
+                        COUNT(DISTINCT rc.representante)
+                        * 100.0
+                    )
 
-                /
+                    /
 
-                NULLIF(
-                    COUNT(DISTINCT cr.representante_id),
-                    0
-                ),
+                    NULLIF(
+                        COUNT(DISTINCT cr.representante_id),
+                        0
+                    ),
 
-                2
+                    2
 
-            ) AS total
+                ) AS total
 
-        FROM cotacoes c
+            FROM cotacoes c
 
-        LEFT JOIN cotacao_representante cr
-            ON cr.cotacao_id = c.id
+            LEFT JOIN cotacao_representante cr
 
-        LEFT JOIN respostas_cotacao rc
-            ON rc.cotacao_id = c.id
+                ON cr.cotacao_id = c.id
 
-        GROUP BY
-            DATE(c.data_criacao)
+            LEFT JOIN respostas_cotacao rc
 
-        ORDER BY
-            DATE(c.data_criacao)
+                ON rc.cotacao_id = c.id
 
-    """)
+            WHERE c.cnpj_usuario = ?
+        """
 
-    dados = cursor.fetchall()
+        parametros = [cnpj]
 
-    db.close()
+        # -----------------------------------------
+        # DATA INICIAL
+        # -----------------------------------------
 
-    resultado = []
+        if data_inicio:
 
-    for item in dados:
+            sql += """
+                AND DATE(c.data_criacao) >= DATE(?)
+            """
 
-        resultado.append({
+            parametros.append(data_inicio)
 
-            "dia": item[0],
+        # -----------------------------------------
+        # DATA FINAL
+        # -----------------------------------------
 
-            "total": float(item[1] or 0)
+        if data_fim:
 
-        })
+            sql += """
+                AND DATE(c.data_criacao) <= DATE(?)
+            """
 
-    return resultado
+            parametros.append(data_fim)
+
+        sql += """
+            GROUP BY DATE(c.data_criacao)
+
+            ORDER BY DATE(c.data_criacao)
+        """
+
+        cursor = db.execute(
+            sql,
+            parametros
+        )
+
+        dados = cursor.fetchall()
+
+        resultado = []
+
+        for item in dados:
+
+            resultado.append({
+                "dia": item[0],
+                "total": float(item[1] or 0)
+            })
+
+        return resultado
+
+    finally:
+
+        db.close()

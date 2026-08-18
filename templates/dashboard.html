@@ -14,10 +14,10 @@ Dashboard - CotaFarma
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <link rel="stylesheet"
-      href="{{ url_for('static', filename='css/dashboard.css') }}">
+      href="{{ url_for('static', filename='css/dashboard-mobile.css') }}">
 
 <link rel="stylesheet"
-      href="{{ url_for('static', filename='css/dashboard-mobile.css') }}">
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 {% endblock %}
 
@@ -107,7 +107,7 @@ Dashboard - CotaFarma
 
         <h2>{{ indicadores.get('economia_mes','R$ 0,00') }}</h2>
 
-<small>{{ indicadores.mes_atual }}</small>
+<small>{{ mes_atual }}</small>
 
     </div>
 

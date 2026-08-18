@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block title %}
 Analytics
 {% endblock %}
@@ -7,8 +8,10 @@ Analytics
 
 {% block css %}
 
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/analytics.css') }}">
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/analytics.css') }}"
+>
 
 {% endblock %}
 
@@ -19,7 +22,106 @@ Analytics
 
 
     <!-- =====================================================
-         COTAÇÕES REALIZADAS
+         FILTRO GLOBAL DE PERÍODO
+    ====================================================== -->
+
+    <div class="analytics-periodo">
+
+        <div class="analytics-periodo-info">
+
+            <div class="analytics-periodo-icone">
+                <i class="bi bi-calendar3"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    Período
+                </strong>
+
+                <span id="periodoDescricao">
+                    Últimos 30 dias
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="analytics-periodo-controles">
+
+            <select
+                id="filtroPeriodo"
+                class="analytics-periodo-select"
+            >
+
+                <option value="7">
+                    Últimos 7 dias
+                </option>
+
+                <option
+                    value="30"
+                    selected
+                >
+                    Últimos 30 dias
+                </option>
+
+                <option value="90">
+                    Últimos 90 dias
+                </option>
+
+                <option value="mes">
+                    Este mês
+                </option>
+
+                <option value="mes_passado">
+                    Mês passado
+                </option>
+
+                <option value="personalizado">
+                    Personalizado
+                </option>
+
+            </select>
+
+
+            <div
+                id="periodoPersonalizado"
+                class="periodo-personalizado"
+                style="display:none;"
+            >
+
+                <input
+                    type="date"
+                    id="dataInicio"
+                >
+
+                <span>
+                    até
+                </span>
+
+                <input
+                    type="date"
+                    id="dataFim"
+                >
+
+                <button
+                    type="button"
+                    id="btnAplicarPeriodo"
+                >
+                    Aplicar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         1. COTAÇÕES REALIZADAS
     ====================================================== -->
 
     <div class="analytics-card">
@@ -43,43 +145,9 @@ Analytics
 
         <div class="grafico-wrapper">
 
-            <canvas id="graficoCotacoes"></canvas>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         ECONOMIA GERADA
-    ====================================================== -->
-
-    <div class="analytics-card">
-
-        <div class="analytics-header">
-
-            <h2>
-                Economia gerada (R$)
-            </h2>
-
-
-            <select id="tipoGraficoEconomia">
-
-                <option value="dia">
-                    Por dia
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="grafico-wrapper">
-
             <canvas
-                id="graficoEconomia">
-            </canvas>
+                id="graficoCotacoes"
+            ></canvas>
 
         </div>
 
@@ -88,7 +156,7 @@ Analytics
 
 
     <!-- =====================================================
-         TAXA DE RESPOSTA
+         2. TAXA DE RESPOSTA
     ====================================================== -->
 
     <div class="analytics-card">
@@ -98,7 +166,6 @@ Analytics
             <h2>
                 Taxa de resposta (%)
             </h2>
-
 
             <select id="tipoGraficoResposta">
 
@@ -114,8 +181,8 @@ Analytics
         <div class="grafico-wrapper">
 
             <canvas
-                id="graficoResposta">
-            </canvas>
+                id="graficoResposta"
+            ></canvas>
 
         </div>
 
@@ -124,42 +191,21 @@ Analytics
 
 
     <!-- =====================================================
-         MEDICAMENTOS MAIS COTADOS
-         FICA ABAIXO DOS 3 GRÁFICOS PRINCIPAIS
+         3. ECONOMIA GERADA
     ====================================================== -->
 
-    <div class="analytics-card medicamentos-card">
+    <div class="analytics-card">
 
         <div class="analytics-header">
 
-            <div class="analytics-title">
+            <h2>
+                Economia gerada (R$)
+            </h2>
 
-                <div class="analytics-icon medicamentos-icon">
+            <select id="tipoGraficoEconomia">
 
-                    <i class="bi bi-capsule"></i>
-
-                </div>
-
-
-                <div>
-
-                    <h2>
-                        Medicamentos mais cotados
-                    </h2>
-
-                    <p>
-                        Produtos mais solicitados no período
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <select id="tipoGraficoMedicamentos">
-
-                <option value="quantidade">
-                    Quantidade
+                <option value="dia">
+                    Por dia
                 </option>
 
             </select>
@@ -167,13 +213,178 @@ Analytics
         </div>
 
 
-        <div class="grafico-medicamentos-wrapper">
+        <div class="grafico-wrapper">
 
             <canvas
-                id="graficoMedicamentos">
-            </canvas>
+                id="graficoEconomia"
+            ></canvas>
 
         </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MEDICAMENTOS + DISTRIBUIÇÃO DOS STATUS
+    ====================================================== -->
+
+    <div class="analytics-dupla">
+
+
+        <!-- =================================================
+             4. MEDICAMENTOS MAIS COTADOS
+        ================================================== -->
+
+        <div class="analytics-card medicamentos-card">
+
+
+            <div class="analytics-header">
+
+
+                <div class="analytics-title">
+
+
+                    <div class="analytics-icon medicamentos-icon">
+
+                        <i class="bi bi-capsule"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Medicamentos mais cotados
+                        </h2>
+
+                        <p>
+                            Produtos mais solicitados no período
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <select
+                    id="tipoGraficoMedicamentos"
+                >
+
+                    <option value="quantidade">
+                        Quantidade
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+            <div class="grafico-medicamentos-wrapper">
+
+                <canvas
+                    id="graficoMedicamentos"
+                ></canvas>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             5. DISTRIBUIÇÃO DOS STATUS
+        ================================================== -->
+
+        <div class="analytics-card status-card">
+
+
+            <div class="analytics-header">
+
+
+                <div class="analytics-title">
+
+
+                    <div class="analytics-icon status-icon">
+
+                        <i class="bi bi-pie-chart-fill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Distribuição dos status
+                        </h2>
+
+                        <p>
+                            Respostas dos representantes no período
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="status-chart-content">
+
+
+                <!-- DONUT -->
+
+                <div class="status-donut-wrapper">
+
+                    <canvas
+                        id="graficoStatus"
+                    ></canvas>
+
+
+                    <div class="status-donut-center">
+
+                        <strong
+                            id="statusTotal"
+                        >
+                            0
+                        </strong>
+
+                        <span>
+                            respostas
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LEGENDA -->
+
+                <div
+                    class="status-legenda"
+                    id="statusLegenda"
+                >
+
+                    <div class="status-loading">
+
+                        Carregando...
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
 
     </div>
 
@@ -186,11 +397,15 @@ Analytics
 
 {% block scripts %}
 
+
 <!-- =====================================================
      CHART.JS
 ====================================================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+></script>
+
 
 
 <!-- =====================================================
@@ -198,8 +413,8 @@ Analytics
 ====================================================== -->
 
 <script
-    src="{{ url_for('static', filename='js/analytics.js') }}">
-</script>
+    src="{{ url_for('static', filename='js/analytics.js') }}"
+></script>
 
 
 {% endblock %}

@@ -1,6 +1,6 @@
 /* =========================================================
    COTAFARMA • ANALYTICS
-   DASHBOARD MODERNO
+   VERSÃO LIMPA E CORRIGIDA
 ========================================================= */
 
 
@@ -11,51 +11,44 @@
 :root {
 
     --analytics-bg: #f6f8fb;
-
     --analytics-card: #ffffff;
-
     --analytics-border: #e8edf3;
 
     --analytics-title: #172238;
-
     --analytics-text: #526174;
-
     --analytics-muted: #8b98a9;
 
-    --analytics-green: #12c979;
-
-    --analytics-green-dark: #00b86b;
-
-    --analytics-purple: #795cff;
-
-    --analytics-blue: #3b82f6;
-
-    --analytics-red: #8b5cf6;
+    --analytics-blue: #2563eb;
+    --analytics-green: #16a34a;
+    --analytics-purple: #8b5cf6;
 
     --analytics-shadow:
-        0 8px 30px rgba(15,23,42,.045);
+        0 4px 18px rgba(15,23,42,.04);
 
 }
 
 
 /* =========================================================
-   CONTAINER
+   CONTAINER PRINCIPAL
 ========================================================= */
 
 .analytics-container {
+
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    padding: 24px;
 
     display: grid;
 
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: 20px;
+    gap: 18px;
 
-    width: 100%;
-
-    min-width: 0;
-
-    padding: 28px;
+    align-items: start;
 
     background:
         linear-gradient(
@@ -64,13 +57,288 @@
             #f5f7fb 100%
         );
 
-    align-items: stretch;
+}
+
+
+/* =========================================================
+   FILTRO DE PERÍODO
+========================================================= */
+
+.analytics-periodo {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e4eaf1;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 20px rgba(15,23,42,.04);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.analytics-periodo::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20px;
+    right: 20px;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #16a34a,
+            #8b5cf6
+        );
+
+    opacity: .75;
 
 }
 
 
 /* =========================================================
-   CARD
+   INFORMAÇÕES DO PERÍODO
+========================================================= */
+
+.analytics-periodo-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.analytics-periodo-icone {
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    font-size: 17px;
+
+}
+
+
+.analytics-periodo-info strong {
+
+    display: block;
+
+    margin: 0;
+
+    color: #172238;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+}
+
+
+.analytics-periodo-info span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #7b8798;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   CONTROLES DO PERÍODO
+========================================================= */
+
+.analytics-periodo-controles {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.analytics-periodo-select {
+
+    height: 38px;
+
+    min-width: 160px;
+
+    padding: 0 34px 0 12px;
+
+    border: 1px solid #dce3eb;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #263449;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    outline: none;
+
+    cursor: pointer;
+
+}
+
+
+.analytics-periodo-select:hover {
+
+    border-color: #bfcbd9;
+
+}
+
+
+.analytics-periodo-select:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.10);
+
+}
+
+
+/* =========================================================
+   PERÍODO PERSONALIZADO
+========================================================= */
+
+.periodo-personalizado {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.periodo-personalizado input {
+
+    height: 38px;
+
+    padding: 0 10px;
+
+    border: 1px solid #dce3eb;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #263449;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    outline: none;
+
+}
+
+
+.periodo-personalizado input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.08);
+
+}
+
+
+.periodo-personalizado span {
+
+    color: #7b8798;
+
+    font-size: 11px;
+
+}
+
+
+#btnAplicarPeriodo {
+
+    height: 38px;
+
+    padding: 0 14px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   CARD PADRÃO
 ========================================================= */
 
 .analytics-card {
@@ -81,7 +349,9 @@
 
     min-width: 0;
 
-    min-height: 390px;
+    min-height: 350px;
+
+    box-sizing: border-box;
 
     display: flex;
 
@@ -89,31 +359,20 @@
 
     overflow: hidden;
 
-    padding: 22px;
+    padding: 20px;
 
     background:
         rgba(255,255,255,.98);
 
-    border: 1px solid
-        var(--analytics-border);
+    border: 1px solid var(--analytics-border);
 
-    border-radius: 20px;
+    border-radius: 18px;
 
     box-shadow:
-        0 4px 18px rgba(15,23,42,.035),
-        0 1px 3px rgba(15,23,42,.025);
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
+        var(--analytics-shadow);
 
 }
 
-
-/* =========================================================
-   LINHA SUPERIOR DECORATIVA
-========================================================= */
 
 .analytics-card::before {
 
@@ -135,18 +394,12 @@
         linear-gradient(
             90deg,
             transparent,
-            rgba(18,201,121,.30),
+            rgba(37,99,235,.25),
             transparent
         );
 
-    opacity: .7;
-
 }
 
-
-/* =========================================================
-   DECORAÇÃO INTERNA
-========================================================= */
 
 .analytics-card::after {
 
@@ -154,20 +407,20 @@
 
     position: absolute;
 
-    right: -100px;
+    right: -90px;
 
-    bottom: -100px;
+    bottom: -90px;
 
-    width: 190px;
+    width: 170px;
 
-    height: 190px;
+    height: 170px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(18,201,121,.035),
+            rgba(22,163,74,.035),
             transparent 68%
         );
 
@@ -177,26 +430,7 @@
 
 
 /* =========================================================
-   HOVER DO CARD
-========================================================= */
-
-.analytics-card:hover {
-
-    transform:
-        translateY(-3px);
-
-    border-color:
-        #dfe6ee;
-
-    box-shadow:
-        0 16px 38px rgba(15,23,42,.075),
-        0 3px 8px rgba(15,23,42,.025);
-
-}
-
-
-/* =========================================================
-   CABEÇALHO
+   CABEÇALHO DOS CARDS
 ========================================================= */
 
 .analytics-header {
@@ -205,24 +439,22 @@
 
     z-index: 2;
 
+    width: 100%;
+
+    min-height: 42px;
+
+    margin-bottom: 12px;
+
     display: flex;
 
     align-items: flex-start;
 
     justify-content: space-between;
 
-    gap: 15px;
-
-    min-height: 45px;
-
-    margin-bottom: 14px;
+    gap: 12px;
 
 }
 
-
-/* =========================================================
-   TÍTULO
-========================================================= */
 
 .analytics-header h2 {
 
@@ -230,57 +462,42 @@
 
     max-width: 190px;
 
-    color:
-        var(--analytics-title);
+    color: var(--analytics-title);
 
-    font-family:
-        "Inter",
-        sans-serif;
+    font-family: "Inter", sans-serif;
 
-    font-size: 17px;
+    font-size: 16px;
 
     font-weight: 750;
 
-    line-height: 1.25;
+    line-height: 1.2;
 
-    letter-spacing: -.35px;
+    letter-spacing: -.3px;
 
 }
 
-
-/* =========================================================
-   SELECT
-========================================================= */
 
 .analytics-header select {
 
     flex-shrink: 0;
 
-    width: auto;
+    min-width: 86px;
 
-    min-width: 91px;
+    height: 33px;
 
-    height: 34px;
+    padding: 0 25px 0 10px;
 
-    padding:
-        0 28px 0 11px;
+    border: 1px solid #e0e6ed;
 
-    border:
-        1px solid #e0e6ed;
-
-    border-radius: 10px;
+    border-radius: 9px;
 
     outline: none;
 
-    background:
-        #ffffff;
+    background: #ffffff;
 
-    color:
-        #536174;
+    color: #536174;
 
-    font-family:
-        "Inter",
-        sans-serif;
+    font-family: "Inter", sans-serif;
 
     font-size: 10px;
 
@@ -288,52 +505,11 @@
 
     cursor: pointer;
 
-    box-shadow:
-        0 2px 8px rgba(15,23,42,.025);
-
-    transition:
-        border-color .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
-
 }
 
 
 /* =========================================================
-   SELECT HOVER
-========================================================= */
-
-.analytics-header select:hover {
-
-    border-color:
-        #bdc9d6;
-
-    background:
-        #fbfcfd;
-
-}
-
-
-/* =========================================================
-   SELECT FOCUS
-========================================================= */
-
-.analytics-header select:focus {
-
-    outline: none;
-
-    border-color:
-        var(--analytics-green);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(18,201,121,.10);
-
-}
-
-
-/* =========================================================
-   ÁREA DO GRÁFICO
+   GRÁFICOS PRINCIPAIS
 ========================================================= */
 
 .grafico-wrapper {
@@ -344,24 +520,18 @@
 
     width: 100%;
 
-    height: 290px;
+    height: 250px;
 
-    min-height: 0;
+    min-height: 250px;
 
     margin-top: auto;
 
 }
 
 
-/* =========================================================
-   CANVAS
-========================================================= */
+.grafico-wrapper canvas {
 
-#graficoCotacoes,
-#graficoEconomia,
-#graficoResposta {
-
-    display: block;
+    display: block !important;
 
     width: 100% !important;
 
@@ -371,651 +541,44 @@
 
 
 /* =========================================================
-   AJUSTE INDIVIDUAL — COTAÇÕES
+   PRIMEIROS 3 GRÁFICOS
 ========================================================= */
 
-.analytics-card:nth-child(1)::before {
+#graficoCotacoes,
+#graficoEconomia,
+#graficoResposta {
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(121,92,255,.35),
-            transparent
-        );
+    width: 100% !important;
+
+    height: 100% !important;
 
 }
 
-
-/* =========================================================
-   AJUSTE INDIVIDUAL — ECONOMIA
-========================================================= */
-
-.analytics-card:nth-child(2)::before {
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(18,201,121,.35),
-            transparent
-        );
-
-}
-
-
-/* =========================================================
-   AJUSTE INDIVIDUAL — RESPOSTA
-========================================================= */
-
-.analytics-card:nth-child(3)::before {
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(121,92,255,.28),
-            transparent
-        );
-
-}
-
-
-/* =========================================================
-   CARDS EM DESKTOP GRANDE
-========================================================= */
-
-@media (min-width: 1500px) {
-
-    .analytics-container {
-
-        gap: 22px;
-
-        padding: 32px;
-
-    }
-
-    .analytics-card {
-
-        min-height: 410px;
-
-        padding: 24px;
-
-        border-radius: 22px;
-
-    }
-
-    .analytics-header h2 {
-
-        font-size: 18px;
-
-    }
-
-    .grafico-wrapper {
-
-        height: 310px;
-
-    }
-
-}
-
-
-/* =========================================================
-   NOTEBOOK
-========================================================= */
-
-@media (max-width: 1250px) {
-
-    .analytics-container {
-
-        gap: 18px;
-
-        padding: 24px;
-
-    }
-
-    .analytics-card {
-
-        min-height: 370px;
-
-        padding: 20px;
-
-    }
-
-    .analytics-header h2 {
-
-        font-size: 16px;
-
-    }
-
-    .grafico-wrapper {
-
-        height: 270px;
-
-    }
-
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1050px) {
-
-    .analytics-container {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-    }
-
-    .analytics-card {
-
-        min-height: 370px;
-
-    }
-
-    .grafico-wrapper {
-
-        height: 270px;
-
-    }
-
-}
-
-
-/* =========================================================
-   TABLET PEQUENO
-========================================================= */
-
-@media (max-width: 800px) {
-
-    .analytics-container {
-
-        grid-template-columns: 1fr;
-
-        gap: 18px;
-
-        padding: 20px;
-
-    }
-
-    .analytics-card {
-
-        min-height: 360px;
-
-    }
-
-    .analytics-header h2 {
-
-        font-size: 17px;
-
-    }
-
-    .grafico-wrapper {
-
-        height: 270px;
-
-    }
-
-}
-
-
-/* =========================================================
-   CELULAR
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .analytics-container {
-
-        grid-template-columns: 1fr;
-
-        padding: 15px;
-
-        gap: 15px;
-
-    }
-
-    .analytics-card {
-
-        min-height: 335px;
-
-        padding: 18px;
-
-        border-radius: 17px;
-
-    }
-
-    .analytics-header {
-
-        align-items: flex-start;
-
-        gap: 10px;
-
-        margin-bottom: 10px;
-
-    }
-
-    .analytics-header h2 {
-
-        max-width: 170px;
-
-        font-size: 16px;
-
-    }
-
-    .analytics-header select {
-
-        min-width: 88px;
-
-        height: 33px;
-
-        font-size: 9px;
-
-    }
-
-    .grafico-wrapper {
-
-        height: 245px;
-
-    }
-
-}
-
-
-/* =========================================================
-   CELULAR PEQUENO
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .analytics-container {
-
-        padding: 12px;
-
-    }
-
-    .analytics-card {
-
-        min-height: 320px;
-
-        padding: 16px;
-
-        border-radius: 15px;
-
-    }
-
-    .analytics-header h2 {
-
-        font-size: 15px;
-
-    }
-
-    .analytics-header select {
-
-        min-width: 82px;
-
-        height: 31px;
-
-        padding-left: 8px;
-
-        font-size: 9px;
-
-    }
-
-    .grafico-wrapper {
-
-        height: 225px;
-
-    }
-
-}
-
-
-/* =========================================================
-   ACESSIBILIDADE
-========================================================= */
-
-.analytics-header select:focus-visible {
-
-    outline:
-        2px solid
-        rgba(18,201,121,.35);
-
-    outline-offset: 2px;
-
-}
-
-
-/* =========================================================
-   REDUZIR ANIMAÇÕES
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .analytics-card,
-    .analytics-header select {
-
-        transition: none;
-
-    }
-
-}
 
 /* =========================================================
    MEDICAMENTOS MAIS COTADOS
-   ========================================================= */
-
-.medicamentos-cotados-card {
-    background: #ffffff;
-    border: 1px solid #e8edf3;
-    border-radius: 18px;
-    padding: 24px 26px;
-    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
-    min-width: 0;
-}
-
-.medicamentos-cotados-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 24px;
-}
-
-.medicamentos-cotados-titulo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.medicamentos-cotados-icone {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #eef6ff;
-    color: #1976d2;
-
-    font-size: 19px;
-}
-
-.medicamentos-cotados-titulo h3 {
-    margin: 0;
-    font-size: 17px;
-    font-weight: 700;
-    color: #172033;
-}
-
-.medicamentos-cotados-titulo span {
-    display: block;
-    margin-top: 4px;
-
-    font-size: 12px;
-    color: #8a94a6;
-}
-
-.medicamentos-cotados-ver-todos {
-    border: none;
-    background: transparent;
-
-    color: #1976d2;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-    text-decoration: none;
-
-    transition: 0.2s ease;
-}
-
-.medicamentos-cotados-ver-todos:hover {
-    color: #125ca8;
-}
-
-
-/* =========================================================
-   LISTA
-   ========================================================= */
-
-.medicamentos-cotados-lista {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.medicamento-cotado-item {
-    display: grid;
-
-    grid-template-columns: 34px minmax(130px, 190px) 1fr 42px;
-
-    align-items: center;
-
-    gap: 12px;
-}
-
-
-/* =========================================================
-   ÍCONE
-   ========================================================= */
-
-.medicamento-cotado-icone {
-    width: 32px;
-    height: 32px;
-
-    border-radius: 9px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #f1f5f9;
-    color: #64748b;
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   NOME
-   ========================================================= */
-
-.medicamento-cotado-nome {
-    min-width: 0;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    color: #344054;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-/* =========================================================
-   BARRA
-   ========================================================= */
-
-.medicamento-cotado-barra {
-    width: 100%;
-    height: 9px;
-
-    background: #edf2f7;
-
-    border-radius: 999px;
-
-    overflow: hidden;
-}
-
-.medicamento-cotado-progresso {
-    height: 100%;
-
-    border-radius: 999px;
-
-    background: linear-gradient(
-        90deg,
-        #3b82f6,
-        #60a5fa
-    );
-
-    width: 0;
-
-    transition: width 0.8s ease;
-}
-
-
-/* =========================================================
-   NÚMERO
-   ========================================================= */
-
-.medicamento-cotado-total {
-    text-align: right;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    color: #172033;
-}
-
-
-/* =========================================================
-   ESTADO VAZIO
-   ========================================================= */
-
-.medicamentos-cotados-vazio {
-    padding: 35px 20px;
-
-    text-align: center;
-
-    color: #98a2b3;
-
-    font-size: 13px;
-}
-
-.medicamentos-cotados-vazio i {
-    display: block;
-
-    margin-bottom: 10px;
-
-    font-size: 28px;
-
-    color: #cbd5e1;
-}
-
-
-/* =========================================================
-   RESPONSIVO
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    .medicamento-cotado-item {
-        grid-template-columns:
-            34px
-            minmax(120px, 160px)
-            1fr
-            40px;
-    }
-
-}
-
-
-@media (max-width: 650px) {
-
-    .medicamentos-cotados-card {
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    .medicamentos-cotados-header {
-        margin-bottom: 20px;
-    }
-
-    .medicamentos-cotados-titulo h3 {
-        font-size: 15px;
-    }
-
-    .medicamentos-cotados-titulo span {
-        font-size: 11px;
-    }
-
-    .medicamento-cotado-item {
-        grid-template-columns:
-            30px
-            minmax(100px, 130px)
-            1fr
-            36px;
-
-        gap: 8px;
-    }
-
-    .medicamento-cotado-icone {
-        width: 30px;
-        height: 30px;
-    }
-
-    .medicamento-cotado-nome {
-        font-size: 12px;
-    }
-
-    .medicamento-cotado-total {
-        font-size: 12px;
-    }
-
-}
-
-/* =========================================================
-   MEDICAMENTOS MAIS COTADOS
-   CARD LARGO — OCUPA TODA A LINHA
 ========================================================= */
 
 .analytics-card.medicamentos-card {
 
-    grid-column: 1 / -1;
+    grid-column: 1 / span 2;
 
     width: 100%;
 
     min-width: 0;
 
-    min-height: 430px;
+    min-height: 0;
 
-    padding: 24px 26px;
+    height: auto;
 
-    border-radius: 20px;
-
-    background: #ffffff;
-
-    border: 1px solid #e8edf3;
-
-    box-shadow:
-        0 4px 18px rgba(15, 23, 42, 0.04);
+    padding: 20px 22px;
 
 }
 
 
 /* =========================================================
-   CABEÇALHO
+   TÍTULO DOS MEDICAMENTOS
 ========================================================= */
-
-.analytics-card.medicamentos-card .analytics-header {
-
-    width: 100%;
-
-    margin-bottom: 18px;
-
-}
-
-
-/* TÍTULO */
 
 .analytics-card.medicamentos-card .analytics-title {
 
@@ -1023,22 +586,18 @@
 
     align-items: center;
 
-    gap: 12px;
+    gap: 11px;
 
 }
 
 
-/* ÍCONE */
-
 .analytics-card.medicamentos-card .medicamentos-icon {
 
-    width: 42px;
+    width: 40px;
 
-    height: 42px;
+    height: 40px;
 
-    min-width: 42px;
-
-    border-radius: 12px;
+    min-width: 40px;
 
     display: flex;
 
@@ -1046,39 +605,31 @@
 
     justify-content: center;
 
+    border-radius: 11px;
+
     background: #eef6ff;
 
     color: #2563eb;
 
-    font-size: 19px;
+    font-size: 18px;
 
 }
 
 
-/* TÍTULO */
-
-.analytics-card.medicamentos-card .analytics-title h2 {
-
-    margin: 0;
+.analytics-card.medicamentos-card
+.analytics-title h2 {
 
     max-width: none;
 
-    font-size: 18px;
+    margin: 0;
 
-    font-weight: 750;
-
-    line-height: 1.2;
-
-    color: #172238;
+    font-size: 17px;
 
 }
 
 
-/* =========================================================
-   REMOVER SUBTÍTULO
-========================================================= */
-
-.analytics-card.medicamentos-card .analytics-title p {
+.analytics-card.medicamentos-card
+.analytics-title p {
 
     display: none;
 
@@ -1086,38 +637,334 @@
 
 
 /* =========================================================
-   ÁREA DO GRÁFICO
+   GRÁFICO DE MEDICAMENTOS
 ========================================================= */
 
-.analytics-card.medicamentos-card
 .grafico-medicamentos-wrapper {
 
     position: relative;
 
     width: 100%;
 
-    height: 350px;
+    height: 250px;
 
-    min-height: 350px;
+    min-height: 250px;
 
-    flex: 1;
+    max-height: 250px;
 
-    margin-top: 4px;
+    box-sizing: border-box;
+
+    padding: 2px 8px 8px;
+
+    overflow: hidden;
+
+}
+
+
+#graficoMedicamentos {
+
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 250px !important;
+
+    max-height: 250px !important;
 
 }
 
 
 /* =========================================================
-   CANVAS
+   DISTRIBUIÇÃO DOS STATUS
 ========================================================= */
 
-#graficoMedicamentos {
+.analytics-card.status-card {
 
-    display: block;
+    grid-column: 3;
 
-    width: 100% !important;
+    width: 100%;
 
-    height: 100% !important;
+    min-width: 0;
+
+    min-height: 0;
+
+    height: auto;
+
+    padding: 20px;
+
+}
+
+
+/* =========================================================
+   CABEÇALHO STATUS
+========================================================= */
+
+.status-card .analytics-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.status-card .analytics-title h2 {
+
+    max-width: none;
+
+    margin: 0;
+
+    font-size: 17px;
+
+}
+
+
+.status-card .analytics-title p {
+
+    margin: 5px 0 0;
+
+    color: #7b8798;
+
+    font-size: 11px;
+
+    line-height: 1.3;
+
+}
+
+
+/* =========================================================
+   CONTEÚDO DO STATUS
+========================================================= */
+
+.status-chart-content {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 5px 4px 8px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   DONUT
+========================================================= */
+
+.status-donut-wrapper {
+
+    position: relative;
+
+    width: 185px;
+
+    height: 185px;
+
+    min-width: 185px;
+
+    min-height: 185px;
+
+}
+
+
+.status-donut-wrapper canvas {
+
+    display: block !important;
+
+    width: 185px !important;
+
+    height: 185px !important;
+
+    max-width: 185px !important;
+
+    max-height: 185px !important;
+
+}
+
+
+/* =========================================================
+   NÚMERO CENTRAL DO DONUT
+========================================================= */
+
+.status-donut-center {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    pointer-events: none;
+
+}
+
+
+.status-donut-center strong {
+
+    margin: 0;
+
+    color: #101828;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+}
+
+
+.status-donut-center span {
+
+    margin-top: 5px;
+
+    color: #98a2b3;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   LEGENDA STATUS
+========================================================= */
+
+.status-legenda {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.status-legenda-item {
+
+    width: 100%;
+
+    min-height: 40px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding: 8px 10px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e7ecf3;
+
+    border-radius: 9px;
+
+}
+
+
+.status-legenda-nome {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #344054;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+.status-legenda-item strong {
+
+    color: #101828;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    min-width: 8px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+}
+
+
+.status-dot-verde {
+
+    background: #16A34A;
+
+}
+
+
+.status-dot-laranja {
+
+    background: #F59E0B;
+
+}
+
+
+.status-dot-vermelho {
+
+    background: #EF4444;
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.status-loading {
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: #98a2b3;
+
+    font-size: 11px;
 
 }
 
@@ -1128,21 +975,43 @@
 
 @media (min-width: 1500px) {
 
-    .analytics-card.medicamentos-card {
+    .analytics-container {
 
-        min-height: 460px;
+        padding: 28px;
 
-        padding: 26px 30px;
+        gap: 20px;
 
     }
 
 
-    .analytics-card.medicamentos-card
+    .analytics-card {
+
+        padding: 22px;
+
+    }
+
+
+    .grafico-wrapper {
+
+        height: 270px;
+
+        min-height: 270px;
+
+    }
+
+
     .grafico-medicamentos-wrapper {
 
-        height: 380px;
+        height: 250px;
 
-        min-height: 380px;
+        min-height: 250px;
+
+    }
+
+
+    #graficoMedicamentos {
+
+        height: 250px !important;
 
     }
 
@@ -1155,19 +1024,63 @@
 
 @media (max-width: 1250px) {
 
-    .analytics-card.medicamentos-card {
+    .analytics-container {
 
-        min-height: 430px;
+        padding: 20px;
+
+        gap: 16px;
 
     }
 
 
-    .analytics-card.medicamentos-card
+    .analytics-card {
+
+        padding: 18px;
+
+        min-height: 330px;
+
+    }
+
+
+    .grafico-wrapper {
+
+        height: 230px;
+
+        min-height: 230px;
+
+    }
+
+
+    .analytics-card.medicamentos-card {
+
+        grid-column: 1 / span 2;
+
+    }
+
+
+    .analytics-card.status-card {
+
+        grid-column: 3;
+
+    }
+
+
     .grafico-medicamentos-wrapper {
 
-        height: 350px;
+        height: 235px;
 
-        min-height: 350px;
+        min-height: 235px;
+
+        max-height: 235px;
+
+    }
+
+
+    #graficoMedicamentos {
+
+        height: 235px !important;
+
+        max-height: 235px !important;
 
     }
 
@@ -1178,87 +1091,259 @@
    TABLET
 ========================================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 950px) {
 
-    .analytics-card.medicamentos-card {
+    .analytics-container {
 
-        grid-column: 1 / -1;
-
-        min-height: 420px;
-
-    }
-
-
-    .analytics-card.medicamentos-card
-    .grafico-medicamentos-wrapper {
-
-        height: 340px;
-
-        min-height: 340px;
-
-    }
-
-}
-
-
-/* =========================================================
-   TABLET PEQUENO
-========================================================= */
-
-@media (max-width: 800px) {
-
-    .analytics-card.medicamentos-card {
-
-        grid-column: 1;
-
-        min-height: 410px;
-
-        padding: 20px;
-
-    }
-
-
-    .analytics-card.medicamentos-card
-    .grafico-medicamentos-wrapper {
-
-        height: 330px;
-
-        min-height: 330px;
-
-    }
-
-}
-
-
-/* =========================================================
-   CELULAR
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .analytics-card.medicamentos-card {
-
-        min-height: 390px;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
         padding: 18px;
 
     }
 
 
-    .analytics-card.medicamentos-card
-    .grafico-medicamentos-wrapper {
+    .analytics-card.medicamentos-card {
 
-        height: 310px;
-
-        min-height: 310px;
+        grid-column: 1 / -1;
 
     }
 
 
-    .analytics-card.medicamentos-card
-    .analytics-title h2 {
+    .analytics-card.status-card {
 
-        font-size: 16px;
+        grid-column: 1 / -1;
+
+    }
+
+
+    .status-chart-content {
+
+        display: grid;
+
+        grid-template-columns:
+            200px minmax(180px, 1fr);
+
+        justify-items: center;
+
+        align-items: center;
+
+        gap: 20px;
+
+    }
+
+
+    .status-donut-wrapper {
+
+        width: 200px;
+
+        height: 200px;
+
+        min-width: 200px;
+
+        min-height: 200px;
+
+    }
+
+
+    .status-donut-wrapper canvas {
+
+        width: 200px !important;
+
+        height: 200px !important;
+
+        max-width: 200px !important;
+
+        max-height: 200px !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR / TABLET PEQUENO
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .analytics-container {
+
+        grid-template-columns: 1fr;
+
+        padding: 14px;
+
+        gap: 14px;
+
+    }
+
+
+    .analytics-periodo {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+
+        padding: 15px;
+
+    }
+
+
+    .analytics-periodo-info {
+
+        width: 100%;
+
+    }
+
+
+    .analytics-periodo-controles {
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .analytics-periodo-select {
+
+        width: 100%;
+
+    }
+
+
+    .periodo-personalizado {
+
+        width: 100%;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .periodo-personalizado input {
+
+        flex: 1;
+
+        min-width: 120px;
+
+    }
+
+
+    .analytics-card {
+
+        grid-column: 1 !important;
+
+        width: 100%;
+
+        min-height: 0;
+
+        padding: 17px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .grafico-wrapper {
+
+        height: 230px;
+
+        min-height: 230px;
+
+    }
+
+
+    /* -----------------------------------------------------
+       MEDICAMENTOS
+    ----------------------------------------------------- */
+
+    .analytics-card.medicamentos-card {
+
+        grid-column: 1 !important;
+
+    }
+
+
+    .grafico-medicamentos-wrapper {
+
+        height: 230px;
+
+        min-height: 230px;
+
+        max-height: 230px;
+
+        padding: 2px 4px 8px;
+
+    }
+
+
+    #graficoMedicamentos {
+
+        height: 230px !important;
+
+        max-height: 230px !important;
+
+    }
+
+
+    /* -----------------------------------------------------
+       STATUS
+    ----------------------------------------------------- */
+
+    .analytics-card.status-card {
+
+        grid-column: 1 !important;
+
+    }
+
+
+    .status-chart-content {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 12px;
+
+    }
+
+
+    .status-donut-wrapper {
+
+        width: 190px;
+
+        height: 190px;
+
+        min-width: 190px;
+
+        min-height: 190px;
+
+    }
+
+
+    .status-donut-wrapper canvas {
+
+        width: 190px !important;
+
+        height: 190px !important;
+
+        max-width: 190px !important;
+
+        max-height: 190px !important;
+
+    }
+
+
+    .status-legenda {
+
+        width: 100%;
 
     }
 
@@ -1271,23 +1356,178 @@
 
 @media (max-width: 400px) {
 
-    .analytics-card.medicamentos-card {
+    .analytics-container {
 
-        min-height: 370px;
+        padding: 10px;
 
-        padding: 16px;
+        gap: 12px;
 
     }
 
 
-    .analytics-card.medicamentos-card
+    .analytics-card {
+
+        padding: 15px;
+
+    }
+
+
+    .analytics-header h2 {
+
+        font-size: 15px;
+
+    }
+
+
+    .grafico-wrapper {
+
+        height: 210px;
+
+        min-height: 210px;
+
+    }
+
+
     .grafico-medicamentos-wrapper {
 
-        height: 290px;
+        height: 215px;
 
-        min-height: 290px;
+        min-height: 215px;
+
+        max-height: 215px;
+
+    }
+
+
+    #graficoMedicamentos {
+
+        height: 215px !important;
+
+        max-height: 215px !important;
+
+    }
+
+
+    .status-donut-wrapper {
+
+        width: 175px;
+
+        height: 175px;
+
+        min-width: 175px;
+
+        min-height: 175px;
+
+    }
+
+
+    .status-donut-wrapper canvas {
+
+        width: 175px !important;
+
+        height: 175px !important;
+
+        max-width: 175px !important;
+
+        max-height: 175px !important;
 
     }
 
 }
 
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+.analytics-header select:focus-visible,
+.analytics-periodo-select:focus-visible,
+#btnAplicarPeriodo:focus-visible {
+
+    outline: 2px solid rgba(37,99,235,.35);
+
+    outline-offset: 2px;
+
+}
+
+
+/* =========================================================
+   REDUÇÃO DE ANIMAÇÃO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+
+        transition: none !important;
+
+        animation: none !important;
+
+    }
+
+}
+
+/* =========================================================
+   CORREÇÃO DOS 3 GRÁFICOS PRINCIPAIS
+   ========================================================= */
+
+.analytics-card .grafico-wrapper {
+    position: relative !important;
+
+    width: 100% !important;
+
+    height: 240px !important;
+    min-height: 240px !important;
+    max-height: 240px !important;
+
+    padding: 10px 12px 12px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Canvas dos gráficos principais */
+
+.analytics-card .grafico-wrapper canvas {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: 100% !important;
+}
+
+
+/* =========================================================
+   MANTER MEDICAMENTOS COM TAMANHO PRÓPRIO
+   ========================================================= */
+
+.medicamentos-card .grafico-medicamentos-wrapper {
+    position: relative !important;
+
+    width: 100% !important;
+
+    height: 240px !important;
+    min-height: 240px !important;
+    max-height: 240px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   NÃO DEIXAR O GRÁFICO DE STATUS SER AFETADO
+   ========================================================= */
+
+.status-card .status-chart-content {
+    position: relative;
+}
+
+
+/* =========================================================
+   CHART.JS
+   ========================================================= */
+
+.analytics-card canvas {
+    box-sizing: border-box !important;
+}

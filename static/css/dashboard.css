@@ -6321,3 +6321,3519 @@ PAINEL DE VISUALIZAÇÃO DA COTAÇÃO
     }
 
 }
+
+/* ============================================================
+   COTAUP — NOVA COTAÇÃO
+   DESIGN PREMIUM
+   ============================================================ */
+
+
+/* ============================================================
+   CARD PRINCIPAL
+   ============================================================ */
+
+.quote-card {
+    width: 100% !important;
+
+    margin: 18px 0 24px !important;
+
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e5eaf0 !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.055),
+        0 2px 8px rgba(15, 23, 42, 0.025) !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO
+   ============================================================ */
+
+.quote-card > form > .card-header {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    min-height: 86px !important;
+
+    padding: 20px 25px !important;
+
+    margin: 0 !important;
+
+    background: #ffffff !important;
+
+    border-bottom: 1px solid #edf0f4 !important;
+}
+
+
+/* ============================================================
+   TÍTULO
+   ============================================================ */
+
+.quote-card .card-header h2 {
+
+    margin: 0 !important;
+
+    font-size: 21px !important;
+
+    line-height: 1.2 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -0.55px !important;
+
+    color: #101828 !important;
+}
+
+
+.quote-card .card-header p {
+
+    margin: 5px 0 0 !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.4 !important;
+
+    color: #667085 !important;
+}
+
+
+/* ============================================================
+   BOTÃO DE MENU
+   ============================================================ */
+
+.quote-card .mini-btn {
+
+    width: 40px !important;
+
+    height: 40px !important;
+
+    min-width: 40px !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+
+    border-radius: 12px !important;
+
+    background: #f5f7fa !important;
+
+    color: #475467 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    box-shadow: none !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .mini-btn:hover {
+
+    background: #edf1f5 !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   ÁREA DO NOME
+   ============================================================ */
+
+.quote-card > form > .form-group {
+
+    padding: 21px 25px 0 !important;
+
+    margin: 0 !important;
+}
+
+
+.quote-card .form-group label {
+
+    display: block !important;
+
+    margin: 0 0 8px !important;
+
+    font-size: 12px !important;
+
+    font-weight: 750 !important;
+
+    color: #344054 !important;
+}
+
+
+/* ============================================================
+   INPUT NOME
+   ============================================================ */
+
+.quote-card #nomeCotacao {
+
+    width: 100% !important;
+
+    height: 47px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 0 14px !important;
+
+    border: 1px solid #e1e6ec !important;
+
+    border-radius: 12px !important;
+
+    background: #fbfcfd !important;
+
+    color: #101828 !important;
+
+    font-size: 13px !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease !important;
+}
+
+
+.quote-card #nomeCotacao:hover {
+
+    border-color: #d2d9e2 !important;
+}
+
+
+.quote-card #nomeCotacao:focus {
+
+    background: #ffffff !important;
+
+    border-color: #8bb5ee !important;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.06) !important;
+}
+
+
+.quote-card #nomeCotacao::placeholder {
+
+    color: #98a2b3 !important;
+}
+
+
+/* ============================================================
+   PAINEL "ADICIONAR PRODUTOS"
+   ============================================================ */
+
+.quote-card .medicine-table {
+
+    margin: 20px 25px 0 !important;
+
+    padding: 0 !important;
+
+    border: 1px solid #e4e9ef !important;
+
+    border-radius: 17px !important;
+
+    background: #fbfcfe !important;
+
+    overflow: hidden !important;
+
+    box-shadow: none !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO PRODUTO / QUANTIDADE
+   ============================================================ */
+
+.quote-card .entrada-header {
+
+    display: grid !important;
+
+    grid-template-columns: 1.25fr 1fr !important;
+
+    align-items: center !important;
+
+    min-height: 46px !important;
+
+    padding: 0 16px !important;
+
+    background: #f8fafc !important;
+
+    color: #344054 !important;
+
+    border-bottom: 1px solid #e7ebf0 !important;
+}
+
+
+.quote-card .entrada-header > div {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    font-size: 11px !important;
+
+    font-weight: 750 !important;
+
+    color: #475467 !important;
+
+    text-transform: none !important;
+}
+
+
+/* ============================================================
+   LINHA DOS CAMPOS
+   ============================================================ */
+
+.quote-card .entrada-row {
+
+    display: grid !important;
+
+    grid-template-columns: 1.25fr 1fr !important;
+
+    gap: 14px !important;
+
+    align-items: center !important;
+
+    padding: 15px 16px !important;
+
+    background: #ffffff !important;
+
+    border: 0 !important;
+}
+
+
+/* ============================================================
+   CAMPO MEDICAMENTO
+   ============================================================ */
+
+.quote-card .campo-medicamento {
+
+    position: relative !important;
+
+    width: 100% !important;
+}
+
+
+.quote-card #medicamento {
+
+    width: 100% !important;
+
+    height: 44px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 0 45px 0 13px !important;
+
+    border: 1px solid #dfe5ec !important;
+
+    border-radius: 11px !important;
+
+    background: #ffffff !important;
+
+    color: #101828 !important;
+
+    font-size: 12px !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card #medicamento:focus {
+
+    border-color: #8cb4e9 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, .055) !important;
+}
+
+
+.quote-card #medicamento::placeholder {
+
+    color: #98a2b3 !important;
+}
+
+
+/* ============================================================
+   BOTÃO COPIAR
+   ============================================================ */
+
+.quote-card .btn-colar-lista {
+
+    position: absolute !important;
+
+    top: 5px !important;
+
+    right: 5px !important;
+
+    width: 34px !important;
+
+    height: 34px !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+
+    border-radius: 9px !important;
+
+    background: #2563eb !important;
+
+    color: #ffffff !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    box-shadow:
+        0 4px 10px rgba(37, 99, 235, .15) !important;
+}
+
+
+/* ============================================================
+   QUANTIDADE
+   ============================================================ */
+
+.quote-card #quantidade {
+
+    width: 100% !important;
+
+    height: 44px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 0 13px !important;
+
+    border: 1px solid #dfe5ec !important;
+
+    border-radius: 11px !important;
+
+    background: #ffffff !important;
+
+    color: #101828 !important;
+
+    font-size: 12px !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+}
+
+
+.quote-card #quantidade:focus {
+
+    border-color: #8cb4e9 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, .055) !important;
+}
+
+
+/* ============================================================
+   AÇÕES — ADICIONAR / PENDÊNCIAS
+   ============================================================ */
+
+.quote-card .entrada-acoes {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 9px !important;
+
+    padding: 14px 16px !important;
+
+    background: #fbfcfe !important;
+
+    border-top: 1px solid #edf0f3 !important;
+}
+
+
+/* ============================================================
+   BOTÃO ADICIONAR
+   ============================================================ */
+
+.quote-card .btn-adicionar-produto {
+
+    height: 40px !important;
+
+    min-width: 210px !important;
+
+    padding: 0 18px !important;
+
+    border: 0 !important;
+
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #326fee,
+            #245fe0
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 750 !important;
+
+    box-shadow:
+        0 7px 15px rgba(37, 99, 235, .16) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-adicionar-produto:hover {
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 10px 20px rgba(37, 99, 235, .21) !important;
+}
+
+
+/* ============================================================
+   BOTÃO PENDÊNCIAS
+   ============================================================ */
+
+.quote-card .btn-pendencias {
+
+    height: 40px !important;
+
+    min-width: 210px !important;
+
+    padding: 0 18px !important;
+
+    border: 0 !important;
+
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffab2e,
+            #ff850d
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 750 !important;
+
+    box-shadow:
+        0 7px 15px rgba(255, 133, 13, .15) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-pendencias:hover {
+
+    transform: translateY(-1px) !important;
+}
+
+
+/* ============================================================
+   PRODUTOS ADICIONADOS
+   ============================================================ */
+
+.quote-card .lista-produtos {
+
+    margin: 15px 25px 0 !important;
+
+    border: 1px solid #e4e9ef !important;
+
+    border-radius: 17px !important;
+
+    background: #ffffff !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO DA LISTA
+   ============================================================ */
+
+.quote-card .lista-header {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 8px !important;
+
+    min-height: 46px !important;
+
+    padding: 0 14px !important;
+
+    background: #f8fafc !important;
+
+    color: #174f82 !important;
+
+    border-bottom: 1px solid #e6ebf0 !important;
+
+    font-size: 11px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: .1px !important;
+
+    text-transform: uppercase !important;
+}
+
+
+.quote-card .lista-header i {
+
+    color: #2563eb !important;
+
+    font-size: 14px !important;
+}
+
+
+/* ============================================================
+   TABELA
+   ============================================================ */
+
+.quote-card .tabela-produtos {
+
+    width: 100% !important;
+
+    border-collapse: collapse !important;
+
+    background: #ffffff !important;
+}
+
+
+.quote-card .tabela-produtos thead {
+
+    background: #ffffff !important;
+}
+
+
+.quote-card .tabela-produtos th {
+
+    height: 40px !important;
+
+    padding: 0 14px !important;
+
+    text-align: left !important;
+
+    font-size: 10px !important;
+
+    font-weight: 750 !important;
+
+    color: #667085 !important;
+
+    border-bottom: 1px solid #edf0f3 !important;
+}
+
+
+.quote-card .tabela-produtos td {
+
+    height: 48px !important;
+
+    padding: 0 14px !important;
+
+    font-size: 12px !important;
+
+    color: #344054 !important;
+
+    border-bottom: 1px solid #f0f2f5 !important;
+}
+
+
+.quote-card .tabela-produtos tbody tr {
+
+    transition: background .18s ease !important;
+}
+
+
+.quote-card .tabela-produtos tbody tr:hover {
+
+    background: #f9fbfd !important;
+}
+
+
+.quote-card .tabela-produtos tbody tr:last-child td {
+
+    border-bottom: 0 !important;
+}
+
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+
+.quote-card .quote-footer {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: flex-end !important;
+
+    min-height: 76px !important;
+
+    padding: 15px 25px 20px !important;
+
+    background: #ffffff !important;
+
+    border: 0 !important;
+}
+
+
+.quote-card .footer-right {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 10px !important;
+}
+
+
+/* ============================================================
+   LIMPAR LISTA
+   ============================================================ */
+
+.quote-card .btn-limpar {
+
+    height: 42px !important;
+
+    padding: 0 17px !important;
+
+    border: 1px solid #fecaca !important;
+
+    border-radius: 11px !important;
+
+    background: #ffffff !important;
+
+    color: #ef4444 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 750 !important;
+
+    box-shadow: none !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-limpar:hover {
+
+    background: #fff6f6 !important;
+
+    border-color: #fca5a5 !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+/* ============================================================
+   CRIAR COTAÇÃO
+   ============================================================ */
+
+.quote-card .btn-criar {
+
+    height: 43px !important;
+
+    min-width: 190px !important;
+
+    padding: 0 21px !important;
+
+    border: 0 !important;
+
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #16b86c,
+            #079455
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 800 !important;
+
+    box-shadow:
+        0 9px 19px rgba(7, 148, 85, .18) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-criar:hover {
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 12px 24px rgba(7, 148, 85, .23) !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .quote-card {
+
+        border-radius: 19px !important;
+
+        margin-top: 14px !important;
+    }
+
+
+    .quote-card > form > .card-header {
+
+        min-height: 74px !important;
+
+        padding: 17px !important;
+    }
+
+
+    .quote-card .card-header h2 {
+
+        font-size: 19px !important;
+    }
+
+
+    .quote-card .card-header p {
+
+        font-size: 11px !important;
+    }
+
+
+    .quote-card > form > .form-group {
+
+        padding: 17px 15px 0 !important;
+    }
+
+
+    .quote-card .medicine-table {
+
+        margin: 17px 15px 0 !important;
+
+        border-radius: 15px !important;
+    }
+
+
+    .quote-card .entrada-header {
+
+        grid-template-columns: 1fr 1fr !important;
+
+        min-height: 43px !important;
+
+        padding: 0 12px !important;
+    }
+
+
+    .quote-card .entrada-row {
+
+        grid-template-columns: 1fr !important;
+
+        gap: 9px !important;
+
+        padding: 13px !important;
+    }
+
+
+    .quote-card .entrada-acoes {
+
+        flex-direction: column !important;
+
+        padding: 12px !important;
+    }
+
+
+    .quote-card .btn-adicionar-produto,
+    .quote-card .btn-pendencias {
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+    }
+
+
+    .quote-card .lista-produtos {
+
+        margin: 13px 15px 0 !important;
+
+        border-radius: 15px !important;
+    }
+
+
+    .quote-card .quote-footer {
+
+        min-height: auto !important;
+
+        padding: 14px 15px 17px !important;
+    }
+
+
+    .quote-card .footer-right {
+
+        width: 100% !important;
+
+        flex-direction: column-reverse !important;
+
+        gap: 8px !important;
+    }
+
+
+    .quote-card .btn-limpar,
+    .quote-card .btn-criar {
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+    }
+
+}
+
+
+/* ============================================================
+   CELULAR PEQUENO
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .quote-card .card-header h2 {
+
+        font-size: 18px !important;
+    }
+
+
+    .quote-card .form-group {
+
+        padding-left: 13px !important;
+
+        padding-right: 13px !important;
+    }
+
+
+    .quote-card .medicine-table {
+
+        margin-left: 13px !important;
+
+        margin-right: 13px !important;
+    }
+
+
+    .quote-card .lista-produtos {
+
+        margin-left: 13px !important;
+
+        margin-right: 13px !important;
+    }
+
+}
+
+/* ============================================================
+   CotaUP — NOVA COTAÇÃO
+   PREMIUM / REFINAMENTO FINAL
+   ============================================================ */
+
+
+/* ============================================================
+   CARD PRINCIPAL
+   ============================================================ */
+
+.quote-card {
+    position: relative !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #fcfdff 100%
+        ) !important;
+
+    border: 1px solid rgba(15, 23, 42, 0.08) !important;
+
+    border-radius: 24px !important;
+
+    box-shadow:
+        0 20px 55px rgba(15, 23, 42, 0.065),
+        0 5px 18px rgba(15, 23, 42, 0.035),
+        inset 0 1px 0 rgba(255,255,255,.9) !important;
+
+    overflow: hidden !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease !important;
+}
+
+
+.quote-card:hover {
+
+    box-shadow:
+        0 24px 65px rgba(15, 23, 42, 0.08),
+        0 6px 20px rgba(15, 23, 42, 0.04) !important;
+}
+
+
+/* ============================================================
+   PEQUENO DETALHE SUPERIOR
+   ============================================================ */
+
+.quote-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #16b878,
+            #2563eb
+        );
+
+    opacity: .9;
+
+    z-index: 2;
+}
+
+
+/* ============================================================
+   CABEÇALHO
+   ============================================================ */
+
+.quote-card > form > .card-header {
+
+    min-height: 91px !important;
+
+    padding: 23px 27px 21px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fcfdff
+        ) !important;
+
+    border-bottom: 1px solid #edf0f4 !important;
+}
+
+
+/* título */
+
+.quote-card .card-header h2 {
+
+    font-size: 22px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -.65px !important;
+
+    color: #0f172a !important;
+}
+
+
+/* descrição */
+
+.quote-card .card-header p {
+
+    margin-top: 6px !important;
+
+    color: #667085 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+}
+
+
+/* ============================================================
+   BOTÃO DE MENU
+   ============================================================ */
+
+.quote-card .mini-btn {
+
+    width: 42px !important;
+    height: 42px !important;
+
+    border-radius: 13px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8fafc,
+            #eef2f6
+        ) !important;
+
+    border: 1px solid #e8edf2 !important;
+
+    color: #475467 !important;
+
+    box-shadow:
+        0 4px 10px rgba(15,23,42,.04) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .mini-btn:hover {
+
+    background: #ffffff !important;
+
+    border-color: #d9e1e8 !important;
+
+    box-shadow:
+        0 7px 16px rgba(15,23,42,.08) !important;
+
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   ÁREA DO NOME
+   ============================================================ */
+
+.quote-card > form > .form-group {
+
+    padding: 22px 27px 0 !important;
+}
+
+
+.quote-card .form-group label {
+
+    margin-bottom: 9px !important;
+
+    color: #344054 !important;
+
+    font-size: 11px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: .1px !important;
+}
+
+
+.quote-card #nomeCotacao {
+
+    height: 50px !important;
+
+    padding: 0 16px !important;
+
+    border-radius: 13px !important;
+
+    border: 1px solid #e1e7ed !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fafbfd
+        ) !important;
+
+    color: #101828 !important;
+
+    font-size: 13px !important;
+
+    box-shadow:
+        inset 0 1px 2px rgba(15,23,42,.025) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card #nomeCotacao:hover {
+
+    border-color: #cfd8e2 !important;
+}
+
+
+.quote-card #nomeCotacao:focus {
+
+    border-color: #6fa3e8 !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.07),
+        0 3px 8px rgba(37,99,235,.04) !important;
+}
+
+
+/* ============================================================
+   ÁREA DE PRODUTOS
+   ============================================================ */
+
+.quote-card .medicine-table {
+
+    margin: 20px 27px 0 !important;
+
+    border-radius: 18px !important;
+
+    border: 1px solid #e3e9ef !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 8px 25px rgba(15,23,42,.035) !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO DOS CAMPOS
+   ============================================================ */
+
+.quote-card .entrada-header {
+
+    min-height: 45px !important;
+
+    padding: 0 17px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f9fafb,
+            #f5f7fa
+        ) !important;
+
+    border-bottom: 1px solid #e7ecf1 !important;
+}
+
+
+.quote-card .entrada-header > div {
+
+    color: #475467 !important;
+
+    font-size: 10px !important;
+
+    font-weight: 800 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: .3px !important;
+}
+
+
+/* ============================================================
+   CAMPOS
+   ============================================================ */
+
+.quote-card .entrada-row {
+
+    padding: 16px 17px !important;
+
+    gap: 14px !important;
+
+    background: #ffffff !important;
+}
+
+
+/* medicamento */
+
+.quote-card #medicamento,
+.quote-card #quantidade {
+
+    height: 46px !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid #dfe6ed !important;
+
+    background: #fbfcfe !important;
+
+    color: #101828 !important;
+
+    font-size: 12px !important;
+
+    box-shadow:
+        inset 0 1px 2px rgba(15,23,42,.02) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card #medicamento:hover,
+.quote-card #quantidade:hover {
+
+    border-color: #cfd8e2 !important;
+
+    background: #ffffff !important;
+}
+
+
+.quote-card #medicamento:focus,
+.quote-card #quantidade:focus {
+
+    border-color: #76a7e6 !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.055) !important;
+}
+
+
+/* ============================================================
+   BOTÃO COPIAR
+   ============================================================ */
+
+.quote-card .btn-colar-lista {
+
+    width: 34px !important;
+    height: 34px !important;
+
+    border-radius: 9px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3b82f6,
+            #2563eb
+        ) !important;
+
+    box-shadow:
+        0 5px 12px rgba(37,99,235,.18) !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card .btn-colar-lista:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 7px 15px rgba(37,99,235,.25) !important;
+}
+
+
+/* ============================================================
+   ÁREA DOS BOTÕES
+   ============================================================ */
+
+.quote-card .entrada-acoes {
+
+    padding: 15px 17px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fcfdff,
+            #f9fbfd
+        ) !important;
+
+    border-top: 1px solid #eef1f4 !important;
+}
+
+
+/* ============================================================
+   ADICIONAR PRODUTO
+   ============================================================ */
+
+.quote-card .btn-adicionar-produto {
+
+    height: 42px !important;
+
+    min-width: 205px !important;
+
+    border-radius: 12px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3478f2 0%,
+            #2563eb 100%
+        ) !important;
+
+    border: 1px solid rgba(255,255,255,.18) !important;
+
+    font-size: 12px !important;
+
+    font-weight: 800 !important;
+
+    box-shadow:
+        0 8px 18px rgba(37,99,235,.17),
+        inset 0 1px 0 rgba(255,255,255,.18) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-adicionar-produto:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 24px rgba(37,99,235,.23),
+        inset 0 1px 0 rgba(255,255,255,.2) !important;
+}
+
+
+/* ============================================================
+   PENDÊNCIAS
+   ============================================================ */
+
+.quote-card .btn-pendencias {
+
+    height: 42px !important;
+
+    min-width: 205px !important;
+
+    border-radius: 12px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffad32,
+            #ff8610
+        ) !important;
+
+    font-size: 12px !important;
+
+    font-weight: 800 !important;
+
+    box-shadow:
+        0 8px 18px rgba(255,134,16,.15),
+        inset 0 1px 0 rgba(255,255,255,.18) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-pendencias:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 23px rgba(255,134,16,.22) !important;
+}
+
+
+/* ============================================================
+   LISTA DE PRODUTOS
+   ============================================================ */
+
+.quote-card .lista-produtos {
+
+    margin: 15px 27px 0 !important;
+
+    border-radius: 17px !important;
+
+    border: 1px solid #e4e9ef !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 5px 18px rgba(15,23,42,.025) !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO DA LISTA
+   ============================================================ */
+
+.quote-card .lista-header {
+
+    min-height: 45px !important;
+
+    padding: 0 15px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f9fafb,
+            #f5f7fa
+        ) !important;
+
+    border-bottom: 1px solid #e7ecf1 !important;
+
+    color: #174f82 !important;
+
+    font-size: 10px !important;
+
+    font-weight: 850 !important;
+
+    letter-spacing: .35px !important;
+}
+
+
+.quote-card .lista-header i {
+
+    color: #2563eb !important;
+}
+
+
+/* ============================================================
+   TABELA
+   ============================================================ */
+
+.quote-card .tabela-produtos th {
+
+    height: 40px !important;
+
+    background: #ffffff !important;
+
+    color: #98a2b3 !important;
+
+    font-size: 9px !important;
+
+    font-weight: 800 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: .3px !important;
+}
+
+
+.quote-card .tabela-produtos td {
+
+    height: 48px !important;
+
+    color: #344054 !important;
+
+    font-size: 12px !important;
+
+    border-bottom: 1px solid #f0f2f5 !important;
+}
+
+
+.quote-card .tabela-produtos tbody tr:hover {
+
+    background:
+        linear-gradient(
+            90deg,
+            #fafcff,
+            #ffffff
+        ) !important;
+}
+
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+
+.quote-card .quote-footer {
+
+    min-height: 82px !important;
+
+    padding: 18px 27px 23px !important;
+
+    background: #ffffff !important;
+}
+
+
+.quote-card .footer-right {
+
+    gap: 10px !important;
+}
+
+
+/* ============================================================
+   LIMPAR
+   ============================================================ */
+
+.quote-card .btn-limpar {
+
+    height: 43px !important;
+
+    padding: 0 18px !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid #fecaca !important;
+
+    background: #ffffff !important;
+
+    color: #ef4444 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 800 !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-limpar:hover {
+
+    background: #fff7f7 !important;
+
+    border-color: #fca5a5 !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   CRIAR COTAÇÃO
+   ============================================================ */
+
+.quote-card .btn-criar {
+
+    height: 44px !important;
+
+    min-width: 190px !important;
+
+    padding: 0 22px !important;
+
+    border-radius: 12px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #19bd73,
+            #079455
+        ) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 850 !important;
+
+    box-shadow:
+        0 9px 21px rgba(7,148,85,.19),
+        inset 0 1px 0 rgba(255,255,255,.18) !important;
+
+    transition: all .2s ease !important;
+}
+
+
+.quote-card .btn-criar:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 27px rgba(7,148,85,.25),
+        inset 0 1px 0 rgba(255,255,255,.2) !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .quote-card {
+
+        border-radius: 20px !important;
+
+        box-shadow:
+            0 12px 35px rgba(15,23,42,.07) !important;
+    }
+
+
+    .quote-card > form > .card-header {
+
+        min-height: 78px !important;
+
+        padding: 18px 17px !important;
+    }
+
+
+    .quote-card .card-header h2 {
+
+        font-size: 19px !important;
+    }
+
+
+    .quote-card > form > .form-group {
+
+        padding: 18px 15px 0 !important;
+    }
+
+
+    .quote-card .medicine-table {
+
+        margin: 17px 15px 0 !important;
+
+        border-radius: 15px !important;
+    }
+
+
+    .quote-card .entrada-row {
+
+        grid-template-columns: 1fr !important;
+
+        gap: 9px !important;
+    }
+
+
+    .quote-card .entrada-acoes {
+
+        flex-direction: column !important;
+
+        gap: 8px !important;
+    }
+
+
+    .quote-card .btn-adicionar-produto,
+    .quote-card .btn-pendencias {
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+    }
+
+
+    .quote-card .lista-produtos {
+
+        margin-left: 15px !important;
+
+        margin-right: 15px !important;
+    }
+
+
+    .quote-card .quote-footer {
+
+        padding: 15px !important;
+    }
+
+
+    .quote-card .footer-right {
+
+        width: 100% !important;
+
+        flex-direction: column-reverse !important;
+    }
+
+
+    .quote-card .btn-limpar,
+    .quote-card .btn-criar {
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+    }
+}
+
+/* ============================================================
+   CotaUP — NOVA COTAÇÃO
+   PREMIUM COLORIDO
+   ============================================================ */
+
+.quote-card {
+    position: relative !important;
+
+    margin-top: 20px !important;
+
+    background: #f8fafc !important;
+
+    border: 1px solid #dbe4ee !important;
+
+    border-radius: 24px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.09),
+        0 4px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+
+/* ============================================================
+   FAIXA SUPERIOR
+   ============================================================ */
+
+.quote-card::before {
+    content: "";
+
+    display: block;
+
+    height: 4px;
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1769e0 0%,
+            #2388ff 45%,
+            #13b875 100%
+        );
+}
+
+
+/* ============================================================
+   CABEÇALHO
+   ============================================================ */
+
+.quote-card > form > .card-header {
+
+    min-height: 92px !important;
+
+    padding: 22px 26px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f5f9ff 100%
+        ) !important;
+
+    border-bottom: 1px solid #dce6f0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+}
+
+
+/* título */
+
+.quote-card .card-header h2 {
+
+    margin: 0 !important;
+
+    color: #0b1f3a !important;
+
+    font-size: 22px !important;
+
+    font-weight: 850 !important;
+
+    letter-spacing: -0.7px !important;
+}
+
+
+.quote-card .card-header p {
+
+    margin-top: 5px !important;
+
+    color: #64748b !important;
+
+    font-size: 12px !important;
+
+    font-weight: 550 !important;
+}
+
+
+/* ============================================================
+   BOTÃO MENU
+   ============================================================ */
+
+.quote-card .mini-btn {
+
+    width: 42px !important;
+
+    height: 42px !important;
+
+    border-radius: 13px !important;
+
+    border: 1px solid #dbe5ef !important;
+
+    background: #ffffff !important;
+
+    color: #31506f !important;
+
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, .07) !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card .mini-btn:hover {
+
+    background: #edf5ff !important;
+
+    border-color: #b9d3f2 !important;
+
+    color: #1769e0 !important;
+
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   NOME DA COTAÇÃO
+   ============================================================ */
+
+.quote-card > form > .form-group {
+
+    padding: 23px 26px 0 !important;
+
+    margin: 0 !important;
+}
+
+
+.quote-card .form-group label {
+
+    display: block !important;
+
+    margin-bottom: 8px !important;
+
+    color: #263b53 !important;
+
+    font-size: 11px !important;
+
+    font-weight: 850 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: .35px !important;
+}
+
+
+.quote-card #nomeCotacao {
+
+    width: 100% !important;
+
+    height: 50px !important;
+
+    padding: 0 16px !important;
+
+    border-radius: 13px !important;
+
+    border: 1px solid #cfdbe8 !important;
+
+    background: #ffffff !important;
+
+    color: #102a43 !important;
+
+    font-size: 13px !important;
+
+    font-weight: 550 !important;
+
+    box-shadow:
+        0 2px 7px rgba(15, 23, 42, .035) !important;
+
+    outline: none !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card #nomeCotacao:hover {
+
+    border-color: #aac4df !important;
+}
+
+
+.quote-card #nomeCotacao:focus {
+
+    border-color: #2879e8 !important;
+
+    box-shadow:
+        0 0 0 4px rgba(40,121,232,.10),
+        0 4px 12px rgba(40,121,232,.06) !important;
+}
+
+
+/* ============================================================
+   ÁREA DE PRODUTOS
+   ============================================================ */
+
+.quote-card .medicine-table {
+
+    margin: 20px 26px 0 !important;
+
+    border-radius: 18px !important;
+
+    border: 1px solid #cbdceb !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #edf6ff 0%,
+            #f7fbff 100%
+        ) !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 8px 25px rgba(30, 91, 145, .07) !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO PRODUTO
+   ============================================================ */
+
+.quote-card .entrada-header {
+
+    min-height: 48px !important;
+
+    padding: 0 17px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #12558c,
+            #1769a7
+        ) !important;
+
+    border: 0 !important;
+
+    color: #ffffff !important;
+}
+
+
+.quote-card .entrada-header > div {
+
+    color: #ffffff !important;
+
+    font-size: 10px !important;
+
+    font-weight: 850 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: .35px !important;
+}
+
+
+/* ============================================================
+   CAMPOS
+   ============================================================ */
+
+.quote-card .entrada-row {
+
+    padding: 17px !important;
+
+    gap: 14px !important;
+
+    background: #ffffff !important;
+
+    border: 0 !important;
+
+    border-bottom: 1px solid #dce8f3 !important;
+}
+
+
+.quote-card #medicamento,
+.quote-card #quantidade {
+
+    height: 46px !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid #c9d8e7 !important;
+
+    background: #f9fbfd !important;
+
+    color: #132f4c !important;
+
+    font-size: 12px !important;
+
+    font-weight: 550 !important;
+
+    box-shadow:
+        inset 0 1px 2px rgba(15,23,42,.025) !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card #medicamento:hover,
+.quote-card #quantidade:hover {
+
+    background: #ffffff !important;
+
+    border-color: #9fb9d3 !important;
+}
+
+
+.quote-card #medicamento:focus,
+.quote-card #quantidade:focus {
+
+    background: #ffffff !important;
+
+    border-color: #2879e8 !important;
+
+    box-shadow:
+        0 0 0 4px rgba(40,121,232,.09) !important;
+}
+
+
+/* ============================================================
+   BOTÃO COPIAR
+   ============================================================ */
+
+.quote-card .btn-colar-lista {
+
+    width: 35px !important;
+
+    height: 35px !important;
+
+    border-radius: 9px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3984f5,
+            #2165dc
+        ) !important;
+
+    color: #ffffff !important;
+
+    border: 0 !important;
+
+    box-shadow:
+        0 6px 13px rgba(37,99,235,.22) !important;
+}
+
+
+/* ============================================================
+   ÁREA DOS BOTÕES
+   ============================================================ */
+
+.quote-card .entrada-acoes {
+
+    min-height: 69px !important;
+
+    padding: 13px 17px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f4f9ff,
+            #eaf4ff
+        ) !important;
+
+    border: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 10px !important;
+}
+
+
+/* ============================================================
+   ADICIONAR PRODUTO
+   ============================================================ */
+
+.quote-card .btn-adicionar-produto {
+
+    height: 43px !important;
+
+    min-width: 205px !important;
+
+    padding: 0 20px !important;
+
+    border: 0 !important;
+
+    border-radius: 12px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2878ed,
+            #1559d6
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 850 !important;
+
+    box-shadow:
+        0 9px 20px rgba(30,94,220,.24),
+        inset 0 1px 0 rgba(255,255,255,.18) !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card .btn-adicionar-produto:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 25px rgba(30,94,220,.30) !important;
+}
+
+
+/* ============================================================
+   RECUPERAR PENDÊNCIAS
+   ============================================================ */
+
+.quote-card .btn-pendencias {
+
+    height: 43px !important;
+
+    min-width: 205px !important;
+
+    padding: 0 20px !important;
+
+    border: 0 !important;
+
+    border-radius: 12px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb52f,
+            #ff8511
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 850 !important;
+
+    box-shadow:
+        0 9px 20px rgba(255,133,17,.22),
+        inset 0 1px 0 rgba(255,255,255,.18) !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card .btn-pendencias:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 25px rgba(255,133,17,.28) !important;
+}
+
+
+/* ============================================================
+   LISTA DE PRODUTOS
+   ============================================================ */
+
+.quote-card .lista-produtos {
+
+    margin: 15px 26px 0 !important;
+
+    border-radius: 17px !important;
+
+    border: 1px solid #cbdceb !important;
+
+    background: #ffffff !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 6px 18px rgba(30,91,145,.055) !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO DA LISTA
+   ============================================================ */
+
+.quote-card .lista-header {
+
+    min-height: 46px !important;
+
+    padding: 0 15px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e7f2ff,
+            #dcecff
+        ) !important;
+
+    border-bottom: 1px solid #c9dced !important;
+
+    color: #13558d !important;
+
+    font-size: 10px !important;
+
+    font-weight: 850 !important;
+
+    letter-spacing: .35px !important;
+
+    text-transform: uppercase !important;
+}
+
+
+.quote-card .lista-header i {
+
+    color: #2878ed !important;
+
+    font-size: 13px !important;
+}
+
+
+/* ============================================================
+   CABEÇALHO DA TABELA
+   ============================================================ */
+
+.quote-card .tabela-produtos thead {
+
+    background: #f3f7fb !important;
+}
+
+
+.quote-card .tabela-produtos th {
+
+    height: 40px !important;
+
+    padding: 0 14px !important;
+
+    color: #60758a !important;
+
+    font-size: 9px !important;
+
+    font-weight: 850 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: .3px !important;
+
+    border-bottom: 1px solid #dce6ef !important;
+}
+
+
+.quote-card .tabela-produtos td {
+
+    height: 49px !important;
+
+    padding: 0 14px !important;
+
+    color: #263b53 !important;
+
+    font-size: 12px !important;
+
+    border-bottom: 1px solid #edf1f5 !important;
+}
+
+
+.quote-card .tabela-produtos tbody tr:hover {
+
+    background: #f5faff !important;
+}
+
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+
+.quote-card .quote-footer {
+
+    min-height: 82px !important;
+
+    padding: 18px 26px 22px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #f8fafc
+        ) !important;
+
+    border-top: 1px solid #e5ebf1 !important;
+}
+
+
+.quote-card .footer-right {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 10px !important;
+}
+
+
+/* ============================================================
+   LIMPAR LISTA
+   ============================================================ */
+
+.quote-card .btn-limpar {
+
+    height: 43px !important;
+
+    padding: 0 18px !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid #ffbaba !important;
+
+    background: #fff7f7 !important;
+
+    color: #e53935 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 850 !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card .btn-limpar:hover {
+
+    background: #ffecec !important;
+
+    border-color: #ff9696 !important;
+
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   CRIAR COTAÇÃO
+   ============================================================ */
+
+.quote-card .btn-criar {
+
+    height: 44px !important;
+
+    min-width: 190px !important;
+
+    padding: 0 23px !important;
+
+    border: 0 !important;
+
+    border-radius: 12px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #19c879,
+            #079653
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 850 !important;
+
+    box-shadow:
+        0 10px 22px rgba(7,150,83,.23),
+        inset 0 1px 0 rgba(255,255,255,.18) !important;
+
+    transition: .2s ease !important;
+}
+
+
+.quote-card .btn-criar:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 28px rgba(7,150,83,.29) !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .quote-card {
+
+        border-radius: 20px !important;
+
+        margin-top: 15px !important;
+    }
+
+
+    .quote-card > form > .card-header {
+
+        padding: 18px 17px !important;
+    }
+
+
+    .quote-card .card-header h2 {
+
+        font-size: 19px !important;
+    }
+
+
+    .quote-card > form > .form-group {
+
+        padding: 18px 15px 0 !important;
+    }
+
+
+    .quote-card .medicine-table {
+
+        margin: 18px 15px 0 !important;
+
+        border-radius: 15px !important;
+    }
+
+
+    .quote-card .entrada-row {
+
+        grid-template-columns: 1fr !important;
+
+        gap: 9px !important;
+    }
+
+
+    .quote-card .entrada-acoes {
+
+        flex-direction: column !important;
+
+        padding: 13px !important;
+    }
+
+
+    .quote-card .btn-adicionar-produto,
+    .quote-card .btn-pendencias {
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+    }
+
+
+    .quote-card .lista-produtos {
+
+        margin-left: 15px !important;
+
+        margin-right: 15px !important;
+    }
+
+
+    .quote-card .quote-footer {
+
+        padding: 15px !important;
+    }
+
+
+    .quote-card .footer-right {
+
+        width: 100% !important;
+
+        flex-direction: column-reverse !important;
+    }
+
+
+    .quote-card .btn-limpar,
+    .quote-card .btn-criar {
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+    }
+}
+
+/* =========================================================
+   COTAUP — PAINEL OPERACIONAL
+   NOVO VISUAL PREMIUM
+   ========================================================= */
+
+.central-cotacoes {
+
+    position: relative !important;
+
+    margin-top: 28px !important;
+
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e8edf3 !important;
+
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 10px 30px rgba(16, 24, 40, 0.055) !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   CABEÇALHO
+   --------------------------------------------------------- */
+
+.central-cotacoes > .card-header {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    min-height: 92px !important;
+
+    padding: 23px 27px !important;
+
+    background: #ffffff !important;
+
+    border-bottom: 1px solid #edf1f5 !important;
+}
+
+
+.central-cotacoes > .card-header h2 {
+
+    margin: 0 !important;
+
+    color: #101828 !important;
+
+    font-size: 20px !important;
+
+    line-height: 1.2 !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -0.45px !important;
+}
+
+
+.central-cotacoes > .card-header p {
+
+    margin: 6px 0 0 !important;
+
+    color: #667085 !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.4 !important;
+
+    font-weight: 500 !important;
+}
+
+
+/* ---------------------------------------------------------
+   PEQUENO DETALHE AO LADO DO TÍTULO
+   --------------------------------------------------------- */
+
+.central-cotacoes > .card-header > div:first-child {
+
+    position: relative !important;
+
+    padding-left: 15px !important;
+}
+
+
+.central-cotacoes > .card-header > div:first-child::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 3px;
+
+    width: 4px;
+
+    height: 38px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2563eb,
+            #10b981
+        );
+}
+
+
+/* ---------------------------------------------------------
+   ÁREA DA TABELA
+   --------------------------------------------------------- */
+
+.central-cotacoes .tabela-dashboard {
+
+    margin: 18px 22px 22px !important;
+
+    padding: 0 !important;
+
+    border: 1px solid #e8edf3 !important;
+
+    border-radius: 15px !important;
+
+    background: #ffffff !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   TABELA
+   --------------------------------------------------------- */
+
+.central-cotacoes .tabela-dashboard table {
+
+    width: 100% !important;
+
+    border-collapse: collapse !important;
+
+    border-spacing: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CABEÇALHO DA TABELA
+   --------------------------------------------------------- */
+
+.central-cotacoes .tabela-dashboard thead {
+
+    background: #f7f9fc !important;
+}
+
+
+.central-cotacoes .tabela-dashboard thead th {
+
+    height: 45px !important;
+
+    padding: 0 18px !important;
+
+    background: #f7f9fc !important;
+
+    color: #667085 !important;
+
+    border-bottom: 1px solid #e8edf3 !important;
+
+    font-size: 9px !important;
+
+    font-weight: 800 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: .55px !important;
+
+    text-align: left !important;
+}
+
+
+/* ---------------------------------------------------------
+   LINHAS
+   --------------------------------------------------------- */
+
+.central-cotacoes .tabela-dashboard tbody tr {
+
+    background: #ffffff !important;
+
+    transition:
+        background .18s ease !important;
+}
+
+
+.central-cotacoes .tabela-dashboard tbody tr:hover {
+
+    background: #f9fbff !important;
+}
+
+
+.central-cotacoes .tabela-dashboard tbody td {
+
+    height: 64px !important;
+
+    padding: 0 18px !important;
+
+    color: #344054 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+
+    border-bottom: 1px solid #eef2f6 !important;
+
+    vertical-align: middle !important;
+}
+
+
+.central-cotacoes .tabela-dashboard tbody tr:last-child td {
+
+    border-bottom: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   NOME DA COTAÇÃO
+   --------------------------------------------------------- */
+
+.central-cotacoes .tabela-dashboard tbody td:first-child {
+
+    color: #182230 !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* ---------------------------------------------------------
+   DATA
+   --------------------------------------------------------- */
+
+.central-cotacoes .tabela-dashboard tbody td:nth-child(2) {
+
+    color: #667085 !important;
+
+    font-size: 11px !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS
+   --------------------------------------------------------- */
+
+.central-cotacoes .badge-status {
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    gap: 6px !important;
+
+    height: 26px !important;
+
+    padding: 0 10px !important;
+
+    border-radius: 7px !important;
+
+    font-size: 9px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: .25px !important;
+}
+
+
+/* bolinha */
+
+.central-cotacoes .badge-status::before {
+
+    content: "";
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+}
+
+
+/* aberta */
+
+.central-cotacoes .badge-status.aberta {
+
+    color: #087443 !important;
+
+    background: #ecfdf3 !important;
+
+    border: 1px solid #c8f2dc !important;
+}
+
+
+.central-cotacoes .badge-status.aberta::before {
+
+    background: #12b76a;
+}
+
+
+/* encerrada */
+
+.central-cotacoes .badge-status.encerrada {
+
+    color: #b42318 !important;
+
+    background: #fff1f0 !important;
+
+    border: 1px solid #ffd6d2 !important;
+}
+
+
+.central-cotacoes .badge-status.encerrada::before {
+
+    background: #f04438;
+}
+
+
+/* ---------------------------------------------------------
+   AÇÕES
+   --------------------------------------------------------- */
+
+.central-cotacoes .acoes-tabela {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    gap: 6px !important;
+}
+
+
+.central-cotacoes .acao-btn {
+
+    width: 32px !important;
+
+    height: 32px !important;
+
+    min-width: 32px !important;
+
+    padding: 0 !important;
+
+    border-radius: 8px !important;
+
+    border: 1px solid #e6ebf1 !important;
+
+    background: #ffffff !important;
+
+    color: #667085 !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    box-shadow: none !important;
+
+    transition:
+        all .16s ease !important;
+}
+
+
+.central-cotacoes .acao-btn i {
+
+    font-size: 13px !important;
+}
+
+
+/* visualizar */
+
+.central-cotacoes .acao-btn:hover {
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 4px 10px rgba(16,24,40,.08) !important;
+}
+
+
+.central-cotacoes .acao-btn:first-child:hover {
+
+    color: #2563eb !important;
+
+    background: #eff6ff !important;
+
+    border-color: #bfdbfe !important;
+}
+
+
+/* enviar */
+
+.central-cotacoes .acao-btn:nth-child(2):hover {
+
+    color: #079455 !important;
+
+    background: #ecfdf3 !important;
+
+    border-color: #abefc6 !important;
+}
+
+
+/* encerrar */
+
+.central-cotacoes .acao-btn:nth-child(3):hover {
+
+    color: #dc6803 !important;
+
+    background: #fffaeb !important;
+
+    border-color: #fedf89 !important;
+}
+
+
+/* excluir */
+
+.central-cotacoes .acao-btn:last-child:hover {
+
+    color: #d92d20 !important;
+
+    background: #fff1f0 !important;
+
+    border-color: #fecdca !important;
+}
+
+
+/* ---------------------------------------------------------
+   LINHAS EXPANDIDAS
+   --------------------------------------------------------- */
+
+.central-cotacoes .linha-itens td {
+
+    background: #f8fafc !important;
+}
+
+
+.central-cotacoes .itens-cotacao {
+
+    margin: 0 !important;
+
+    padding: 14px 18px !important;
+
+    background: #f8fafc !important;
+}
+
+
+.central-cotacoes .painel-itens {
+
+    background: #ffffff !important;
+
+    border: 1px solid #e4eaf0 !important;
+
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .central-cotacoes {
+
+        margin-top: 18px !important;
+
+        border-radius: 17px !important;
+    }
+
+
+    .central-cotacoes > .card-header {
+
+        min-height: 78px !important;
+
+        padding: 18px !important;
+    }
+
+
+    .central-cotacoes > .card-header h2 {
+
+        font-size: 18px !important;
+    }
+
+
+    .central-cotacoes > .card-header p {
+
+        font-size: 11px !important;
+    }
+
+
+    .central-cotacoes .tabela-dashboard {
+
+        margin: 14px !important;
+
+        overflow-x: auto !important;
+
+        border-radius: 12px !important;
+    }
+
+
+    .central-cotacoes .tabela-dashboard table {
+
+        min-width: 620px !important;
+    }
+
+
+    .central-cotacoes .tabela-dashboard thead th {
+
+        height: 42px !important;
+
+        padding: 0 13px !important;
+    }
+
+
+    .central-cotacoes .tabela-dashboard tbody td {
+
+        height: 56px !important;
+
+        padding: 0 13px !important;
+    }
+}
+
+/* =========================================================
+   CORREÇÃO — ESPAÇO EXCESSIVO ENTRE AS COTAÇÕES
+   ========================================================= */
+
+/* Linhas normais da tabela */
+.central-cotacoes .tabela-dashboard tbody tr:not(.linha-itens) {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+
+/* Células das cotações */
+.central-cotacoes .tabela-dashboard tbody tr:not(.linha-itens) td {
+    height: 56px !important;
+    min-height: 0 !important;
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    line-height: 1.2 !important;
+
+    vertical-align: middle !important;
+}
+
+
+/* =========================================================
+   LINHAS DE PRODUTOS — NÃO BLOQUEAR O JAVASCRIPT
+   ========================================================= */
+
+.central-cotacoes .tabela-dashboard tbody tr.linha-itens {
+    height: auto !important;
+}
+
+.central-cotacoes .tabela-dashboard tbody tr.linha-itens td {
+    height: auto !important;
+    padding: 0 !important;
+}
+
+
+/* Conteúdo expandido */
+
+.central-cotacoes .linha-itens .itens-cotacao {
+    margin: 0 !important;
+    padding: 14px 18px !important;
+
+    background: #f8fafc !important;
+
+    border-top: 1px solid #e8edf3 !important;
+}
+
+
+/* Painel interno */
+
+.central-cotacoes .linha-itens .painel-itens {
+    background: #ffffff !important;
+
+    border: 1px solid #e1e8f0 !important;
+
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+}
+
+/* =========================================================
+   REMOVE ESPAÇAMENTO ARTIFICIAL DA TABELA
+   ========================================================= */
+
+.central-cotacoes .tabela-dashboard table {
+    border-spacing: 0 !important;
+
+    border-collapse: collapse !important;
+}
+
+
+.central-cotacoes .tabela-dashboard tbody {
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   EVITA ALTURA EXTRA DOS ELEMENTOS
+   ========================================================= */
+
+.central-cotacoes .tabela-dashboard tbody tr {
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   ÚLTIMA LINHA
+   ========================================================= */
+
+.central-cotacoes .tabela-dashboard tbody tr:last-child td {
+    border-bottom: 0 !important;
+}
+
+/* =========================================================
+   COTAUP — VISUALIZAÇÃO EXPANDIDA PREMIUM
+   ========================================================= */
+
+
+/* Área expandida */
+
+.central-cotacoes .linha-itens > td {
+
+    padding: 18px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1f6ff 0%,
+            #f8fbff 55%,
+            #eef8f5 100%
+        ) !important;
+
+    border-top: 1px solid #dce7f2 !important;
+
+    border-bottom: 1px solid #dce7f2 !important;
+}
+
+
+/* =========================================================
+   CONTAINER DA VISUALIZAÇÃO
+   ========================================================= */
+
+.central-cotacoes .linha-itens .itens-cotacao {
+
+    padding: 20px !important;
+
+    margin: 0 !important;
+
+    background: rgba(255,255,255,.72) !important;
+
+    border: 1px solid rgba(207,219,233,.95) !important;
+
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 8px 24px rgba(20, 45, 80, .07),
+        inset 0 1px 0 rgba(255,255,255,.9) !important;
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   TABELA INTERNA
+   ========================================================= */
+
+.central-cotacoes .linha-itens .painel-itens {
+
+    width: 100% !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #d7e2ee !important;
+
+    border-radius: 14px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 5px 16px rgba(16,24,40,.06) !important;
+}
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+thead {
+
+    background:
+        linear-gradient(
+            90deg,
+            #eef4fb,
+            #f7faff
+        ) !important;
+}
+
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+thead th {
+
+    height: 48px !important;
+
+    padding: 0 18px !important;
+
+    color: #475467 !important;
+
+    background: transparent !important;
+
+    border-bottom: 1px solid #dce5ef !important;
+
+    font-size: 10px !important;
+
+    font-weight: 800 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: .7px !important;
+}
+
+
+/* =========================================================
+   LINHAS DOS MEDICAMENTOS
+   ========================================================= */
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+tbody
+tr {
+
+    transition:
+        transform .16s ease,
+        background .16s ease !important;
+}
+
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+tbody
+tr:hover {
+
+    background: #f5f9ff !important;
+
+    transform: translateX(2px);
+}
+
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+tbody
+td {
+
+    height: 38px !important;
+
+    padding: 0 18px !important;
+
+    color: #243247 !important;
+
+    background: transparent !important;
+
+    border-bottom: 1px solid #edf1f5 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1.3 !important;
+}
+
+
+/* =========================================================
+   NOME DO MEDICAMENTO
+   ========================================================= */
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+tbody
+td:first-child {
+
+    position: relative !important;
+
+    padding-left: 28px !important;
+
+    color: #182230 !important;
+
+    font-weight: 650 !important;
+}
+
+
+/* marcador lateral */
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+tbody
+td:first-child::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    transform: translateY(-50%);
+
+    box-shadow:
+        0 0 0 3px #eaf2ff;
+}
+
+
+/* =========================================================
+   QUANTIDADE
+   ========================================================= */
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+tbody
+td:last-child {
+
+    width: 120px !important;
+
+    color: #175cd3 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 800 !important;
+
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   ÚLTIMA LINHA
+   ========================================================= */
+
+.central-cotacoes
+.linha-itens
+.painel-itens
+tbody
+tr:last-child
+td {
+
+    border-bottom: none !important;
+}
+
+
+/* =========================================================
+   EFEITO DE ABERTURA
+   ========================================================= */
+
+.central-cotacoes
+.linha-itens {
+
+    animation: cotaupExpand .24s ease-out;
+}
+
+
+@keyframes cotaupExpand {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-5px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .central-cotacoes .linha-itens > td {
+
+        padding: 10px !important;
+    }
+
+    .central-cotacoes .linha-itens .itens-cotacao {
+
+        padding: 12px !important;
+
+        border-radius: 13px !important;
+    }
+
+    .central-cotacoes
+    .linha-itens
+    .painel-itens
+    thead
+    th {
+
+        height: 42px !important;
+
+        padding: 0 12px !important;
+    }
+
+    .central-cotacoes
+    .linha-itens
+    .painel-itens
+    tbody
+    td {
+
+        height: 36px !important;
+
+        padding: 0 12px !important;
+
+        font-size: 11px !important;
+    }
+
+    .central-cotacoes
+    .linha-itens
+    .painel-itens
+    tbody
+    td:first-child {
+
+        padding-left: 23px !important;
+    }
+
+    .central-cotacoes
+    .linha-itens
+    .painel-itens
+    tbody
+    td:first-child::before {
+
+        left: 10px;
+    }
+}
