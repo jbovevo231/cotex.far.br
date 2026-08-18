@@ -1468,66 +1468,267 @@
 }
 
 /* =========================================================
-   CORREÇÃO DOS 3 GRÁFICOS PRINCIPAIS
-   ========================================================= */
+   MEDICAMENTOS + DISTRIBUIÇÃO DOS STATUS
+   OCUPAR TODA A LARGURA DO ANALYTICS
+========================================================= */
 
-.analytics-card .grafico-wrapper {
-    position: relative !important;
+.analytics-dupla {
+
+    /* MUITO IMPORTANTE:
+       ocupa todas as colunas do grid principal */
+    grid-column: 1 / -1 !important;
 
     width: 100% !important;
 
-    height: 240px !important;
-    min-height: 240px !important;
-    max-height: 240px !important;
+    max-width: none !important;
 
-    padding: 10px 12px 12px !important;
+    min-width: 0 !important;
+
+    box-sizing: border-box !important;
+
+    display: grid !important;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+
+    gap: 20px !important;
+
+    margin: 20px 0 0 0 !important;
+
+    align-items: stretch !important;
+}
+
+
+/* =========================================================
+   OS DOIS CARDS
+========================================================= */
+
+.analytics-dupla > .analytics-card {
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+
+    align-self: stretch !important;
+}
+
+
+/* =========================================================
+   MEDICAMENTOS
+========================================================= */
+
+.analytics-dupla .medicamentos-card {
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    max-width: none !important;
 
     box-sizing: border-box !important;
 }
 
 
-/* Canvas dos gráficos principais */
+/* =========================================================
+   STATUS
+========================================================= */
 
-.analytics-card .grafico-wrapper canvas {
-    display: block !important;
+.analytics-dupla .status-card {
 
     width: 100% !important;
+
+    min-width: 0 !important;
+
+    max-width: none !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   GRÁFICO DOS MEDICAMENTOS
+========================================================= */
+
+.analytics-dupla .grafico-medicamentos-wrapper {
+
+    width: 100% !important;
+
+    height: 260px !important;
+
+    min-height: 260px !important;
+
+    max-height: 260px !important;
+
+    padding: 8px 15px 15px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+.analytics-dupla
+.grafico-medicamentos-wrapper
+canvas {
+
+    width: 100% !important;
+
     height: 100% !important;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.analytics-dupla .status-chart-content {
+
+    width: 100% !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    padding: 10px 20px 20px !important;
+}
+
+
+/* =========================================================
+   DONUT
+========================================================= */
+
+.analytics-dupla .status-donut-wrapper {
+
+    width: 100% !important;
+
+    max-width: 300px !important;
+
+    height: 260px !important;
+
+    min-height: 260px !important;
+
+    position: relative !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    margin: 0 auto !important;
+}
+
+
+.analytics-dupla
+.status-donut-wrapper
+canvas {
+
+    width: 100% !important;
+
+    height: 100% !important;
+}
+
+
+/* =========================================================
+   CENTRO DO DONUT
+========================================================= */
+
+.analytics-dupla .status-donut-center {
+
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   LEGENDA
+========================================================= */
+
+.analytics-dupla .status-legenda {
+
+    width: 100% !important;
 
     max-width: 100% !important;
-}
-
-
-/* =========================================================
-   MANTER MEDICAMENTOS COM TAMANHO PRÓPRIO
-   ========================================================= */
-
-.medicamentos-card .grafico-medicamentos-wrapper {
-    position: relative !important;
-
-    width: 100% !important;
-
-    height: 240px !important;
-    min-height: 240px !important;
-    max-height: 240px !important;
 
     box-sizing: border-box !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 8px !important;
+
+    margin-top: 8px !important;
 }
 
 
 /* =========================================================
-   NÃO DEIXAR O GRÁFICO DE STATUS SER AFETADO
-   ========================================================= */
+   TABLET / MOBILE
+========================================================= */
 
-.status-card .status-chart-content {
-    position: relative;
+@media (max-width: 900px) {
+
+    .analytics-dupla {
+
+        grid-template-columns: 1fr !important;
+
+    }
+
 }
 
 
 /* =========================================================
-   CHART.JS
-   ========================================================= */
+   CELULAR
+========================================================= */
 
-.analytics-card canvas {
-    box-sizing: border-box !important;
+@media (max-width: 600px) {
+
+    .analytics-dupla {
+
+        grid-template-columns: 1fr !important;
+
+        gap: 16px !important;
+
+    }
+
+    .analytics-dupla
+    .grafico-medicamentos-wrapper {
+
+        height: 240px !important;
+
+        min-height: 240px !important;
+
+        max-height: 240px !important;
+
+    }
+
+    .analytics-dupla
+    .status-donut-wrapper {
+
+        height: 240px !important;
+
+        min-height: 240px !important;
+
+    }
+
 }
