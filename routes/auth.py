@@ -27,6 +27,7 @@ import smtplib
 import os
 import time
 
+from datetime import datetime, timedelta
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -703,6 +704,47 @@ def redefinir_senha():
         )
     })
 
+# =========================================================
+# ATIVAR TESTE GRÁTIS (14 DIAS)
+# =========================================================
+
+@auth_bp.route("/ativar-teste", methods=["POST"])
+def ativar_teste():
+
+    if "usuario_id" not in session:
+        return jsonify({
+            "sucesso": False,
+            "erro": "Faça login para ativar o teste gratuito."
+        }), 401
+
+    db = get_db()
+
+    usuario_id = session["usuario_id"]
+
+    hoje = datetime.now()
+    fim = hoje + timedelta(days=14)
+
+    db.execute(
+        """
+        UPDATE usuarios
+        SET periodo_teste = ?,
+            trial_fim = ?
+        WHERE id = ?
+        """,
+        (
+            14,
+            fim.isoformat(),
+            usuario_id
+        )
+    )
+
+    db.commit()
+
+    return jsonify({
+        "sucesso": True,
+        "mensagem": "Teste gratuito ativado!",
+        "expira": fim.strftime("%d/%m/%Y")
+    })
 
 # =========================================================
 # LOGOUT

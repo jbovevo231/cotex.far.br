@@ -29,13 +29,15 @@ dashboard_bp = Blueprint(
 @dashboard_bp.route("/dashboard")
 def dashboard():
 
+    # Se não estiver logado, volta para a página inicial
+    if "usuario_id" not in session:
+        return redirect(url_for("inicio"))
+
     cnpj = session.get("usuario_cnpj")
 
     from models.usuario import buscar_usuario_por_id
 
-    usuario = buscar_usuario_por_id(
-        session["usuario_id"]
-    )
+    usuario = buscar_usuario_por_id(session["usuario_id"])
 
     print("===================================")
     print("USUARIO LOGADO:", usuario)
@@ -45,16 +47,21 @@ def dashboard():
     nome_farmacia = "Farmácia"
 
     if usuario:
+        nome_farmacia = usuario.get("nome", "Farmácia")
 
+    # ==========================================
+    # PLANO E DIAS RESTANTES (SIDEBAR)
+    # ==========================================
+
+    plano = usuario.get("plano", "teste")
+    dias_restantes = 0
+
+    if usuario.get("trial_fim"):
         try:
-            nome_farmacia = usuario["nome"]
-
-        except (TypeError, KeyError, IndexError):
-
-            try:
-                nome_farmacia = usuario[0]
-            except:
-                pass
+            fim = datetime.fromisoformat(usuario["trial_fim"])
+            dias_restantes = max((fim - datetime.now()).days, 0)
+        except:
+            dias_restantes = 0
 
     # ==========================================
     # INDICADORES
@@ -67,27 +74,13 @@ def dashboard():
     # ==========================================
 
     meses = [
-        "Janeiro",
-        "Fevereiro",
-        "Março",
-        "Abril",
-        "Maio",
-        "Junho",
-        "Julho",
-        "Agosto",
-        "Setembro",
-        "Outubro",
-        "Novembro",
-        "Dezembro"
+        "Janeiro", "Fevereiro", "Março", "Abril",
+        "Maio", "Junho", "Julho", "Agosto",
+        "Setembro", "Outubro", "Novembro", "Dezembro"
     ]
 
     mes_atual = meses[datetime.now().month - 1]
     indicadores["mes_atual"] = mes_atual
-
-    print("===================================")
-    print("INDICADORES:", indicadores)
-    print("MÊS ATUAL:", mes_atual)
-    print("===================================")
 
     # ==========================================
     # ÚLTIMAS COTAÇÕES
@@ -100,7 +93,10 @@ def dashboard():
         indicadores=indicadores,
         ultimas_cotacoes=ultimas_cotacoes,
         nome_farmacia=nome_farmacia,
-        mes_atual=mes_atual
+        mes_atual=mes_atual,
+        usuario=usuario,
+        plano=plano,
+        dias_restantes=dias_restantes
     )
 
 
@@ -183,11 +179,12 @@ def dashboard_historico():
 @dashboard_bp.route("/configuracoes")
 def configuracoes():
 
+    if "usuario_id" not in session:
+        return redirect(url_for("inicio"))
+
     from models.usuario import buscar_usuario_por_id
 
-    usuario = buscar_usuario_por_id(
-        session["usuario_id"]
-    )
+    usuario = buscar_usuario_por_id(session["usuario_id"])
 
     return render_template(
         "configuracoes.html",

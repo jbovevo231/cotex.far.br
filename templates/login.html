@@ -952,13 +952,8 @@
 
         </ul>
 
-        <button
-    type="button"
-    class="btn-plano"
-    onclick="ativarTesteGratis()">
-
+<button class="btn-outline" onclick="comecarTesteGratis()">
     Começar grátis
-
 </button>
 
     </div>
@@ -1507,30 +1502,45 @@ function toggleLoginCard(){
 
 }
 
-async function ativarTesteGratis(){
+async function comecarTesteGratis(){
 
-    const resposta = await fetch("/ativar-teste",{
-        method:"POST"
-    });
+    try{
 
-    if(resposta.status === 401){
-        abrirCadastro();
-        return;
-    }
+        const resposta = await fetch("/ativar-teste",{
+            method:"POST"
+        });
 
-    const dados = await resposta.json();
+        // Se não estiver logado, abre o cadastro
+        if(resposta.status === 401){
 
-    if(dados.erro === "JA_UTILIZADO"){
-        alert("Você já utilizou os 14 dias gratuitos.");
-        return;
-    }
+            abrirCadastro();
+            return;
 
-    if(dados.ok){
-        alert("Parabéns! Seu Premium foi ativado por 14 dias.");
+        }
+
+        const dados = await resposta.json();
+
+        if(!resposta.ok){
+
+            alert(dados.erro || "Não foi possível ativar o teste.");
+            return;
+
+        }
+
+        alert(`🎉 ${dados.mensagem}\nVálido até ${dados.expira}`);
+
         window.location.href="/dashboard";
+
+    }catch(e){
+
+        console.error(e);
+        alert("Erro ao conectar ao servidor.");
+
     }
 
-}
+
+    }
+
 
 
 

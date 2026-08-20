@@ -370,7 +370,6 @@ def buscar_usuario_por_id(
 
     db = get_db()
 
-
     usuario = db.execute(
         """
         SELECT
@@ -378,7 +377,10 @@ def buscar_usuario_por_id(
             nome,
             cnpj,
             telefone,
-            email
+            email,
+            plano,
+            periodo_teste,
+            trial_fim
         FROM usuarios
         WHERE id = ?
         """,
@@ -387,16 +389,17 @@ def buscar_usuario_por_id(
         )
     ).fetchone()
 
-
     if usuario is None:
 
         return None
-
 
     return {
         "id": usuario[0],
         "nome": usuario[1],
         "cnpj": usuario[2],
         "telefone": usuario[3],
-        "email": usuario[4]
+        "email": usuario[4],
+        "plano": usuario[5] if usuario[5] else "teste",
+        "periodo_teste": usuario[6],
+        "trial_fim": usuario[7]
     }
