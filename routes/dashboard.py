@@ -307,3 +307,35 @@ def alterar_senha():
     return redirect(
         url_for("dashboard.configuracoes")
     )
+
+
+# ==========================================
+# FORNECEDORES
+# ==========================================
+
+@dashboard_bp.route("/fornecedores")
+def fornecedores():
+
+    if "usuario_id" not in session:
+        return redirect(url_for("inicio"))
+
+    from models.usuario import buscar_usuario_por_id
+
+    usuario = buscar_usuario_por_id(session["usuario_id"])
+
+    plano = usuario.get("plano", "teste")
+    dias_restantes = 0
+
+    if usuario.get("trial_fim"):
+        try:
+            fim = datetime.fromisoformat(usuario["trial_fim"])
+            dias_restantes = max((fim - datetime.now()).days, 0)
+        except:
+            pass
+
+    return render_template(
+        "fornecedores.html",
+        usuario=usuario,
+        plano=plano,
+        dias_restantes=dias_restantes
+    )

@@ -1,510 +1,102 @@
 /* =====================================================
-   COTAFARMA - CONFIGURAÇÕES PREMIUM
-   Estilo SaaS moderno
+   COTAFARMA • CONFIGURAÇÕES
+   Mesmo visual do Conecta
 ===================================================== */
 
+/* ---------- CONTAINER ---------- */
 
-.config-container {
-
-    max-width:1200px;
-
-    margin:auto;
-
-    padding:40px;
-
+.config-container{
+    max-width:1120px;
+    margin:0 auto;
+    padding:28px 32px 40px;
 }
 
+/* ---------- HEADER ---------- */
 
-
-/* ================= HEADER ================= */
-
-
-.config-header {
-
-    margin-bottom:40px;
-
+.config-header{
+    margin-bottom:22px;
 }
 
+.config-header h1{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-.config-header h1 {
+    margin:0;
 
-    font-size:36px;
-
+    font-size:34px;
     font-weight:800;
-
-    color:#0f172a;
-
-    margin:0 0 8px;
-
     letter-spacing:-1px;
-
+    color:#111827;
 }
 
+.config-header h1 i{
+    width:42px;
+    height:42px;
 
-.config-header p {
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    color:#64748b;
+    border-radius:14px;
 
-    font-size:16px;
-
+    background:#18d27f;
+    color:white;
+    font-size:18px;
 }
 
-
-
-/* ================= GRID ================= */
-
-
-.config-grid {
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:30px;
-
-}
-
-
-
-/* ================= CARD ================= */
-
-
-.config-card {
-
-
-    background:white;
-
-
-    border-radius:30px;
-
-
-    padding:35px;
-
-
-    border:1px solid #e2e8f0;
-
-
-    box-shadow:
-
-    0 15px 40px rgba(15,23,42,.08);
-
-
-    transition:.3s ease;
-
-
-    position:relative;
-
-
-    overflow:hidden;
-
-}
-
-
-
-.config-card::before {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    top:0;
-
-    left:0;
-
-
-    width:100%;
-
-
-    height:5px;
-
-
-    background:
-
-    linear-gradient(
-        90deg,
-        #2563eb,
-        #06b6d4
-    );
-
-
-}
-
-
-
-.config-card:hover {
-
-
-    transform:translateY(-5px);
-
-
-    box-shadow:
-
-    0 25px 60px rgba(15,23,42,.12);
-
-
-}
-
-
-
-/* ================= TITULOS ================= */
-
-
-.config-card h2 {
-
-
-    font-size:22px;
-
-
-    color:#0f172a;
-
-
-    font-weight:800;
-
-
-    margin-bottom:30px;
-
-
-}
-
-
-
-/* ================= CAMPOS ================= */
-
-
-.form-group {
-
-
-    margin-bottom:24px;
-
-
-}
-
-
-
-.form-group label {
-
-
-    display:block;
-
-
-    font-size:13px;
-
-
-    font-weight:700;
-
-
-    color:#475569;
-
-
-    margin-bottom:8px;
-
-
-}
-
-
-
-
-.form-group input {
-
-
-    width:100%;
-
-
-    height:56px;
-
-
-    padding:0 20px;
-
-
-    border-radius:18px;
-
-
-    border:1px solid transparent;
-
-
-    background:#f1f5f9;
-
-
-    color:#0f172a;
-
+.config-header p{
+    margin:8px 0 0 54px;
 
     font-size:15px;
-
-
-    font-weight:500;
-
-
-    outline:none;
-
-
-    transition:.25s ease;
-
-
-    box-sizing:border-box;
-
-
-}
-
-
-
-/* hover */
-
-
-.form-group input:hover {
-
-
-    background:#e9eff7;
-
-
-}
-
-
-
-/* foco */
-
-
-.form-group input:focus {
-
-
-    background:white;
-
-
-    border-color:#2563eb;
-
-
-    box-shadow:
-
-
-    0 0 0 5px rgba(37,99,235,.12);
-
-
-}
-
-
-
-/* bloqueado */
-
-
-.form-group input:disabled {
-
-
-    background:#e2e8f0;
-
-
     color:#64748b;
-
-
+    line-height:1.55;
 }
 
-
-
-
-.form-group input::placeholder {
-
-
-    color:#94a3b8;
-
-
-}
-
-
-
-/* ================= BOTÕES ================= */
-
-
-.btn-save {
-
-
-    width:100%;
-
-
-    height:58px;
-
-
-    border:none;
-
-
-    border-radius:20px;
-
-
-    cursor:pointer;
-
-
-    font-size:16px;
-
-
-    font-weight:800;
-
-
-    color:white;
-
-
-    background:
-
-
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-    );
-
-
-    box-shadow:
-
-    0 15px 35px rgba(37,99,235,.30);
-
-
-    transition:.3s ease;
-
-
-}
-
-
-
-.btn-save:hover {
-
-
-    transform:translateY(-3px);
-
-
-    box-shadow:
-
-    0 20px 45px rgba(37,99,235,.40);
-
-
-}
-
-
-
-/* ================= SEÇÃO DE SENHA ================= */
-
-
-.password-card {
-
-
-    background:
-
-    linear-gradient(
-        145deg,
-        #ffffff,
-        #f8fafc
-    );
-
-
-}
-
-
-
-/* ================= ALERTAS ================= */
-
-
-.alert {
-
-
-    padding:15px 20px;
-
-
-    border-radius:16px;
-
-
-    margin-bottom:20px;
-
-
-    font-weight:600;
-
-
-}
-
-
-
-/* ================= MOBILE ================= */
-
-
-@media(max-width:900px){
-
-
-    .config-container {
-
-
-        padding:20px;
-
-
-    }
-
-
-
-    .config-grid {
-
-
-        grid-template-columns:1fr;
-
-
-    }
-
-
-
-    .config-card {
-
-
-        padding:25px;
-
-
-        border-radius:22px;
-
-
-    }
-
-
-
-    .config-header h1 {
-
-
-        font-size:28px;
-
-
-    }
-
-
-}
-
-/* ======================================================
-   PREMIUM CARD — Compacto
-====================================================== */
+/* =====================================================
+   PREMIUM CARD
+===================================================== */
 
 .premium-card{
     position:relative;
     overflow:hidden;
 
-    margin-bottom:20px;
+    margin-bottom:22px;
     padding:20px;
 
     border-radius:22px;
 
-    background:linear-gradient(135deg,#071426,#0b2340);
-    border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(135deg,#031628,#083053);
 
-    color:#fff;
-    box-shadow:0 12px 30px rgba(0,0,0,.16);
+    border:1px solid rgba(255,255,255,.06);
+
+    color:white;
+
+    box-shadow:0 16px 36px rgba(3,22,40,.18);
 }
 
-.premium-card::before{
+.premium-card::after{
     content:"";
+
     position:absolute;
-    inset:0;
-    background:radial-gradient(circle at top right,
-        rgba(24,210,127,.16),
-        transparent 55%);
+
+    top:-60px;
+    right:-40px;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(24,210,127,.10);
 }
 
 .premium-content{
     position:relative;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:18px;
 }
 
 .premium-badge{
@@ -517,39 +109,43 @@
     border-radius:999px;
 
     background:rgba(24,210,127,.12);
+
     color:#4ade80;
 
-    font-size:11px;
+    font-size:10px;
     font-weight:700;
-    letter-spacing:.04em;
+    text-transform:uppercase;
+    letter-spacing:.06em;
 }
 
 .premium-text h2{
-    margin:10px 0 6px;
-    font-size:28px;
+    margin:10px 0 2px;
+
+    font-size:22px;
     font-weight:800;
-    line-height:1.15;
 }
 
 .premium-text p{
     margin:0;
-    color:#bfd0df;
-    font-size:14px;
+
+    color:#b8c7d8;
+
+    font-size:13px;
 }
 
 .premium-crown{
-    width:64px;
-    height:64px;
+    width:54px;
+    height:54px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:18px;
+    border-radius:16px;
 
     background:rgba(255,255,255,.06);
 
-    font-size:28px;
+    font-size:22px;
     color:#4ade80;
 }
 
@@ -558,55 +154,215 @@
 
     display:grid;
     grid-template-columns:repeat(2,1fr);
+
     gap:10px;
 
-    margin-top:18px;
+    margin-top:16px;
 }
 
 .premium-stat{
     padding:12px 14px;
-    border-radius:14px;
-    background:rgba(255,255,255,.05);
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.06);
+
+    backdrop-filter:blur(10px);
 }
 
 .premium-stat span{
     display:block;
-    color:#9fb0c0;
-    font-size:11px;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    color:#9fb4c8;
 }
 
 .premium-stat strong{
     display:block;
     margin-top:4px;
+
+    font-size:15px;
+    font-weight:700;
+}
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.config-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:22px;
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.config-card{
+    background:white;
+
+    border:1px solid #e8edf3;
+
+    border-radius:22px;
+
+    padding:24px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+    transition:.25s ease;
+}
+
+.config-card:hover{
+    border-color:#d8e3ee;
+    box-shadow:0 12px 30px rgba(15,23,42,.08);
+}
+
+.config-card h2{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin:0 0 22px;
+
+    font-size:19px;
+    font-weight:800;
+    color:#111827;
+}
+
+.config-card h2 i{
+    color:#18d27f;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    color:#64748b;
+}
+
+.form-group input{
+    width:100%;
+
+    height:48px;
+
+    padding:0 16px;
+
+    border:1px solid #edf2f7;
+
+    border-radius:14px;
+
+    background:#f8fafc;
+
+    color:#111827;
+
     font-size:14px;
-    color:#fff;
+    font-weight:500;
+
+    transition:.22s;
+
+    box-sizing:border-box;
 }
 
-/* CORES DOS PLANOS */
-
-.premium-card.mensal .premium-badge,
-.premium-card.mensal .premium-crown{
-    color:#60a5fa;
+.form-group input:hover{
+    background:white;
 }
 
-.premium-card.semestral .premium-badge,
-.premium-card.semestral .premium-crown{
-    color:#c084fc;
+.form-group input:focus{
+    outline:none;
+
+    border-color:#18d27f;
+
+    box-shadow:0 0 0 4px rgba(24,210,127,.12);
+
+    background:white;
 }
 
-.premium-card.anual .premium-badge,
-.premium-card.anual .premium-crown{
-    color:#facc15;
+.form-group input:disabled{
+    background:#f1f5f9;
+    color:#64748b;
 }
 
-/* MOBILE */
+/* =====================================================
+   BOTÃO
+===================================================== */
 
-@media(max-width:768px){
+.btn-save{
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    font-size:14px;
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    box-shadow:0 10px 24px rgba(37,99,235,.22);
+
+    transition:.22s;
+}
+
+.btn-save:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 30px rgba(37,99,235,.28);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:900px){
+
+    .config-container{
+        padding:18px 16px 96px;
+    }
+
+    .config-header h1{
+        font-size:28px;
+    }
+
+    .config-header h1 i{
+        width:38px;
+        height:38px;
+        font-size:17px;
+    }
+
+    .config-header p{
+        margin-left:50px;
+        font-size:13px;
+    }
 
     .premium-card{
         padding:16px;
         border-radius:18px;
-        margin-bottom:16px;
     }
 
     .premium-content{
@@ -614,41 +370,26 @@
     }
 
     .premium-crown{
-        width:52px;
-        height:52px;
-        font-size:22px;
-        border-radius:15px;
+        width:46px;
+        height:46px;
+        font-size:18px;
     }
 
     .premium-text h2{
-        font-size:22px;
-        margin:8px 0 4px;
-    }
-
-    .premium-text p{
-        font-size:12px;
-    }
-
-    .premium-badge{
-        font-size:10px;
-        padding:4px 8px;
+        font-size:19px;
     }
 
     .premium-stats{
-        gap:8px;
-        margin-top:14px;
+        grid-template-columns:1fr;
     }
 
-    .premium-stat{
-        padding:10px 12px;
-        border-radius:12px;
+    .config-grid{
+        grid-template-columns:1fr;
+        gap:16px;
     }
 
-    .premium-stat span{
-        font-size:10px;
-    }
-
-    .premium-stat strong{
-        font-size:13px;
+    .config-card{
+        padding:20px;
+        border-radius:18px;
     }
 }

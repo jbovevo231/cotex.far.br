@@ -64,93 +64,11 @@
 
     </div>
 
-    {% set plano_atual = plano|default('teste') %}
 
-    <!-- ================= PLANO DO USUÁRIO ================= -->
 
-    <div class="sidebar-plan {% if plano_atual == 'anual' %}anual{% elif plano_atual == '6meses' %}semestral{% elif plano_atual == 'mensal' %}mensal{% else %}teste{% endif %}">
 
-        <div class="plan-header">
-            <i class="bi bi-crown-fill"></i>
 
-            <span>
-                {% if plano_atual == "teste" %}
-                    TESTE PREMIUM
-                {% else %}
-                    PREMIUM
-                {% endif %}
-            </span>
-        </div>
 
-        <div class="plan-title">
-
-            {% if plano_atual == "anual" %}
-                Plano Anual
-
-            {% elif plano_atual == "6meses" %}
-                Plano 6 Meses
-
-            {% elif plano_atual == "mensal" %}
-                Plano Mensal
-
-            {% else %}
-                Teste grátis • 14 dias
-            {% endif %}
-
-        </div>
-
-        <div class="plan-sub">
-
-            {% if plano_atual == "teste" %}
-                Restam {{ dias_restantes|default(14) }} dias
-
-            {% elif plano_atual == "mensal" %}
-                Renovação mensal
-
-            {% elif plano_atual == "6meses" %}
-                Economia de 10%
-
-            {% elif plano_atual == "anual" %}
-                Economia de 20%
-            {% endif %}
-
-        </div>
-
-        <div class="plan-footer">
-
-            {% if plano_atual == "teste" %}
-
-                <span class="plan-badge success">
-                    <i class="bi bi-check-circle-fill"></i>
-                    ATIVO
-                </span>
-
-            {% elif plano_atual == "6meses" %}
-
-                <span class="plan-badge purple">
-                    <i class="bi bi-piggy-bank-fill"></i>
-                    -10%
-                </span>
-
-            {% elif plano_atual == "anual" %}
-
-                <span class="plan-badge gold">
-                    <i class="bi bi-piggy-bank-fill"></i>
-                    -20%
-                </span>
-
-            {% else %}
-
-                <span class="plan-badge blue">
-                    <i class="bi bi-calendar-check-fill"></i>
-                    Premium ativo
-                </span>
-
-            {% endif %}
-
-        </div>
-
-    </div>
 
     <!-- MENU -->
 
@@ -204,15 +122,11 @@
     GESTÃO
 </small>
 
-            <a href="#">
-
-                <i class="bi bi-building"></i>
-
-                <span>
-                    Fornecedores
-                </span>
-
-            </a>
+<a href="{{ url_for('dashboard.fornecedores') }}"
+   class="{% if request.endpoint == 'dashboard.fornecedores' %}active{% endif %}">
+    <i class="bi bi-building"></i>
+    <span>Fornecedores</span>
+</a>
 
 
 

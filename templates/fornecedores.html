@@ -1,0 +1,357 @@
+{% extends "base.html" %}
+
+{% block title %}Fornecedores{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fornecedores.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<div class="fornecedores-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="forn-header">
+
+        <div class="forn-title">
+
+            <div class="forn-icon">
+                <i class="bi bi-building"></i>
+            </div>
+
+            <div>
+                <h1>Fornecedores</h1>
+                <p>Encontre distribuidores, laboratórios e representantes verificados.</p>
+            </div>
+
+        </div>
+
+        <button class="btn-primary">
+            <i class="bi bi-plus-circle"></i>
+            Novo fornecedor
+        </button>
+
+    </div>
+
+    <!-- ================= BUSCA ================= -->
+
+    <div class="search-box">
+
+        <i class="bi bi-search"></i>
+
+        <input type="text" placeholder="Buscar fornecedor, laboratório, produto...">
+
+    </div>
+
+    <!-- ================= MÉTRICAS ================= -->
+
+    <div class="metric-grid">
+
+        <div class="metric-card blue">
+            <div class="metric-icon"><i class="bi bi-building"></i></div>
+            <div class="metric-value">30</div>
+            <div class="metric-label">Distribuidoras</div>
+        </div>
+
+        <div class="metric-card green">
+            <div class="metric-icon"><i class="bi bi-patch-check-fill"></i></div>
+            <div class="metric-value">24</div>
+            <div class="metric-label">Verificados</div>
+        </div>
+
+        <div class="metric-card purple">
+            <div class="metric-icon"><i class="bi bi-people-fill"></i></div>
+            <div class="metric-value">82</div>
+            <div class="metric-label">Representantes</div>
+        </div>
+
+        <div class="metric-card gold">
+            <div class="metric-icon"><i class="bi bi-box-seam"></i></div>
+            <div class="metric-value">1.284</div>
+            <div class="metric-label">Produtos</div>
+        </div>
+
+    </div>
+
+    <!-- ================= FILTROS ================= -->
+
+    <div class="filter-bar">
+
+        <button class="filter active">Todos</button>
+        <button class="filter">Nordeste</button>
+        <button class="filter">Entrega 24h</button>
+        <button class="filter">Hospitalar</button>
+        <button class="filter">Genéricos</button>
+
+    </div>
+
+    <!-- ================= CONTEÚDO ================= -->
+
+    <div class="forn-layout">
+
+        <!-- ESQUERDA -->
+
+        <div class="forn-feed">
+
+            <!-- CARD 1 -->
+
+            <div class="supplier-card">
+
+                <div class="supplier-cover">
+                    <div class="supplier-logo">
+                        <i class="bi bi-building"></i>
+                    </div>
+                </div>
+
+                <div class="supplier-body">
+
+                    <h3>Distribuidora Saúde Plus</h3>
+
+                    <div class="supplier-badges">
+                        <span class="badge success">Verificado</span>
+                        <span class="badge">Nordeste</span>
+                        <span class="badge warning">24h</span>
+                    </div>
+
+                    <p class="supplier-desc">
+                        Especializada em medicamentos éticos, genéricos e hospitalares com cobertura em todo o Nordeste.
+                    </p>
+
+                    <div class="supplier-metrics">
+
+                        <div>
+                            <strong>4.9</strong>
+                            <span>Avaliação</span>
+                        </div>
+
+                        <div>
+                            <strong>12 mil</strong>
+                            <span>Produtos</span>
+                        </div>
+
+                        <div>
+                            <strong>8 min</strong>
+                            <span>Resposta</span>
+                        </div>
+
+                    </div>
+
+                    <div class="supplier-actions">
+                        <button class="btn-green">Cotar agora</button>
+                        <button class="btn-outline">Ver perfil</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+
+            <div class="supplier-card">
+
+                <div class="supplier-cover dark">
+                    <div class="supplier-logo">
+                        <i class="bi bi-capsule"></i>
+                    </div>
+                </div>
+
+                <div class="supplier-body">
+
+                    <h3>Farma Norte</h3>
+
+                    <div class="supplier-badges">
+                        <span class="badge success">Verificado</span>
+                        <span class="badge">Genéricos</span>
+                    </div>
+
+                    <p class="supplier-desc">
+                        Distribuição rápida para farmácias e hospitais, com foco em medicamentos populares e logística expressa.
+                    </p>
+
+                    <div class="supplier-metrics">
+
+                        <div>
+                            <strong>4.8</strong>
+                            <span>Avaliação</span>
+                        </div>
+
+                        <div>
+                            <strong>8 mil</strong>
+                            <span>Produtos</span>
+                        </div>
+
+                        <div>
+                            <strong>11 min</strong>
+                            <span>Resposta</span>
+                        </div>
+
+                    </div>
+
+                    <div class="supplier-actions">
+                        <button class="btn-green">Cotar agora</button>
+                        <button class="btn-outline">Ver perfil</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+
+            <div class="supplier-card">
+
+                <div class="supplier-cover purple">
+                    <div class="supplier-logo">
+                        <i class="bi bi-prescription2"></i>
+                    </div>
+                </div>
+
+                <div class="supplier-body">
+
+                    <h3>Vida Pharma Distribuição</h3>
+
+                    <div class="supplier-badges">
+                        <span class="badge success">Verificado</span>
+                        <span class="badge">Hospitalar</span>
+                    </div>
+
+                    <p class="supplier-desc">
+                        Fornecedor especializado em medicamentos de alto custo e produtos hospitalares para compras em grande volume.
+                    </p>
+
+                    <div class="supplier-metrics">
+
+                        <div>
+                            <strong>4.7</strong>
+                            <span>Avaliação</span>
+                        </div>
+
+                        <div>
+                            <strong>18 mil</strong>
+                            <span>Produtos</span>
+                        </div>
+
+                        <div>
+                            <strong>15 min</strong>
+                            <span>Resposta</span>
+                        </div>
+
+                    </div>
+
+                    <div class="supplier-actions">
+                        <button class="btn-green">Cotar agora</button>
+                        <button class="btn-outline">Ver perfil</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SIDEBAR DIREITA -->
+
+        <div class="forn-sidebar">
+
+            <!-- TOP -->
+
+            <div class="side-card">
+
+                <div class="side-title">
+                    <h3>Mais rápidos da semana</h3>
+                    <span>TOP</span>
+                </div>
+
+                <div class="rank-item">
+                    <strong>Saúde Plus</strong>
+                    <small>8 min</small>
+                </div>
+
+                <div class="rank-item">
+                    <strong>Farma Norte</strong>
+                    <small>11 min</small>
+                </div>
+
+                <div class="rank-item">
+                    <strong>Vida Pharma</strong>
+                    <small>15 min</small>
+                </div>
+
+            </div>
+
+            <!-- OFERTAS -->
+
+            <div class="side-card">
+
+                <div class="side-title">
+                    <h3>Ofertas Relâmpago</h3>
+                </div>
+
+                <div class="offer-item">
+                    <div class="offer-icon">🔥</div>
+                    <div>
+                        <strong>Dipirona 500mg</strong>
+                        <small>-18% hoje</small>
+                    </div>
+                </div>
+
+                <div class="offer-item">
+                    <div class="offer-icon">⚡</div>
+                    <div>
+                        <strong>Paracetamol</strong>
+                        <small>Frete grátis</small>
+                    </div>
+                </div>
+
+                <div class="offer-item">
+                    <div class="offer-icon">💊</div>
+                    <div>
+                        <strong>Omeprazol</strong>
+                        <small>Lote promocional</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CATEGORIAS -->
+
+            <div class="side-card">
+
+                <div class="side-title">
+                    <h3>Categorias populares</h3>
+                </div>
+
+                <div class="category-list">
+
+                    <div class="category-item">
+                        <i class="bi bi-capsule"></i>
+                        <span>Genéricos</span>
+                    </div>
+
+                    <div class="category-item">
+                        <i class="bi bi-heart-pulse"></i>
+                        <span>Hospitalar</span>
+                    </div>
+
+                    <div class="category-item">
+                        <i class="bi bi-box-seam"></i>
+                        <span>Perfumaria</span>
+                    </div>
+
+                    <div class="category-item">
+                        <i class="bi bi-droplet"></i>
+                        <span>Injetáveis</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
