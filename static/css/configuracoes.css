@@ -470,3 +470,185 @@
 
 }
 
+/* ======================================================
+   PREMIUM CARD — Compacto
+====================================================== */
+
+.premium-card{
+    position:relative;
+    overflow:hidden;
+
+    margin-bottom:20px;
+    padding:20px;
+
+    border-radius:22px;
+
+    background:linear-gradient(135deg,#071426,#0b2340);
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+    box-shadow:0 12px 30px rgba(0,0,0,.16);
+}
+
+.premium-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at top right,
+        rgba(24,210,127,.16),
+        transparent 55%);
+}
+
+.premium-content{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+}
+
+.premium-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    padding:5px 10px;
+
+    border-radius:999px;
+
+    background:rgba(24,210,127,.12);
+    color:#4ade80;
+
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.04em;
+}
+
+.premium-text h2{
+    margin:10px 0 6px;
+    font-size:28px;
+    font-weight:800;
+    line-height:1.15;
+}
+
+.premium-text p{
+    margin:0;
+    color:#bfd0df;
+    font-size:14px;
+}
+
+.premium-crown{
+    width:64px;
+    height:64px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.06);
+
+    font-size:28px;
+    color:#4ade80;
+}
+
+.premium-stats{
+    position:relative;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.premium-stat{
+    padding:12px 14px;
+    border-radius:14px;
+    background:rgba(255,255,255,.05);
+}
+
+.premium-stat span{
+    display:block;
+    color:#9fb0c0;
+    font-size:11px;
+}
+
+.premium-stat strong{
+    display:block;
+    margin-top:4px;
+    font-size:14px;
+    color:#fff;
+}
+
+/* CORES DOS PLANOS */
+
+.premium-card.mensal .premium-badge,
+.premium-card.mensal .premium-crown{
+    color:#60a5fa;
+}
+
+.premium-card.semestral .premium-badge,
+.premium-card.semestral .premium-crown{
+    color:#c084fc;
+}
+
+.premium-card.anual .premium-badge,
+.premium-card.anual .premium-crown{
+    color:#facc15;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .premium-card{
+        padding:16px;
+        border-radius:18px;
+        margin-bottom:16px;
+    }
+
+    .premium-content{
+        gap:14px;
+    }
+
+    .premium-crown{
+        width:52px;
+        height:52px;
+        font-size:22px;
+        border-radius:15px;
+    }
+
+    .premium-text h2{
+        font-size:22px;
+        margin:8px 0 4px;
+    }
+
+    .premium-text p{
+        font-size:12px;
+    }
+
+    .premium-badge{
+        font-size:10px;
+        padding:4px 8px;
+    }
+
+    .premium-stats{
+        gap:8px;
+        margin-top:14px;
+    }
+
+    .premium-stat{
+        padding:10px 12px;
+        border-radius:12px;
+    }
+
+    .premium-stat span{
+        font-size:10px;
+    }
+
+    .premium-stat strong{
+        font-size:13px;
+    }
+}

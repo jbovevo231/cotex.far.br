@@ -1,326 +1,160 @@
 /* ==================================================
-   COTAFARMA • SIDEBAR MOBILE HORIZONTAL
+   COTAFARMA • MOBILE DOCK (macOS)
 ================================================== */
 
+@media (max-width:992px){
 
-/* ==================================================
-   TABLET / MOBILE
-================================================== */
+    /* DOCK */
 
-@media (max-width: 992px) {
+    .sidebar{
+        position:fixed;
+        left:12px;
+        right:12px;
+        bottom:12px;
+        top:auto;
 
-    /* SIDEBAR HORIZONTAL */
+        width:auto;
+        height:72px;
 
-    .sidebar {
+        display:flex !important;
+        align-items:center;
+        justify-content:center;
 
-        position: fixed;
+        padding:8px;
 
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: auto;
+        background:rgba(4,18,36,.92);
+        backdrop-filter:blur(24px);
 
-        width: 100%;
-        height: 76px;
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:20px;
 
-        padding: 8px 14px;
+        box-shadow:
+            0 20px 45px rgba(0,0,0,.35);
 
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        border-radius: 22px 22px 0 0;
-
-        z-index: 9999;
-
-        overflow: visible;
-
+        z-index:9999;
     }
 
+    /* Esconde elementos do desktop */
 
-    /* LOGO */
-
-    .sidebar-logo {
-
-        display: none;
-
+    .sidebar-logo,
+    .sidebar-plan,
+    .user,
+    .menu-title{
+        display:none !important;
     }
-
 
     /* MENU */
 
-    .menu {
+    .menu{
+        width:100%;
 
-        width: 100%;
+        display:flex !important;
+        flex-direction:row !important;
+        align-items:center;
+        justify-content:space-between;
 
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: center;
-
-        justify-content: space-around;
-
-        gap: 6px;
-
+        gap:2px;
     }
 
+    .menu a{
+        flex:1;
+        max-width:none;
+        min-width:0;
+        height:52px;
 
-    /* ESCONDE TÍTULOS */
+        display:flex;
+        align-items:center;
+        justify-content:center;
 
-    .menu-title {
+        margin:0;
+        padding:0;
 
-        display: none;
-
+        border-radius:14px;
+        transition:.22s ease;
     }
 
-
-    /* LINKS */
-
-    .menu a {
-
-        flex: 1;
-
-        width: auto;
-
-        height: 58px;
-
-        margin: 0;
-
-        padding: 0;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        align-items: center;
-
-        gap: 0;
-
-        border-radius: 16px;
-
-        transform: none !important;
-
+    .menu a span{
+        display:none;
     }
 
-
-    /* ESCONDE TEXTO */
-
-    .menu a span {
-
-        display: none;
-
+    .menu a::before{
+        display:none;
     }
 
+    .menu a i{
+        width:38px;
+        height:38px;
 
-    /* ÍCONES */
+        display:flex;
+        align-items:center;
+        justify-content:center;
 
-    .menu a i {
+        border-radius:12px;
 
-        width: 42px;
+        font-size:18px;
+        color:#8EA4B8;
 
-        height: 42px;
-
-        margin: 0;
-
-        border-radius: 13px;
-
-        font-size: 18px;
-
+        transition:.22s ease;
     }
 
+    /* Hover */
 
-    /* REMOVE BARRA LATERAL */
-
-    .menu a::before {
-
-        display: none;
-
+    .menu a:hover i{
+        background:rgba(255,255,255,.05);
+        color:#fff;
     }
 
+    /* Ativo */
 
-    /* ITEM ATIVO */
-
-    .menu a.active {
-
-        border: 1px solid rgba(24,210,127,.18);
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(24,210,127,.18),
-                rgba(24,210,127,.10)
-            );
-
+    .menu a.active{
+        background:transparent;
     }
 
-
-    .menu a.active i {
-
-        background:
-            linear-gradient(
-                135deg,
-                var(--green),
-                var(--green2)
-            );
-
-        color: white;
-
-        box-shadow:
-            0 8px 20px rgba(24,210,127,.30);
-
+    .menu a.active i{
+        background:linear-gradient(135deg,#18D27F,#12B76A);
+        color:#fff;
+        box-shadow:0 8px 18px rgba(24,210,127,.32);
+        transform:translateY(-2px);
     }
 
+    /* Conteúdo */
 
-    /* USUÁRIO */
-
-    .user {
-
-        display: none;
-
+    .content{
+        margin-left:0;
+        width:100%;
+        padding:16px;
+        padding-bottom:98px;
     }
 
-
-    /* CONTEÚDO */
-
-    .content {
-
-        margin-left: 0;
-
-        width: 100%;
-
-        min-height: 100vh;
-
-        padding: 18px;
-
-        padding-bottom: 100px;
-
+    .page-wrapper{
+        width:100%;
     }
-
-
-    .page-wrapper {
-
-        width: 100%;
-
-    }
-
 }
 
+/* iPhone pequeno */
 
-/* ==================================================
-   CELULAR
-================================================== */
+@media (max-width:480px){
 
-@media (max-width: 768px) {
-
-    .sidebar {
-
-        height: 70px;
-
-        padding: 6px 10px;
-
-        border-radius: 18px 18px 0 0;
-
+    .sidebar{
+        left:10px;
+        right:10px;
+        bottom:10px;
+        height:68px;
+        border-radius:18px;
     }
 
-
-    .menu {
-
-        gap: 4px;
-
+    .menu a{
+        height:48px;
     }
 
-
-    .menu a {
-
-        height: 56px;
-
-        border-radius: 14px;
-
+    .menu a i{
+        width:34px;
+        height:34px;
+        font-size:16px;
     }
 
-
-    .menu a i {
-
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 17px;
-
-        border-radius: 12px;
-
+    .content{
+        padding:14px;
+        padding-bottom:92px;
     }
-
-
-    .content {
-
-        margin-left: 0;
-
-        width: 100%;
-
-        padding: 16px;
-
-        padding-bottom: 90px;
-
-    }
-
 }
-
-
-/* ==================================================
-   CELULAR PEQUENO
-================================================== */
-
-@media (max-width: 480px) {
-
-    .sidebar {
-
-        height: 66px;
-
-        padding: 5px 6px;
-
-        border-radius: 16px 16px 0 0;
-
-    }
-
-
-    .menu {
-
-        gap: 2px;
-
-    }
-
-
-    .menu a {
-
-        height: 54px;
-
-        border-radius: 13px;
-
-    }
-
-
-    .menu a i {
-
-        width: 38px;
-
-        height: 38px;
-
-        font-size: 16px;
-
-    }
-
-
-    .content {
-
-        padding: 14px;
-
-        padding-bottom: 84px;
-
-    }
-
-}
-

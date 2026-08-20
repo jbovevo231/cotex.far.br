@@ -1,333 +1,180 @@
 {% extends "base.html" %}
 
-
 {% block title %}
 Configurações
 {% endblock %}
 
-
-
 {% block css %}
-
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/dashboard.css') }}">
-
-
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/configuracoes.css') }}">
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/configuracoes.css') }}">
 {% endblock %}
-
-
-
-
 
 {% block page_content %}
 
-
-
 <div class="config-container">
 
-
+    <!-- HEADER -->
 
     <div class="config-header">
+        <div>
+            <h1><i class="bi bi-gear"></i> Configurações</h1>
+            <p>Gerencie sua conta, plano Premium e dados da farmácia.</p>
+        </div>
+    </div>
 
-        <h1>
-            <i class="bi bi-gear"></i>
-            Configurações
-        </h1>
+    <!-- CARD PREMIUM -->
 
-        <p>
-            Gerencie os dados da sua farmácia e sua senha.
-        </p>
+    <div class="premium-card
+    {% if plano == 'anual' %}anual
+    {% elif plano == '6meses' %}semestral
+    {% elif plano == 'mensal' %}mensal
+    {% else %}teste{% endif %}">
+
+        <div class="premium-content">
+
+            <div class="premium-text">
+
+                <div class="premium-badge">
+                    <i class="bi bi-stars"></i>
+
+                    {% if plano == "teste" %}
+                        TESTE PREMIUM
+                    {% else %}
+                        COTAFARMA PREMIUM
+                    {% endif %}
+                </div>
+
+                <h2>
+                    {% if plano == "anual" %}
+                        Plano Anual
+                    {% elif plano == "6meses" %}
+                        Plano 6 Meses
+                    {% elif plano == "mensal" %}
+                        Plano Mensal
+                    {% else %}
+                        Teste grátis • 14 dias
+                    {% endif %}
+                </h2>
+
+                <p>
+                    {% if plano == "teste" %}
+                        Restam <strong>{{ dias_restantes }}</strong> dias para aproveitar todos os recursos.
+                    {% elif plano == "mensal" %}
+                        Renovação mensal ativa.
+                    {% elif plano == "6meses" %}
+                        Você está economizando 10%.
+                    {% elif plano == "anual" %}
+                        Você está economizando 20%.
+                    {% endif %}
+                </p>
+
+            </div>
+
+            <div class="premium-crown">
+                <i class="bi bi-crown-fill"></i>
+            </div>
+
+        </div>
+
+        <div class="premium-stats">
+
+            <div class="premium-stat">
+                <span>Status</span>
+
+                <strong>Ativo</strong>
+            </div>
+
+            <div class="premium-stat">
+                <span>CNPJ</span>
+
+                <strong>{{ usuario.cnpj }}</strong>
+            </div>
+
+        </div>
 
     </div>
 
-
-
-
+    <!-- CARDS -->
 
     <div class="config-grid">
 
-
-
-
-
-        <!-- =========================
-             DADOS CADASTRAIS
-        ========================== -->
-
+        <!-- DADOS -->
 
         <div class="config-card">
 
+            <div class="card-title">
+                <i class="bi bi-building"></i>
+                <h2>Dados cadastrais</h2>
+            </div>
 
-            <h2>
-                Dados cadastrais
-            </h2>
-
-
-
-
-            <form method="POST"
-            action="{{ url_for('dashboard.atualizar_dados') }}">
-
-
-
-
+            <form method="POST" action="{{ url_for('dashboard.atualizar_dados') }}">
 
                 <div class="form-group">
-
-
-                    <label>
-                        Nome da Farmácia
-                    </label>
-
-
-                    <input
-                    type="text"
-                    value="{{ usuario.nome }}"
-                    class="form-control"
-                    disabled>
-
-
+                    <label>Nome da Farmácia</label>
+                    <input type="text" value="{{ usuario.nome }}" class="form-control" disabled>
                 </div>
-
-
-
-
-
 
                 <div class="form-group">
-
-
-                    <label>
-                        CNPJ
-                    </label>
-
-
-                    <input
-                    type="text"
-                    value="{{ usuario.cnpj }}"
-                    class="form-control"
-                    disabled>
-
-
+                    <label>CNPJ</label>
+                    <input type="text" value="{{ usuario.cnpj }}" class="form-control" disabled>
                 </div>
-
-
-
-
-
-
 
                 <div class="form-group">
-
-
-                    <label>
-                        WhatsApp
-                    </label>
-
-
-                    <input
-type="text"
-value="{{ usuario.telefone or '' }}"
-class="form-control"
-disabled>
-
-
+                    <label>WhatsApp</label>
+                    <input type="text" value="{{ usuario.telefone or '' }}" class="form-control" disabled>
                 </div>
-
-
-
-
-
-
 
                 <div class="form-group">
-
-
-                    <label>
-                        E-mail
-                    </label>
-
-
-                    <input
-                    type="email"
-                    name="email"
-                    value="{{ usuario.email }}"
-                    class="form-control"
-                    placeholder="email@empresa.com">
-
-
+                    <label>E-mail</label>
+                    <input type="email" name="email" value="{{ usuario.email }}" class="form-control" placeholder="email@empresa.com">
                 </div>
 
-
-
-
-
-
-                <button
-                class="btn-save"
-                type="submit">
-
-
+                <button class="btn-save" type="submit">
+                    <i class="bi bi-check-circle"></i>
                     Salvar alterações
-
-
                 </button>
-
-
-
-
 
             </form>
 
-
-
         </div>
 
-
-
-
-
-
-
-
-
-        <!-- =========================
-             ALTERAR SENHA
-        ========================== -->
-
+        <!-- SENHA -->
 
         <div class="config-card">
 
+            <div class="card-title">
+                <i class="bi bi-shield-lock"></i>
+                <h2>Segurança</h2>
+            </div>
 
-
-            <h2>
-                Alterar senha
-            </h2>
-
-
-
-
-
-
-            <form method="POST"
-            action="{{ url_for('dashboard.alterar_senha') }}">
-
-
-
-
-
+            <form method="POST" action="{{ url_for('dashboard.alterar_senha') }}">
 
                 <div class="form-group">
-
-
-                    <label>
-                        Senha atual
-                    </label>
-
-
-                    <input
-                    type="password"
-                    name="senha_atual"
-                    class="form-control"
-                    placeholder="Digite sua senha atual">
-
-
+                    <label>Senha atual</label>
+                    <input type="password" name="senha_atual" class="form-control" placeholder="Digite sua senha atual">
                 </div>
-
-
-
-
-
-
-
 
                 <div class="form-group">
-
-
-                    <label>
-                        Nova senha
-                    </label>
-
-
-                    <input
-                    type="password"
-                    name="nova_senha"
-                    class="form-control"
-                    placeholder="Digite a nova senha">
-
-
+                    <label>Nova senha</label>
+                    <input type="password" name="nova_senha" class="form-control" placeholder="Digite a nova senha">
                 </div>
-
-
-
-
-
-
-
 
                 <div class="form-group">
-
-
-                    <label>
-                        Confirmar nova senha
-                    </label>
-
-
-                    <input
-                    type="password"
-                    name="confirmar_senha"
-                    class="form-control"
-                    placeholder="Repita a nova senha">
-
-
+                    <label>Confirmar nova senha</label>
+                    <input type="password" name="confirmar_senha" class="form-control" placeholder="Repita a nova senha">
                 </div>
 
-
-
-
-
-
-
-                <button
-                class="btn-save"
-                type="submit">
-
-
+                <button class="btn-save" type="submit">
+                    <i class="bi bi-key"></i>
                     Alterar senha
-
-
                 </button>
-
-
-
-
-
 
             </form>
 
-
-
-
-
         </div>
-
-
-
-
 
     </div>
 
-
-
-
-
 </div>
-
-
-
-
 
 {% endblock %}
