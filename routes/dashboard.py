@@ -9,6 +9,7 @@ from flask import (
 )
 
 from datetime import datetime
+import math
 
 from database.connection import get_db
 
@@ -24,6 +25,57 @@ dashboard_bp = Blueprint(
     "dashboard",
     __name__
 )
+
+# Integração Asaas será habilitada depois.
+
+@dashboard_bp.route("/assinar/<plano>", methods=["POST"])
+def assinar(plano):
+    return {"mensagem": "Integração Asaas em desenvolvimento"}
+
+    valor, ciclo = valores[plano]
+
+    cliente = criar_cliente(
+        usuario["nome"],
+        usuario["email"],
+        usuario["cnpj"],
+        usuario["telefone"]
+    )
+
+    assinatura = criar_assinatura(
+        cliente["id"],
+        valor,
+        ciclo
+    )
+
+    return {"checkout": assinatura["invoiceUrl"]}
+
+
+# ==========================================
+# CALCULAR DIAS RESTANTES DO TESTE
+# ==========================================
+
+def calcular_dias_restantes(trial_fim):
+    if not trial_fim:
+        return 0
+
+    try:
+        # Funciona tanto com datetime (Turso) quanto com string ISO
+        fim = (
+            trial_fim
+            if isinstance(trial_fim, datetime)
+            else datetime.fromisoformat(str(trial_fim))
+        )
+
+        segundos = (fim - datetime.now()).total_seconds()
+
+        if segundos <= 0:
+            return 0
+
+        return math.ceil(segundos / 86400)
+
+    except Exception as e:
+        print("ERRO AO CALCULAR TRIAL:", trial_fim, type(trial_fim), e)
+        return 0
 
 
 @dashboard_bp.route("/dashboard")
@@ -54,14 +106,7 @@ def dashboard():
     # ==========================================
 
     plano = usuario.get("plano", "teste")
-    dias_restantes = 0
-
-    if usuario.get("trial_fim"):
-        try:
-            fim = datetime.fromisoformat(usuario["trial_fim"])
-            dias_restantes = max((fim - datetime.now()).days, 0)
-        except:
-            dias_restantes = 0
+    dias_restantes = calcular_dias_restantes(usuario.get("trial_fim"))
 
     # ==========================================
     # INDICADORES
@@ -186,9 +231,14 @@ def configuracoes():
 
     usuario = buscar_usuario_por_id(session["usuario_id"])
 
+    plano = usuario.get("plano", "teste")
+    dias_restantes = calcular_dias_restantes(usuario.get("trial_fim"))
+
     return render_template(
         "configuracoes.html",
-        usuario=usuario
+        usuario=usuario,
+        plano=plano,
+        dias_restantes=dias_restantes
     )
 
 
@@ -310,11 +360,11 @@ def alterar_senha():
 
 
 # ==========================================
-# FORNECEDORES
+# TABELA CMED
 # ==========================================
 
-@dashboard_bp.route("/fornecedores")
-def fornecedores():
+@dashboard_bp.route("/tabela-cmed")
+def tabela_cmed():
 
     if "usuario_id" not in session:
         return redirect(url_for("inicio"))
@@ -324,18 +374,58 @@ def fornecedores():
     usuario = buscar_usuario_por_id(session["usuario_id"])
 
     plano = usuario.get("plano", "teste")
-    dias_restantes = 0
+    dias_restantes = calcular_dias_restantes(usuario.get("trial_fim"))
 
-    if usuario.get("trial_fim"):
-        try:
-            fim = datetime.fromisoformat(usuario["trial_fim"])
-            dias_restantes = max((fim - datetime.now()).days, 0)
-        except:
-            pass
+    margem = usuario.get("margem_padrao", 25)
+
+    termo = request.args.get("q", "").strip()
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    medicamentos = []
+
+    if termo:
+
+        cursor.execute("""
+            SELECT
+                principio_ativo,
+                apresentacao,
+                laboratorio,
+                pf,
+                pmc
+            FROM tabela_cmed
+            WHERE LOWER(principio_ativo) LIKE LOWER(?)
+               OR LOWER(apresentacao) LIKE LOWER(?)
+               OR LOWER(laboratorio) LIKE LOWER(?)
+            ORDER BY principio_ativo
+            LIMIT 50
+        """, (
+            f"%{termo}%",
+            f"%{termo}%",
+            f"%{termo}%"
+        ))
+
+        resultados = cursor.fetchall()
+
+        for m in resultados:
+
+            medicamentos.append([
+                m[0],          # princípio ativo
+                m[1],          # apresentação
+                m[2],          # laboratório
+                m[3],          # PF (número)
+                m[4]           # PMC (número)
+            ])
+
+    conn.close()
 
     return render_template(
-        "fornecedores.html",
+        "tabela_cmed.html",
         usuario=usuario,
         plano=plano,
-        dias_restantes=dias_restantes
+        dias_restantes=dias_restantes,
+        medicamentos=medicamentos,
+        termo=termo,
+        margem=margem
     )
