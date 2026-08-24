@@ -14,6 +14,7 @@ def buscar_comparativo(cotacao_id):
             rc.status,
             rc.preco,
             rc.preco_oferta,
+            rc.quantidade_oferta,
             ci.quantidade,
             rc.whatsapp
         FROM respostas_cotacao rc
@@ -48,19 +49,14 @@ def buscar_comparativo(cotacao_id):
         preco = item[5] if status == "OFERTA" else item[4]
 
         try:
-
             if preco is None or float(str(preco).replace(",", ".")) <= 0:
                 continue
-
         except (ValueError, TypeError):
-
             continue
 
-        print(
-            "MED:", medicamento,
-            "| QTD:", item[6],
-            "| TIPO:", type(item[6])
-        )
+        # OFERTA usa a quantidade mínima digitada pelo representante.
+        # TENHO usa a quantidade solicitada na cotação.
+        quantidade = item[6] if status == "OFERTA" else item[7]
 
         comparativo[medicamento]["representantes"].append({
             "representante": item[1],
@@ -68,8 +64,8 @@ def buscar_comparativo(cotacao_id):
             "preco": item[4],
             "preco_oferta": item[5],
             "preco_final": preco,
-            "quantidade": item[6],
-            "whatsapp": item[7],
+            "quantidade": quantidade,
+            "whatsapp": item[8],
             "oferta": status == "OFERTA",
             "menor_preco": False
         })
@@ -117,11 +113,11 @@ def buscar_resultado(cotacao_id):
 
         if nome not in representantes:
             representantes[nome] = {
-    "representante": nome,
-    "distribuidora": vencedor["laboratorio"],
-    "whatsapp": vencedor["whatsapp"],
-    "itens": []
-}
+                "representante": nome,
+                "distribuidora": vencedor["laboratorio"],
+                "whatsapp": vencedor["whatsapp"],
+                "itens": []
+            }
 
         representantes[nome]["itens"].append({
             "medicamento": medicamento["nome"],

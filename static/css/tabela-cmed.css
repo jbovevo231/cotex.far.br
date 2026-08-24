@@ -469,3 +469,211 @@
         font-size:20px;
     }
 }
+
+/* ===========================
+   Margem interativa Premium
+=========================== */
+
+.margem-control{
+    margin:16px 0 18px;
+    padding:16px;
+    border-radius:18px;
+    background:linear-gradient(145deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+}
+
+.margem-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
+}
+
+.margem-topo span{
+    color:#E3ECF8;
+    font-size:15px;
+    font-weight:700;
+}
+
+.margem-input-wrap{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#0D1015;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    padding:8px 12px;
+}
+
+.margem-input{
+    width:60px;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#fff;
+    text-align:right;
+    font-size:17px;
+    font-weight:800;
+}
+
+.margem-input::-webkit-inner-spin-button{
+    display:none;
+}
+
+.margem-input-wrap span{
+    color:#8CB8FF;
+    font-size:16px;
+    font-weight:700;
+}
+
+/* Slider */
+
+.margem-slider{
+    width:100%;
+    appearance:none;
+    height:7px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#2563EB,#16C784);
+    cursor:pointer;
+}
+
+.margem-slider::-webkit-slider-thumb{
+    appearance:none;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#fff;
+    border:4px solid #2563EB;
+    box-shadow:0 0 18px rgba(37,99,235,.45);
+}
+
+.margem-slider::-moz-range-thumb{
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#fff;
+    border:4px solid #2563EB;
+}
+
+/* ===========================
+   Cards do resumo
+=========================== */
+
+.lucro-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(120px,1fr));
+    gap:12px;
+}
+
+.lucro-item{
+    position:relative;
+    overflow:hidden;
+    min-height:96px;
+    padding:16px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.08);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.lucro-item::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+}
+
+.lucro-item span{
+    display:block;
+    font-size:12px;
+    color:#D0DBEB;
+    margin-bottom:8px;
+    line-height:1.2;
+}
+
+.lucro-item strong{
+    display:block;
+    font-size:18px;
+    font-weight:800;
+    line-height:1.1;
+}
+
+/* Azul */
+
+.lucro-item.azul{
+    background:linear-gradient(145deg,#22345F,#23283A);
+}
+
+.lucro-item.azul::before{
+    background:#3B82F6;
+}
+
+.lucro-item.azul strong{
+    color:#69A9FF;
+}
+
+/* Verde */
+
+.lucro-item.verde{
+    background:linear-gradient(145deg,#1D4A39,#22353B);
+}
+
+.lucro-item.verde::before{
+    background:#16C784;
+}
+
+.lucro-item.verde strong{
+    color:#5AF29F;
+}
+
+/* Laranja */
+
+.lucro-item.laranja{
+    background:linear-gradient(145deg,#5A3D18,#3A3030);
+}
+
+.lucro-item.laranja::before{
+    background:#F59E0B;
+}
+
+.lucro-item.laranja strong{
+    color:#FFC24D;
+}
+
+/* Responsivo */
+
+@media(max-width:900px){
+
+    .lucro-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .margem-topo{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .margem-input-wrap{
+        align-self:flex-end;
+    }
+
+    .lucro-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lucro-item{
+        min-height:82px;
+    }
+
+}

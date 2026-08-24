@@ -3,11 +3,19 @@ from database.connection import get_db
 
 print("Importando CMED para o Turso...")
 
+# Lê a planilha
 df = pd.read_excel("cmed.xlsx")
+df.columns = [str(c).strip() for c in df.columns]
 
+print("\nColunas encontradas:")
+for c in df.columns:
+    print("-", c)
+
+# Conexão Turso
 db = get_db()
 cursor = db.cursor()
 
+# Cria a tabela
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS tabela_cmed (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -19,48 +27,84 @@ CREATE TABLE IF NOT EXISTS tabela_cmed (
 )
 """)
 
+# Limpa a tabela antes da nova importação
 cursor.execute("DELETE FROM tabela_cmed")
 db.commit()
 
-dados = []
+# Colunas da planilha
+COL_SUBSTANCIA = "SUBSTÂNCIA"
+COL_PRODUTO = "PRODUTO"
+COL_APRESENTACAO = "APRESENTAÇÃO"
+COL_LAB = "LABORATÓRIO"
+COL_PF = "PF Sem Impostos"
+COL_PMC = "PMC Sem Impostos"
 
-for _, row in df.iterrows():
+# Converte número brasileiro
+def numero_br(valor):
+    if pd.isna(valor):
+        return None
+
+    valor = str(valor).strip()
+
+    if valor == "" or valor.lower() == "nan":
+        return None
+
+    valor = valor.replace(".", "").replace(",", ".")
 
     try:
-        pf = float(row.get("PF Sem Impostos"))
+        return float(valor)
     except:
-        pf = None
+        return None
 
-    try:
-        pmc = float(row.get("PMC Sem Impostos"))
-    except:
-        pmc = None
+total = len(df)
 
-    dados.append((
-        str(row.get("PRINCÍPIO ATIVO", "")).strip(),
-        str(row.get("APRESENTAÇÃO", "")).strip(),
-        str(row.get("LABORATÓRIO", "")).strip(),
-        pf,
-        pmc
-    ))
+print(f"\nInserindo {total} registros...\n")
 
-# envia em lotes de 500
-for i in range(0, len(dados), 500):
-    cursor.executemany("""
+for i, row in df.iterrows():
+
+    principio = str(row[COL_SUBSTANCIA]).strip()
+
+    # Ignora linhas vazias
+    if principio == "" or principio.lower() == "nan":
+        continue
+
+    produto = str(row[COL_PRODUTO]).strip()
+    apresentacao = str(row[COL_APRESENTACAO]).strip()
+
+    # Junta produto + apresentação
+    apresentacao_final = f"{produto} • {apresentacao}"
+
+    laboratorio = str(row[COL_LAB]).strip()
+
+    pf = numero_br(row[COL_PF])
+    pmc = numero_br(row[COL_PMC])
+
+    cursor.execute("""
         INSERT INTO tabela_cmed (
             principio_ativo,
             apresentacao,
             laboratorio,
             pf,
             pmc
-        )
-        VALUES (?, ?, ?, ?, ?)
-    """, dados[i:i+500])
-    db.commit()
+        ) VALUES (?, ?, ?, ?, ?)
+    """, (
+        principio,
+        apresentacao_final,
+        laboratorio,
+        pf,
+        pmc
+    ))
+
+    if (i + 1) % 100 == 0:
+        db.commit()
+        print(f"{i+1}/{total}")
+
+db.commit()
 
 cursor.execute("SELECT COUNT(*) FROM tabela_cmed")
-print("Total gravado:", cursor.fetchone()[0])
+total_gravado = cursor.fetchone()[0]
 
 db.close()
 
-print("Importação concluída.")
+print(f"\nTotal gravado: {total_gravado}")
+print("Importação concluída com sucesso.")

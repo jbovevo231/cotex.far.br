@@ -3,29 +3,23 @@
 {% block title %}Tabela CMED{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/tabela-cmed.css', v='5') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tabela-cmed.css', v='7') }}">
 {% endblock %}
 
 {% block page_content %}
 
 <div class="cmed-page">
 
-    <!-- HERO -->
-
     <div class="cmed-header">
-
         <div class="cmed-icon">
             <i class="bi bi-shield-check"></i>
         </div>
 
         <div class="hero-text">
-
             <h1>Tabela CMED</h1>
-
             <p>Consulte preços oficiais publicados pela CMED.</p>
 
             <div class="hero-chips">
-
                 <span class="chip chip-blue">
                     <i class="bi bi-capsule"></i>
                     26 mil medicamentos
@@ -35,17 +29,11 @@
                     <i class="bi bi-patch-check-fill"></i>
                     CMED Oficial
                 </span>
-
             </div>
-
         </div>
-
     </div>
 
-    <!-- BUSCA -->
-
     <form method="GET" class="search-box">
-
         <i class="bi bi-search"></i>
 
         <input
@@ -53,156 +41,26 @@
             name="q"
             value="{{ termo }}"
             placeholder="Buscar medicamento, apresentação ou laboratório...">
-
     </form>
 
     {% if medicamentos %}
 
-        <div class="resultado-grid">
+    <div class="resultado-grid">
 
-            {% for m in medicamentos %}
+        {% for m in medicamentos %}
 
-            {% set pf = m[3] or 0 %}
-            {% set pmc = m[4] or 0 %}
-            {% set sugerido = pf * 1.25 %}
-            {% set diferenca = pmc - sugerido %}
-
-            <div class="med-card">
-
-                <div class="med-top">
-
-                    <div class="med-info">
-
-                        <h3>{{ m[0] }}</h3>
-
-                        <small>{{ m[1] }} • {{ m[2] }}</small>
-
-                    </div>
-
-                    <span class="lab">CMED Oficial</span>
-
-                </div>
-
-                <div class="precos">
-
-                    <div class="preco-box">
-
-                        <span>PF</span>
-
-                        <strong>
-                            R$ {{ "{:,.2f}".format(pf).replace(",", "X").replace(".", ",").replace("X",".") }}
-                        </strong>
-
-                        <p>Preço Fábrica</p>
-
-                    </div>
-
-                    <div class="preco-box destaque">
-
-                        <span>PMC</span>
-
-                        <strong>
-                            R$ {{ "{:,.2f}".format(pmc).replace(",", "X").replace(".", ",").replace("X",".") }}
-                        </strong>
-
-                        <p>Preço Máximo</p>
-
-                    </div>
-
-                    <div class="preco-box sugestao">
-
-                        <span>Venda (+25%)</span>
-
-                        <strong>
-                            R$ {{ "{:,.2f}".format(sugerido).replace(",", "X").replace(".", ",").replace("X",".") }}
-                        </strong>
-
-                        <p>Preço sugerido</p>
-
-                    </div>
-
-                </div>
-
-                <div class="lucro-box">
-
-                    <div class="lucro-item">
-
-                        <span>Margem aplicada</span>
-
-                        <strong>25%</strong>
-
-                    </div>
-
-                    <div class="lucro-item">
-
-                        <span>Lucro bruto</span>
-
-                        <strong>
-                            R$ {{ "{:,.2f}".format(sugerido-pf).replace(",", "X").replace(".", ",").replace("X",".") }}
-                        </strong>
-
-                    </div>
-
-                    <div class="lucro-item">
-
-                        <span>Até o PMC</span>
-
-                        <strong class="{% if diferenca > 0 %}positivo{% else %}negativo{% endif %}">
-                            R$
-                            {{ "{:,.2f}".format(diferenca if diferenca>0 else 0).replace(",", "X").replace(".", ",").replace("X",".") }}
-                        </strong>
-
-                    </div>
-
-                </div>
-
-                <div class="med-footer">
-
-                    <div class="atualizacao">
-
-                        <i class="bi bi-calendar-event"></i>
-
-                        <span>Atualização oficial CMED</span>
-
-                    </div>
-
-                    <small>Base 2026</small>
-
-                </div>
-
-                <button class="comparar-btn">
-
-                    <i class="bi bi-bar-chart-line"></i>
-
-                    Comparar com minhas cotações
-
-                </button>
-
-            </div>
-
-            {% endfor %}
-
-        </div>
-
-    {% else %}
-
-        <!-- Preview -->
-
-        {% set pf = 4.83 %}
-        {% set pmc = 8.79 %}
+        {% set pf = m[3] or 0 %}
+        {% set pmc = m[4] or 0 %}
         {% set sugerido = pf * 1.25 %}
         {% set diferenca = pmc - sugerido %}
 
-        <div class="med-card preview">
+        <div class="med-card">
 
             <div class="med-top">
 
                 <div class="med-info">
-
-                    <h3>Dipirona Monoidratada 500 mg</h3>
-
-                    <small>Comprimido • Neo Química</small>
-
+                    <h3>{{ m[0] }}</h3>
+                    <small>{{ m[1] }} • {{ m[2] }}</small>
                 </div>
 
                 <span class="lab">CMED Oficial</span>
@@ -215,7 +73,9 @@
 
                     <span>PF</span>
 
-                    <strong>R$ 4,83</strong>
+                    <strong>
+                        R$ {{ "{:,.2f}".format(pf).replace(",", "X").replace(".", ",").replace("X",".") }}
+                    </strong>
 
                     <p>Preço Fábrica</p>
 
@@ -225,7 +85,9 @@
 
                     <span>PMC</span>
 
-                    <strong>R$ 8,79</strong>
+                    <strong>
+                        R$ {{ "{:,.2f}".format(pmc).replace(",", "X").replace(".", ",").replace("X",".") }}
+                    </strong>
 
                     <p>Preço Máximo</p>
 
@@ -233,11 +95,18 @@
 
                 <div class="preco-box sugestao">
 
-                    <span>Venda (+25%)</span>
+                    <span>Venda sugerida</span>
 
-                    <strong>R$ 6,04</strong>
+                    <strong
+                        class="preco-sugerido"
+                        data-pf="{{ pf }}"
+                        data-pmc="{{ pmc }}">
 
-                    <p>Preço sugerido</p>
+                        R$ {{ "{:,.2f}".format(sugerido).replace(",", "X").replace(".", ",").replace("X",".") }}
+
+                    </strong>
+
+                    <p>Preço calculado automaticamente</p>
 
                 </div>
 
@@ -245,27 +114,56 @@
 
             <div class="lucro-box">
 
-                <div class="lucro-item">
+                <div class="margem-control">
 
-                    <span>Margem aplicada</span>
+                    <div class="margem-topo">
 
-                    <strong>25%</strong>
+                        <span>Margem de lucro</span>
+
+                        <div class="margem-input-wrap">
+
+                            <input
+                                type="number"
+                                class="margem-input"
+                                value="25"
+                                min="0"
+                                max="300">
+
+                            <span>%</span>
+
+                        </div>
+
+                    </div>
+
+                    <input
+                        type="range"
+                        class="margem-slider"
+                        min="0"
+                        max="300"
+                        value="25">
 
                 </div>
 
-                <div class="lucro-item">
+                <div class="lucro-grid">
 
-                    <span>Lucro bruto</span>
+                    <div class="lucro-item azul">
+                        <span>Margem</span>
+                        <strong class="valor-margem">25%</strong>
+                    </div>
 
-                    <strong>R$ 1,21</strong>
+                    <div class="lucro-item verde">
+                        <span>Lucro bruto</span>
+                        <strong class="valor-lucro">
+                            R$ {{ "{:,.2f}".format(sugerido-pf).replace(",", "X").replace(".", ",").replace("X",".") }}
+                        </strong>
+                    </div>
 
-                </div>
-
-                <div class="lucro-item">
-
-                    <span>Até o PMC</span>
-
-                    <strong class="positivo">R$ 2,75</strong>
+                    <div class="lucro-item laranja">
+                        <span>Até o PMC</span>
+                        <strong class="valor-pmc">
+                            R$ {{ "{:,.2f}".format(diferenca).replace(",", "X").replace(".", ",").replace("X",".") }}
+                        </strong>
+                    </div>
 
                 </div>
 
@@ -274,11 +172,8 @@
             <div class="med-footer">
 
                 <div class="atualizacao">
-
                     <i class="bi bi-calendar-event"></i>
-
                     <span>Atualização oficial CMED</span>
-
                 </div>
 
                 <small>Base 2026</small>
@@ -295,8 +190,83 @@
 
         </div>
 
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <i class="bi bi-search"></i>
+
+        {% if termo %}
+
+            <h2>Nenhum medicamento encontrado</h2>
+
+            <p>
+                Não encontramos "<strong>{{ termo }}</strong>" na base CMED.
+                Tente pesquisar pelo princípio ativo, apresentação ou laboratório.
+            </p>
+
+        {% else %}
+
+            <h2>Pesquise um medicamento</h2>
+
+            <p>
+                Digite o nome do medicamento para consultar PF, PMC e calcular automaticamente o preço de venda.
+            </p>
+
+        {% endif %}
+
+    </div>
+
     {% endif %}
 
 </div>
+
+<script>
+function moeda(v){
+    return "R$ " + v.toFixed(2).replace(".", ",");
+}
+
+document.querySelectorAll(".med-card").forEach(card=>{
+
+    const preco=card.querySelector(".preco-sugerido");
+    const slider=card.querySelector(".margem-slider");
+    const input=card.querySelector(".margem-input");
+
+    if(!preco || !slider || !input) return;
+
+    const margemTxt=card.querySelector(".valor-margem");
+    const lucroTxt=card.querySelector(".valor-lucro");
+    const pmcTxt=card.querySelector(".valor-pmc");
+
+    const pf=parseFloat(preco.dataset.pf);
+    const pmc=parseFloat(preco.dataset.pmc);
+
+    function atualizar(margem){
+
+        margem=Math.max(0,Math.min(300,margem));
+
+        slider.value=margem;
+        input.value=margem;
+
+        const venda=pf*(1+margem/100);
+        const lucro=venda-pf;
+        const restante=Math.max(0,pmc-venda);
+
+        preco.textContent=moeda(venda);
+        margemTxt.textContent=margem+"%";
+        lucroTxt.textContent=moeda(lucro);
+        pmcTxt.textContent=moeda(restante);
+    }
+
+    slider.addEventListener("input",e=>atualizar(+e.target.value));
+
+    input.addEventListener("input",e=>atualizar(+e.target.value));
+
+});
+</script>
 
 {% endblock %}

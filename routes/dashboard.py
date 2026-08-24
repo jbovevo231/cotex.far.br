@@ -359,6 +359,7 @@ def alterar_senha():
     )
 
 
+
 # ==========================================
 # TABELA CMED
 # ==========================================
@@ -375,7 +376,6 @@ def tabela_cmed():
 
     plano = usuario.get("plano", "teste")
     dias_restantes = calcular_dias_restantes(usuario.get("trial_fim"))
-
     margem = usuario.get("margem_padrao", 25)
 
     termo = request.args.get("q", "").strip()
@@ -387,35 +387,32 @@ def tabela_cmed():
 
     if termo:
 
+        busca = f"%{termo}%"
+
         cursor.execute("""
             SELECT
                 principio_ativo,
                 apresentacao,
                 laboratorio,
-                pf,
-                pmc
+                COALESCE(pf, 0),
+                COALESCE(pmc, 0)
             FROM tabela_cmed
-            WHERE LOWER(principio_ativo) LIKE LOWER(?)
-               OR LOWER(apresentacao) LIKE LOWER(?)
-               OR LOWER(laboratorio) LIKE LOWER(?)
+            WHERE principio_ativo LIKE ? COLLATE NOCASE
+               OR apresentacao LIKE ? COLLATE NOCASE
+               OR laboratorio LIKE ? COLLATE NOCASE
             ORDER BY principio_ativo
             LIMIT 50
-        """, (
-            f"%{termo}%",
-            f"%{termo}%",
-            f"%{termo}%"
-        ))
+        """, (busca, busca, busca))
 
         resultados = cursor.fetchall()
 
         for m in resultados:
-
             medicamentos.append([
-                m[0],          # princípio ativo
-                m[1],          # apresentação
-                m[2],          # laboratório
-                m[3],          # PF (número)
-                m[4]           # PMC (número)
+                m[0],
+                m[1],
+                m[2],
+                float(m[3] or 0),
+                float(m[4] or 0)
             ])
 
     conn.close()
