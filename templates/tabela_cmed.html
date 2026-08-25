@@ -1,272 +1,386 @@
 {% extends "base.html" %}
 
-{% block title %}Tabela CMED{% endblock %}
+{% block title %}Consulta CMED{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/tabela-cmed.css', v='7') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tabela-cmed.css', v='36') }}">
 {% endblock %}
 
 {% block page_content %}
 
-<div class="cmed-page">
+<div class="cmed-dashboard">
 
-    <div class="cmed-header">
-        <div class="cmed-icon">
-            <i class="bi bi-shield-check"></i>
-        </div>
+    <div class="cmed-left">
 
-        <div class="hero-text">
-            <h1>Tabela CMED</h1>
-            <p>Consulte preços oficiais publicados pela CMED.</p>
+        <div class="cmed-header">
 
-            <div class="hero-chips">
-                <span class="chip chip-blue">
-                    <i class="bi bi-capsule"></i>
-                    26 mil medicamentos
-                </span>
-
-                <span class="chip chip-green">
-                    <i class="bi bi-patch-check-fill"></i>
-                    CMED Oficial
-                </span>
+            <div class="cmed-icon">
+                <i class="bi bi-shield-check"></i>
             </div>
+
+            <div>
+
+                <h1>Consulta de Medicamentos</h1>
+
+                <p>Pesquise princípios ativos e consulte informações terapêuticas da base CMED.</p>
+
+                <div class="chips">
+
+                    <span class="chip blue">
+                        <i class="bi bi-capsule"></i>
+                        Base CMED
+                    </span>
+
+                    <span class="chip green">
+                        <i class="bi bi-patch-check-fill"></i>
+                        Consulta rápida
+                    </span>
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
 
-    <form method="GET" class="search-box">
-        <i class="bi bi-search"></i>
+        <form method="GET" class="search-box">
 
-        <input
-            type="text"
-            name="q"
-            value="{{ termo }}"
-            placeholder="Buscar medicamento, apresentação ou laboratório...">
-    </form>
+            <i class="bi bi-search"></i>
 
-    {% if medicamentos %}
+            <input
+                type="text"
+                name="q"
+                value="{{ termo }}"
+                placeholder="Ex.: Cefalexina, Dipirona, Losartana...">
 
-    <div class="resultado-grid">
+        </form>
 
-        {% for m in medicamentos %}
+        <div class="filtros-terapeuticos">
 
-        {% set pf = m[3] or 0 %}
-        {% set pmc = m[4] or 0 %}
-        {% set sugerido = pf * 1.25 %}
-        {% set diferenca = pmc - sugerido %}
+            <a href="{{ url_for('dashboard.tabela_cmed') }}" class="filtro">Todos</a>
+            <a href="{{ url_for('dashboard.tabela_cmed', classe='antibiotico') }}" class="filtro">💊 Antibióticos</a>
+            <a href="{{ url_for('dashboard.tabela_cmed', classe='hipertensao') }}" class="filtro">❤️ Hipertensão</a>
+            <a href="{{ url_for('dashboard.tabela_cmed', classe='diabetes') }}" class="filtro">🩸 Diabetes</a>
+            <a href="{{ url_for('dashboard.tabela_cmed', classe='dor') }}" class="filtro">🤕 Dor</a>
+            <a href="{{ url_for('dashboard.tabela_cmed', classe='antiinflamatorio') }}" class="filtro">🔥 Anti-inflamatórios</a>
+            <a href="{{ url_for('dashboard.tabela_cmed', classe='controlado') }}" class="filtro">🔒 Controlados</a>
 
-        <div class="med-card">
+        </div>
 
-            <div class="med-top">
+        {% if medicamentos %}
+
+        <div class="lista">
+
+            {% for m in medicamentos %}
+
+            <div class="linha-med"
+                 data-nome="{{ m[0] }}"
+                 data-ap="{{ m[1] }}"
+                 data-labs="{{ m[3] }}"
+                 data-qtd="{{ m[4] }}">
 
                 <div class="med-info">
-                    <h3>{{ m[0] }}</h3>
-                    <small>{{ m[1] }} • {{ m[2] }}</small>
-                </div>
 
-                <span class="lab">CMED Oficial</span>
+                    <div class="icone">
+                        <i class="bi bi-capsule"></i>
+                    </div>
 
-            </div>
+                    <div class="med-texto">
 
-            <div class="precos">
+                        <strong>{{ m[0] }}</strong>
 
-                <div class="preco-box">
+                        <small>{{ m[1] }}</small>
 
-                    <span>PF</span>
+                        <div class="tags">
 
-                    <strong>
-                        R$ {{ "{:,.2f}".format(pf).replace(",", "X").replace(".", ",").replace("X",".") }}
-                    </strong>
+                            <span class="tag">💊 {{ m[4] }} apresentações</span>
 
-                    <p>Preço Fábrica</p>
-
-                </div>
-
-                <div class="preco-box destaque">
-
-                    <span>PMC</span>
-
-                    <strong>
-                        R$ {{ "{:,.2f}".format(pmc).replace(",", "X").replace(".", ",").replace("X",".") }}
-                    </strong>
-
-                    <p>Preço Máximo</p>
-
-                </div>
-
-                <div class="preco-box sugestao">
-
-                    <span>Venda sugerida</span>
-
-                    <strong
-                        class="preco-sugerido"
-                        data-pf="{{ pf }}"
-                        data-pmc="{{ pmc }}">
-
-                        R$ {{ "{:,.2f}".format(sugerido).replace(",", "X").replace(".", ",").replace("X",".") }}
-
-                    </strong>
-
-                    <p>Preço calculado automaticamente</p>
-
-                </div>
-
-            </div>
-
-            <div class="lucro-box">
-
-                <div class="margem-control">
-
-                    <div class="margem-topo">
-
-                        <span>Margem de lucro</span>
-
-                        <div class="margem-input-wrap">
-
-                            <input
-                                type="number"
-                                class="margem-input"
-                                value="25"
-                                min="0"
-                                max="300">
-
-                            <span>%</span>
+                            <span class="tag">
+                                🏭 {{ m[3].split(',')|length }} laboratórios
+                            </span>
 
                         </div>
 
                     </div>
 
-                    <input
-                        type="range"
-                        class="margem-slider"
-                        min="0"
-                        max="300"
-                        value="25">
-
                 </div>
 
-                <div class="lucro-grid">
+                <button type="button"
+                        class="btn-detalhes"
+                        onclick="abrirDetalhes(this.parentElement)">
 
-                    <div class="lucro-item azul">
-                        <span>Margem</span>
-                        <strong class="valor-margem">25%</strong>
+                    Ver detalhes
+
+                    <i class="bi bi-chevron-down"></i>
+
+                </button>
+
+                <div class="detalhes-card">
+
+                    <div class="det-grid">
+
+                        <div class="det-item">
+
+                            <h4>Indicação</h4>
+
+                            <p class="indicacao">Consulte a bula oficial.</p>
+
+                        </div>
+
+                        <div class="det-item">
+
+                            <h4>Classe Terapêutica</h4>
+
+                            <p class="classe">Classe não catalogada.</p>
+
+                        </div>
+
+                        <div class="det-item">
+
+                            <h4>Laboratórios</h4>
+
+                            <p class="labs">{{ m[3].split(',')|length }} cadastrados</p>
+
+                        </div>
+
+                        <div class="det-item">
+
+                            <h4>Controlado</h4>
+
+                            <p class="controlado">Não</p>
+
+                        </div>
+
                     </div>
 
-                    <div class="lucro-item verde">
-                        <span>Lucro bruto</span>
-                        <strong class="valor-lucro">
-                            R$ {{ "{:,.2f}".format(sugerido-pf).replace(",", "X").replace(".", ",").replace("X",".") }}
-                        </strong>
-                    </div>
+                    <div class="bula-box">
 
-                    <div class="lucro-item laranja">
-                        <span>Até o PMC</span>
-                        <strong class="valor-pmc">
-                            R$ {{ "{:,.2f}".format(diferenca).replace(",", "X").replace(".", ",").replace("X",".") }}
-                        </strong>
+                        <h3>Resumo da Bula</h3>
+
+                        <p><strong>Indicação:</strong> <span class="bula-ind">Consulte a bula oficial.</span></p>
+
+                        <p><strong>Posologia:</strong> <span class="bula-pos">Conforme prescrição médica.</span></p>
+
+                        <p><strong>Contraindicações:</strong> <span class="bula-contra">Verifique a bula oficial.</span></p>
+
+                        <p><strong>Via de administração:</strong> <span class="bula-via">Conforme apresentação.</span></p>
+
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="med-footer">
-
-                <div class="atualizacao">
-                    <i class="bi bi-calendar-event"></i>
-                    <span>Atualização oficial CMED</span>
-                </div>
-
-                <small>Base 2026</small>
-
-            </div>
-
-            <button class="comparar-btn">
-
-                <i class="bi bi-bar-chart-line"></i>
-
-                Comparar com minhas cotações
-
-            </button>
+            {% endfor %}
 
         </div>
 
-        {% endfor %}
+        {% else %}
 
-    </div>
+        <div class="empty-state">
 
-    {% else %}
-
-    <div class="empty-state">
-
-        <i class="bi bi-search"></i>
-
-        {% if termo %}
+            <i class="bi bi-search"></i>
 
             <h2>Nenhum medicamento encontrado</h2>
 
-            <p>
-                Não encontramos "<strong>{{ termo }}</strong>" na base CMED.
-                Tente pesquisar pelo princípio ativo, apresentação ou laboratório.
-            </p>
+            <p>Pesquise pelo princípio ativo.</p>
 
-        {% else %}
-
-            <h2>Pesquise um medicamento</h2>
-
-            <p>
-                Digite o nome do medicamento para consultar PF, PMC e calcular automaticamente o preço de venda.
-            </p>
+        </div>
 
         {% endif %}
 
     </div>
 
-    {% endif %}
-
 </div>
 
 <script>
-function moeda(v){
-    return "R$ " + v.toFixed(2).replace(".", ",");
+
+const classes={
+
+"cefalexina":"Antibiótico • Cefalosporina de 1ª geração",
+"amoxicilina":"Antibiótico • Penicilina",
+"azitromicina":"Antibiótico • Macrolídeo",
+"dipirona":"Analgésico • Antipirético",
+"paracetamol":"Analgésico • Antitérmico",
+"ibuprofeno":"Anti-inflamatório não esteroidal",
+"losartana":"Anti-hipertensivo",
+
+"clonazepam":"Controlado • Benzodiazepínico",
+"alprazolam":"Controlado • Benzodiazepínico",
+"diazepam":"Controlado • Benzodiazepínico",
+"zolpidem":"Controlado • Hipnótico",
+"metilfenidato":"Controlado • Psicoestimulante",
+"lisdexanfetamina":"Controlado • Psicoestimulante",
+"morfina":"Controlado • Opioide",
+"tramadol":"Controlado • Opioide"
+
+};
+
+const indicacoes={
+
+"cefalexina":["Infecções urinárias","Infecções respiratórias","Infecções de pele"],
+"amoxicilina":["Otite","Sinusite","Infecções bacterianas"],
+"azitromicina":["Sinusite","Amigdalite","Infecções respiratórias"],
+"dipirona":["Dor","Febre"],
+"paracetamol":["Dor leve","Febre"],
+"ibuprofeno":["Dor","Inflamação","Febre"],
+"losartana":["Hipertensão arterial"],
+
+"clonazepam":["Ansiedade","Transtorno do pânico"],
+"alprazolam":["Ansiedade","Pânico"],
+"diazepam":["Espasmos musculares","Ansiedade"],
+"zolpidem":["Insônia"],
+"metilfenidato":["TDAH"],
+"lisdexanfetamina":["TDAH"],
+"morfina":["Dor intensa"],
+"tramadol":["Dor moderada a intensa"]
+
+};
+
+const bulas={
+
+"amoxicilina":{
+
+indicacao:"Infecções bacterianas.",
+posologia:"Conforme prescrição médica.",
+contra:"Alergia à penicilina.",
+via:"Oral."
+
+},
+
+"cefalexina":{
+
+indicacao:"Infecções respiratórias, urinárias e de pele.",
+posologia:"Conforme prescrição médica.",
+contra:"Hipersensibilidade às cefalosporinas.",
+via:"Oral."
+
+},
+
+"azitromicina":{
+
+indicacao:"Infecções respiratórias.",
+posologia:"Uso conforme prescrição.",
+contra:"Alergia aos macrolídeos.",
+via:"Oral."
+
+},
+
+"clonazepam":{
+
+indicacao:"Ansiedade e transtorno do pânico.",
+posologia:"Uso sob prescrição.",
+contra:"Miastenia grave e glaucoma.",
+via:"Oral."
+
+},
+
+"alprazolam":{
+
+indicacao:"Ansiedade.",
+posologia:"Uso sob prescrição.",
+contra:"Glaucoma de ângulo fechado.",
+via:"Oral."
+
+},
+
+"diazepam":{
+
+indicacao:"Ansiedade e espasmos musculares.",
+posologia:"Uso sob prescrição.",
+contra:"Insuficiência respiratória grave.",
+via:"Oral."
+
+},
+
+"zolpidem":{
+
+indicacao:"Insônia.",
+posologia:"Uso noturno.",
+contra:"Insuficiência hepática grave.",
+via:"Oral."
+
+},
+
+"metilfenidato":{
+
+indicacao:"TDAH.",
+posologia:"Uso sob prescrição.",
+contra:"Glaucoma e hipertireoidismo.",
+via:"Oral."
+
+},
+
+"lisdexanfetamina":{
+
+indicacao:"TDAH.",
+posologia:"Uso sob prescrição.",
+contra:"Uso com IMAO.",
+via:"Oral."
+
+},
+
+"morfina":{
+
+indicacao:"Dor intensa.",
+posologia:"Uso hospitalar ou prescrito.",
+contra:"Depressão respiratória.",
+via:"Oral ou injetável."
+
+},
+
+"tramadol":{
+
+indicacao:"Dor moderada a intensa.",
+posologia:"Uso conforme prescrição.",
+contra:"Intoxicação por álcool ou sedativos.",
+via:"Oral."
+
 }
 
-document.querySelectorAll(".med-card").forEach(card=>{
+};
 
-    const preco=card.querySelector(".preco-sugerido");
-    const slider=card.querySelector(".margem-slider");
-    const input=card.querySelector(".margem-input");
+function abrirDetalhes(card){
 
-    if(!preco || !slider || !input) return;
+const aberto=card.classList.contains("aberto");
 
-    const margemTxt=card.querySelector(".valor-margem");
-    const lucroTxt=card.querySelector(".valor-lucro");
-    const pmcTxt=card.querySelector(".valor-pmc");
+document.querySelectorAll(".linha-med").forEach(c=>c.classList.remove("aberto"));
 
-    const pf=parseFloat(preco.dataset.pf);
-    const pmc=parseFloat(preco.dataset.pmc);
+if(aberto)return;
 
-    function atualizar(margem){
+card.classList.add("aberto");
 
-        margem=Math.max(0,Math.min(300,margem));
+const nome=card.dataset.nome.toLowerCase();
 
-        slider.value=margem;
-        input.value=margem;
+const info=bulas[nome]||{
 
-        const venda=pf*(1+margem/100);
-        const lucro=venda-pf;
-        const restante=Math.max(0,pmc-venda);
+indicacao:"Consulte a bula oficial.",
+posologia:"Conforme prescrição médica.",
+contra:"Verifique a bula oficial.",
+via:"Conforme apresentação."
 
-        preco.textContent=moeda(venda);
-        margemTxt.textContent=margem+"%";
-        lucroTxt.textContent=moeda(lucro);
-        pmcTxt.textContent=moeda(restante);
-    }
+};
 
-    slider.addEventListener("input",e=>atualizar(+e.target.value));
+card.querySelector(".classe").textContent=
+classes[nome]||"Classe não catalogada.";
 
-    input.addEventListener("input",e=>atualizar(+e.target.value));
+card.querySelector(".indicacao").innerHTML=
+(indicacoes[nome]||["Consulte a bula oficial."]).map(i=>"• "+i).join("<br>");
 
-});
+const qtdLabs=card.dataset.labs.split(",").length;
+
+card.querySelector(".labs").textContent=qtdLabs+" cadastrados";
+
+const controlado=(classes[nome]||"").includes("Controlado");
+
+card.querySelector(".controlado").textContent=controlado?"Sim":"Não";
+
+card.querySelector(".bula-ind").textContent=info.indicacao;
+card.querySelector(".bula-pos").textContent=info.posologia;
+card.querySelector(".bula-contra").textContent=info.contra;
+card.querySelector(".bula-via").textContent=info.via;
+
+}
+
 </script>
 
 {% endblock %}

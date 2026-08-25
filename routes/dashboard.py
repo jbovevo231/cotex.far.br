@@ -361,7 +361,7 @@ def alterar_senha():
 
 
 # ==========================================
-# TABELA CMED
+# CONSULTA CMED
 # ==========================================
 
 @dashboard_bp.route("/tabela-cmed")
@@ -376,43 +376,104 @@ def tabela_cmed():
 
     plano = usuario.get("plano", "teste")
     dias_restantes = calcular_dias_restantes(usuario.get("trial_fim"))
-    margem = usuario.get("margem_padrao", 25)
 
     termo = request.args.get("q", "").strip()
+    categoria = request.args.get("categoria", "").strip().lower()
 
     conn = get_db()
     cursor = conn.cursor()
 
     medicamentos = []
 
-    if termo:
+    # Palavras-chave para cada categoria
+    filtros = {
+        "antibioticos": [
+            "cef","amox","azit","cipro","clinda","doxi",
+            "eritro","penic","sulf","metro","rifa","vanco"
+        ],
+        "hipertensao": [
+            "losart","valsart","enal","captop","anlod",
+            "amlod","atenol","propran","hidroclor","olmes"
+        ],
+        "diabetes": [
+            "metform","gliben","gliclaz","dapag",
+            "empag","insulina"
+        ],
+        "analgesicos": [
+            "dipirona","paracetam","tramad",
+            "codeina","morfina"
+        ],
+        "antiinflamatorios": [
+            "ibuprof","diclofen","nimes",
+            "cetopro","meloxic"
+        ],
+        "gastricos": [
+            "omepraz","pantopraz",
+            "esomepraz","lansopraz"
+        ],
+        "respiratorios": [
+            "salbut","budes",
+            "formoter","ambrox",
+            "acetilciste"
+        ]
+    }
 
-        busca = f"%{termo}%"
+    if termo or categoria:
 
-        cursor.execute("""
+        where = []
+        params = []
+
+        # Busca digitada
+        if termo:
+            busca = f"%{termo}%"
+
+            where.append("""
+                (
+                    principio_ativo LIKE ? COLLATE NOCASE
+                    OR apresentacao LIKE ? COLLATE NOCASE
+                    OR laboratorio LIKE ? COLLATE NOCASE
+                )
+            """)
+
+            params.extend([busca, busca, busca])
+
+        # Filtro por categoria
+        if categoria in filtros:
+
+            partes = []
+
+            for palavra in filtros[categoria]:
+                partes.append("principio_ativo LIKE ? COLLATE NOCASE")
+                params.append(f"%{palavra}%")
+
+            where.append("(" + " OR ".join(partes) + ")")
+
+        sql = f"""
             SELECT
                 principio_ativo,
-                apresentacao,
-                laboratorio,
-                COALESCE(pf, 0),
-                COALESCE(pmc, 0)
+                MIN(apresentacao) AS apresentacao_principal,
+                GROUP_CONCAT(DISTINCT apresentacao) AS apresentacoes,
+                GROUP_CONCAT(DISTINCT laboratorio) AS laboratorios,
+                COUNT(*) AS quantidade
             FROM tabela_cmed
-            WHERE principio_ativo LIKE ? COLLATE NOCASE
-               OR apresentacao LIKE ? COLLATE NOCASE
-               OR laboratorio LIKE ? COLLATE NOCASE
+            WHERE {' AND '.join(where)}
+            GROUP BY principio_ativo
             ORDER BY principio_ativo
             LIMIT 50
-        """, (busca, busca, busca))
+        """
+
+        cursor.execute(sql, params)
 
         resultados = cursor.fetchall()
 
         for m in resultados:
+
             medicamentos.append([
-                m[0],
-                m[1],
-                m[2],
-                float(m[3] or 0),
-                float(m[4] or 0)
+                m[0],                 # princípio ativo
+                m[1],                 # apresentação principal
+                m[2] or "",           # apresentações
+                m[3] or "",           # laboratórios
+                int(m[4] or 0)        # quantidade
             ])
 
     conn.close()
@@ -424,5 +485,5 @@ def tabela_cmed():
         dias_restantes=dias_restantes,
         medicamentos=medicamentos,
         termo=termo,
-        margem=margem
+        categoria=categoria
     )
