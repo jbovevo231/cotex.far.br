@@ -42,29 +42,56 @@
 
         </div>
 
-        <form method="GET" class="search-box">
+<form method="GET" class="search-box">
+    <i class="bi bi-search"></i>
 
-            <i class="bi bi-search"></i>
+    <input
+        type="text"
+        name="q"
+        value="{{ termo }}"
+        placeholder="Ex.: Cefalexina, Dipirona, Losartana...">
 
-            <input
-                type="text"
-                name="q"
-                value="{{ termo }}"
-                placeholder="Ex.: Cefalexina, Dipirona, Losartana...">
+    {% if classe %}
+    <input type="hidden" name="classe" value="{{ classe }}">
+    {% endif %}
+</form>
 
-        </form>
+<div class="filtros-terapeuticos">
 
-        <div class="filtros-terapeuticos">
+    <a href="{{ url_for('dashboard.tabela_cmed') }}"
+       class="filtro {{ 'ativo' if not classe else '' }}">✨ Todos</a>
 
-            <a href="{{ url_for('dashboard.tabela_cmed') }}" class="filtro">Todos</a>
-            <a href="{{ url_for('dashboard.tabela_cmed', classe='antibiotico') }}" class="filtro">💊 Antibióticos</a>
-            <a href="{{ url_for('dashboard.tabela_cmed', classe='hipertensao') }}" class="filtro">❤️ Hipertensão</a>
-            <a href="{{ url_for('dashboard.tabela_cmed', classe='diabetes') }}" class="filtro">🩸 Diabetes</a>
-            <a href="{{ url_for('dashboard.tabela_cmed', classe='dor') }}" class="filtro">🤕 Dor</a>
-            <a href="{{ url_for('dashboard.tabela_cmed', classe='antiinflamatorio') }}" class="filtro">🔥 Anti-inflamatórios</a>
-            <a href="{{ url_for('dashboard.tabela_cmed', classe='controlado') }}" class="filtro">🔒 Controlados</a>
+    <a href="{{ url_for('dashboard.tabela_cmed', classe='antibiotico') }}"
+       class="filtro {{ 'ativo' if classe=='antibiotico' else '' }}">
+        <i class="bi bi-capsule"></i> Antibióticos
+    </a>
 
-        </div>
+    <a href="{{ url_for('dashboard.tabela_cmed', classe='hipertensao') }}"
+       class="filtro {{ 'ativo' if classe=='hipertensao' else '' }}">
+        <i class="bi bi-heart-pulse"></i> Hipertensão
+    </a>
+
+    <a href="{{ url_for('dashboard.tabela_cmed', classe='diabetes') }}"
+       class="filtro {{ 'ativo' if classe=='diabetes' else '' }}">
+        <i class="bi bi-droplet"></i> Diabetes
+    </a>
+
+    <a href="{{ url_for('dashboard.tabela_cmed', classe='dor') }}"
+       class="filtro {{ 'ativo' if classe=='dor' else '' }}">
+        <i class="bi bi-emoji-frown"></i> Dor
+    </a>
+
+    <a href="{{ url_for('dashboard.tabela_cmed', classe='antiinflamatorio') }}"
+       class="filtro {{ 'ativo' if classe=='antiinflamatorio' else '' }}">
+        <i class="bi bi-fire"></i> Anti-inflamatórios
+    </a>
+
+    <a href="{{ url_for('dashboard.tabela_cmed', classe='controlado') }}"
+       class="filtro {{ 'ativo' if classe=='controlado' else '' }}">
+        <i class="bi bi-shield-lock"></i> Controlados
+    </a>
+
+</div>
 
         {% if medicamentos %}
 
@@ -349,7 +376,7 @@ if(aberto)return;
 
 card.classList.add("aberto");
 
-const nome=card.dataset.nome.toLowerCase();
+const nome = card.dataset.ap.toLowerCase();
 
 const info=bulas[nome]||{
 

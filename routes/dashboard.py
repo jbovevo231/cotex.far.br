@@ -370,120 +370,96 @@ def tabela_cmed():
     if "usuario_id" not in session:
         return redirect(url_for("inicio"))
 
-    from models.usuario import buscar_usuario_por_id
-
-    usuario = buscar_usuario_por_id(session["usuario_id"])
-
-    plano = usuario.get("plano", "teste")
-    dias_restantes = calcular_dias_restantes(usuario.get("trial_fim"))
-
-    termo = request.args.get("q", "").strip()
-    categoria = request.args.get("categoria", "").strip().lower()
+    termo = request.args.get("q", "").strip().lower()
+    classe = request.args.get("classe", "").strip().lower()
 
     conn = get_db()
     cursor = conn.cursor()
 
-    medicamentos = []
+    try:
+        # Descobre a ordem das colunas
+        cursor.execute("PRAGMA table_info(tabela_cmed)")
+        info = cursor.fetchall()
 
-    # Palavras-chave para cada categoria
-    filtros = {
-        "antibioticos": [
-            "cef","amox","azit","cipro","clinda","doxi",
-            "eritro","penic","sulf","metro","rifa","vanco"
-        ],
-        "hipertensao": [
-            "losart","valsart","enal","captop","anlod",
-            "amlod","atenol","propran","hidroclor","olmes"
-        ],
-        "diabetes": [
-            "metform","gliben","gliclaz","dapag",
-            "empag","insulina"
-        ],
-        "analgesicos": [
-            "dipirona","paracetam","tramad",
-            "codeina","morfina"
-        ],
-        "antiinflamatorios": [
-            "ibuprof","diclofen","nimes",
-            "cetopro","meloxic"
-        ],
-        "gastricos": [
-            "omepraz","pantopraz",
-            "esomepraz","lansopraz"
-        ],
-        "respiratorios": [
-            "salbut","budes",
-            "formoter","ambrox",
-            "acetilciste"
-        ]
-    }
+        nomes = [c[1].lower() for c in info]
 
-    if termo or categoria:
+        idx_principio = nomes.index("principio_ativo")
+        idx_apresentacao = next(
+            i for i, n in enumerate(nomes)
+            if "apresent" in n
+        )
+        idx_laboratorio = next(
+            i for i, n in enumerate(nomes)
+            if "labor" in n
+        )
 
-        where = []
-        params = []
+        # Busca todas as linhas
+        cursor.execute("SELECT * FROM tabela_cmed")
+        linhas = cursor.fetchall()
 
-        # Busca digitada
-        if termo:
-            busca = f"%{termo}%"
+        filtros = {
+            "antibiotico": ["cefalexina", "amoxicilina", "azitromicina"],
+            "hipertensao": ["losartana"],
+            "diabetes": ["metformina", "insulina", "glibenclamida"],
+            "dor": ["dipirona", "paracetamol", "tramadol", "morfina"],
+            "antiinflamatorio": ["ibuprofeno", "diclofenaco", "nimesulida"],
+            "controlado": [
+                "clonazepam", "alprazolam", "diazepam",
+                "zolpidem", "metilfenidato",
+                "lisdexanfetamina", "morfina", "tramadol"
+            ]
+        }
 
-            where.append("""
-                (
-                    principio_ativo LIKE ? COLLATE NOCASE
-                    OR apresentacao LIKE ? COLLATE NOCASE
-                    OR laboratorio LIKE ? COLLATE NOCASE
-                )
-            """)
+        medicamentos_dict = {}
 
-            params.extend([busca, busca, busca])
+        for linha in linhas:
 
-        # Filtro por categoria
-        if categoria in filtros:
+            principio = str(linha[idx_principio]).strip()
+            apresentacao = str(linha[idx_apresentacao]).strip()
+            laboratorio = str(linha[idx_laboratorio]).strip()
 
-            partes = []
+            p = principio.lower()
 
-            for palavra in filtros[categoria]:
-                partes.append("principio_ativo LIKE ? COLLATE NOCASE")
-                params.append(f"%{palavra}%")
+            # filtro da busca
+            if termo and termo not in p and termo not in apresentacao.lower():
+                continue
 
-            where.append("(" + " OR ".join(partes) + ")")
+            # filtro da classe
+            if classe in filtros:
+                if not any(a in p for a in filtros[classe]):
+                    continue
 
-        sql = f"""
-            SELECT
-                principio_ativo,
-                MIN(apresentacao) AS apresentacao_principal,
-                GROUP_CONCAT(DISTINCT apresentacao) AS apresentacoes,
-                GROUP_CONCAT(DISTINCT laboratorio) AS laboratorios,
-                COUNT(*) AS quantidade
-            FROM tabela_cmed
-            WHERE {' AND '.join(where)}
-            GROUP BY principio_ativo
-            ORDER BY principio_ativo
-            LIMIT 50
-        """
+            if principio not in medicamentos_dict:
+                medicamentos_dict[principio] = {
+                    "labs": set(),
+                    "qtd": 0
+                }
 
-        cursor.execute(sql, params)
+            medicamentos_dict[principio]["labs"].add(laboratorio)
+            medicamentos_dict[principio]["qtd"] += 1
 
-        resultados = cursor.fetchall()
+        medicamentos = []
 
-        for m in resultados:
+        for principio in sorted(medicamentos_dict.keys()):
+            dados = medicamentos_dict[principio]
+            medicamentos.append((
+                principio,                       # m[0]
+                principio,                       # m[1]
+                "",                              # m[2]
+                ", ".join(sorted(dados["labs"])),# m[3]
+                dados["qtd"]                     # m[4]
+            ))
 
-            medicamentos.append([
-                m[0],                 # princípio ativo
-                m[1],                 # apresentação principal
-                m[2] or "",           # apresentações
-                m[3] or "",           # laboratórios
-                int(m[4] or 0)        # quantidade
-            ])
+        return render_template(
+            "tabela_cmed.html",
+            medicamentos=medicamentos,
+            termo=termo,
+            classe=classe
+        )
 
-    conn.close()
+    finally:
+        conn.close()
 
-    return render_template(
-        "tabela_cmed.html",
-        usuario=usuario,
-        plano=plano,
-        dias_restantes=dias_restantes,
-        medicamentos=medicamentos,
-        termo=termo,
-        categoria=categoria
-    )
+
+import random
+

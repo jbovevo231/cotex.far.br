@@ -131,15 +131,16 @@
 
 
 
-            <a href="#">
+<a href="{{ url_for('dashboard.game') }}"
+   class="menu-item {{ 'ativo' if request.endpoint == 'dashboard.game' else '' }}">
 
-                <i class="bi bi-robot"></i>
+    <div class="menu-icon">
+        <i class="bi bi-controller"></i>
+    </div>
 
-                <span>
-                    CotaFarma IA
-                </span>
+    <span>Game</span>
 
-            </a>
+</a>
 
 
 
@@ -255,23 +256,16 @@
     =========================== -->
 
 
-    <main class="content">
+<main class="content">
 
+    <div class="page-wrapper {% if request.endpoint == 'dashboard.tabela_cmed' %}page-wrapper-full{% endif %}">
 
-        <div class="page-wrapper">
+        {% block page_content %}
+        {% endblock %}
 
+    </div>
 
-            {% block page_content %}
-
-            {% endblock %}
-
-
-
-        </div>
-
-
-
-    </main>
+</main>
 
 
 

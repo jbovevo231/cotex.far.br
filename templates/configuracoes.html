@@ -15,16 +15,18 @@ Configurações
 
     <!-- HEADER -->
 
-<div class="config-header">
-    <h1>
-        <i class="bi bi-gear"></i>
-        Configurações
-    </h1>
+    <div class="config-header">
 
-    <p>
-        Gerencie sua conta, acompanhe seu plano CotaUP Premium e mantenha os dados da sua farmácia sempre atualizados.
-    </p>
-</div>
+        <h1>
+            <i class="bi bi-gear"></i>
+            Configurações
+        </h1>
+
+        <p>
+            Gerencie sua conta, acompanhe seu plano CotaUP Premium e mantenha os dados da sua farmácia sempre atualizados.
+        </p>
+
+    </div>
 
     <!-- CARD PREMIUM -->
 
@@ -39,16 +41,19 @@ Configurações
             <div class="premium-text">
 
                 <div class="premium-badge">
+
                     <i class="bi bi-stars"></i>
 
                     {% if plano == "teste" %}
                         TESTE PREMIUM
                     {% else %}
-                        COTAFARMA PREMIUM
+                        COTAUP PREMIUM
                     {% endif %}
+
                 </div>
 
                 <h2>
+
                     {% if plano == "anual" %}
                         Plano Anual
                     {% elif plano == "6meses" %}
@@ -58,9 +63,11 @@ Configurações
                     {% else %}
                         Teste grátis • 14 dias
                     {% endif %}
+
                 </h2>
 
                 <p>
+
                     {% if plano == "teste" %}
                         Restam <strong>{{ dias_restantes }}</strong> dias para aproveitar todos os recursos.
                     {% elif plano == "mensal" %}
@@ -70,6 +77,7 @@ Configurações
                     {% elif plano == "anual" %}
                         Você está economizando 20%.
                     {% endif %}
+
                 </p>
 
             </div>
@@ -84,13 +92,11 @@ Configurações
 
             <div class="premium-stat">
                 <span>Status</span>
-
                 <strong>Ativo</strong>
             </div>
 
             <div class="premium-stat">
                 <span>CNPJ</span>
-
                 <strong>{{ usuario.cnpj }}</strong>
             </div>
 
@@ -98,79 +104,197 @@ Configurações
 
     </div>
 
-    <!-- CARDS -->
+    <!-- GRID -->
 
     <div class="config-grid">
 
-        <!-- DADOS -->
+        <!-- DADOS CADASTRAIS -->
 
         <div class="config-card">
 
             <div class="card-title">
+
                 <i class="bi bi-building"></i>
+
                 <h2>Dados cadastrais</h2>
+
             </div>
 
             <form method="POST" action="{{ url_for('dashboard.atualizar_dados') }}">
 
                 <div class="form-group">
+
                     <label>Nome da Farmácia</label>
-                    <input type="text" value="{{ usuario.nome }}" class="form-control" disabled>
+
+                    <input
+                        type="text"
+                        value="{{ usuario.nome }}"
+                        class="form-control"
+                        disabled>
+
                 </div>
 
                 <div class="form-group">
+
                     <label>CNPJ</label>
-                    <input type="text" value="{{ usuario.cnpj }}" class="form-control" disabled>
+
+                    <input
+                        type="text"
+                        value="{{ usuario.cnpj }}"
+                        class="form-control"
+                        disabled>
+
                 </div>
 
                 <div class="form-group">
+
                     <label>WhatsApp</label>
-                    <input type="text" value="{{ usuario.telefone or '' }}" class="form-control" disabled>
+
+                    <input
+                        type="text"
+                        value="{{ usuario.telefone or '' }}"
+                        class="form-control"
+                        disabled>
+
                 </div>
 
                 <div class="form-group">
+
                     <label>E-mail</label>
-                    <input type="email" name="email" value="{{ usuario.email }}" class="form-control" placeholder="email@empresa.com">
+
+                    <input
+                        type="email"
+                        name="email"
+                        value="{{ usuario.email }}"
+                        class="form-control"
+                        placeholder="email@empresa.com">
+
+                </div>
+
+                <!-- NOVA SEÇÃO -->
+
+                <hr class="config-divider">
+
+                <div class="card-title secondary">
+
+                    <i class="bi bi-currency-dollar"></i>
+
+                    <h2>Precificação Inteligente</h2>
+
+                </div>
+
+                <p class="config-desc">
+                    Defina a margem padrão utilizada pela Tabela CMED para sugerir automaticamente o preço de venda da sua farmácia.
+                </p>
+
+                <div class="form-group">
+
+                    <label>Margem padrão (%)</label>
+
+                    <div class="input-icon">
+
+                        <input
+                            type="number"
+                            name="margem_padrao"
+                            value="{{ usuario.get('margem_padrao',25) }}"
+                            min="0"
+                            max="200"
+                            step="1"
+                            class="form-control">
+
+                        <span>%</span>
+
+                    </div>
+
+                </div>
+
+                <div class="margem-preview">
+
+                    <div class="preview-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Exemplo automático</strong>
+
+                        <p>
+                            PF R$ 4,83 → Venda sugerida R$ 6,04 com margem de
+                            <strong>{{ usuario.get('margem_padrao',25) }}%</strong>.
+                        </p>
+
+                    </div>
+
                 </div>
 
                 <button class="btn-save" type="submit">
+
                     <i class="bi bi-check-circle"></i>
+
                     Salvar alterações
+
                 </button>
 
             </form>
 
         </div>
 
-        <!-- SENHA -->
+        <!-- SEGURANÇA -->
 
         <div class="config-card">
 
             <div class="card-title">
+
                 <i class="bi bi-shield-lock"></i>
+
                 <h2>Segurança</h2>
+
             </div>
 
             <form method="POST" action="{{ url_for('dashboard.alterar_senha') }}">
 
                 <div class="form-group">
+
                     <label>Senha atual</label>
-                    <input type="password" name="senha_atual" class="form-control" placeholder="Digite sua senha atual">
+
+                    <input
+                        type="password"
+                        name="senha_atual"
+                        class="form-control"
+                        placeholder="Digite sua senha atual">
+
                 </div>
 
                 <div class="form-group">
+
                     <label>Nova senha</label>
-                    <input type="password" name="nova_senha" class="form-control" placeholder="Digite a nova senha">
+
+                    <input
+                        type="password"
+                        name="nova_senha"
+                        class="form-control"
+                        placeholder="Digite a nova senha">
+
                 </div>
 
                 <div class="form-group">
+
                     <label>Confirmar nova senha</label>
-                    <input type="password" name="confirmar_senha" class="form-control" placeholder="Repita a nova senha">
+
+                    <input
+                        type="password"
+                        name="confirmar_senha"
+                        class="form-control"
+                        placeholder="Repita a nova senha">
+
                 </div>
 
                 <button class="btn-save" type="submit">
+
                     <i class="bi bi-key"></i>
+
                     Alterar senha
+
                 </button>
 
             </form>
