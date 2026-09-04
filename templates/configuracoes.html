@@ -120,7 +120,7 @@ Configurações
 
             </div>
 
-            <form method="POST" action="{{ url_for('dashboard.atualizar_dados') }}">
+            <form id="formConfiguracoes" method="POST" action="{{ url_for('dashboard.atualizar_dados') }}">
 
                 <div class="form-group">
 
@@ -173,36 +173,16 @@ Configurações
 
                 <!-- NOVA SEÇÃO -->
 
-                <hr class="config-divider">
-
                 <div class="card-title secondary">
-
-                    <i class="bi bi-currency-dollar"></i>
-
-                    <h2>Precificação Inteligente</h2>
 
                 </div>
 
-                <p class="config-desc">
-                    Defina a margem padrão utilizada pela Tabela CMED para sugerir automaticamente o preço de venda da sua farmácia.
-                </p>
 
                 <div class="form-group">
 
-                    <label>Margem padrão (%)</label>
 
                     <div class="input-icon">
 
-                        <input
-                            type="number"
-                            name="margem_padrao"
-                            value="{{ usuario.get('margem_padrao',25) }}"
-                            min="0"
-                            max="200"
-                            step="1"
-                            class="form-control">
-
-                        <span>%</span>
 
                     </div>
 
@@ -210,18 +190,9 @@ Configurações
 
                 <div class="margem-preview">
 
-                    <div class="preview-icon">
-                        <i class="bi bi-graph-up-arrow"></i>
-                    </div>
 
                     <div>
 
-                        <strong>Exemplo automático</strong>
-
-                        <p>
-                            PF R$ 4,83 → Venda sugerida R$ 6,04 com margem de
-                            <strong>{{ usuario.get('margem_padrao',25) }}%</strong>.
-                        </p>
 
                     </div>
 
@@ -304,5 +275,136 @@ Configurações
     </div>
 
 </div>
+
+<!-- MODAL CONFIRMAR NOVO E-MAIL -->
+<div class="modal fade" id="modalValidarEmail" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+<div class="modal-header">
+    <h5 class="modal-title">
+        Confirmar novo e-mail
+    </h5>
+
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal">
+    </button>
+</div>
+
+            <div class="modal-body">
+
+                <p>
+                    Enviamos um código de confirmação para o novo e-mail informado.
+                </p>
+
+                <input
+                    id="codigoEmail"
+                    class="form-control"
+                    maxlength="6"
+                    placeholder="Digite o código">
+
+                <div id="erroCodigo" class="text-danger mt-2"></div>
+
+            </div>
+
+<div class="modal-footer">
+
+    <button
+        type="button"
+        class="btn btn-light"
+        data-bs-dismiss="modal">
+        Cancelar
+    </button>
+
+    <button
+        type="button"
+        id="btnValidarEmail"
+        class="btn btn-primary">
+        Confirmar
+    </button>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+const form = document.getElementById("formConfiguracoes");
+
+form.addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    const resposta = await fetch(form.action,{
+        method:"POST",
+        body:new FormData(form)
+    });
+
+    const dados = await resposta.json();
+
+    if(dados.validar_email){
+
+        new bootstrap.Modal(
+            document.getElementById("modalValidarEmail")
+        ).show();
+
+    }else if(dados.erro){
+
+        alert(dados.erro);
+
+    }
+
+});
+
+document.getElementById("btnValidarEmail")
+.addEventListener("click", async ()=>{
+
+    const formData = new FormData();
+
+    formData.append(
+        "codigo",
+        document.getElementById("codigoEmail").value
+    );
+
+const resposta = await fetch(
+    "{{ url_for('dashboard.validar_email') }}",
+    {
+        method: "POST",
+        body: formData
+    }
+);
+
+    const dados = await resposta.json();
+
+if (dados.sucesso) {
+
+    const modal = bootstrap.Modal.getInstance(
+        document.getElementById("modalValidarEmail")
+    );
+
+    if (modal) {
+        modal.hide();
+    }
+
+    setTimeout(() => {
+        location.reload();
+    }, 300);
+
+} else {
+
+    document.getElementById("erroCodigo").innerText =
+        dados.erro;
+
+}
+
+});
+
+</script>
+
+
 
 {% endblock %}

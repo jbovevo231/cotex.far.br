@@ -8,6 +8,9 @@ from flask import (
     jsonify
 )
 
+import random
+from routes.auth import enviar_codigo_email
+
 from datetime import datetime
 import math
 
@@ -253,36 +256,93 @@ def configuracoes():
 )
 def atualizar_dados():
 
-    from database.connection import get_db
+    email = request.form.get("email", "").strip()
 
-    telefone = request.form["telefone"]
+    db = get_db()
 
-    email = request.form["email"]
+    # Verifica se o novo e-mail já pertence a outro usuário
+    existe = db.execute(
+        """
+        SELECT id
+        FROM usuarios
+        WHERE LOWER(email)=LOWER(?)
+        """,
+        (email,)
+    ).fetchone()
+
+    if existe:
+        id_encontrado = existe["id"] if hasattr(existe, "keys") else existe[0]
+
+        print("ID encontrado:", repr(id_encontrado), type(id_encontrado))
+        print("ID sessão:", repr(session["usuario_id"]), type(session["usuario_id"]))
+
+        if int(id_encontrado) != int(session["usuario_id"]):
+            return jsonify({
+                "erro": "Este e-mail já está em uso."
+            }), 400
+
+    try:
+        # Gera código de 6 dígitos
+        codigo = str(random.randint(100000, 999999))
+
+        session["codigo_email"] = codigo
+        session["novo_email"] = email
+
+        # Envia o código para o novo e-mail
+        enviar_codigo_email(email, codigo)
+
+        return jsonify({
+            "sucesso": True,
+            "validar_email": True
+        })
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+
+        return jsonify({
+            "erro": str(e)
+        }), 500
+    
+@dashboard_bp.route(
+    "/validar-email",
+    methods=["POST"]
+)
+def validar_email():
+
+    codigo = request.form.get("codigo", "").strip()
+
+    if codigo != session.get("codigo_email"):
+        return jsonify({
+            "erro": "Código inválido."
+        }), 400
+
+    novo_email = session.get("novo_email")
 
     db = get_db()
 
     db.execute(
         """
         UPDATE usuarios
-        SET telefone=?,
-            email=?
+        SET email=?
         WHERE id=?
         """,
         (
-            telefone,
-            email,
+            novo_email,
             session["usuario_id"]
         )
     )
 
     db.commit()
 
-    session["usuario_email"] = email
+    session["usuario_email"] = novo_email
 
-    return redirect(
-        url_for("dashboard.configuracoes")
-    )
+    session.pop("codigo_email", None)
+    session.pop("novo_email", None)
 
+    return jsonify({
+        "sucesso": True
+    })
 
 # ==========================================
 # ALTERAR SENHA
@@ -460,6 +520,4 @@ def tabela_cmed():
     finally:
         conn.close()
 
-
-import random
 

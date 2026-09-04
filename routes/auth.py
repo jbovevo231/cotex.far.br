@@ -54,7 +54,6 @@ EMAIL_SENHA_APP = os.getenv(
     "COTEX_EMAIL_SENHA_APP"
 )
 
-
 # =========================================================
 # ENVIO DE E-MAIL
 # =========================================================
@@ -62,20 +61,17 @@ EMAIL_SENHA_APP = os.getenv(
 def enviar_email(destino, assunto, corpo):
 
     if not EMAIL_REMETENTE or not EMAIL_SENHA_APP:
-
         raise RuntimeError(
             "E-mail não configurado. "
             "Configure COTEX_EMAIL_REMETENTE "
             "e COTEX_EMAIL_SENHA_APP."
         )
 
-
     mensagem = MIMEMultipart()
 
     mensagem["From"] = EMAIL_REMETENTE
     mensagem["To"] = destino
     mensagem["Subject"] = assunto
-
 
     mensagem.attach(
         MIMEText(
@@ -85,21 +81,17 @@ def enviar_email(destino, assunto, corpo):
         )
     )
 
-
     servidor = smtplib.SMTP_SSL(
         "smtp.gmail.com",
         465,
         timeout=20
     )
 
-
     try:
-
         servidor.login(
             EMAIL_REMETENTE,
             EMAIL_SENHA_APP
         )
-
 
         servidor.sendmail(
             EMAIL_REMETENTE,
@@ -107,11 +99,33 @@ def enviar_email(destino, assunto, corpo):
             mensagem.as_string()
         )
 
-
     finally:
-
         servidor.quit()
 
+
+# =========================================================
+# ENVIAR CÓDIGO DE CONFIRMAÇÃO DE E-MAIL
+# =========================================================
+
+def enviar_codigo_email(destino, codigo):
+
+    assunto = "Confirme seu novo e-mail - CotaUP"
+
+    corpo = f"""
+Olá! Como vai?
+
+Recebemos uma solicitação para alterar o e-mail da sua conta CotaUP.
+
+Seu código de confirmação é:
+
+{codigo}
+
+Se você não solicitou essa alteração, ignore este e-mail.
+
+Equipe CotaUP
+"""
+
+    enviar_email(destino, assunto, corpo)
 
 # =========================================================
 # CADASTRO
