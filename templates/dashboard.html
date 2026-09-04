@@ -18,15 +18,9 @@ Dashboard - CotaFarma
 
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/dashboard.css') }}">
-
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='css/mascote.css') }}">
-
 {% endblock %}
 
 {% block page_content %}
-
-
 
 <!-- TOPO -->
 
@@ -34,54 +28,28 @@ Dashboard - CotaFarma
 
     <div class="dashboard-welcome">
 
-<div class="dashboard-welcome-icon">
-    <i class="bi bi-grid-fill"></i>
-</div>
-
-<div class="dashboard-welcome-text">
-
-    <div class="dashboard-header">
-
-        <div>
-            <h1>Olá, {{ nome_farmacia }} 👋</h1>
-            <p>Veja o desempenho das suas cotações e atividades.</p>
+        <div class="dashboard-welcome-icon">
+            <i class="bi bi-grid-fill"></i>
         </div>
 
-        <img src="{{ url_for('static', filename='img/mascote/mascote.png') }}"
-             class="cotu-mascote"
-             alt="Mascote Cotu">
+        <div class="dashboard-welcome-text">
+
+            <h1>Olá, {{ nome_farmacia }} 👋</h1>
+
+            <p>Veja o desempenho das suas cotações e atividades.</p>
+
+        </div>
 
     </div>
 
-</div>
+    <div class="top-actions">
 
-<div class="top-actions">
+        <button class="icon-btn">
+            <i class="bi bi-bell"></i>
+        </button>
 
-    <div class="search-box">
-
-        <i class="bi bi-search"></i>
-
-        <input
-            type="text"
-            placeholder="Pesquisar medicamentos, cotações...">
 
     </div>
-
-    <button class="icon-btn">
-
-        <i class="bi bi-bell"></i>
-
-    </button>
-
-    <button class="new-btn">
-
-        <i class="bi bi-plus-circle"></i>
-
-        Nova Cotação
-
-    </button>
-
-</div>
 
 </header>
 
