@@ -58,10 +58,16 @@ auth_bp = Blueprint(
 # =========================================================
 
 def enviar_email(destino, assunto, corpo):
+    EMAIL_REMETENTE = os.getenv("COTEX_EMAIL_REMETENTE")
+    EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
+
+    print("REMETENTE:", EMAIL_REMETENTE)
     print("1 - Iniciando envio")
 
     if not EMAIL_REMETENTE or not EMAIL_SENHA_APP:
-        raise RuntimeError("E-mail não configurado.")
+        raise RuntimeError(
+            "E-mail não configurado. Configure COTEX_EMAIL_REMETENTE e COTEX_EMAIL_SENHA_APP."
+        )
 
     mensagem = MIMEMultipart()
     mensagem["From"] = EMAIL_REMETENTE
@@ -78,7 +84,11 @@ def enviar_email(destino, assunto, corpo):
         servidor.login(EMAIL_REMETENTE, EMAIL_SENHA_APP)
 
         print("4 - Enviando e-mail")
-        servidor.sendmail(EMAIL_REMETENTE, destino, mensagem.as_string())
+        servidor.sendmail(
+            EMAIL_REMETENTE,
+            destino,
+            mensagem.as_string()
+        )
 
         print("5 - Enviado com sucesso")
 
