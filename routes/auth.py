@@ -46,13 +46,8 @@ auth_bp = Blueprint(
 # CONFIGURAÇÃO DO E-MAIL
 # =========================================================
 
-EMAIL_REMETENTE = os.getenv(
-    "COTEX_EMAIL_REMETENTE"
-)
-
-EMAIL_SENHA_APP = os.getenv(
-    "COTEX_EMAIL_SENHA_APP"
-)
+EMAIL_REMETENTE = os.getenv("COTEX_EMAIL_REMETENTE")
+EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
 
 # =========================================================
 # ENVIO DE E-MAIL
