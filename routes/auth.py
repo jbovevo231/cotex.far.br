@@ -24,6 +24,7 @@ import secrets
 import hashlib
 import hmac
 import smtplib
+import socket
 import os
 import time
 
@@ -76,11 +77,21 @@ def enviar_email(destino, assunto, corpo):
         )
     )
 
+    # Força conexão IPv4 com o Gmail
+    infos = socket.getaddrinfo(
+        "smtp.gmail.com",
+        587,
+        socket.AF_INET,
+        socket.SOCK_STREAM
+    )
+
+    host = infos[0][4][0]
+
     servidor = smtplib.SMTP(
-    "smtp.gmail.com",
-    587,
-    timeout=20
-)
+        host,
+        587,
+        timeout=20
+    )
 
     try:
         servidor.ehlo()
@@ -100,7 +111,6 @@ def enviar_email(destino, assunto, corpo):
 
     finally:
         servidor.quit()
-
 
 # =========================================================
 # ENVIAR CÓDIGO DE CONFIRMAÇÃO DE E-MAIL
