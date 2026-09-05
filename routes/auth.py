@@ -59,7 +59,7 @@ EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
 
 def enviar_email(destino, assunto, corpo):
     resend.Emails.send({
-        "from": "CotaUP <onboarding@resend.dev>",
+        "from": "CotaUP <contato@cotaup.com.br>",
         "to": destino,
         "subject": assunto,
         "text": corpo
