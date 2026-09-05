@@ -27,10 +27,9 @@ import smtplib
 import socket
 import os
 import time
-import resend
 
 
-resend.api_key = os.getenv("RESEND_API_KEY")
+
 from datetime import datetime, timedelta
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -58,59 +57,32 @@ EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
 # =========================================================
 
 def enviar_email(destino, assunto, corpo):
-    resend.Emails.send({
-        "from": "CotaUP <contato@cotaup.com.br>",
-        "to": destino,
-        "subject": assunto,
-        "text": corpo
-    })
+
+    if not EMAIL_REMETENTE or not EMAIL_SENHA_APP:
+        raise RuntimeError(
+            "E-mail não configurado. Configure COTEX_EMAIL_REMETENTE e COTEX_EMAIL_SENHA_APP."
+        )
 
     mensagem = MIMEMultipart()
-
     mensagem["From"] = EMAIL_REMETENTE
     mensagem["To"] = destino
     mensagem["Subject"] = assunto
 
-    mensagem.attach(
-        MIMEText(
-            corpo,
-            "plain",
-            "utf-8"
-        )
-    )
+    mensagem.attach(MIMEText(corpo, "plain", "utf-8"))
 
-    # Força conexão IPv4 com o Gmail
-    infos = socket.getaddrinfo(
+    servidor = smtplib.SMTP_SSL(
         "smtp.gmail.com",
-        587,
-        socket.AF_INET,
-        socket.SOCK_STREAM
-    )
-
-    host = infos[0][4][0]
-
-    servidor = smtplib.SMTP(
-        host,
-        587,
-        timeout=20
+        465,
+        timeout=30
     )
 
     try:
-        servidor.ehlo()
-        servidor.starttls()
-        servidor.ehlo()
-
-        servidor.login(
-            EMAIL_REMETENTE,
-            EMAIL_SENHA_APP
-        )
-
+        servidor.login(EMAIL_REMETENTE, EMAIL_SENHA_APP)
         servidor.sendmail(
             EMAIL_REMETENTE,
             destino,
             mensagem.as_string()
         )
-
     finally:
         servidor.quit()
 
