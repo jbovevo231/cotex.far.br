@@ -27,7 +27,10 @@ import smtplib
 import socket
 import os
 import time
+import resend
 
+
+resend.api_key = os.getenv("RESEND_API_KEY")
 from datetime import datetime, timedelta
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -55,13 +58,12 @@ EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
 # =========================================================
 
 def enviar_email(destino, assunto, corpo):
-
-    if not EMAIL_REMETENTE or not EMAIL_SENHA_APP:
-        raise RuntimeError(
-            "E-mail não configurado. "
-            "Configure COTEX_EMAIL_REMETENTE "
-            "e COTEX_EMAIL_SENHA_APP."
-        )
+    resend.Emails.send({
+        "from": "CotaUP <onboarding@resend.dev>",
+        "to": destino,
+        "subject": assunto,
+        "text": corpo
+    })
 
     mensagem = MIMEMultipart()
 
