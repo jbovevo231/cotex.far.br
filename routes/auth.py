@@ -76,13 +76,17 @@ def enviar_email(destino, assunto, corpo):
         )
     )
 
-    servidor = smtplib.SMTP_SSL(
-        "smtp.gmail.com",
-        465,
-        timeout=20
-    )
+    servidor = smtplib.SMTP(
+    "smtp.gmail.com",
+    587,
+    timeout=20
+)
 
     try:
+        servidor.ehlo()
+        servidor.starttls()
+        servidor.ehlo()
+
         servidor.login(
             EMAIL_REMETENTE,
             EMAIL_SENHA_APP
