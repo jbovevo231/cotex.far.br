@@ -54,17 +54,15 @@ auth_bp = Blueprint(
 
 
 # =========================================================
-# CONFIGURAÇÃO DO E-MAIL
-# =========================================================
-
-EMAIL_REMETENTE = os.getenv("COTEX_EMAIL_REMETENTE")
-EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
-
-# =========================================================
 # ENVIO DE E-MAIL
 # =========================================================
 
 def enviar_email(destino, assunto, corpo):
+
+    EMAIL_REMETENTE = os.getenv("COTEX_EMAIL_REMETENTE")
+    EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
+
+    print("REMETENTE:", EMAIL_REMETENTE)
 
     if not EMAIL_REMETENTE or not EMAIL_SENHA_APP:
         raise RuntimeError(
