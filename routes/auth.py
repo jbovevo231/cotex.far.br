@@ -58,37 +58,30 @@ auth_bp = Blueprint(
 # =========================================================
 
 def enviar_email(destino, assunto, corpo):
-
-    EMAIL_REMETENTE = os.getenv("COTEX_EMAIL_REMETENTE")
-    EMAIL_SENHA_APP = os.getenv("COTEX_EMAIL_SENHA_APP")
-
-    print("REMETENTE:", EMAIL_REMETENTE)
+    print("1 - Iniciando envio")
 
     if not EMAIL_REMETENTE or not EMAIL_SENHA_APP:
-        raise RuntimeError(
-            "E-mail não configurado. Configure COTEX_EMAIL_REMETENTE e COTEX_EMAIL_SENHA_APP."
-        )
+        raise RuntimeError("E-mail não configurado.")
 
     mensagem = MIMEMultipart()
     mensagem["From"] = EMAIL_REMETENTE
     mensagem["To"] = destino
     mensagem["Subject"] = assunto
-
     mensagem.attach(MIMEText(corpo, "plain", "utf-8"))
 
-    servidor = smtplib.SMTP_SSL(
-        "smtp.gmail.com",
-        465,
-        timeout=30
-    )
+    print("2 - Abrindo SMTP")
+
+    servidor = smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30)
 
     try:
+        print("3 - Fazendo login")
         servidor.login(EMAIL_REMETENTE, EMAIL_SENHA_APP)
-        servidor.sendmail(
-            EMAIL_REMETENTE,
-            destino,
-            mensagem.as_string()
-        )
+
+        print("4 - Enviando e-mail")
+        servidor.sendmail(EMAIL_REMETENTE, destino, mensagem.as_string())
+
+        print("5 - Enviado com sucesso")
+
     finally:
         servidor.quit()
 
