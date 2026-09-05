@@ -116,7 +116,13 @@ Se você não solicitou essa alteração, ignore este e-mail.
 Equipe CotaUP
 """
 
-    enviar_email(destino, assunto, corpo)
+    try:
+        enviar_email(destino, assunto, corpo)
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise RuntimeError(str(e))
+
 
 # =========================================================
 # CADASTRO
@@ -136,16 +142,12 @@ def cadastro():
     senha = request.form["senha"]
     confirmar = request.form["confirmar"]
 
-
     if senha != confirmar:
-
         return jsonify({
             "erro": "As senhas não conferem."
         })
 
-
     try:
-
         criar_usuario(
             nome,
             cpf,
@@ -155,13 +157,13 @@ def cadastro():
             senha
         )
 
-
     except Exception as e:
+        import traceback
+        traceback.print_exc()
 
         return jsonify({
             "erro": str(e)
-        })
-
+        }), 500
 
     return jsonify({
         "sucesso": True
