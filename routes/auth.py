@@ -175,13 +175,22 @@ def cadastro():
 )
 def login():
 
+    print("LOGIN ROUTE: entrou na rota", flush=True)
+
     login = request.form["login"].strip()
+
+    print("LOGIN ROUTE: recebeu login", flush=True)
+
     senha = request.form["senha"]
+
+    print("LOGIN ROUTE: recebeu senha", flush=True)
 
     usuario = validar_login(
         login,
         senha
     )
+
+    print("LOGIN ROUTE: voltou do validar_login", flush=True)
 
     if usuario:
 
@@ -195,7 +204,6 @@ def login():
         )
 
     return "CNPJ, e-mail, WhatsApp ou senha inválidos."
-
 
 # =========================================================
 # RECUPERAR SENHA
