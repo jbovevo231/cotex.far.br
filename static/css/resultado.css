@@ -2025,3 +2025,322 @@
     }
 
 }
+
+/* =========================
+   CABEÇALHO DO REPRESENTANTE
+========================= */
+
+.resultado-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    width:100%;
+}
+
+.resultado-usuario{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex:1;
+    min-width:0;
+}
+
+/* =========================
+   STATUS DO PEDIDO
+========================= */
+
+.status-pedido{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+.status-pedido.pendente{
+    background:#fff3e0;
+    color:#b45309;
+    border:1px solid #f59e0b;
+}
+
+.status-pedido.pendente:hover{
+    background:#fef3c7;
+}
+
+.status-pedido.concluido{
+    background:#dcfce7;
+    color:#15803d;
+    border:1px solid #22c55e;
+    cursor:default;
+}
+
+.pedido-concluido{
+    background:#f0fdf4;
+    border:2px solid #22c55e;
+    transition:.25s;
+}
+
+/* ===== Status do pedido ===== */
+
+.resultado-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.resultado-usuario{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex:1;
+}
+
+.status-pedido{
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.status-pedido.pendente{
+    background:#FFF3E0 !important;
+    color:#B45309 !important;
+    border:1px solid #F59E0B;
+}
+
+.status-pedido.concluido{
+    background:#DCFCE7 !important;
+    color:#15803D !important;
+    border:1px solid #22C55E;
+}
+
+.pedido-concluido{
+    background:#F0FDF4 !important;
+    border:2px solid #22C55E !important;
+}
+
+/* =====================================================
+   🔄 ITEM REDIRECIONADO — DESTAQUE VISUAL
+   ===================================================== */
+
+.resultado-tabela tr.item-redirecionado {
+    background: #fff8d6 !important;
+    border-left: 4px solid #f59e0b !important;
+    transition: all 0.2s ease;
+}
+
+.resultado-tabela tr.item-redirecionado td {
+    background: #fff8d6 !important;
+}
+
+.resultado-tabela tr.item-redirecionado:hover td {
+    background: #ffefad !important;
+}
+
+/* Texto 🔄 REDIRECIONADO */
+.resultado-tabela .badge-redirecionado {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-bottom: 5px;
+    padding: 3px 8px;
+
+    background: #fef3c7;
+    color: #b45309;
+
+    border: 1px solid #f59e0b;
+    border-radius: 6px;
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* Organização do nome do medicamento */
+.resultado-tabela .medicamento-redirecionado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Destaque do nome */
+.resultado-tabela tr.item-redirecionado .col-medicamento strong {
+    color: #92400e !important;
+}
+
+/* TESTE REDIRECIONADO */
+tr.item-redirecionado {
+    background: yellow !important;
+}
+
+tr.item-redirecionado td {
+    background: yellow !important;
+}
+
+/* DESTAQUE DOS ITENS REDIRECIONADOS */
+tr.item-redirecionado,
+.resultado-tabela tr.item-redirecionado {
+    background-color: #fff3cd !important;
+    box-shadow: inset 5px 0 0 #f59e0b !important;
+}
+
+tr.item-redirecionado > td,
+.resultado-tabela tr.item-redirecionado > td {
+    background-color: #fff3cd !important;
+}
+
+tr.item-redirecionado:hover > td,
+.resultado-tabela tr.item-redirecionado:hover > td {
+    background-color: #ffe69c !important;
+}
+
+/* Nome do medicamento */
+tr.item-redirecionado .col-medicamento strong {
+    color: #92400e !important;
+}
+
+/* Selo */
+tr.item-redirecionado .badge-redirecionado {
+    display: inline-flex !important;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #f59e0b !important;
+    color: #ffffff !important;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+tr.item-de-volta > td {
+    background-color: #dcfce7 !important;
+}
+
+tr.item-de-volta .col-medicamento strong {
+    color: #166534 !important;
+}
+
+.badge-de-volta {
+    display: inline-flex !important;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #16a34a !important;
+    color: #ffffff !important;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* =====================================================
+   MEDICAMENTO REDIRECIONADO
+===================================================== */
+
+tr.item-redirecionado > td {
+    background-color: #fff3cd !important;
+    border-left: none !important;
+}
+
+tr.item-redirecionado > td:first-child {
+    border-left: 5px solid #f59e0b !important;
+}
+
+
+/* =====================================================
+   MEDICAMENTO DE VOLTA À ORIGEM
+===================================================== */
+
+tr.item-de-volta > td {
+    background-color: #dcfce7 !important;
+    border-left: none !important;
+}
+
+tr.item-de-volta > td:first-child {
+    border-left: 5px solid #16a34a !important;
+}
+
+
+/* =====================================================
+   BADGE — REDIRECIONADO
+===================================================== */
+
+.badge-redirecionado {
+    display: inline-flex !important;
+    align-items: center;
+    width: fit-content;
+
+    margin-bottom: 6px;
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    background: #f59e0b !important;
+    color: #ffffff !important;
+
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+/* =====================================================
+   BADGE — DE VOLTA À ORIGEM
+===================================================== */
+
+.badge-de-volta {
+    display: inline-flex !important;
+    align-items: center;
+    width: fit-content;
+
+    margin-bottom: 6px;
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    background: #16a34a !important;
+    color: #ffffff !important;
+
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+/* =====================================================
+   NOME DO MEDICAMENTO
+===================================================== */
+
+tr.item-redirecionado .col-medicamento strong {
+    color: #92400e !important;
+}
+
+tr.item-de-volta .col-medicamento strong {
+    color: #166534 !important;
+}
+
+
+/* =====================================================
+   ÁREA DO MEDICAMENTO
+===================================================== */
+
+.medicamento-redirecionado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}

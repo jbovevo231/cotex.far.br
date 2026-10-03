@@ -520,4 +520,36 @@ def tabela_cmed():
     finally:
         conn.close()
 
+@dashboard_bp.route("/dashboard/marcar-pedido-comprado", methods=["POST"])
+def marcar_pedido_comprado_dashboard():
 
+    from flask import request, jsonify, session
+    from models.cotacao import marcar_pedido_comprado
+
+    dados = request.get_json()
+
+    marcar_pedido_comprado(
+        dados["cotacao_id"],
+        dados["representante"],
+        session["usuario_id"]
+    )
+
+    return jsonify({"ok": True})
+
+# ==========================================
+# MINHA PÁGINA
+# ==========================================
+
+@dashboard_bp.route("/minha-pagina")
+def minha_pagina():
+
+    print("===================================")
+    print("SESSÃO NA MINHA PÁGINA:", dict(session))
+    print("===================================")
+
+    if "usuario_id" not in session:
+        return redirect(url_for("inicio"))
+
+    return render_template(
+        "minha-pagina/index.html"
+    )

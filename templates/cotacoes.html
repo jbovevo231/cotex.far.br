@@ -21,7 +21,7 @@ Cotações - CotaFarma
 
       
         <link rel="stylesheet"
-      href="{{ url_for('static', filename='css/resultado.css', v='2') }}">
+      href="{{ url_for('static', filename='css/resultado.css', v='3') }}">
       
 
 <link rel="stylesheet"
@@ -613,27 +613,29 @@ dados.forEach(rep=>{
 
 html += `
 
-<div class="resultado-representante">
+<div class="resultado-representante" id="rep-${id}-${rep.representante}">
 
     <div class="resultado-topo">
 
         <div class="resultado-usuario">
 
             <div class="resultado-avatar">
-
                 <i class="bi bi-person-fill"></i>
-
             </div>
 
             <div>
-
                 <h2>${rep.representante}</h2>
-
                 <span>${rep.distribuidora}</span>
-
             </div>
 
         </div>
+
+        
+<span
+    class="status-pedido pendente"
+    onclick="abrirModalCompra('${id}','${rep.representante}', this)">
+    Pendente
+</span>
 
     </div>
 
@@ -772,13 +774,16 @@ html+=`
 
         </div>
 
-<button
-    class="btn-gerar-pedido"
-    onclick="abrirPedido(this, '${id}', '${rep.representante}')"
->
-    <i class="bi bi-cart3"></i>
-    GERAR PEDIDO
-</button>
+<div class="resultado-acoes">
+
+    <button
+        class="btn-gerar-pedido"
+        onclick="abrirPedido(this, '${id}', '${rep.representante}')">
+        <i class="bi bi-cart3"></i>
+        GERAR PEDIDO
+    </button>
+
+
 
 
 </div>
@@ -834,6 +839,10 @@ div.querySelectorAll(".resultado-representante").forEach(card=>{
 
 });
 
+
+
+    
+
     }catch(e){
 
     console.error(e);
@@ -845,6 +854,41 @@ ${e.stack}
     `;
 
 }
+
+}
+
+async function abrirModalCompra(cotacaoId, representante){
+
+    const badge = document.querySelector(
+        `#rep-${cotacaoId}-${CSS.escape(representante)} .status-pedido`
+    );
+
+    const card = document.getElementById(
+        `rep-${cotacaoId}-${CSS.escape(representante)}`
+    );
+
+    if(!badge || !card) return;
+
+    const response = await fetch("/dashboard/marcar-pedido-comprado",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            cotacao_id:cotacaoId,
+            representante:representante
+        })
+    });
+
+    if(response.ok){
+
+        badge.classList.remove("pendente");
+        badge.classList.add("concluido");
+        badge.innerText = "Pedido concluído";
+
+        card.classList.add("pedido-concluido");
+
+    }
 
 }
 
@@ -880,7 +924,6 @@ async function encerrarCotacao(id){
         if(dados.sucesso){
 
             alert("Cotação encerrada com sucesso.");
-
             location.reload();
 
         }else{
@@ -891,11 +934,10 @@ async function encerrarCotacao(id){
 
     }catch(e){
 
-    console.error(e);
+        console.error(e);
+        alert("Erro ao encerrar a cotação.");
 
-    alert("Erro ao encerrar a cotação.");
-
-}
+    }
 
 }
 
@@ -915,40 +957,33 @@ async function excluirCotacao(id){
 
     try{
 
-const response = await fetch(`/cotacoes/${id}/excluir`,{
-    method:"POST"
-});
+        const response = await fetch(`/cotacoes/${id}/excluir`,{
+            method:"POST"
+        });
 
-const dados = await response.json();
+        const dados = await response.json();
 
-console.log(dados);
+        console.log(dados);
 
-if(response.ok && dados.sucesso){
+        if(response.ok && dados.sucesso){
 
-    alert("Cotação excluída com sucesso.");
+            alert("Cotação excluída com sucesso.");
+            location.reload();
 
-    location.reload();
+        }else{
 
-}else{
+            alert(dados.erro || "Erro ao excluir a cotação.");
 
-    alert(dados.erro || "Erro ao excluir a cotação.");
+        }
 
-}
+    }catch(e){
 
-}catch(e){
+        console.error(e);
+        alert("Erro ao excluir a cotação.");
 
-    console.error(e);
-
-    alert("Erro ao excluir a cotação.");
-
-}
+    }
 
 }
-
-
-
-
-        
 </script>
 
 <!-- =====================================================
@@ -986,13 +1021,11 @@ if(response.ok && dados.sucesso){
 
             </div>
 
-
             <button
                 type="button"
                 class="modal-pedido-fechar"
                 onclick="fecharPedido()"
-                aria-label="Fechar"
-            >
+                aria-label="Fechar">
 
                 <i class="bi bi-x-lg"></i>
 
@@ -1000,21 +1033,16 @@ if(response.ok && dados.sucesso){
 
         </div>
 
-
         <!-- REPRESENTANTE -->
         <div class="modal-pedido-representante">
 
             <div class="representante-avatar">
-
                 <i class="bi bi-person-fill"></i>
-
             </div>
 
             <div>
 
-                <span>
-                    REPRESENTANTE
-                </span>
+                <span>REPRESENTANTE</span>
 
                 <strong id="pedidoRepresentante">
                     —
@@ -1024,54 +1052,35 @@ if(response.ok && dados.sucesso){
 
         </div>
 
-
         <!-- CONTEÚDO -->
         <div class="modal-pedido-conteudo">
-
 
             <!-- LISTA DE MEDICAMENTOS -->
             <div class="modal-pedido-lista">
 
                 <div class="modal-pedido-lista-header">
 
-                    <span>
-                        Medicamento
-                    </span>
-
-                    <span>
-                        Preço
-                    </span>
-
-                    <span>
-                        Qtd.
-                    </span>
-
-                    <span>
-                        Subtotal
-                    </span>
+                    <span>Medicamento</span>
+                    <span>Preço</span>
+                    <span>Qtd.</span>
+                    <span>Subtotal</span>
 
                 </div>
 
-
                 <table class="tabela-pedido">
 
-                    <tbody id="pedidoItens">
-
-                    </tbody>
+                    <tbody id="pedidoItens"></tbody>
 
                 </table>
 
             </div>
-
 
             <!-- TOTAL -->
             <div class="modal-pedido-total">
 
                 <div>
 
-                    <span>
-                        TOTAL DO PEDIDO
-                    </span>
+                    <span>TOTAL DO PEDIDO</span>
 
                     <small>
                         Valor calculado conforme as quantidades selecionadas
@@ -1079,46 +1088,36 @@ if(response.ok && dados.sucesso){
 
                 </div>
 
-
                 <strong id="pedidoTotal">
                     R$ 0,00
                 </strong>
 
             </div>
 
-
         </div>
-
 
         <!-- RODAPÉ -->
         <div class="modal-pedido-footer">
 
-
             <button
                 type="button"
                 class="btn-pedido-cancelar"
-                onclick="fecharPedido()"
-            >
+                onclick="fecharPedido()">
 
                 <i class="bi bi-arrow-left"></i>
-
                 Voltar
 
             </button>
 
-
             <button
                 type="button"
                 class="btn-pedido-whatsapp"
-                onclick="enviarWhatsappPedido()"
-            >
+                onclick="enviarWhatsappPedido()">
 
                 <i class="bi bi-whatsapp"></i>
-
                 Enviar pelo WhatsApp
 
             </button>
-
 
         </div>
 
@@ -1129,4 +1128,3 @@ if(response.ok && dados.sucesso){
 <script src="{{ url_for('static', filename='js/cotacoes.js') }}"></script>
 
 {% endblock %}
-

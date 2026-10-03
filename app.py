@@ -46,9 +46,37 @@ from routes.comparativo import comparativo_bp
 
 from models.usuario import buscar_usuario_por_token
 
+from database.connection import get_db
+
 
 
 app = Flask(__name__)
+
+# =====================================
+# VERIFICAR ESTRUTURA DA TABELA USUARIOS
+# =====================================
+
+try:
+
+    db = get_db()
+
+    colunas = db.execute(
+        "PRAGMA table_info(usuarios)"
+    ).fetchall()
+
+    print("===================================")
+    print("COLUNAS DA TABELA USUARIOS:")
+    print("===================================")
+
+    for coluna in colunas:
+        print(coluna)
+
+    print("===================================")
+
+except Exception as e:
+
+    print("ERRO AO VERIFICAR USUARIOS:")
+    print(e)
 
 
 app.config['PROPAGATE_EXCEPTIONS'] = True

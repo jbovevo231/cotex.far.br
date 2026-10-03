@@ -115,11 +115,73 @@ CREATE TABLE IF NOT EXISTS historico_medicamentos (
 )
 """)
 
+# ==========================================
+# STATUS DAS CONTAS DE USUÁRIOS
+# ==========================================
+
 try:
-    conn.commit()
-    print("✅ Tabelas criadas com sucesso!")
+
+    colunas = cursor.execute(
+        "PRAGMA table_info(usuarios)"
+    ).fetchall()
+
+    nomes_colunas = [coluna[1] for coluna in colunas]
+
+    if "status" not in nomes_colunas:
+
+        cursor.execute("""
+            ALTER TABLE usuarios
+            ADD COLUMN status TEXT DEFAULT 'ativo'
+        """)
+
+        print("✅ Coluna status adicionada à tabela usuarios.")
+
+    else:
+
+        print("ℹ️ Coluna status já existe.")
+
 except Exception as e:
+
+    print("❌ Erro ao verificar/adicionar status:")
+    print(e)
+
+
+# ==========================================
+# SALVAR ALTERAÇÕES
+# ==========================================
+
+try:
+
+    conn.commit()
+
+    print("✅ Tabelas criadas/atualizadas com sucesso!")
+
+except Exception as e:
+
     print("❌ ERRO NO COMMIT:")
     print(e)
 
+
 conn.close()
+
+# ==========================================
+# STATUS DAS CONTAS DE USUÁRIOS
+# ==========================================
+
+try:
+
+    cursor.execute("""
+        ALTER TABLE usuarios
+        ADD COLUMN status TEXT DEFAULT 'ativo'
+    """)
+
+    print("✅ Coluna status adicionada à tabela usuarios.")
+
+except Exception as e:
+
+    if "duplicate column name" in str(e).lower():
+        print("ℹ️ Coluna status já existe.")
+
+    else:
+        print("❌ Erro ao adicionar coluna status:")
+        print(e)

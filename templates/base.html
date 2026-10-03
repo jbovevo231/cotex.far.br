@@ -118,6 +118,22 @@
             </a>
 
 
+{% if session.get('usuario_email') == 'cotaup.sistema@gmail.com' %}
+
+<a href="{{ url_for('dashboard.minha_pagina') }}"
+   class="{% if request.endpoint == 'dashboard.minha_pagina' %}active{% endif %}">
+
+    <i class="bi bi-person-badge"></i>
+
+    <span>
+        Minha Página
+    </span>
+
+</a>
+
+{% endif %}
+
+
                     <small class="menu-title">
     GESTÃO
 </small>

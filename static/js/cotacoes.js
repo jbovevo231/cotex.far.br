@@ -463,7 +463,7 @@ rep.itens.forEach(item=>{
 
     html+=`
 
-        <tr>
+        <tr data-representante-origem="${rep.representante}">
 
 
     <td class="col-medicamento">
@@ -739,6 +739,33 @@ const cardAtual =
             return;
         }
 
+const representanteOrigem =
+    linhaAtual.dataset.representanteOrigem
+    || representanteAtual;
+
+const origemNormalizada =
+    String(representanteOrigem || "")
+        .trim()
+        .toLowerCase();
+
+const destinoNormalizado =
+    String(resultado.representante || "")
+        .trim()
+        .toLowerCase();
+
+const voltouParaOrigem =
+    destinoNormalizado === origemNormalizada;
+
+console.log("=================================");
+console.log("MEDICAMENTO:", medicamento);
+console.log("REPRESENTANTE ATUAL:", representanteAtual);
+console.log("REPRESENTANTE ORIGINAL:", representanteOrigem);
+console.log("REPRESENTANTE DESTINO:", resultado.representante);
+console.log("ORIGEM NORMALIZADA:", origemNormalizada);
+console.log("DESTINO NORMALIZADO:", destinoNormalizado);
+console.log("VOLTOU PARA ORIGEM:", voltouParaOrigem);
+console.log("=================================");
+
 
         /*
          * =========================================
@@ -811,27 +838,22 @@ const cardAtual =
          * ao novo representante.
          */
 
-        pedidoDestino.itens.push({
-
-            medicamento:
-                resultado.medicamento,
-
-            preco:
-                resultado.preco,
-
-            preco_oferta:
-                resultado.preco_oferta,
-
-            preco_final:
-                resultado.preco_final,
-
-            quantidade:
-                resultado.quantidade,
-
-            oferta:
-                resultado.oferta
-
-        });
+pedidoDestino.itens.push({
+    medicamento:
+        resultado.medicamento,
+    preco:
+        resultado.preco,
+    preco_oferta:
+        resultado.preco_oferta,
+    preco_final:
+        resultado.preco_final,
+    quantidade:
+        resultado.quantidade,
+    oferta:
+        resultado.oferta,
+    representante_origem:
+        representanteOrigem
+});
 
 
         /*
@@ -1014,10 +1036,52 @@ const cardAtual =
             );
 
 
-        const novaLinha =
-            document.createElement(
-                "tr"
-            );
+const novaLinha =
+    document.createElement(
+        "tr"
+    );
+
+novaLinha.dataset.representanteOrigem =
+    representanteOrigem;
+
+
+
+if (voltouParaOrigem) {
+
+    novaLinha.classList.add(
+        "item-de-volta"
+    );
+
+    novaLinha.style.setProperty(
+        "background-color",
+        "#dcfce7",
+        "important"
+    );
+
+    novaLinha.style.setProperty(
+        "border-left",
+        "5px solid #16a34a",
+        "important"
+    );
+
+} else {
+
+    novaLinha.classList.add(
+        "item-redirecionado"
+    );
+
+    novaLinha.style.setProperty(
+        "background-color",
+        "#fff3cd",
+        "important"
+    );
+
+    novaLinha.style.setProperty(
+        "border-left",
+        "5px solid #f59e0b",
+        "important"
+    );
+}
 
 
         const precoExibido =
@@ -1032,13 +1096,31 @@ const cardAtual =
             );
 
 
+
+
         novaLinha.innerHTML = `
 
             <td class="col-medicamento">
 
-                <strong>
-                    ${resultado.medicamento}
-                </strong>
+    <div class="medicamento-redirecionado">
+        ${
+    voltouParaOrigem
+    ? `
+        <span class="badge-de-volta">
+            ↩ DE VOLTA AO LUGAR DE ORIGEM
+        </span>
+      `
+    : `
+        <span class="badge-redirecionado">
+            🔄 REDIRECIONADO
+        </span>
+      `
+}
+
+        <strong>
+            ${resultado.medicamento}
+        </strong>
+    </div>
 
                 <small class="condicao-mobile">
 
@@ -1105,7 +1187,17 @@ const cardAtual =
             novaLinha
         );
 
+novaLinha.querySelectorAll("td").forEach(td => {
 
+    td.style.setProperty(
+        "background-color",
+        voltouParaOrigem
+            ? "#dcfce7"
+            : "#fff3cd",
+        "important"
+    );
+
+});
         /*
          * =========================================
          * ATUALIZA TOTAL
@@ -1523,7 +1615,9 @@ if(response.ok && dados.sucesso){
 }
 let resultadoAtual = [];
 
+
 let whatsappPedido = "";
+
 let mensagemPedido = "";
 
 function abrirPedido(botao, cotacaoId, representante){
