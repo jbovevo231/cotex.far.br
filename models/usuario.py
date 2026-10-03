@@ -190,19 +190,15 @@ def validar_login(
 
     except Exception as e:
 
-        print(
-            "LOGIN: ERRO NO EXECUTE:",
-            repr(e),
-            flush=True
-        )
-
-        return None
+         print("LOGIN: depois do EXECUTE", flush=True)
 
     usuario = resultado.fetchone()
 
     print("LOGIN: depois do FETCHONE", flush=True)
 
     return None
+
+
 # =========================================================
 # REMEMBER ME
 # =========================================================
