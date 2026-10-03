@@ -40,6 +40,7 @@ sphinxcontrib-htmlhelp==2.1.0
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==2.0.0
 sphinxcontrib-serializinghtml==2.0.0
+turso_serverless
 typing_extensions==4.16.0
 urllib3==2.7.0
 Werkzeug==3.1.8
