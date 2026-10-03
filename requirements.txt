@@ -9,7 +9,8 @@ gunicorn==26.0.0
 idna==3.18
 itsdangerous==2.2.0
 Jinja2==3.1.6
-libsql-client
+libsql==0.1.11
+libsql-experimental==0.0.55
 MarkupSafe==3.0.3
 packaging==26.2
 python-dotenv==1.2.2
