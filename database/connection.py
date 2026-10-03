@@ -1,5 +1,5 @@
 import os
-import libsql_client
+import libsql
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,8 +27,8 @@ def get_db():
             "TURSO_AUTH_TOKEN não configurado"
         )
 
-    _db = libsql_client.create_client(
-        url=url,
+    _db = libsql.connect(
+        database=url,
         auth_token=token
     )
 
