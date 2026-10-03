@@ -139,6 +139,39 @@ print("BLUEPRINT ANALYTICS REGISTRADO")
 def inicio():
     return render_template("login.html")
 
+@app.route("/teste-turso")
+def teste_turso():
+
+    import time
+
+    inicio = time.time()
+
+    try:
+
+        db = get_db()
+
+        tempo_conexao = time.time() - inicio
+
+        inicio_query = time.time()
+
+        resultado = db.execute("SELECT 1").fetchone()
+
+        tempo_query = time.time() - inicio_query
+
+        return {
+            "sucesso": True,
+            "resultado": str(resultado),
+            "tempo_conexao": round(tempo_conexao, 2),
+            "tempo_query": round(tempo_query, 2)
+        }
+
+    except Exception as e:
+
+        return {
+            "sucesso": False,
+            "erro": str(e)
+        }, 500
+
 
 print(app.url_map)
 
