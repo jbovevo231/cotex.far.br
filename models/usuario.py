@@ -172,40 +172,87 @@ def validar_login(
 
     login_email = login.lower()
 
-    print("LOGIN: antes do get_db()", flush=True)
+    print(
+        "LOGIN: antes do get_db()",
+        flush=True
+    )
 
     db = get_db()
 
-    print("LOGIN: depois do get_db()", flush=True)
+    print(
+        "LOGIN: depois do get_db()",
+        flush=True
+    )
 
-    print("LOGIN: antes do EXECUTE", flush=True)
+    print(
+        "LOGIN: antes do SELECT USUARIO",
+        flush=True
+    )
 
     try:
 
-        resultado = db.execute(
-            "SELECT 1",
-            timeout=10
-        )
+        usuario = db.execute(
+            """
+            SELECT
+                id,
+                nome,
+                cnpj,
+                email,
+                senha,
+                telefone
+            FROM usuarios
+            WHERE cnpj = ?
+               OR LOWER(email) = ?
+               OR telefone = ?
+            LIMIT 1
+            """,
+            (
+                login_cnpj,
+                login_email,
+                login_telefone
+            )
+        ).fetchone()
 
-        print("LOGIN: depois do EXECUTE", flush=True)
+        print(
+            "LOGIN: SELECT USUARIO terminou",
+            flush=True
+        )
 
     except Exception as e:
 
         print(
-            "LOGIN: ERRO NO EXECUTE:",
+            "LOGIN: ERRO SELECT USUARIO:",
             repr(e),
             flush=True
         )
 
         return None
 
-    print("LOGIN: antes do FETCHONE", flush=True)
+    print(
+        "LOGIN: usuario encontrado:",
+        usuario is not None,
+        flush=True
+    )
 
-    usuario = resultado.fetchone()
+    if usuario is None:
 
-    print("LOGIN: depois do FETCHONE", flush=True)
+        return None
 
-    return None
+    senha_banco = usuario[4]
+
+    if not check_password_hash(
+        senha_banco,
+        senha
+    ):
+
+        return None
+
+    return {
+        "id": usuario[0],
+        "nome": usuario[1],
+        "cnpj": usuario[2],
+        "email": usuario[3]
+    }
 # =========================================================
 # REMEMBER ME
 # =========================================================
