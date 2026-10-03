@@ -178,13 +178,26 @@ def validar_login(
 
     print("LOGIN: depois do get_db()", flush=True)
 
-    print("LOGIN: antes do SELECT TESTE", flush=True)
+    print("LOGIN: antes do EXECUTE", flush=True)
 
-    resultado = db.execute(
-        "SELECT 1"
-    )
+    try:
 
-    print("LOGIN: depois do SELECT TESTE", flush=True)
+        resultado = db.execute(
+            "SELECT 1",
+            timeout=10
+        )
+
+        print("LOGIN: depois do EXECUTE", flush=True)
+
+    except Exception as e:
+
+        print(
+            "LOGIN: ERRO NO EXECUTE:",
+            repr(e),
+            flush=True
+        )
+
+        return None
 
     usuario = resultado.fetchone()
 
