@@ -181,9 +181,8 @@ def validar_login(
     print("LOGIN: antes do SELECT TESTE", flush=True)
 
     resultado = db.execute(
-    "SELECT 1",
-    timeout=10
-)
+        "SELECT 1"
+    )
 
     print("LOGIN: depois do SELECT TESTE", flush=True)
 
