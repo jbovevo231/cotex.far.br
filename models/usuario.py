@@ -183,9 +183,8 @@ def validar_login(
     try:
 
         resultado = db.execute(
-            "SELECT 1",
-            timeout=10
-        )
+    "SELECT 1"
+)
 
         print("LOGIN: depois do EXECUTE", flush=True)
 
