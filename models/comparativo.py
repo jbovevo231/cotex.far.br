@@ -128,4 +128,60 @@ def buscar_resultado(cotacao_id):
             "oferta": vencedor["oferta"]
         })
 
-    return list(representantes.values())
+    # ============================================================
+    # ITENS NÃO COTADOS
+    # Só entra aqui se TODOS os representantes responderam NÃO TENHO
+    # ============================================================
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("""
+        SELECT
+            rc.medicamento,
+            rc.status
+        FROM respostas_cotacao rc
+        WHERE rc.cotacao_id = ?
+        ORDER BY rc.medicamento
+    """, (cotacao_id,))
+
+    respostas = cursor.fetchall()
+
+    db.close()
+
+    # Agrupa as respostas por medicamento
+    respostas_por_medicamento = {}
+
+    for medicamento, status in respostas:
+
+        if medicamento not in respostas_por_medicamento:
+            respostas_por_medicamento[medicamento] = []
+
+        respostas_por_medicamento[medicamento].append(
+            str(status).strip().upper()
+        )
+
+    itens_nao_cotados = []
+
+    for medicamento, status_list in respostas_por_medicamento.items():
+
+        # Só entra se TODAS as respostas forem NÃO TENHO
+        todos_nao_tem = all(
+            status in ("NAO_TENHO", "NÃO TENHO")
+            for status in status_list
+        )
+
+        if todos_nao_tem:
+            itens_nao_cotados.append({
+                "medicamento": medicamento,
+                "situacao": "NÃO TENHO"
+            })
+
+    resultado = list(representantes.values())
+
+    resultado.append({
+        "__tipo": "itens_nao_cotados",
+        "itens": itens_nao_cotados
+    })
+
+    return resultado

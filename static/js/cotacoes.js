@@ -398,34 +398,47 @@ console.log(dados);
     </div>
 
 `;
+const blocoNaoCotados = dados.find(
+    item => item.__tipo === "itens_nao_cotados"
+);
+
+const itensNaoCotados = blocoNaoCotados?.itens || [];
 
 dados.forEach(rep=>{
+
+if (rep.__tipo === "itens_nao_cotados") {
+    return;
+}
 
 html += `
 
 <div class="resultado-representante">
 
-    <div class="resultado-topo">
+<div class="resultado-topo">
 
-        <div class="resultado-usuario">
+    <div class="resultado-usuario">
 
-            <div class="resultado-avatar">
+        <div class="resultado-avatar">
+            <i class="bi bi-person-fill"></i>
+        </div>
 
-                <i class="bi bi-person-fill"></i>
-
-            </div>
-
-            <div>
-
-                <h2>${rep.representante}</h2>
-
-                <span>${rep.distribuidora}</span>
-
-            </div>
-
+        <div>
+            <h2>${rep.representante}</h2>
+            <span>${rep.distribuidora}</span>
         </div>
 
     </div>
+
+    <button
+        type="button"
+        class="btn-marcar-comprado"
+        onclick="alternarComprado(this)"
+    >
+        <i class="bi bi-cart-check"></i>
+        MARCAR COMO COMPRADO
+    </button>
+
+</div>
 
     <table class="resultado-tabela">
 
@@ -579,6 +592,76 @@ html+=`
 `;
 
 });
+
+if (itensNaoCotados.length > 0) {
+
+    html += `
+
+        <div class="itens-nao-cotados">
+
+            <div class="resultado-topo">
+                <div class="resultado-usuario">
+
+                    <div class="resultado-avatar">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                    </div>
+
+                    <div>
+                        <h2>ITENS NÃO COTADOS</h2>
+                        <span>Produtos não disponíveis pelos representantes</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <table class="resultado-tabela">
+
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Situação</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+    `;
+
+    itensNaoCotados.forEach(item => {
+
+        html += `
+
+            <tr>
+
+
+                <td>
+                    <strong>${item.medicamento}</strong>
+                </td>
+
+                <td>
+                    NÃO TENHO
+                </td>
+
+                <td>
+                    
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+    html += `
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+}
 
     html += `
 
@@ -927,29 +1010,34 @@ pedidoDestino.itens.push({
 
                 <div class="resultado-topo">
 
-                    <div class="resultado-usuario">
+    <div class="resultado-usuario">
 
-                        <div class="resultado-avatar">
+        <div class="resultado-avatar">
+            <i class="bi bi-person-fill"></i>
+        </div>
 
-                            <i class="bi bi-person-fill"></i>
+        <div>
+            <h2>
+                ${resultado.representante}
+            </h2>
 
-                        </div>
+            <span>
+                ${resultado.distribuidora}
+            </span>
+        </div>
 
-                        <div>
+    </div>
 
-                            <h2>
-                                ${resultado.representante}
-                            </h2>
+    <button
+        type="button"
+        class="btn-marcar-comprado"
+        onclick="alternarComprado(this)"
+    >
+        <i class="bi bi-cart-check"></i>
+        MARCAR COMO COMPRADO
+    </button>
 
-                            <span>
-                                ${resultado.distribuidora}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
+</div>
 
 
                 <table class="resultado-tabela">
@@ -1514,7 +1602,38 @@ ${e.stack}
 }
 }
 
+function alternarComprado(botao){
 
+    const card = botao.closest(".resultado-representante");
+
+    if(!card){
+        return;
+    }
+
+    const comprado =
+        card.classList.toggle("representante-comprado");
+
+    if(comprado){
+
+        botao.innerHTML = `
+            <i class="bi bi-check-circle-fill"></i>
+            COMPRADO
+        `;
+
+        botao.classList.add("comprado");
+
+    }else{
+
+        botao.innerHTML = `
+            <i class="bi bi-cart-check"></i>
+            MARCAR COMO COMPRADO
+        `;
+
+        botao.classList.remove("comprado");
+
+    }
+
+}
 
 
 function fecharTodosOsPaineis(id){

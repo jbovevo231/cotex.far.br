@@ -2344,3 +2344,97 @@ tr.item-de-volta .col-medicamento strong {
     align-items: flex-start;
     gap: 2px;
 }
+
+.btn-marcar-comprado {
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    color: #374151;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-marcar-comprado:hover {
+    background: #f3f4f6;
+}
+
+.btn-marcar-comprado.comprado {
+    background: #16a34a !important;
+    border-color: #16a34a !important;
+    color: #ffffff !important;
+}
+
+.resultado-representante.representante-comprado {
+    border: 2px solid #16a34a !important;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.10);
+}
+
+.resultado-representante.representante-comprado .resultado-topo {
+    background: #f0fdf4 !important;
+}
+
+/* ============================================================
+   ITENS NÃO COTADOS
+   ============================================================ */
+
+.itens-nao-cotados {
+    margin-top: 30px;
+    border: 1px solid #dc2626;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.itens-nao-cotados .titulo {
+    background: #dc2626;
+    color: #fff;
+    padding: 14px 18px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.itens-nao-cotados table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.itens-nao-cotados th {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 1px solid #fecaca;
+}
+
+.itens-nao-cotados td {
+    padding: 12px;
+    border-bottom: 1px solid #fee2e2;
+    color: #7f1d1d;
+}
+
+.itens-nao-cotados tbody tr:hover {
+    background: #fef2f2;
+}
+
+.itens-nao-cotados .situacao {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.itens-nao-cotados .btn-acao {
+    color: #dc2626;
+    border: 1px solid #dc2626;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.itens-nao-cotados .btn-acao:hover {
+    background: #dc2626;
+    color: #fff;
+}
