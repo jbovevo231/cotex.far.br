@@ -175,47 +175,18 @@ def validar_login(
     print("LOGIN: antes do get_db()", flush=True)
 
     db = get_db()
+
     print("LOGIN: depois do get_db()", flush=True)
 
+    print("LOGIN: antes do SELECT TESTE", flush=True)
+
     usuario = db.execute(
-        """
-        SELECT
-            id,
-            nome,
-            cnpj,
-            email,
-            senha
-        FROM usuarios
-        WHERE cnpj = ?
-           OR LOWER(email) = ?
-           OR telefone = ?
-        """,
-        (
-            login_cnpj,
-            login_email,
-            login_telefone
-        )
+        "SELECT 1"
     ).fetchone()
 
-    if usuario is None:
+    print("LOGIN: depois do SELECT TESTE", flush=True)
 
-        return None
-
-    senha_banco = usuario[4]
-
-    if not check_password_hash(
-        senha_banco,
-        senha
-    ):
-
-        return None
-
-    return {
-        "id": usuario[0],
-        "nome": usuario[1],
-        "cnpj": usuario[2],
-        "email": usuario[3]
-    }
+    return None
 # =========================================================
 # REMEMBER ME
 # =========================================================
