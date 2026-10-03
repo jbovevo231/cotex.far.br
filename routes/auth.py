@@ -191,6 +191,7 @@ def login():
     )
 
 
+
     if usuario:
 
         session["usuario_id"] = usuario["id"]
@@ -201,13 +202,12 @@ def login():
 
         session["usuario_cnpj"] = usuario["cnpj"]
 
-
-    return redirect(
-    url_for("dashboard.dashboard")
-)
-
+        return redirect(
+            url_for("dashboard.dashboard")
+        )
 
     return "CNPJ, e-mail, WhatsApp ou senha inválidos."
+
 
 
 # =========================================================
