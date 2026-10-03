@@ -202,31 +202,9 @@ def login():
         session["usuario_cnpj"] = usuario["cnpj"]
 
 
-        token = gerar_remember_token(
-            usuario["id"]
-        )
-
-
-        resposta = make_response(
-            redirect(
-                url_for(
-                    "dashboard.dashboard"
-                )
-            )
-        )
-
-
-        resposta.set_cookie(
-            "remember_token",
-            token,
-            max_age=60 * 60 * 24 * 30,
-            httponly=True,
-            secure=True,
-            samesite="Lax"
-        )
-
-
-        return resposta
+    return redirect(
+    url_for("dashboard.dashboard")
+)
 
 
     return "CNPJ, e-mail, WhatsApp ou senha inválidos."
