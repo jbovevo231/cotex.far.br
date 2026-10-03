@@ -91,23 +91,28 @@ app.config.from_object(Config)
 @app.before_request
 def restaurar_sessao():
 
-    # Se já existe sessão, não faz nada
+    print(">>> BEFORE REQUEST:", request.path)
+
     if "usuario_id" in session:
+        print(">>> JÁ POSSUI SESSÃO")
         return
 
-    # Lê o cookie
     token = request.cookies.get("remember_token")
+
+    print(">>> TOKEN:", bool(token))
 
     if not token:
         return
 
-    # Procura o usuário pelo token
+    print(">>> BUSCANDO USUARIO PELO TOKEN")
+
     usuario = buscar_usuario_por_token(token)
+
+    print(">>> USUARIO ENCONTRADO:", usuario is not None)
 
     if usuario is None:
         return
 
-    # Recria a sessão
     session["usuario_id"] = usuario["id"]
     session["usuario_nome"] = usuario["nome"]
     session["usuario_email"] = usuario["email"]
