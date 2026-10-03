@@ -175,36 +175,24 @@ def cadastro():
 )
 def login():
 
-    print("LOGIN 1 - iniciou", flush=True)
-
     login = request.form["login"].strip()
     senha = request.form["senha"]
-
-    print("LOGIN 2 - dados recebidos", flush=True)
 
     usuario = validar_login(
         login,
         senha
     )
 
-    print("LOGIN 3 - validar_login terminou", flush=True)
-
     if usuario:
-
-        print("LOGIN 4 - usuario encontrado", flush=True)
 
         session["usuario_id"] = usuario["id"]
         session["usuario_nome"] = usuario["nome"]
         session["usuario_email"] = usuario["email"]
         session["usuario_cnpj"] = usuario["cnpj"]
 
-        print("LOGIN 5 - session criada", flush=True)
-
         return redirect(
             url_for("dashboard.dashboard")
         )
-
-    print("LOGIN 6 - usuario invalido", flush=True)
 
     return "CNPJ, e-mail, WhatsApp ou senha inválidos."
 
