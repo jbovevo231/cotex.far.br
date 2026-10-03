@@ -178,13 +178,19 @@ def validar_login(
 
     print("LOGIN: depois do get_db()", flush=True)
 
-    print("LOGIN: antes do SELECT TESTE", flush=True)
+    print("LOGIN: antes do EXECUTE", flush=True)
 
-    usuario = db.execute(
+    resultado = db.execute(
         "SELECT 1"
-    ).fetchone()
+    )
 
-    print("LOGIN: depois do SELECT TESTE", flush=True)
+    print("LOGIN: depois do EXECUTE", flush=True)
+
+    print("LOGIN: antes do FETCHONE", flush=True)
+
+    usuario = resultado.fetchone()
+
+    print("LOGIN: depois do FETCHONE", flush=True)
 
     return None
 # =========================================================
