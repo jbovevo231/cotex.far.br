@@ -160,11 +160,7 @@ def validar_login(
     senha
 ):
 
-    db = get_db()
-
-
     login = login.strip()
-
 
     login_cnpj = limpar_cnpj(
         login
@@ -176,35 +172,39 @@ def validar_login(
 
     login_email = login.lower()
 
+    db = get_db()
 
-    usuario = db.execute(
-        """
-        SELECT
-            id,
-            nome,
-            cnpj,
-            email,
-            senha
-        FROM usuarios
-        WHERE cnpj = ?
-           OR LOWER(email) = ?
-           OR telefone = ?
-        """,
-        (
-            login_cnpj,
-            login_email,
-            login_telefone
-        )
-    ).fetchone()
+    try:
 
+        usuario = db.execute(
+            """
+            SELECT
+                id,
+                nome,
+                cnpj,
+                email,
+                senha
+            FROM usuarios
+            WHERE cnpj = ?
+               OR LOWER(email) = ?
+               OR telefone = ?
+            """,
+            (
+                login_cnpj,
+                login_email,
+                login_telefone
+            )
+        ).fetchone()
+
+    finally:
+
+        db.close()
 
     if usuario is None:
 
         return None
 
-
     senha_banco = usuario[4]
-
 
     if not check_password_hash(
         senha_banco,
@@ -213,15 +213,12 @@ def validar_login(
 
         return None
 
-
     return {
         "id": usuario[0],
         "nome": usuario[1],
         "cnpj": usuario[2],
         "email": usuario[3]
     }
-
-
 # =========================================================
 # REMEMBER ME
 # =========================================================
@@ -403,3 +400,95 @@ def buscar_usuario_por_id(
         "periodo_teste": usuario[6],
         "trial_fim": usuario[7]
     }
+
+# =========================================================
+# ADMIN - LISTAR USUÁRIOS
+# =========================================================
+
+def listar_usuarios_admin():
+
+    db = get_db()
+
+    usuarios = db.execute(
+        """
+        SELECT
+            id,
+            nome,
+            cpf,
+            cnpj,
+            telefone,
+            email,
+            plano,
+            periodo_teste,
+            trial_fim,
+            status
+        FROM usuarios
+        ORDER BY id DESC
+        """
+    ).fetchall()
+
+    return usuarios
+
+
+# =========================================================
+# ADMIN - CONTADORES
+# =========================================================
+
+def contar_usuarios_admin():
+
+    db = get_db()
+
+    total = db.execute(
+        """
+        SELECT COUNT(*)
+        FROM usuarios
+        """
+    ).fetchone()[0]
+
+    ativos = db.execute(
+        """
+        SELECT COUNT(*)
+        FROM usuarios
+        WHERE status = 'ativo'
+        """
+    ).fetchone()[0]
+
+    desativados = db.execute(
+        """
+        SELECT COUNT(*)
+        FROM usuarios
+        WHERE status = 'desativado'
+        """
+    ).fetchone()[0]
+
+    return {
+        "total": total,
+        "ativos": ativos,
+        "desativados": desativados
+    }
+
+
+# =========================================================
+# ADMIN - ALTERAR STATUS
+# =========================================================
+
+def alterar_status_usuario(usuario_id, status):
+
+    if status not in ("ativo", "desativado"):
+        raise ValueError("Status inválido.")
+
+    db = get_db()
+
+    db.execute(
+        """
+        UPDATE usuarios
+        SET status = ?
+        WHERE id = ?
+        """,
+        (
+            status,
+            usuario_id
+        )
+    )
+
+    db.commit()
