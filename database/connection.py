@@ -1,18 +1,11 @@
 import os
-import libsql
+import turso_serverless
 from dotenv import load_dotenv
 
 load_dotenv()
 
-_db = None
-
 
 def get_db():
-
-    global _db
-
-    if _db is not None:
-        return _db
 
     url = os.getenv("TURSO_DATABASE_URL")
     token = os.getenv("TURSO_AUTH_TOKEN")
@@ -27,9 +20,9 @@ def get_db():
             "TURSO_AUTH_TOKEN não configurado"
         )
 
-    _db = libsql.connect(
-        database=url,
+    db = turso_serverless.connect(
+        url,
         auth_token=token
     )
 
-    return _db
+    return db
